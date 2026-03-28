@@ -1,3 +1,5 @@
+export * from "./components/accordion";
+export * from "./components/breadcrumb";
 export * from "./components/button";
 export * from "./components/button-group";
 export * from "./components/checkbox";
@@ -11,6 +13,6 @@ export * from "./components/modal";
 export * from "./components/multi-select";
 export * from "./components/select";
 export * from "./components/tabs";
-export * from "./components/accordion";
+export * from "./components/tooltip";
 export * from "./components/typewriter";
 export * from "./lib/utils";
