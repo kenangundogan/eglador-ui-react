@@ -5,6 +5,8 @@ export * from "./components/checkbox-group";
 export * from "./components/dropdown";
 export * from "./components/input";
 export * from "./components/input-group";
+export * from "./components/media-image";
+export * from "./components/media-video";
 export * from "./components/modal";
 export * from "./components/multi-select";
 export * from "./components/select";
