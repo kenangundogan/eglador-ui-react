@@ -1,0 +1,68 @@
+{
+  "name": "eglador-ui-react",
+  "version": "0.1.0-alpha.1",
+  "description": "Reusable Tailwind CSS v4 UI components for React projects",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run typecheck && npm run build",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
+  },
+  "keywords": [
+    "react",
+    "ui",
+    "components",
+    "tailwindcss"
+  ],
+  "author": {
+    "name": "Kenan Gundogan",
+    "url": "https://github.com/kenangundogan"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kenangundogan/eglador-ui-react"
+  },
+  "bugs": {
+    "url": "https://github.com/kenangundogan/eglador-ui-react/issues"
+  },
+  "homepage": "https://github.com/kenangundogan/eglador-ui-react#readme",
+  "license": "MIT",
+  "peerDependencies": {
+    "react": ">=18",
+    "react-dom": ">=18",
+    "tailwindcss": "^4"
+  },
+  "dependencies": {
+    "clsx": "^2.1.1",
+    "tailwind-merge": "^3.3.0"
+  },
+  "devDependencies": {
+    "@storybook/addon-a11y": "^10.3.3",
+    "@storybook/addon-docs": "^10.3.3",
+    "@storybook/react-vite": "^10.3.3",
+    "@tailwindcss/vite": "^4.2.2",
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.0",
+    "lucide-react": "^1.7.0",
+    "storybook": "^10.3.3",
+    "tailwindcss": "^4.2.2",
+    "tsup": "^8.5.0",
+    "typescript": "^5.8.2"
+  }
+}

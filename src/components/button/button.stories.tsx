@@ -1,0 +1,183 @@
+import type { Meta, StoryObj } from "@storybook/react-vite";
+import { Plus, Trash2, Download, Settings, Heart } from "lucide-react";
+import { Button, type ButtonProps } from "./button";
+
+const ALL_COLORS = ["default", "black", "primary", "danger", "success", "warning", "info"] as const;
+
+const meta: Meta<typeof Button> = {
+  title: "Components/Button",
+  component: Button,
+  args: {
+    children: "Button",
+    variant: "solid",
+    color: "default",
+    size: "sm",
+    shape: "rounded",
+    soft: false,
+    loading: false,
+    active: false,
+    disabled: false,
+  },
+  argTypes: {
+    variant: { control: "select", options: ["solid", "outline", "ghost"] },
+    color: { control: "select", options: [...ALL_COLORS] },
+    size: { control: "select", options: ["xs", "sm", "md"] },
+    shape: { control: "select", options: ["square", "rounded", "circle"] },
+    soft: { control: "boolean" },
+    loading: { control: "boolean" },
+    active: { control: "boolean" },
+    disabled: { control: "boolean" },
+    onClick: { action: "clicked" },
+    onMouseEnter: { action: "mouseEnter" },
+    onFocus: { action: "focused" },
+  },
+};
+
+export default meta;
+type Story = StoryObj<typeof Button>;
+
+// ── Playground ───────────────────────────────
+
+export const Default: Story = {};
+
+// ── Variants ─────────────────────────────────
+
+export const Solid: Story = {
+  render: (args: ButtonProps) => (
+    <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+      {ALL_COLORS.map((c) => (
+        <Button {...args} key={c} color={c}>{c.charAt(0).toUpperCase() + c.slice(1)}</Button>
+      ))}
+    </div>
+  ),
+};
+
+export const SolidSoft: Story = {
+  args: { soft: true },
+  render: (args: ButtonProps) => (
+    <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+      {ALL_COLORS.map((c) => (
+        <Button {...args} key={c} color={c}>{c.charAt(0).toUpperCase() + c.slice(1)}</Button>
+      ))}
+    </div>
+  ),
+};
+
+export const Outline: Story = {
+  args: { variant: "outline" },
+  render: (args: ButtonProps) => (
+    <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+      {ALL_COLORS.map((c) => (
+        <Button {...args} key={c} color={c}>{c.charAt(0).toUpperCase() + c.slice(1)}</Button>
+      ))}
+    </div>
+  ),
+};
+
+export const Ghost: Story = {
+  args: { variant: "ghost" },
+  render: (args: ButtonProps) => (
+    <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+      {ALL_COLORS.map((c) => (
+        <Button {...args} key={c} color={c}>{c.charAt(0).toUpperCase() + c.slice(1)}</Button>
+      ))}
+    </div>
+  ),
+};
+
+// ── Sizes & Shapes ───────────────────────────
+
+export const Sizes: Story = {
+  args: { color: "default" },
+  render: (args: ButtonProps) => (
+    <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+      <Button {...args} size="xs">Extra Small</Button>
+      <Button {...args} size="sm">Small</Button>
+      <Button {...args} size="md">Medium</Button>
+    </div>
+  ),
+};
+
+export const Shapes: Story = {
+  args: { color: "default" },
+  render: (args: ButtonProps) => (
+    <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+      <Button {...args} shape="square">Square</Button>
+      <Button {...args} shape="rounded">Rounded</Button>
+      <Button {...args} shape="circle">Circle</Button>
+    </div>
+  ),
+};
+
+// ── Icons ────────────────────────────────────
+
+export const WithLeftIcon: Story = {
+  args: { color: "primary" },
+  render: (args: ButtonProps) => (
+    <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+      <Button {...args} color="primary" icon={<Plus />}>Add item</Button>
+      <Button {...args} color="danger" icon={<Trash2 />}>Delete</Button>
+      <Button {...args} color="success" icon={<Download />}>Download</Button>
+      <Button {...args} color="black" icon={<Settings />}>Settings</Button>
+    </div>
+  ),
+};
+
+export const WithRightIcon: Story = {
+  render: (args: ButtonProps) => (
+    <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+      <Button {...args} color="primary" iconRight={<Plus />}>Add item</Button>
+      <Button {...args} color="danger" iconRight={<Trash2 />}>Delete</Button>
+      <Button {...args} color="success" iconRight={<Download />}>Download</Button>
+      <Button {...args} color="black" iconRight={<Settings />}>Settings</Button>
+    </div>
+  ),
+};
+
+export const IconOnly: Story = {
+  args: { children: undefined },
+  render: (args: ButtonProps) => (
+    <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+      <Button {...args} color="default" icon={<Settings />} />
+      <Button {...args} color="primary" icon={<Plus />} />
+      <Button {...args} color="danger" icon={<Trash2 />} />
+      <Button {...args} color="success" shape="circle" icon={<Heart />} />
+      <Button {...args} color="info" variant="outline" icon={<Download />} />
+      <Button {...args} color="black" variant="ghost" icon={<Settings />} />
+    </div>
+  ),
+};
+
+// ── States ───────────────────────────────────
+
+export const Loading: Story = {
+  args: { color: "primary" },
+  render: (args: ButtonProps) => (
+    <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+      <Button {...args} loading>Saving...</Button>
+      <Button {...args} color="black" loading>Loading</Button>
+      <Button {...args} color="danger" loading icon={<Trash2 />} />
+    </div>
+  ),
+};
+
+export const Disabled: Story = {
+  args: { disabled: true },
+  render: (args: ButtonProps) => (
+    <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+      <Button {...args} color="primary">Primary</Button>
+      <Button {...args} color="danger" variant="outline">Outline</Button>
+      <Button {...args} color="black" variant="ghost">Ghost</Button>
+    </div>
+  ),
+};
+
+export const Active: Story = {
+  args: { active: true },
+  render: (args: ButtonProps) => (
+    <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+      <Button {...args}>Active</Button>
+      <Button {...args} active={false}>Inactive</Button>
+    </div>
+  ),
+};
