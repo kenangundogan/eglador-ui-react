@@ -5,4 +5,6 @@ export * from "./components/checkbox-group";
 export * from "./components/dropdown";
 export * from "./components/input";
 export * from "./components/input-group";
+export * from "./components/multi-select";
+export * from "./components/select";
 export * from "./lib/utils";
