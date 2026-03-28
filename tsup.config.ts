@@ -7,5 +7,8 @@ export default defineConfig({
   sourcemap: true,
   clean: true,
   external: ["react", "react-dom", /^embla-carousel/],
-  noExternal: ["clsx", "tailwind-merge"]
+  noExternal: ["clsx", "tailwind-merge"],
+  banner: {
+    js: '"use client";',
+  },
 });
