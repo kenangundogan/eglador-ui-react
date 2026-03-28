@@ -75,10 +75,11 @@ npm run typecheck        # run typescript type checking
 
 ## Publishing
 
-```bash
-npm version patch        # bump version (e.g. 0.1.2 -> 0.1.3)
-npm publish              # publish to npm (runs typecheck + build automatically)
-```
+Publishing is automated via GitHub Actions. When a GitHub Release is created, the package is automatically published to npm.
+
+1. Update `version` in `package.json`
+2. Commit and push
+3. Create a GitHub Release with a matching tag (e.g. `v0.1.0-alpha.6`)
 
 ## Compatibility
 
