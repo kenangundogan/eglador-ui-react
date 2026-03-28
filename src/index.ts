@@ -12,4 +12,5 @@ export * from "./components/multi-select";
 export * from "./components/select";
 export * from "./components/tabs";
 export * from "./components/accordion";
+export * from "./components/typewriter";
 export * from "./lib/utils";

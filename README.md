@@ -24,7 +24,7 @@ Add the following to your global stylesheet (e.g. `app/globals.css`) so Tailwind
 ## Usage
 
 ```tsx
-import { Button, ButtonGroup, Checkbox, CheckboxGroup, Input, InputGroup, Dropdown, Select, MultiSelect, Tabs, Accordion, Modal, MediaImage, MediaVideo } from "eglador-ui-react";
+import { Button, ButtonGroup, Checkbox, CheckboxGroup, Input, InputGroup, Dropdown, Select, MultiSelect, Tabs, Accordion, Modal, MediaImage, MediaVideo, Typewriter } from "eglador-ui-react";
 ```
 
 ## Components
@@ -55,6 +55,7 @@ import { Button, ButtonGroup, Checkbox, CheckboxGroup, Input, InputGroup, Dropdo
 | **Modal.Footer** | `className`, `children` |
 | **MediaImage** | `src`, `alt`, `caption`, `ratio`, `size`, `shape`, `objectFit`, `loading`, `hideCaption`, `onError`, `className` |
 | **MediaVideo** | `src`, `caption`, `ratio`, `size`, `shape`, `controls`, `preload`, `autoPlay`, `muted`, `loop`, `poster`, `hideCaption`, `onError`, `className` |
+| **Typewriter** | `texts`, `typingSpeed`, `deletingSpeed`, `pauseDuration`, `deleteMode`, `loop`, `startDelay`, `cursor`, `cursorStyle`, `onComplete`, `className` |
 
 ## Development
 
