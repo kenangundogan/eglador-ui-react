@@ -420,7 +420,7 @@ export function Carousel({
   return (
     <div className={cn(isRTL && "direction-rtl", className)} dir={isRTL ? "rtl" : undefined}>
       <div
-        className={cn("overflow-hidden", isVertical && "h-[500px]", autoHeight && "transition-[height] duration-200", viewportClassName)}
+        className={cn("overflow-hidden", isVertical && "h-125", autoHeight && "transition-[height] duration-200", viewportClassName)}
         ref={emblaRef}
       >
         <div className={cn(
@@ -466,7 +466,7 @@ export function Carousel({
                   onClick={() => onDotButtonClick(index)}
                   className={cn(
                     styles?.dot
-                      ? cn(styles.dot, index === selectedIndex ? "opacity-100 bg-current scale-110 !border-current" : "opacity-40")
+                      ? cn(styles.dot, index === selectedIndex ? "opacity-100 bg-current scale-110 border-current!" : "opacity-40")
                       : cn(
                         "w-2.5 h-2.5 rounded-full border bg-transparent flex items-center justify-center cursor-pointer touch-manipulation transition-all duration-300",
                         index === selectedIndex

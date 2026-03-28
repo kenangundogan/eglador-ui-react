@@ -50,7 +50,7 @@ export const Default: Story = {
     <div style={{ padding: 40 }}>
       <Dropdown {...args}>
         <Dropdown.Content>
-          <div className="p-1.5 min-w-[180px]">
+          <div className="p-1.5 min-w-45">
             {menuItems.map((item) => (
               <MenuItem key={item.label} {...item} />
             ))}
@@ -71,7 +71,7 @@ export const CustomTrigger: Story = {
           <Button color="primary" iconRight={<ChevronDown />}>Options</Button>
         </Dropdown.Trigger>
         <Dropdown.Content>
-          <div className="p-1.5 min-w-[180px]">
+          <div className="p-1.5 min-w-45">
             {menuItems.map((item) => (
               <MenuItem key={item.label} {...item} />
             ))}
@@ -92,7 +92,7 @@ export const Positioning: Story = {
           <Button variant="outline">Bottom Left</Button>
         </Dropdown.Trigger>
         <Dropdown.Content>
-          <div className="p-3 min-w-[140px] text-sm text-zinc-600">Bottom Left</div>
+          <div className="p-3 min-w-35 text-sm text-zinc-600">Bottom Left</div>
         </Dropdown.Content>
       </Dropdown>
 
@@ -101,7 +101,7 @@ export const Positioning: Story = {
           <Button variant="outline">Bottom Center</Button>
         </Dropdown.Trigger>
         <Dropdown.Content>
-          <div className="p-3 min-w-[140px] text-sm text-zinc-600">Bottom Center</div>
+          <div className="p-3 min-w-35 text-sm text-zinc-600">Bottom Center</div>
         </Dropdown.Content>
       </Dropdown>
 
@@ -110,7 +110,7 @@ export const Positioning: Story = {
           <Button variant="outline">Top Left</Button>
         </Dropdown.Trigger>
         <Dropdown.Content>
-          <div className="p-3 min-w-[140px] text-sm text-zinc-600">Top Left</div>
+          <div className="p-3 min-w-35 text-sm text-zinc-600">Top Left</div>
         </Dropdown.Content>
       </Dropdown>
     </div>
@@ -124,7 +124,7 @@ export const TriggerWidth: Story = {
     <div style={{ padding: 40 }}>
       <Dropdown {...args} width="trigger" align="left">
         <Dropdown.Trigger asChild>
-          <Button color="black" iconRight={<ChevronDown />} className="w-[240px] justify-between">Select option</Button>
+          <Button color="black" iconRight={<ChevronDown />} className="w-60 justify-between">Select option</Button>
         </Dropdown.Trigger>
         <Dropdown.Content>
           <div className="p-1.5">
@@ -148,7 +148,7 @@ export const WithMaxHeight: Story = {
           <Button variant="outline" iconRight={<ChevronDown />}>Scrollable</Button>
         </Dropdown.Trigger>
         <Dropdown.Content>
-          <div className="p-1.5 min-w-[180px]">
+          <div className="p-1.5 min-w-45">
             {Array.from({ length: 12 }, (_, i) => (
               <MenuItem key={i} icon={<Settings />} label={`Option ${i + 1}`} />
             ))}
@@ -174,7 +174,7 @@ export const Controlled: Story = {
             <Button variant="outline" iconRight={<ChevronDown />}>Controlled</Button>
           </Dropdown.Trigger>
           <Dropdown.Content>
-            <div className="p-1.5 min-w-[180px]">
+            <div className="p-1.5 min-w-45">
               {menuItems.map((item) => (
                 <MenuItem key={item.label} {...item} />
               ))}
