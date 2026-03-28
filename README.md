@@ -24,7 +24,7 @@ Add the following to your global stylesheet (e.g. `app/globals.css`) so Tailwind
 ## Usage
 
 ```tsx
-import { Button, ButtonGroup, Checkbox, CheckboxGroup, Input, InputGroup, Dropdown, Select, MultiSelect } from "eglador-ui-react";
+import { Button, ButtonGroup, Checkbox, CheckboxGroup, Input, InputGroup, Dropdown, Select, MultiSelect, Tabs, Accordion, Modal } from "eglador-ui-react";
 ```
 
 ## Components
@@ -42,6 +42,17 @@ import { Button, ButtonGroup, Checkbox, CheckboxGroup, Input, InputGroup, Dropdo
 | **Dropdown.Content** | `className`, `children` |
 | **Select** | `value`, `onChange`, `options`, `placeholder`, `disabled`, `autoFlip`, `maxHeight`, `className` |
 | **MultiSelect** | `value`, `onChange`, `options`, `placeholder`, `disabled`, `autoFlip`, `maxHeight`, `searchable`, `searchPlaceholder`, `maxSelected`, `maxVisibleChips`, `className` |
+| **Tabs** | `value`, `defaultValue`, `onValueChange`, `variant`, `size`, `className` |
+| **Tabs.List** | `className`, `children` |
+| **Tabs.Trigger** | `value`, `icon`, `activeClassName`, `disabled`, `className` |
+| **Tabs.Content** | `value`, `className`, `children` |
+| **Accordion** | `title`, `icon`, `extra`, `defaultOpen`, `open`, `onOpenChange`, `variant`, `size`, `disabled`, `hideChevron`, `className` |
+| **Modal** | `open`, `defaultOpen`, `onOpenChange`, `size`, `closeOnBackdrop`, `closeOnEscape` |
+| **Modal.Trigger** | `asChild`, `className`, `children` |
+| **Modal.Content** | `className`, `children` |
+| **Modal.Header** | `icon`, `hideClose`, `className`, `children` |
+| **Modal.Body** | `className`, `children` |
+| **Modal.Footer** | `className`, `children` |
 
 ## Development
 
