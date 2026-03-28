@@ -12,6 +12,8 @@ npm install eglador-ui-react
 
 **Peer dependencies:** `react >= 18` | `react-dom >= 18` | `tailwindcss ^4`
 
+**Optional (for Carousel):** `embla-carousel ^8` | `embla-carousel-react ^8` | plugin packages as needed (`embla-carousel-autoplay`, `embla-carousel-fade`, etc.)
+
 ## Setup
 
 Add the following to your global stylesheet (e.g. `app/globals.css`) so Tailwind can detect the component classes:
@@ -24,7 +26,7 @@ Add the following to your global stylesheet (e.g. `app/globals.css`) so Tailwind
 ## Usage
 
 ```tsx
-import { Button, ButtonGroup, Checkbox, CheckboxGroup, Input, InputGroup, Dropdown, Select, MultiSelect, Tabs, Accordion, Modal, MediaImage, MediaVideo, Tooltip, Breadcrumb, Typewriter } from "eglador-ui-react";
+import { Button, ButtonGroup, Checkbox, CheckboxGroup, Input, InputGroup, Dropdown, Select, MultiSelect, Tabs, Accordion, Modal, MediaImage, MediaVideo, Tooltip, Breadcrumb, Typewriter, Carousel } from "eglador-ui-react";
 ```
 
 ## Components
@@ -59,6 +61,7 @@ import { Button, ButtonGroup, Checkbox, CheckboxGroup, Input, InputGroup, Dropdo
 | **Breadcrumb** | `separator`, `className`, `children` |
 | **Breadcrumb.Item** | `href`, `isActive`, `className`, `children` |
 | **Typewriter** | `texts`, `typingSpeed`, `deletingSpeed`, `pauseDuration`, `deleteMode`, `loop`, `startDelay`, `cursor`, `cursorStyle`, `onComplete`, `className` |
+| **Carousel** | `slides`, `slidesPerView`, `align`, `containScroll`, `dragFree`, `loop`, `axis`, `direction`, `plugins`, `showNavigation`, `showPagination`, `scrollToIndex`, `breakpoints`, `className` |
 
 ## Development
 

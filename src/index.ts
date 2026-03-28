@@ -1,6 +1,7 @@
 export * from "./components/accordion";
 export * from "./components/breadcrumb";
 export * from "./components/button";
+export * from "./components/carousel";
 export * from "./components/button-group";
 export * from "./components/checkbox";
 export * from "./components/checkbox-group";

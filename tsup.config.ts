@@ -6,6 +6,6 @@ export default defineConfig({
   dts: true,
   sourcemap: true,
   clean: true,
-  external: ["react", "react-dom"],
+  external: ["react", "react-dom", /^embla-carousel/],
   noExternal: ["clsx", "tailwind-merge"]
 });
