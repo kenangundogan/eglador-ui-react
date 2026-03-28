@@ -24,7 +24,7 @@ Add the following to your global stylesheet (e.g. `app/globals.css`) so Tailwind
 ## Usage
 
 ```tsx
-import { Button, ButtonGroup } from "eglador-ui-react";
+import { Button, ButtonGroup, Checkbox, CheckboxGroup } from "eglador-ui-react";
 ```
 
 ## Components
@@ -33,6 +33,8 @@ import { Button, ButtonGroup } from "eglador-ui-react";
 |-----------|-----------|
 | **Button** | `variant`, `color`, `size`, `shape`, `soft`, `icon`, `iconRight`, `loading`, `active`, `disabled`, `className` |
 | **ButtonGroup** | `variant`, `className`, `children` |
+| **Checkbox** | `variant`, `color`, `size`, `checked`, `onChange`, `indeterminate`, `label`, `description`, `disabled`, `name`, `value`, `className` |
+| **CheckboxGroup** | `variant`, `className`, `children` |
 
 ## Development
 
