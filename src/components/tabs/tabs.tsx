@@ -166,7 +166,7 @@ function TabsTrigger({ value, icon, activeClassName, disabled = false, className
         className,
       )}
     >
-      {icon && <span className={cn("shrink-0", s.iconSize)}>{icon}</span>}
+      {icon && <span className={cn("shrink-0 flex items-center justify-center [&>svg]:w-full [&>svg]:h-full", s.iconSize)}>{icon}</span>}
       {children}
     </button>
   );
