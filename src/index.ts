@@ -7,6 +7,7 @@ export * from "./components/button";
 export * from "./components/carousel";
 export * from "./components/button-group";
 export * from "./components/checkbox";
+export * from "./components/collapsible";
 export * from "./components/drawer";
 export * from "./components/checkbox-group";
 export * from "./components/dropdown";
