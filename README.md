@@ -26,7 +26,7 @@ Add the following to your global stylesheet (e.g. `app/globals.css`) so Tailwind
 ## Usage
 
 ```tsx
-import { Button, ButtonGroup, Checkbox, CheckboxGroup, Input, InputGroup, Dropdown, Select, MultiSelect, Tabs, Accordion, Modal, MediaImage, MediaVideo, Tooltip, Breadcrumb, Typewriter, Carousel } from "eglador-ui-react";
+import { Button, ButtonGroup, Checkbox, CheckboxGroup, Input, InputGroup, Dropdown, Select, MultiSelect, Tabs, Accordion, Modal, MediaImage, MediaVideo, Tooltip, Breadcrumb, Typewriter, Carousel, Table } from "eglador-ui-react";
 ```
 
 ## Components
@@ -62,6 +62,12 @@ import { Button, ButtonGroup, Checkbox, CheckboxGroup, Input, InputGroup, Dropdo
 | **Breadcrumb.Item** | `href`, `isActive`, `className`, `children` |
 | **Typewriter** | `texts`, `typingSpeed`, `deletingSpeed`, `pauseDuration`, `deleteMode`, `loop`, `startDelay`, `cursor`, `cursorStyle`, `onComplete`, `className` |
 | **Carousel** | `slides`, `slidesPerView`, `align`, `containScroll`, `dragFree`, `loop`, `axis`, `direction`, `plugins`, `showNavigation`, `showPagination`, `scrollToIndex`, `breakpoints`, `className` |
+| **Table** | `size`, `variant`, `shape`, `fullWidth`, `scrollX`, `scrollY`, `maxHeight`, `className` |
+| **Table.Head** | `className`, `children` |
+| **Table.Body** | `className`, `children` |
+| **Table.Row** | `onClick`, `isActive`, `className`, `children` |
+| **Table.Header** | `align`, `width`, `className`, `children` |
+| **Table.Cell** | `align`, `truncate`, `className`, `children` |
 
 ## Development
 
@@ -79,7 +85,7 @@ Publishing is automated via GitHub Actions. When a GitHub Release is created, th
 
 1. Update `version` in `package.json`
 2. Commit and push
-3. Create a GitHub Release with a matching tag (e.g. `v0.1.0-alpha.6`)
+3. Create a GitHub Release with a matching tag (e.g. `v0.1.0-alpha.8`)
 
 ## Compatibility
 
