@@ -1,6 +1,6 @@
 {
   "name": "eglador-ui-react",
-  "version": "0.1.0-alpha.9",
+  "version": "0.1.0-alpha.10",
   "description": "Reusable Tailwind CSS v4 UI components for React projects",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",

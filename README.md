@@ -63,7 +63,7 @@ Publishing is automated via GitHub Actions. When a GitHub Release is created, th
 
 1. Update `version` in `package.json`
 2. Commit and push
-3. Create a GitHub Release with a matching tag (e.g. `v0.1.0-alpha.8`)
+3. Create a GitHub Release with a matching tag (e.g. `v0.1.0-alpha.10`)
 
 ## Compatibility
 
