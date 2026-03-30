@@ -26,7 +26,7 @@ Add the following to your global stylesheet (e.g. `app/globals.css`) so Tailwind
 ## Usage
 
 ```tsx
-import { Button, ButtonGroup, Checkbox, CheckboxGroup, Input, InputGroup, Dropdown, Select, MultiSelect, Tabs, Accordion, Modal, MediaImage, MediaVideo, Tooltip, Breadcrumb, Typewriter, Carousel, Table, Radio, RadioGroup, Drawer } from "eglador-ui-react";
+import { Button, ButtonGroup, Checkbox, CheckboxGroup, Input, InputGroup, Dropdown, Select, MultiSelect, Tabs, Accordion, Modal, MediaImage, MediaVideo, Tooltip, Breadcrumb, Typewriter, Carousel, Table, Radio, RadioGroup, Drawer, Link } from "eglador-ui-react";
 ```
 
 ## Components
@@ -45,6 +45,7 @@ import { Button, ButtonGroup, Checkbox, CheckboxGroup, Input, InputGroup, Dropdo
 | **Drawer.Header** | `hideClose`, `className`, `children` |
 | **Drawer.Body** | `className`, `children` |
 | **Drawer.Footer** | `className`, `children` |
+| **Link** | `variant`, `color`, `size`, `icon`, `iconRight`, `external`, `disabled`, `href`, `className` |
 | **Dropdown** | `side`, `align`, `width`, `maxHeight`, `scroll`, `autoFlip`, `open`, `onOpenChange`, `className` |
 | **Dropdown.Trigger** | `asChild`, `className`, `children` |
 | **Dropdown.Content** | `className`, `children` |

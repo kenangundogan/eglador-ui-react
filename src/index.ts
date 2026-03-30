@@ -9,6 +9,7 @@ export * from "./components/checkbox-group";
 export * from "./components/dropdown";
 export * from "./components/input";
 export * from "./components/input-group";
+export * from "./components/link";
 export * from "./components/media-image";
 export * from "./components/media-video";
 export * from "./components/modal";
