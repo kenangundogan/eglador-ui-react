@@ -5,6 +5,15 @@ import { Breadcrumb } from "./breadcrumb";
 const meta: Meta<typeof Breadcrumb> = {
   title: "Components/Breadcrumb",
   component: Breadcrumb,
+  tags: ["autodocs"],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "A breadcrumb navigation component with compound API, custom separator support, and active state.",
+      },
+    },
+  },
 };
 
 export default meta;

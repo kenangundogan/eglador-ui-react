@@ -12,6 +12,15 @@ const sampleData = [
 const meta: Meta<typeof Table> = {
   title: "Components/Table",
   component: Table,
+  tags: ["autodocs"],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "A compound table component with default, bordered, and striped variants. Supports clickable rows, sticky header, scroll, and column alignment.",
+      },
+    },
+  },
   args: {
     size: "sm",
     variant: "default",

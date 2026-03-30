@@ -5,6 +5,15 @@ import { Tooltip, type TooltipProps } from "./tooltip";
 const meta: Meta<typeof Tooltip> = {
   title: "Components/Tooltip",
   component: Tooltip,
+  tags: ["autodocs"],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "A lightweight tooltip component with top/bottom/left/right positioning and configurable delay.",
+      },
+    },
+  },
   args: {
     content: "Tooltip text",
     position: "top",

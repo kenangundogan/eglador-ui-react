@@ -7,6 +7,15 @@ import { Modal } from "./modal";
 const meta: Meta<typeof Modal> = {
   title: "Components/Modal",
   component: Modal,
+  tags: ["autodocs"],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "A compound modal dialog with portal rendering, body scroll lock, backdrop/escape close, and multiple sizes.",
+      },
+    },
+  },
   args: {
     size: "md",
     closeOnBackdrop: true,

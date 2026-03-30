@@ -7,6 +7,15 @@ const SAMPLE_POSTER = "https://images.unsplash.com/photo-1506744038136-46273834b
 const meta: Meta<typeof MediaVideo> = {
   title: "Components/MediaVideo",
   component: MediaVideo,
+  tags: ["autodocs"],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "A video component with aspect ratio control, shapes, sizes, controls, autoplay, poster support, and error state.",
+      },
+    },
+  },
   args: {
     src: SAMPLE_VIDEO,
     ratio: "16:9",

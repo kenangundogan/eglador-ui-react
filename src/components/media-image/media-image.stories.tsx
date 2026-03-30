@@ -6,6 +6,15 @@ const SAMPLE_IMAGE = "https://images.unsplash.com/photo-1506744038136-46273834b3
 const meta: Meta<typeof MediaImage> = {
   title: "Components/MediaImage",
   component: MediaImage,
+  tags: ["autodocs"],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "An image component with aspect ratio control, multiple shapes, sizes, object-fit options, error state, and caption support.",
+      },
+    },
+  },
   args: {
     src: SAMPLE_IMAGE,
     alt: "Sample landscape",

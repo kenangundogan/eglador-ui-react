@@ -15,6 +15,15 @@ const sampleOptions = [
 const meta: Meta<typeof Select> = {
   title: "Components/Select",
   component: Select,
+  tags: ["autodocs"],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "A single-select dropdown with auto-flip positioning, keyboard support, and customizable options.",
+      },
+    },
+  },
   args: {
     placeholder: "Select...",
     disabled: false,

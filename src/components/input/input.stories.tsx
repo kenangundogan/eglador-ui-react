@@ -7,6 +7,15 @@ const ALL_COLORS = ["default", "black", "primary", "danger", "success", "warning
 const meta: Meta<typeof Input> = {
   title: "Components/Input",
   component: Input,
+  tags: ["autodocs"],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "A text input component with 3 variants, 7 colors, 3 sizes, icon support, loading state, and error/success states.",
+      },
+    },
+  },
   args: {
     placeholder: "Type something...",
     variant: "default",

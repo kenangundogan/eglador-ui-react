@@ -6,6 +6,15 @@ import { ButtonGroup, type ButtonGroupProps } from "./button-group";
 const meta: Meta<typeof ButtonGroup> = {
   title: "Components/ButtonGroup",
   component: ButtonGroup,
+  tags: ["autodocs"],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "Groups multiple buttons together with bordered or segmented variants.",
+      },
+    },
+  },
   args: {
     variant: "bordered",
   },

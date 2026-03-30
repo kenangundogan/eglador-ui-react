@@ -7,6 +7,15 @@ import { Dropdown, type DropdownProps } from "./dropdown";
 const meta: Meta<typeof Dropdown> = {
   title: "Components/Dropdown",
   component: Dropdown,
+  tags: ["autodocs"],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "A compound dropdown component with configurable positioning, auto-flip, trigger width matching, and controlled/uncontrolled modes.",
+      },
+    },
+  },
   args: {
     side: "bottom",
     align: "right",

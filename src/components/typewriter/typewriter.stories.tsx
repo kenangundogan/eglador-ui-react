@@ -4,6 +4,15 @@ import { Typewriter, type TypewriterProps } from "./typewriter";
 const meta: Meta<typeof Typewriter> = {
   title: "Components/Typewriter",
   component: Typewriter,
+  tags: ["autodocs"],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "An animated typewriter text component with backspace/clear delete modes, configurable speed, and multiple cursor styles.",
+      },
+    },
+  },
   args: {
     texts: ["Hello, World!", "Welcome to eglador-ui-react.", "Build something great."],
     typingSpeed: 40,

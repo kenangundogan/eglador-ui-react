@@ -18,6 +18,15 @@ const sampleOptions = [
 const meta: Meta<typeof MultiSelect> = {
   title: "Components/MultiSelect",
   component: MultiSelect,
+  tags: ["autodocs"],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "A multi-select component with chips, search filtering, max selection limit, and clear all functionality.",
+      },
+    },
+  },
   args: {
     placeholder: "Select...",
     disabled: false,

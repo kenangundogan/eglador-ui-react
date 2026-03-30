@@ -7,6 +7,15 @@ const ALL_COLORS = ["default", "black", "primary", "danger", "success", "warning
 const meta: Meta<typeof Checkbox> = {
   title: "Components/Checkbox",
   component: Checkbox,
+  tags: ["autodocs"],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "A checkbox component with default, card, and list variants. Supports 7 colors, 3 sizes, indeterminate state, label, and description.",
+      },
+    },
+  },
   args: {
     checked: false,
     indeterminate: false,

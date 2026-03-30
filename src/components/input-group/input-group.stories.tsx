@@ -6,6 +6,15 @@ import { InputGroup, type InputGroupProps } from "./input-group";
 const meta: Meta<typeof InputGroup> = {
   title: "Components/InputGroup",
   component: InputGroup,
+  tags: ["autodocs"],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "Groups multiple inputs together with bordered (horizontal) or stacked (vertical) variants.",
+      },
+    },
+  },
   args: {
     variant: "bordered",
   },

@@ -6,6 +6,15 @@ import { Tabs, type TabsProps } from "./tabs";
 const meta: Meta<typeof Tabs> = {
   title: "Components/Tabs",
   component: Tabs,
+  tags: ["autodocs"],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "A compound tabs component with default, bordered, and segmented variants. Supports icons, disabled tabs, and controlled mode.",
+      },
+    },
+  },
   args: {
     variant: "default",
     size: "sm",

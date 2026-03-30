@@ -6,6 +6,15 @@ import { CheckboxGroup, type CheckboxGroupProps } from "./checkbox-group";
 const meta: Meta<typeof CheckboxGroup> = {
   title: "Components/CheckboxGroup",
   component: CheckboxGroup,
+  tags: ["autodocs"],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "Groups multiple checkboxes together with bordered or segmented variants.",
+      },
+    },
+  },
   args: {
     variant: "bordered",
   },

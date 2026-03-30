@@ -6,6 +6,15 @@ import { Accordion, type AccordionProps } from "./accordion";
 const meta: Meta<typeof Accordion> = {
   title: "Components/Accordion",
   component: Accordion,
+  tags: ["autodocs"],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "A collapsible accordion component with default, bordered, and filled variants. Supports icon, extra content, and animated toggle.",
+      },
+    },
+  },
   args: {
     variant: "default",
     size: "sm",

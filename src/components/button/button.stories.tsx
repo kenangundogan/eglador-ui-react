@@ -7,6 +7,14 @@ const ALL_COLORS = ["default", "black", "primary", "danger", "success", "warning
 const meta: Meta<typeof Button> = {
   title: "Components/Button",
   component: Button,
+  tags: ["autodocs"],
+  parameters: {
+    docs: {
+      description: {
+        component: "A versatile button component with multiple variants, colors, sizes, shapes, and icon support. Pass any React node (e.g. Lucide icons) via `icon` or `iconRight` props.",
+      },
+    },
+  },
   args: {
     children: "Button",
     variant: "solid",

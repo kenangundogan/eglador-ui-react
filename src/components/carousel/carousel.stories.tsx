@@ -26,6 +26,15 @@ function makeSlides(count: number, height?: number) {
 const meta: Meta<typeof Carousel> = {
   title: "Components/Carousel",
   component: Carousel,
+  tags: ["autodocs"],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "A carousel component built on Embla with navigation, pagination, loop, autoplay, fade, parallax, lazy loading, and responsive breakpoints.",
+      },
+    },
+  },
   args: {
     showNavigation: true,
     showPagination: true,
