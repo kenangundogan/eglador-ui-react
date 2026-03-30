@@ -26,7 +26,7 @@ Add the following to your global stylesheet (e.g. `app/globals.css`) so Tailwind
 ## Usage
 
 ```tsx
-import { Button, ButtonGroup, Checkbox, CheckboxGroup, Input, InputGroup, Dropdown, Select, MultiSelect, Tabs, Accordion, Modal, MediaImage, MediaVideo, Tooltip, Breadcrumb, Typewriter, Carousel, Table, Radio, RadioGroup, Drawer, Link } from "eglador-ui-react";
+import { Button, ButtonGroup, Checkbox, CheckboxGroup, Input, InputGroup, Dropdown, Select, MultiSelect, Tabs, Accordion, Modal, MediaImage, MediaVideo, Tooltip, Breadcrumb, Typewriter, Carousel, Table, Radio, RadioGroup, Drawer, Link, Switch } from "eglador-ui-react";
 ```
 
 ## Components
@@ -51,6 +51,7 @@ import { Button, ButtonGroup, Checkbox, CheckboxGroup, Input, InputGroup, Dropdo
 | **Dropdown.Content** | `className`, `children` |
 | **Radio** | `variant`, `color`, `size`, `checked`, `onChange`, `label`, `description`, `disabled`, `name`, `value`, `className` |
 | **RadioGroup** | `variant`, `className`, `children` |
+| **Switch** | `checked`, `onChange`, `color`, `size`, `label`, `description`, `disabled`, `name`, `value`, `className` |
 | **Select** | `value`, `onChange`, `options`, `placeholder`, `disabled`, `autoFlip`, `maxHeight`, `className` |
 | **MultiSelect** | `value`, `onChange`, `options`, `placeholder`, `disabled`, `autoFlip`, `maxHeight`, `searchable`, `searchPlaceholder`, `maxSelected`, `maxVisibleChips`, `className` |
 | **Tabs** | `value`, `defaultValue`, `onValueChange`, `variant`, `size`, `className` |

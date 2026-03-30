@@ -17,6 +17,7 @@ export * from "./components/multi-select";
 export * from "./components/radio";
 export * from "./components/radio-group";
 export * from "./components/select";
+export * from "./components/switch";
 export * from "./components/table";
 export * from "./components/tabs";
 export * from "./components/tooltip";
