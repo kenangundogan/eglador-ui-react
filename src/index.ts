@@ -20,6 +20,7 @@ export * from "./components/notification";
 export * from "./components/radio";
 export * from "./components/radio-group";
 export * from "./components/select";
+export * from "./components/stepper";
 export * from "./components/switch";
 export * from "./components/table";
 export * from "./components/tabs";
