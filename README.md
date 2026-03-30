@@ -26,7 +26,7 @@ Add the following to your global stylesheet (e.g. `app/globals.css`) so Tailwind
 ## Usage
 
 ```tsx
-import { Button, ButtonGroup, Checkbox, CheckboxGroup, Input, InputGroup, Dropdown, Select, MultiSelect, Tabs, Accordion, Modal, MediaImage, MediaVideo, Tooltip, Breadcrumb, Typewriter, Carousel, Table, Radio, RadioGroup } from "eglador-ui-react";
+import { Button, ButtonGroup, Checkbox, CheckboxGroup, Input, InputGroup, Dropdown, Select, MultiSelect, Tabs, Accordion, Modal, MediaImage, MediaVideo, Tooltip, Breadcrumb, Typewriter, Carousel, Table, Radio, RadioGroup, Drawer } from "eglador-ui-react";
 ```
 
 ## Components
@@ -39,6 +39,12 @@ import { Button, ButtonGroup, Checkbox, CheckboxGroup, Input, InputGroup, Dropdo
 | **CheckboxGroup** | `variant`, `className`, `children` |
 | **Input** | `variant`, `color`, `size`, `shape`, `state`, `icon`, `iconRight`, `loading`, `label`, `errorMessage`, `successMessage`, `disabled`, `wrapperClassName`, `className` |
 | **InputGroup** | `variant`, `className`, `children` |
+| **Drawer** | `open`, `defaultOpen`, `onOpenChange`, `side`, `size`, `closeOnBackdrop`, `closeOnEscape` |
+| **Drawer.Trigger** | `asChild`, `className`, `children` |
+| **Drawer.Content** | `className`, `children` |
+| **Drawer.Header** | `hideClose`, `className`, `children` |
+| **Drawer.Body** | `className`, `children` |
+| **Drawer.Footer** | `className`, `children` |
 | **Dropdown** | `side`, `align`, `width`, `maxHeight`, `scroll`, `autoFlip`, `open`, `onOpenChange`, `className` |
 | **Dropdown.Trigger** | `asChild`, `className`, `children` |
 | **Dropdown.Content** | `className`, `children` |
