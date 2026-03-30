@@ -16,6 +16,7 @@ export * from "./components/media-image";
 export * from "./components/media-video";
 export * from "./components/modal";
 export * from "./components/multi-select";
+export * from "./components/notification";
 export * from "./components/radio";
 export * from "./components/radio-group";
 export * from "./components/select";
