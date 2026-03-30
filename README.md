@@ -2,6 +2,13 @@
 
 # eglador-ui-react
 
+[![npm version](https://img.shields.io/npm/v/eglador-ui-react?style=flat-square&color=blue)](https://www.npmjs.com/package/eglador-ui-react)
+[![npm downloads](https://img.shields.io/npm/dm/eglador-ui-react?style=flat-square&color=green)](https://www.npmjs.com/package/eglador-ui-react)
+[![license](https://img.shields.io/npm/l/eglador-ui-react?style=flat-square)](https://github.com/kenangundogan/eglador-ui-react/blob/main/LICENSE)
+![tailwind v4](https://img.shields.io/badge/tailwindcss-v4-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white)
+![react >= 18](https://img.shields.io/badge/react-%3E%3D18-61DAFB?style=flat-square&logo=react&logoColor=white)
+![typescript](https://img.shields.io/badge/typescript-ready-3178C6?style=flat-square&logo=typescript&logoColor=white)
+
 A lightweight, reusable UI component library built with **Tailwind CSS v4** for React-based projects.
 
 ## Installation
@@ -26,58 +33,18 @@ Add the following to your global stylesheet (e.g. `app/globals.css`) so Tailwind
 ## Usage
 
 ```tsx
-import { Button, ButtonGroup, Checkbox, CheckboxGroup, Input, InputGroup, Dropdown, Select, MultiSelect, Tabs, Accordion, Modal, MediaImage, MediaVideo, Tooltip, Breadcrumb, Typewriter, Carousel, Table, Radio, RadioGroup, Drawer, Link, Switch } from "eglador-ui-react";
+import { Button, Input, Modal } from "eglador-ui-react";
 ```
 
 ## Components
 
-| Component | Parameters |
-|-----------|-----------|
-| **Button** | `variant`, `color`, `size`, `shape`, `soft`, `icon`, `iconRight`, `loading`, `active`, `disabled`, `className` |
-| **ButtonGroup** | `variant`, `className`, `children` |
-| **Checkbox** | `variant`, `color`, `size`, `checked`, `onChange`, `indeterminate`, `label`, `description`, `disabled`, `name`, `value`, `className` |
-| **CheckboxGroup** | `variant`, `className`, `children` |
-| **Input** | `variant`, `color`, `size`, `shape`, `state`, `icon`, `iconRight`, `loading`, `label`, `errorMessage`, `successMessage`, `disabled`, `wrapperClassName`, `className` |
-| **InputGroup** | `variant`, `className`, `children` |
-| **Drawer** | `open`, `defaultOpen`, `onOpenChange`, `side`, `size`, `closeOnBackdrop`, `closeOnEscape` |
-| **Drawer.Trigger** | `asChild`, `className`, `children` |
-| **Drawer.Content** | `className`, `children` |
-| **Drawer.Header** | `hideClose`, `className`, `children` |
-| **Drawer.Body** | `className`, `children` |
-| **Drawer.Footer** | `className`, `children` |
-| **Link** | `variant`, `color`, `size`, `icon`, `iconRight`, `external`, `disabled`, `href`, `className` |
-| **Dropdown** | `side`, `align`, `width`, `maxHeight`, `scroll`, `autoFlip`, `open`, `onOpenChange`, `className` |
-| **Dropdown.Trigger** | `asChild`, `className`, `children` |
-| **Dropdown.Content** | `className`, `children` |
-| **Radio** | `variant`, `color`, `size`, `checked`, `onChange`, `label`, `description`, `disabled`, `name`, `value`, `className` |
-| **RadioGroup** | `variant`, `className`, `children` |
-| **Switch** | `checked`, `onChange`, `color`, `size`, `label`, `description`, `disabled`, `name`, `value`, `className` |
-| **Select** | `value`, `onChange`, `options`, `placeholder`, `disabled`, `autoFlip`, `maxHeight`, `className` |
-| **MultiSelect** | `value`, `onChange`, `options`, `placeholder`, `disabled`, `autoFlip`, `maxHeight`, `searchable`, `searchPlaceholder`, `maxSelected`, `maxVisibleChips`, `className` |
-| **Tabs** | `value`, `defaultValue`, `onValueChange`, `variant`, `size`, `className` |
-| **Tabs.List** | `className`, `children` |
-| **Tabs.Trigger** | `value`, `icon`, `activeClassName`, `disabled`, `className` |
-| **Tabs.Content** | `value`, `className`, `children` |
-| **Accordion** | `title`, `icon`, `extra`, `defaultOpen`, `open`, `onOpenChange`, `variant`, `size`, `disabled`, `hideChevron`, `className` |
-| **Modal** | `open`, `defaultOpen`, `onOpenChange`, `size`, `closeOnBackdrop`, `closeOnEscape` |
-| **Modal.Trigger** | `asChild`, `className`, `children` |
-| **Modal.Content** | `className`, `children` |
-| **Modal.Header** | `icon`, `hideClose`, `className`, `children` |
-| **Modal.Body** | `className`, `children` |
-| **Modal.Footer** | `className`, `children` |
-| **MediaImage** | `src`, `alt`, `caption`, `ratio`, `size`, `shape`, `objectFit`, `loading`, `hideCaption`, `onError`, `className` |
-| **MediaVideo** | `src`, `caption`, `ratio`, `size`, `shape`, `controls`, `preload`, `autoPlay`, `muted`, `loop`, `poster`, `hideCaption`, `onError`, `className` |
-| **Tooltip** | `content`, `position`, `delay`, `className`, `children` |
-| **Breadcrumb** | `separator`, `className`, `children` |
-| **Breadcrumb.Item** | `href`, `isActive`, `className`, `children` |
-| **Typewriter** | `texts`, `typingSpeed`, `deletingSpeed`, `pauseDuration`, `deleteMode`, `loop`, `startDelay`, `cursor`, `cursorStyle`, `onComplete`, `className` |
-| **Carousel** | `slides`, `slidesPerView`, `align`, `containScroll`, `dragFree`, `loop`, `axis`, `direction`, `plugins`, `showNavigation`, `showPagination`, `scrollToIndex`, `breakpoints`, `className` |
-| **Table** | `size`, `variant`, `shape`, `fullWidth`, `scrollX`, `scrollY`, `maxHeight`, `className` |
-| **Table.Head** | `className`, `children` |
-| **Table.Body** | `className`, `children` |
-| **Table.Row** | `onClick`, `isActive`, `className`, `children` |
-| **Table.Header** | `align`, `width`, `className`, `children` |
-| **Table.Cell** | `align`, `truncate`, `className`, `children` |
+| Category | Components |
+|----------|-----------|
+| **Actions** | Button, ButtonGroup, Link |
+| **Forms** | Input, InputGroup, Select, MultiSelect, Checkbox, CheckboxGroup, Radio, RadioGroup, Switch |
+| **Data Display** | Table, Accordion, Tabs, Breadcrumb, Tooltip, Typewriter |
+| **Overlays** | Modal, Drawer, Dropdown |
+| **Media** | MediaImage, MediaVideo, Carousel |
 
 ## Development
 
