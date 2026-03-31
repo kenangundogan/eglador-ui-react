@@ -24,6 +24,7 @@ export * from "./components/media-image";
 export * from "./components/media-video";
 export * from "./components/modal";
 export * from "./components/multi-select";
+export * from "./components/navigation-menu";
 export * from "./components/notification";
 export * from "./components/popover";
 export * from "./components/progress";
