@@ -14,7 +14,6 @@ export interface DatePickerProps {
   value?: Date | DateRange | null;
   onChange?: (value: Date | DateRange | null) => void;
   placeholder?: string;
-  format?: string;
   locale?: string;
   numberOfMonths?: number;
   minDate?: Date;
@@ -98,6 +97,7 @@ export function DatePicker({
   className,
 }: DatePickerProps) {
   const [open, setOpen] = React.useState(false);
+  const autoId = React.useId();
   const stateStyle = STATE_STYLES[state];
 
   const defaultPlaceholder = mode === "range" ? "Select date range..." : "Select date...";
@@ -136,13 +136,14 @@ export function DatePicker({
   return (
     <div className={cn("flex flex-col", className)}>
       {label && (
-        <label className="mb-1.5 text-sm font-medium text-zinc-700">{label}</label>
+        <label htmlFor={autoId} className="mb-1.5 text-sm font-medium text-zinc-700">{label}</label>
       )}
 
       <Popover open={open} onOpenChange={setOpen} side="bottom" align="start">
         <Popover.Trigger asChild>
           <button
             type="button"
+            id={autoId}
             disabled={disabled}
             className={cn(
               "flex w-full items-center gap-2 rounded-lg border bg-white px-3 h-10 text-sm transition-colors outline-none text-left",

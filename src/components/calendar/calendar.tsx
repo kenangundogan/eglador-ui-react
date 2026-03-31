@@ -79,10 +79,6 @@ function isRangeEnd(date: Date, to: Date | null): boolean {
   return !!to && isSameDay(date, to);
 }
 
-function getDaysInMonth(year: number, month: number): number {
-  return new Date(year, month + 1, 0).getDate();
-}
-
 function getWeekDayNames(locale: string, weekStartsOn: number): string[] {
   const days: string[] = [];
   const base = new Date(2024, 0, weekStartsOn); // Jan 2024, starts on weekStartsOn
@@ -168,10 +164,6 @@ export function Calendar({
       const d = new Date(prev.year, prev.month + 1);
       return { year: d.getFullYear(), month: d.getMonth() };
     });
-  };
-
-  const goToToday = () => {
-    setViewMonth({ year: today.getFullYear(), month: today.getMonth() });
   };
 
   const isDisabledDate = (date: Date): boolean => {
