@@ -221,16 +221,26 @@ function PopoverContent({ className, children }: PopoverContentProps) {
     setContentNode(node);
   }, [setContentNode]);
 
-  React.useEffect(() => {
-    if (!isOpen || !triggerRef.current || !localRef.current) return;
+  const updatePosition = React.useCallback(() => {
+    if (!triggerRef.current || !localRef.current) return;
+    const triggerRect = triggerRef.current.getBoundingClientRect();
+    const contentRect = localRef.current.getBoundingClientRect();
+    setPos(computePosition(triggerRect, contentRect, side, align));
+  }, [triggerRef, side, align]);
 
-    requestAnimationFrame(() => {
-      if (!triggerRef.current || !localRef.current) return;
-      const triggerRect = triggerRef.current.getBoundingClientRect();
-      const contentRect = localRef.current.getBoundingClientRect();
-      setPos(computePosition(triggerRect, contentRect, side, align));
-    });
-  }, [isOpen, side, align, triggerRef]);
+  React.useEffect(() => {
+    if (!isOpen) return;
+
+    requestAnimationFrame(updatePosition);
+
+    window.addEventListener("scroll", updatePosition, { passive: true, capture: true });
+    window.addEventListener("resize", updatePosition);
+
+    return () => {
+      window.removeEventListener("scroll", updatePosition, { capture: true } as EventListenerOptions);
+      window.removeEventListener("resize", updatePosition);
+    };
+  }, [isOpen, updatePosition]);
 
   if (!isOpen) return null;
 

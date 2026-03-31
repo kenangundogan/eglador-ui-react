@@ -242,41 +242,83 @@ export function Calendar({
   // Render a single month grid
   const renderMonth = (monthData: { year: number; month: number }, monthIndex: number) => {
     const days = getCalendarDays(monthData.year, monthData.month, weekStartsOn);
-    const label = new Date(monthData.year, monthData.month).toLocaleDateString(locale, { month: "long", year: "numeric" });
     const isFirst = monthIndex === 0;
     const isLast = monthIndex === numberOfMonths - 1;
+
+    // Month names for dropdown
+    const monthNames = Array.from({ length: 12 }, (_, i) =>
+      new Date(2024, i).toLocaleDateString(locale, { month: "long" }),
+    );
+
+    // Year range for dropdown
+    const minYear = minDate ? minDate.getFullYear() : monthData.year - 100;
+    const maxYear = maxDate ? maxDate.getFullYear() : monthData.year + 10;
+    const years = Array.from({ length: maxYear - minYear + 1 }, (_, i) => minYear + i);
+
+    const handleMonthSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
+      const newMonth = parseInt(e.target.value, 10);
+      setViewMonth((prev) => {
+        const offset = monthIndex;
+        const d = new Date(prev.year, newMonth - offset);
+        return { year: d.getFullYear(), month: d.getMonth() };
+      });
+    };
+
+    const handleYearSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
+      const newYear = parseInt(e.target.value, 10);
+      setViewMonth((prev) => {
+        const offset = monthIndex;
+        const d = new Date(newYear, prev.month + offset);
+        // Adjust back by offset so this panel shows the selected year
+        const adjusted = new Date(d.getFullYear(), d.getMonth() - offset);
+        return { year: adjusted.getFullYear(), month: adjusted.getMonth() };
+      });
+    };
 
     return (
       <div key={`${monthData.year}-${monthData.month}`} className="flex flex-col">
         {/* Month header */}
-        <div className="flex items-center justify-between mb-2 h-8">
-          {isFirst ? (
+        <div className="relative flex items-center justify-center mb-2 h-8">
+          {isFirst && (
             <button
               type="button"
               onClick={goToPrevMonth}
-              className="inline-flex items-center justify-center size-8 rounded-lg text-zinc-500 hover:bg-zinc-100 hover:text-zinc-900 transition-colors cursor-pointer"
+              className="absolute left-0 inline-flex items-center justify-center size-8 rounded-lg text-zinc-500 hover:bg-zinc-100 hover:text-zinc-900 transition-colors cursor-pointer"
             >
               <ChevronLeftIcon className="size-4" />
             </button>
-          ) : <div className="size-8" />}
+          )}
 
-          <button
-            type="button"
-            onClick={goToToday}
-            className={cn("font-semibold text-zinc-900 hover:text-zinc-600 transition-colors cursor-pointer", s.headerFont)}
-          >
-            {label}
-          </button>
+          <div className="flex items-center gap-1">
+            <select
+              value={monthData.month}
+              onChange={handleMonthSelect}
+              className={cn("appearance-none bg-transparent font-semibold text-zinc-900 hover:text-zinc-600 transition-colors cursor-pointer outline-none text-center", s.headerFont)}
+            >
+              {monthNames.map((name, i) => (
+                <option key={i} value={i}>{name}</option>
+              ))}
+            </select>
+            <select
+              value={monthData.year}
+              onChange={handleYearSelect}
+              className={cn("appearance-none bg-transparent font-semibold text-zinc-900 hover:text-zinc-600 transition-colors cursor-pointer outline-none text-center", s.headerFont)}
+            >
+              {years.map((y) => (
+                <option key={y} value={y}>{y}</option>
+              ))}
+            </select>
+          </div>
 
-          {isLast ? (
+          {isLast && (
             <button
               type="button"
               onClick={goToNextMonth}
-              className="inline-flex items-center justify-center size-8 rounded-lg text-zinc-500 hover:bg-zinc-100 hover:text-zinc-900 transition-colors cursor-pointer"
+              className="absolute right-0 inline-flex items-center justify-center size-8 rounded-lg text-zinc-500 hover:bg-zinc-100 hover:text-zinc-900 transition-colors cursor-pointer"
             >
               <ChevronRightIcon className="size-4" />
             </button>
-          ) : <div className="size-8" />}
+          )}
         </div>
 
         {/* Weekday headers */}
