@@ -66,3 +66,5 @@ export function Spinner({
     </div>
   );
 }
+
+Spinner.displayName = "Spinner";

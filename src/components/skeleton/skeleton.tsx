@@ -100,3 +100,5 @@ export function Skeleton({
 
   return <div className={baseClass} style={style} />;
 }
+
+Skeleton.displayName = "Skeleton";

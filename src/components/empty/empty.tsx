@@ -108,3 +108,5 @@ export function Empty({
     </div>
   );
 }
+
+Empty.displayName = "Empty";

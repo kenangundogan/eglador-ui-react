@@ -50,3 +50,5 @@ export function ButtonGroup({
     </div>
   );
 }
+
+ButtonGroup.displayName = "ButtonGroup";

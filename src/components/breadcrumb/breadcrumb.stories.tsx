@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Home, ChevronRight, Slash } from "lucide-react";
+import { Home, Slash } from "lucide-react";
 import { Breadcrumb } from "./breadcrumb";
 
 const meta: Meta<typeof Breadcrumb> = {

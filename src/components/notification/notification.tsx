@@ -297,6 +297,8 @@ export function Notification({ item, onDismiss }: NotificationProps) {
   );
 }
 
+Notification.displayName = "Notification";
+
 // ── Notification Container ───────────────────
 
 export function NotificationContainer({
@@ -329,6 +331,8 @@ export function NotificationContainer({
     document.body,
   );
 }
+
+NotificationContainer.displayName = "NotificationContainer";
 
 // ── useNotification Hook ─────────────────────
 

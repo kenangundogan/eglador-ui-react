@@ -368,3 +368,5 @@ export function Toaster({
     document.body,
   );
 }
+
+Toaster.displayName = "Toaster";

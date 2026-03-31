@@ -147,6 +147,8 @@ export function Avatar({
   );
 }
 
+Avatar.displayName = "Avatar";
+
 // ── AvatarGroup ──────────────────────────────
 
 export function AvatarGroup({
@@ -181,3 +183,5 @@ export function AvatarGroup({
     </div>
   );
 }
+
+AvatarGroup.displayName = "AvatarGroup";

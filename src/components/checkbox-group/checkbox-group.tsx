@@ -54,3 +54,5 @@ export function CheckboxGroup({
     </div>
   );
 }
+
+CheckboxGroup.displayName = "CheckboxGroup";

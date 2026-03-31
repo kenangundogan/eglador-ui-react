@@ -144,3 +144,5 @@ export function Accordion({
     </div>
   );
 }
+
+Accordion.displayName = "Accordion";

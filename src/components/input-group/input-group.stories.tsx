@@ -2,7 +2,6 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Search, Mail, Lock, Globe, Copy, Eye } from "lucide-react";
 import { Input } from "../input";
 import { Button } from "../button";
-import { Select } from "../select";
 import { InputGroup, type InputGroupProps } from "./input-group";
 
 const meta: Meta<typeof InputGroup> = {

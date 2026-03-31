@@ -45,3 +45,5 @@ export function AspectRatio({
     </div>
   );
 }
+
+AspectRatio.displayName = "AspectRatio";

@@ -138,3 +138,5 @@ export function MediaImage({
     </div>
   );
 }
+
+MediaImage.displayName = "MediaImage";

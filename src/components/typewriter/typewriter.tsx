@@ -117,3 +117,5 @@ export function Typewriter({
     </span>
   );
 }
+
+Typewriter.displayName = "Typewriter";

@@ -108,3 +108,5 @@ export function Typography({
     </Tag>
   );
 }
+
+Typography.displayName = "Typography";

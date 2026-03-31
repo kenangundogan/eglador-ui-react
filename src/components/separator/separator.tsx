@@ -57,3 +57,5 @@ export function Separator({
     />
   );
 }
+
+Separator.displayName = "Separator";

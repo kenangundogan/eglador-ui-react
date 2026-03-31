@@ -288,3 +288,5 @@ export function MultiSelect({
     </div>
   );
 }
+
+MultiSelect.displayName = "MultiSelect";

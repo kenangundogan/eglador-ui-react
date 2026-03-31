@@ -139,3 +139,5 @@ export function MediaVideo({
     </div>
   );
 }
+
+MediaVideo.displayName = "MediaVideo";

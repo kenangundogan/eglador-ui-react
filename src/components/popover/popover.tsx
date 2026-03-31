@@ -45,7 +45,9 @@ interface PopoverContextValue {
   triggerId: string;
   contentId: string;
   triggerRef: React.RefObject<HTMLElement | null>;
+  contentRef: React.RefObject<HTMLElement | null>;
   setTriggerNode: (node: HTMLElement | null) => void;
+  setContentNode: (node: HTMLElement | null) => void;
 }
 
 const PopoverContext = React.createContext<PopoverContextValue | null>(null);
@@ -75,6 +77,7 @@ function PopoverRoot({
 
   const containerRef = React.useRef<HTMLDivElement>(null);
   const triggerRef = React.useRef<HTMLElement | null>(null);
+  const contentRef = React.useRef<HTMLElement | null>(null);
 
   const autoId = React.useId();
   const triggerId = `popover-trigger-${autoId}`;
@@ -88,15 +91,31 @@ function PopoverRoot({
   const toggle = React.useCallback(() => setOpen(!isOpen), [isOpen, setOpen]);
   const close = React.useCallback(() => setOpen(false), [setOpen]);
 
-  useClickOutside(containerRef, close, isOpen && closeOnOutside);
+  // Custom click-outside that checks both container and portal content
+  React.useEffect(() => {
+    if (!isOpen || !closeOnOutside) return;
+    const handleMouseDown = (e: MouseEvent) => {
+      const target = e.target as Node;
+      const inContainer = containerRef.current?.contains(target);
+      const inContent = contentRef.current?.contains(target);
+      if (!inContainer && !inContent) close();
+    };
+    document.addEventListener("mousedown", handleMouseDown);
+    return () => document.removeEventListener("mousedown", handleMouseDown);
+  }, [isOpen, closeOnOutside, close]);
+
   useEscapeClose(close, isOpen && closeOnEscape);
 
   const setTriggerNode = React.useCallback((node: HTMLElement | null) => {
     triggerRef.current = node;
   }, []);
 
+  const setContentNode = React.useCallback((node: HTMLElement | null) => {
+    contentRef.current = node;
+  }, []);
+
   return (
-    <PopoverContext.Provider value={{ isOpen, toggle, close, side, align, triggerId, contentId, triggerRef, setTriggerNode }}>
+    <PopoverContext.Provider value={{ isOpen, toggle, close, side, align, triggerId, contentId, triggerRef, contentRef, setTriggerNode, setContentNode }}>
       <div ref={containerRef} className={cn("relative inline-flex", className)}>
         {children}
       </div>
@@ -149,47 +168,86 @@ PopoverTrigger.displayName = "PopoverTrigger";
 
 // ── Content ──────────────────────────────────
 
-const SIDE_STYLES: Record<PopoverSide, string> = {
-  bottom: "top-full mt-2",
-  top: "bottom-full mb-2",
-  right: "left-full ml-2",
-  left: "right-full mr-2",
-};
+const GAP = 8;
 
-const ALIGN_HORIZONTAL: Record<PopoverAlign, string> = {
-  start: "left-0",
-  center: "left-1/2 -translate-x-1/2",
-  end: "right-0",
-};
+function computePosition(
+  triggerRect: DOMRect,
+  contentRect: DOMRect,
+  side: PopoverSide,
+  align: PopoverAlign,
+): { top: number; left: number } {
+  let top = 0;
+  let left = 0;
 
-const ALIGN_VERTICAL: Record<PopoverAlign, string> = {
-  start: "top-0",
-  center: "top-1/2 -translate-y-1/2",
-  end: "bottom-0",
-};
+  // Side
+  if (side === "bottom") {
+    top = triggerRect.bottom + GAP;
+  } else if (side === "top") {
+    top = triggerRect.top - contentRect.height - GAP;
+  } else if (side === "right") {
+    left = triggerRect.right + GAP;
+  } else if (side === "left") {
+    left = triggerRect.left - contentRect.width - GAP;
+  }
+
+  // Align
+  if (side === "bottom" || side === "top") {
+    if (align === "start") left = triggerRect.left;
+    else if (align === "center") left = triggerRect.left + (triggerRect.width - contentRect.width) / 2;
+    else if (align === "end") left = triggerRect.right - contentRect.width;
+  } else {
+    if (align === "start") top = triggerRect.top;
+    else if (align === "center") top = triggerRect.top + (triggerRect.height - contentRect.height) / 2;
+    else if (align === "end") top = triggerRect.bottom - contentRect.height;
+  }
+
+  // Viewport clamp
+  const { innerWidth, innerHeight } = window;
+  if (left + contentRect.width > innerWidth - 8) left = innerWidth - contentRect.width - 8;
+  if (top + contentRect.height > innerHeight - 8) top = innerHeight - contentRect.height - 8;
+  if (left < 8) left = 8;
+  if (top < 8) top = 8;
+
+  return { top, left };
+}
 
 function PopoverContent({ className, children }: PopoverContentProps) {
-  const { isOpen, side, align, triggerId, contentId } = usePopover();
+  const { isOpen, side, align, triggerId, contentId, triggerRef, setContentNode } = usePopover();
+  const localRef = React.useRef<HTMLDivElement>(null);
+  const [pos, setPos] = React.useState({ top: 0, left: 0 });
+
+  const mergedRef = React.useCallback((node: HTMLDivElement | null) => {
+    (localRef as React.MutableRefObject<HTMLDivElement | null>).current = node;
+    setContentNode(node);
+  }, [setContentNode]);
+
+  React.useEffect(() => {
+    if (!isOpen || !triggerRef.current || !localRef.current) return;
+
+    requestAnimationFrame(() => {
+      if (!triggerRef.current || !localRef.current) return;
+      const triggerRect = triggerRef.current.getBoundingClientRect();
+      const contentRect = localRef.current.getBoundingClientRect();
+      setPos(computePosition(triggerRect, contentRect, side, align));
+    });
+  }, [isOpen, side, align, triggerRef]);
 
   if (!isOpen) return null;
 
-  const isHorizontalSide = side === "top" || side === "bottom";
-  const alignStyles = isHorizontalSide ? ALIGN_HORIZONTAL : ALIGN_VERTICAL;
-
-  return (
+  return ReactDOM.createPortal(
     <div
+      ref={mergedRef}
       id={contentId}
       aria-labelledby={triggerId}
       className={cn(
-        "absolute z-50",
-        SIDE_STYLES[side],
-        alignStyles[align],
-        "bg-white border border-zinc-200 rounded-lg p-4",
+        "fixed z-9999 bg-white border border-zinc-200 rounded-lg p-4",
         className,
       )}
+      style={{ top: pos.top, left: pos.left }}
     >
       {children}
-    </div>
+    </div>,
+    document.body,
   );
 }
 PopoverContent.displayName = "PopoverContent";

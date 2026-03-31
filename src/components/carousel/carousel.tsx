@@ -485,3 +485,5 @@ export function Carousel({
     </div>
   );
 }
+
+Carousel.displayName = "Carousel";

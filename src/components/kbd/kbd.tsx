@@ -89,3 +89,5 @@ export function Kbd({
     </span>
   );
 }
+
+Kbd.displayName = "Kbd";

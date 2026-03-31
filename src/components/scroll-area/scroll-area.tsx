@@ -80,3 +80,5 @@ export function ScrollArea({
     </div>
   );
 }
+
+ScrollArea.displayName = "ScrollArea";
