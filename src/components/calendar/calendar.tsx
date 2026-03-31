@@ -57,12 +57,20 @@ const SIZES: Record<CalendarSize, { cell: string; font: string; headerFont: stri
 
 // ── Date helpers ─────────────────────────────
 
+function toDate(d: Date | string | number): Date {
+  return d instanceof Date ? d : new Date(d);
+}
+
 function isSameDay(a: Date, b: Date): boolean {
-  return a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate();
+  const da = toDate(a);
+  const db = toDate(b);
+  return da.getFullYear() === db.getFullYear() && da.getMonth() === db.getMonth() && da.getDate() === db.getDate();
 }
 
 function isSameMonth(a: Date, b: Date): boolean {
-  return a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth();
+  const da = toDate(a);
+  const db = toDate(b);
+  return da.getFullYear() === db.getFullYear() && da.getMonth() === db.getMonth();
 }
 
 function isInRange(date: Date, from: Date | null, to: Date | null): boolean {
@@ -144,7 +152,10 @@ export function Calendar({
 }: CalendarProps) {
   const today = new Date();
   const [viewMonth, setViewMonth] = React.useState(() => {
-    if (defaultMonth) return { year: defaultMonth.getFullYear(), month: defaultMonth.getMonth() };
+    if (defaultMonth) {
+      const d = defaultMonth instanceof Date ? defaultMonth : new Date(defaultMonth);
+      return { year: d.getFullYear(), month: d.getMonth() };
+    }
     if (selected instanceof Date) return { year: selected.getFullYear(), month: selected.getMonth() };
     return { year: today.getFullYear(), month: today.getMonth() };
   });
@@ -166,9 +177,13 @@ export function Calendar({
     });
   };
 
+  // Normalize dates (handle string values from form libraries)
+  const normalizedMinDate = minDate instanceof Date ? minDate : minDate ? new Date(minDate) : undefined;
+  const normalizedMaxDate = maxDate instanceof Date ? maxDate : maxDate ? new Date(maxDate) : undefined;
+
   const isDisabledDate = (date: Date): boolean => {
-    if (minDate && date < new Date(minDate.getFullYear(), minDate.getMonth(), minDate.getDate())) return true;
-    if (maxDate && date > new Date(maxDate.getFullYear(), maxDate.getMonth(), maxDate.getDate())) return true;
+    if (normalizedMinDate && date < new Date(normalizedMinDate.getFullYear(), normalizedMinDate.getMonth(), normalizedMinDate.getDate())) return true;
+    if (normalizedMaxDate && date > new Date(normalizedMaxDate.getFullYear(), normalizedMaxDate.getMonth(), normalizedMaxDate.getDate())) return true;
     if (disabledDaysOfWeek.includes(date.getDay())) return true;
     if (disabledDates.some((d) => isSameDay(d, date))) return true;
     return false;
@@ -243,8 +258,8 @@ export function Calendar({
     );
 
     // Year range for dropdown
-    const minYear = minDate ? minDate.getFullYear() : monthData.year - 100;
-    const maxYear = maxDate ? maxDate.getFullYear() : monthData.year + 10;
+    const minYear = normalizedMinDate ? normalizedMinDate.getFullYear() : monthData.year - 100;
+    const maxYear = normalizedMaxDate ? normalizedMaxDate.getFullYear() : monthData.year + 10;
     const years = Array.from({ length: maxYear - minYear + 1 }, (_, i) => minYear + i);
 
     const handleMonthSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
