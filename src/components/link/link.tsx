@@ -130,6 +130,8 @@ export const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(
           disabled && "opacity-50 pointer-events-none cursor-not-allowed",
           className,
         )}
+        aria-disabled={disabled || undefined}
+        tabIndex={disabled ? -1 : undefined}
         {...externalProps}
         {...rest}
       >

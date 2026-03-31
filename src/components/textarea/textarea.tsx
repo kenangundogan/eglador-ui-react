@@ -162,9 +162,9 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
           disabled={disabled}
           onChange={handleChange}
           className={cn(
-            "w-full rounded-lg transition-shadow duration-200",
+            "w-full rounded-lg transition-colors duration-200",
             "text-zinc-900 placeholder:text-zinc-400",
-            "disabled:opacity-50 disabled:cursor-not-allowed",
+            "disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none",
             s.padding,
             s.font,
             s.minHeight,

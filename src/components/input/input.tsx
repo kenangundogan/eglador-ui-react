@@ -312,9 +312,9 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
             id={id}
             disabled={disabled || loading}
             className={cn(
-              "w-full transition-shadow duration-200",
+              "w-full transition-colors duration-200",
               "text-zinc-900 placeholder:text-zinc-400",
-              "disabled:opacity-50 disabled:cursor-not-allowed",
+              "disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none",
               SHAPES[shape],
               s.height,
               s.font,

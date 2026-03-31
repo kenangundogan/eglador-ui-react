@@ -83,7 +83,7 @@ export function Select({
         className={cn(
           "flex w-full items-center justify-between rounded-lg border bg-white px-3 py-2 text-[13px] font-medium transition-all duration-200 outline-none",
           disabled ? "opacity-50 cursor-not-allowed border-zinc-200 text-zinc-400" : "cursor-pointer",
-          isOpen ? "border-zinc-400 ring-2 ring-zinc-50 text-zinc-900" : "border-zinc-200 text-zinc-700 hover:border-zinc-300 hover:bg-zinc-50",
+          isOpen ? "border-zinc-300 ring-2 ring-zinc-900/5 text-zinc-900" : "border-zinc-200 text-zinc-700 hover:border-zinc-300 hover:bg-zinc-50",
         )}
       >
         <span className="truncate">
