@@ -17,6 +17,7 @@ export * from "./components/dropdown";
 export * from "./components/empty";
 export * from "./components/input";
 export * from "./components/input-group";
+export * from "./components/input-otp";
 export * from "./components/kbd";
 export * from "./components/label";
 export * from "./components/link";
