@@ -1,6 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Search, Mail, Lock } from "lucide-react";
+import { Search, Mail, Lock, Globe, Copy, Eye } from "lucide-react";
 import { Input } from "../input";
+import { Button } from "../button";
+import { Select } from "../select";
 import { InputGroup, type InputGroupProps } from "./input-group";
 
 const meta: Meta<typeof InputGroup> = {
@@ -10,8 +12,7 @@ const meta: Meta<typeof InputGroup> = {
   parameters: {
     docs: {
       description: {
-        component:
-          "Groups multiple inputs together with bordered (horizontal) or stacked (vertical) variants.",
+        component: "Groups inputs, text labels, and addons together. Supports bordered (horizontal) and stacked (vertical) variants with Text and Addon sub-components for prefix/suffix content.",
       },
     },
   },
@@ -37,6 +38,110 @@ export const Bordered: Story = {
   ),
 };
 
+// ── With Prefix Text ─────────────────────────
+
+export const WithPrefixText: Story = {
+  render: (args: InputGroupProps) => (
+    <div style={{ display: "flex", flexDirection: "column", gap: 12, width: 400 }}>
+      <InputGroup {...args}>
+        <InputGroup.Text>https://</InputGroup.Text>
+        <Input placeholder="example.com" />
+      </InputGroup>
+
+      <InputGroup {...args}>
+        <InputGroup.Text>@</InputGroup.Text>
+        <Input placeholder="username" />
+      </InputGroup>
+
+      <InputGroup {...args}>
+        <InputGroup.Text>$</InputGroup.Text>
+        <Input placeholder="0.00" type="number" />
+        <InputGroup.Text>USD</InputGroup.Text>
+      </InputGroup>
+    </div>
+  ),
+};
+
+// ── With Suffix Text ─────────────────────────
+
+export const WithSuffixText: Story = {
+  render: (args: InputGroupProps) => (
+    <div style={{ display: "flex", flexDirection: "column", gap: 12, width: 400 }}>
+      <InputGroup {...args}>
+        <Input placeholder="you" />
+        <InputGroup.Text>@example.com</InputGroup.Text>
+      </InputGroup>
+
+      <InputGroup {...args}>
+        <Input placeholder="Width" type="number" />
+        <InputGroup.Text>px</InputGroup.Text>
+      </InputGroup>
+    </div>
+  ),
+};
+
+// ── With Button ──────────────────────────────
+
+export const WithButton: Story = {
+  render: (args: InputGroupProps) => (
+    <div style={{ display: "flex", flexDirection: "column", gap: 12, width: 400 }}>
+      <InputGroup {...args}>
+        <Input icon={<Search />} placeholder="Search..." />
+        <InputGroup.Addon>
+          <Button color="primary" shape="square" size="sm">Search</Button>
+        </InputGroup.Addon>
+      </InputGroup>
+
+      <InputGroup {...args}>
+        <Input placeholder="Enter invite code" />
+        <InputGroup.Addon>
+          <Button color="black" shape="square" size="sm">Apply</Button>
+        </InputGroup.Addon>
+      </InputGroup>
+    </div>
+  ),
+};
+
+// ── With Icon Button ─────────────────────────
+
+export const WithIconButton: Story = {
+  render: (args: InputGroupProps) => (
+    <div style={{ display: "flex", flexDirection: "column", gap: 12, width: 400 }}>
+      <InputGroup {...args}>
+        <Input placeholder="https://eglador.com/share/abc123" />
+        <InputGroup.Addon>
+          <Button variant="ghost" shape="square" size="sm" icon={<Copy />} />
+        </InputGroup.Addon>
+      </InputGroup>
+
+      <InputGroup {...args}>
+        <Input type="password" placeholder="Password" />
+        <InputGroup.Addon>
+          <Button variant="ghost" shape="square" size="sm" icon={<Eye />} />
+        </InputGroup.Addon>
+      </InputGroup>
+    </div>
+  ),
+};
+
+// ── Complex: Text + Input + Button ───────────
+
+export const Complex: Story = {
+  render: (args: InputGroupProps) => (
+    <div style={{ display: "flex", flexDirection: "column", gap: 12, width: 480 }}>
+      <InputGroup {...args}>
+        <InputGroup.Text>https://</InputGroup.Text>
+        <Input placeholder="your-domain.com" />
+        <InputGroup.Addon>
+          <Button color="primary" shape="square" size="sm" icon={<Globe />}>Verify</Button>
+        </InputGroup.Addon>
+      </InputGroup>
+    </div>
+  ),
+};
+
+// ── With Icons ───────────────────────────────
+
 export const BorderedWithIcons: Story = {
   render: (args: InputGroupProps) => (
     <InputGroup {...args}>
@@ -60,6 +165,8 @@ export const Stacked: Story = {
   ),
 };
 
+// ── Stacked Three Fields ─────────────────────
+
 export const StackedThreeFields: Story = {
   args: { variant: "stacked" },
   render: (args: InputGroupProps) => (
@@ -69,6 +176,33 @@ export const StackedThreeFields: Story = {
         <Input placeholder="Last name" />
         <Input placeholder="Email" type="email" />
       </InputGroup>
+    </div>
+  ),
+};
+
+// ── Login Form ───────────────────────────────
+
+export const LoginForm: Story = {
+  render: () => (
+    <div style={{ display: "flex", flexDirection: "column", gap: 16, width: 320 }}>
+      <div>
+        <label className="text-sm font-medium text-zinc-700 mb-1.5 block">Email</label>
+        <InputGroup variant="bordered">
+          <InputGroup.Text><Mail className="size-4 text-zinc-400" /></InputGroup.Text>
+          <Input placeholder="you@example.com" type="email" />
+        </InputGroup>
+      </div>
+      <div>
+        <label className="text-sm font-medium text-zinc-700 mb-1.5 block">Password</label>
+        <InputGroup variant="bordered">
+          <InputGroup.Text><Lock className="size-4 text-zinc-400" /></InputGroup.Text>
+          <Input placeholder="••••••••" type="password" />
+          <InputGroup.Addon>
+            <Button variant="ghost" shape="square" size="sm" icon={<Eye />} />
+          </InputGroup.Addon>
+        </InputGroup>
+      </div>
+      <Button color="primary" className="w-full">Sign In</Button>
     </div>
   ),
 };
