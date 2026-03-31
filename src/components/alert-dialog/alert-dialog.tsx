@@ -187,7 +187,7 @@ function AlertDialogContent({ className, children }: AlertDialogContentProps) {
         aria-describedby={descriptionId}
         onClick={(e) => e.stopPropagation()}
         className={cn(
-          "relative bg-white rounded-2xl shadow-2xl",
+          "relative bg-white rounded-2xl",
           "w-full max-w-sm mx-4 overflow-hidden",
           className,
         )}

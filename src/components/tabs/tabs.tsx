@@ -78,11 +78,11 @@ const TRIGGER_VARIANTS: Record<TabsVariant, { active: string; inactive: string }
     inactive: "text-zinc-400 hover:text-zinc-600",
   },
   bordered: {
-    active: "bg-zinc-50 text-zinc-900 rounded-md shadow-sm",
+    active: "bg-zinc-50 text-zinc-900 rounded-md",
     inactive: "text-zinc-400 hover:text-zinc-600 hover:bg-zinc-50/50 rounded-md",
   },
   segmented: {
-    active: "bg-white text-zinc-900 rounded-md shadow-sm",
+    active: "bg-white text-zinc-900 rounded-md",
     inactive: "text-zinc-500 hover:text-zinc-700 hover:bg-white/50 rounded-md",
   },
 };

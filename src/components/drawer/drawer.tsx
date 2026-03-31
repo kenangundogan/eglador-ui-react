@@ -216,7 +216,7 @@ function DrawerContent({ className, children }: DrawerContentProps) {
         aria-describedby={descriptionId}
         onClick={(e) => e.stopPropagation()}
         className={cn(
-          "fixed bg-white shadow-2xl flex flex-col",
+          "fixed bg-white flex flex-col",
           PANEL_POSITION[side],
           isHorizontal ? "w-full h-full" : "w-full",
           sizeClass,

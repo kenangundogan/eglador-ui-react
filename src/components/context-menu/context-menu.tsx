@@ -273,7 +273,7 @@ function ContextMenuContent({ className, children }: ContextMenuContentProps) {
       role="menu"
       onMouseDown={(e) => e.stopPropagation()}
       className={cn(
-        "fixed z-9999 min-w-48 bg-white border border-zinc-200 rounded-xl p-1.5",
+        "fixed z-9999 min-w-48 bg-white border border-zinc-200 rounded-lg p-1.5",
         className,
       )}
       style={{ left: adjustedPos.x, top: adjustedPos.y }}
@@ -497,7 +497,7 @@ function ContextMenuSub({ label, icon, className, children }: ContextMenuSubProp
         <div
           ref={subRef}
           className={cn(
-            "absolute top-0 min-w-40 bg-white border border-zinc-200 rounded-xl p-1.5 z-10",
+            "absolute top-0 min-w-40 bg-white border border-zinc-200 rounded-lg p-1.5 z-10",
             openSide === "right" ? "left-full ml-1" : "right-full mr-1",
           )}
         >

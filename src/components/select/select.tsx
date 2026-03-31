@@ -81,7 +81,7 @@ export function Select({
         disabled={disabled}
         onClick={() => !disabled && setIsOpen((prev) => !prev)}
         className={cn(
-          "flex w-full items-center justify-between rounded-lg border bg-white px-3 py-2 text-[13px] font-medium transition-all duration-200 outline-none",
+          "flex w-full items-center justify-between rounded-lg border bg-white px-3 py-2 text-sm font-medium transition-all duration-200 outline-none",
           disabled ? "opacity-50 cursor-not-allowed border-zinc-200 text-zinc-400" : "cursor-pointer",
           isOpen ? "border-zinc-300 ring-2 ring-zinc-900/5 text-zinc-900" : "border-zinc-200 text-zinc-700 hover:border-zinc-300 hover:bg-zinc-50",
         )}
@@ -101,7 +101,7 @@ export function Select({
         <div
           ref={dropdownRef}
           className={cn(
-            "absolute left-0 z-50 w-full rounded-xl border border-zinc-200 bg-white p-1.5 shadow-[0_8px_30px_rgb(0,0,0,0.12)]",
+            "absolute left-0 z-50 w-full rounded-lg border border-zinc-200 bg-white p-1.5",
             openDirection === "bottom" ? "top-[calc(100%+4px)]" : "bottom-[calc(100%+4px)]",
           )}
         >
@@ -110,7 +110,7 @@ export function Select({
             style={{ maxHeight: `${maxHeight}px` }}
           >
             {options.length === 0 ? (
-              <div className="py-2.5 px-3 text-[13px] text-zinc-500 text-center font-medium">No options</div>
+              <div className="py-2.5 px-3 text-sm text-zinc-500 text-center font-medium">No options</div>
             ) : (
               <div className="flex flex-col gap-0.5">
                 {options.map((option) => {
@@ -121,7 +121,7 @@ export function Select({
                       type="button"
                       onClick={() => handleSelect(option)}
                       className={cn(
-                        "relative flex w-full cursor-pointer select-none items-center rounded-md py-2 pl-9 pr-3 text-[13px] outline-none transition-colors",
+                        "relative flex w-full cursor-pointer select-none items-center rounded-md py-2 pl-9 pr-3 text-sm outline-none transition-colors",
                         isSelected ? "bg-zinc-50 text-zinc-900 font-semibold" : "text-zinc-600 hover:bg-zinc-50 hover:text-zinc-900",
                       )}
                     >

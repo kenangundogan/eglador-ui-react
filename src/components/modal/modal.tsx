@@ -187,7 +187,7 @@ function ModalContent({ className, children }: ModalContentProps) {
         aria-describedby={descriptionId}
         onClick={(e) => e.stopPropagation()}
         className={cn(
-          "relative bg-white rounded-2xl shadow-2xl",
+          "relative bg-white rounded-2xl",
           "w-full mx-4 overflow-hidden",
           SIZES[size],
           className,

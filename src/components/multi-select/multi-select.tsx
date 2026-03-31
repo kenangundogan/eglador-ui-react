@@ -157,7 +157,7 @@ export function MultiSelect({
         disabled={disabled}
         onClick={() => !disabled && setIsOpen((prev) => !prev)}
         className={cn(
-          "flex w-full items-center justify-between rounded-lg border bg-white px-3 py-2 text-[13px] font-medium transition-all duration-200 outline-none min-h-9.5",
+          "flex w-full items-center justify-between rounded-lg border bg-white px-3 py-2 text-sm font-medium transition-all duration-200 outline-none min-h-9.5",
           disabled ? "opacity-50 cursor-not-allowed border-zinc-200 text-zinc-400" : "cursor-pointer",
           isOpen ? "border-zinc-300 ring-2 ring-zinc-900/5 text-zinc-900" : "border-zinc-200 text-zinc-700 hover:border-zinc-300 hover:bg-zinc-50",
         )}
@@ -208,7 +208,7 @@ export function MultiSelect({
         <div
           ref={dropdownRef}
           className={cn(
-            "absolute left-0 z-50 w-full rounded-xl border border-zinc-200 bg-white shadow-[0_8px_30px_rgb(0,0,0,0.12)]",
+            "absolute left-0 z-50 w-full rounded-lg border border-zinc-200 bg-white",
             openDirection === "bottom" ? "top-[calc(100%+4px)]" : "bottom-[calc(100%+4px)]",
           )}
         >
@@ -222,7 +222,7 @@ export function MultiSelect({
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
                   placeholder={searchPlaceholder}
-                  className="w-full pl-8 pr-3 py-2 text-[13px] border border-zinc-200 rounded-lg outline-none focus:border-zinc-400 transition-colors bg-zinc-50"
+                  className="w-full pl-8 pr-3 py-2 text-sm border border-zinc-200 rounded-lg outline-none focus:border-zinc-400 transition-colors bg-zinc-50"
                 />
               </div>
             </div>
@@ -233,7 +233,7 @@ export function MultiSelect({
             style={{ maxHeight: `${maxHeight}px` }}
           >
             {filteredOptions.length === 0 ? (
-              <div className="py-2.5 px-3 text-[13px] text-zinc-500 text-center font-medium">
+              <div className="py-2.5 px-3 text-sm text-zinc-500 text-center font-medium">
                 {search ? noResultsLabel : noOptionsLabel}
               </div>
             ) : (
@@ -248,7 +248,7 @@ export function MultiSelect({
                       disabled={isDisabledOption}
                       onClick={() => toggleOption(option)}
                       className={cn(
-                        "relative flex w-full select-none items-center rounded-md py-2 pl-9 pr-3 text-[13px] outline-none transition-colors",
+                        "relative flex w-full select-none items-center rounded-md py-2 pl-9 pr-3 text-sm outline-none transition-colors",
                         isDisabledOption ? "opacity-40 cursor-not-allowed" : "cursor-pointer",
                         isSelected ? "bg-zinc-50 text-zinc-900 font-semibold" : "text-zinc-600 hover:bg-zinc-50 hover:text-zinc-900",
                       )}

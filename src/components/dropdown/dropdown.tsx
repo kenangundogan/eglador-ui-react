@@ -242,8 +242,7 @@ function DropdownContent({ className, children }: DropdownContentProps) {
         (currentSide === "left" || currentSide === "right") && (align === "top" || align === "start") ? "top-0" : "",
         (currentSide === "left" || currentSide === "right") && (align === "bottom" || align === "end") ? "bottom-0" : "",
         (currentSide === "left" || currentSide === "right") && align === "center" ? "top-1/2 -translate-y-1/2" : "",
-        "bg-white border border-zinc-200 rounded-xl",
-        "shadow-[0_8px_30px_rgb(0,0,0,0.12)]",
+        "bg-white border border-zinc-200 rounded-lg",
         className,
       )}
     >

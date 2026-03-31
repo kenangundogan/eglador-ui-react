@@ -43,7 +43,7 @@ export function RadioGroup({
                 childProps.className,
                 "border-0",
                 variant === "segmented" && !isChecked && "bg-transparent hover:bg-white/80",
-                variant === "segmented" && isChecked && "bg-white shadow-sm text-zinc-900",
+                variant === "segmented" && isChecked && "bg-white text-zinc-900",
               ),
             })}
 

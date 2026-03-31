@@ -161,7 +161,7 @@ export const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(
         >
           <div
             className={cn(
-              "absolute top-1/2 -translate-y-1/2 left-0.5 rounded-full bg-white shadow-sm transition-transform duration-200",
+              "absolute top-1/2 -translate-y-1/2 left-0.5 rounded-full bg-white transition-transform duration-200",
               s.thumb,
               checked && s.thumbTranslate,
             )}

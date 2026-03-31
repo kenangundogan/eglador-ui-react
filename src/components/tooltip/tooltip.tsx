@@ -68,7 +68,7 @@ export function Tooltip({
         <div
           className={cn(
             "absolute z-50 pointer-events-none",
-            "px-2 py-1 rounded-md bg-zinc-800 text-white text-xs font-medium whitespace-nowrap shadow-lg",
+            "px-2 py-1 rounded-md bg-zinc-800 text-white text-xs font-medium whitespace-nowrap",
             pos.tooltip,
             className,
           )}

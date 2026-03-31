@@ -184,7 +184,7 @@ function PopoverContent({ className, children }: PopoverContentProps) {
         "absolute z-50",
         SIDE_STYLES[side],
         alignStyles[align],
-        "bg-white border border-zinc-200 rounded-xl shadow-lg p-4",
+        "bg-white border border-zinc-200 rounded-lg p-4",
         className,
       )}
     >

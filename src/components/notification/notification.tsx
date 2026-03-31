@@ -220,7 +220,7 @@ export function Notification({ item, onDismiss }: NotificationProps) {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       className={cn(
-        "relative flex flex-col w-80 bg-white border border-zinc-200 border-l-4 rounded-lg shadow-lg overflow-hidden",
+        "relative flex flex-col w-80 bg-white border border-zinc-200 border-l-4 rounded-lg overflow-hidden",
         c.border,
       )}
     >

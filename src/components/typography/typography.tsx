@@ -39,7 +39,7 @@ const VARIANTS: Record<TypographyVariant, VariantDef> = {
   muted: { tag: "p", style: "text-sm text-zinc-400" },
   blockquote: { tag: "blockquote", style: "border-l-4 border-zinc-300 pl-4 italic" },
   code: { tag: "code", style: "bg-zinc-100 px-1.5 py-0.5 rounded text-sm font-mono" },
-  kbd: { tag: "kbd", style: "bg-zinc-100 border border-zinc-300 px-1.5 py-0.5 rounded text-xs font-mono shadow-sm" },
+  kbd: { tag: "kbd", style: "bg-zinc-100 border border-zinc-300 px-1.5 py-0.5 rounded text-xs font-mono" },
 };
 
 // ── Color styles ─────────────────────────────

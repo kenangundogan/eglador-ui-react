@@ -37,7 +37,7 @@ export function ButtonGroup({
                 childProps.className,
                 "border-0",
                 variant === "segmented" && !isActive && "bg-transparent hover:bg-white/80",
-                variant === "segmented" && isActive && "bg-white shadow-sm text-zinc-900",
+                variant === "segmented" && isActive && "bg-white text-zinc-900",
               ),
             })}
 
