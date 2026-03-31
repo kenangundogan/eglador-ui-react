@@ -336,7 +336,7 @@ export function Calendar({
 
   return (
     <div className={cn(
-      "inline-flex bg-white border border-zinc-200 rounded-lg",
+      "inline-flex bg-white border border-zinc-200 rounded-lg flex-wrap",
       numberOfMonths > 1 ? "flex-row gap-4" : "flex-col",
       s.padding,
       className,
