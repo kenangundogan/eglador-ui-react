@@ -13,6 +13,7 @@ export * from "./components/collapsible";
 export * from "./components/drawer";
 export * from "./components/checkbox-group";
 export * from "./components/dropdown";
+export * from "./components/empty";
 export * from "./components/input";
 export * from "./components/input-group";
 export * from "./components/label";
