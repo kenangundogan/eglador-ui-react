@@ -2,6 +2,9 @@
 
 import * as React from "react";
 import { cn } from "../../lib/utils";
+import { useClickOutside } from "../../lib/use-click-outside";
+import { useEscapeClose } from "../../lib/use-escape-close";
+import { useAutoFlip } from "../../lib/use-auto-flip";
 
 // ── Types ────────────────────────────────────
 
@@ -87,7 +90,6 @@ export function MultiSelect({
   noOptionsLabel = "No options",
 }: MultiSelectProps) {
   const [isOpen, setIsOpen] = React.useState(false);
-  const [openDirection, setOpenDirection] = React.useState<"bottom" | "top">("bottom");
   const [search, setSearch] = React.useState("");
 
   const containerRef = React.useRef<HTMLDivElement>(null);
@@ -106,56 +108,13 @@ export function MultiSelect({
     return options.filter((opt) => opt.label.toLowerCase().includes(q));
   }, [options, search]);
 
-  React.useEffect(() => {
-    if (!isOpen) return;
-    const handleClickOutside = (event: MouseEvent) => {
-      if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
-        setIsOpen(false);
-        setSearch("");
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, [isOpen]);
-
-  React.useEffect(() => {
-    if (!isOpen) return;
-    const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        setIsOpen(false);
-        setSearch("");
-      }
-    };
-    document.addEventListener("keydown", handleEscape);
-    return () => document.removeEventListener("keydown", handleEscape);
-  }, [isOpen]);
-
-  React.useEffect(() => {
-    if (!isOpen || !autoFlip || !triggerRef.current || !dropdownRef.current) return;
-
-    const measure = () => {
-      if (!triggerRef.current || !dropdownRef.current) return;
-      const triggerRect = triggerRef.current.getBoundingClientRect();
-      const contentRect = dropdownRef.current.getBoundingClientRect();
-      const { innerHeight } = window;
-
-      if (triggerRect.bottom + contentRect.height > innerHeight && triggerRect.top > contentRect.height) {
-        setOpenDirection("top");
-      } else {
-        setOpenDirection("bottom");
-      }
-    };
-
-    const timer = requestAnimationFrame(measure);
-    window.addEventListener("scroll", measure, { passive: true });
-    window.addEventListener("resize", measure);
-
-    return () => {
-      cancelAnimationFrame(timer);
-      window.removeEventListener("scroll", measure);
-      window.removeEventListener("resize", measure);
-    };
-  }, [isOpen, autoFlip]);
+  const closeMultiSelect = React.useCallback(() => {
+    setIsOpen(false);
+    setSearch("");
+  }, []);
+  useClickOutside(containerRef, closeMultiSelect, isOpen);
+  useEscapeClose(closeMultiSelect, isOpen);
+  const openDirection = useAutoFlip(triggerRef, dropdownRef, "bottom", isOpen && autoFlip) as "bottom" | "top";
 
   React.useEffect(() => {
     if (isOpen && searchable) {

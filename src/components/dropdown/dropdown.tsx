@@ -2,6 +2,9 @@
 
 import * as React from "react";
 import { cn } from "../../lib/utils";
+import { useClickOutside } from "../../lib/use-click-outside";
+import { useEscapeClose } from "../../lib/use-escape-close";
+import { useAutoFlip } from "../../lib/use-auto-flip";
 import { Button } from "../button";
 
 // ── Types ────────────────────────────────────
@@ -95,25 +98,8 @@ const DropdownRoot = React.forwardRef<HTMLDivElement, DropdownProps>(
     const toggle = React.useCallback(() => setOpen(!isOpen), [isOpen, setOpen]);
     const close = React.useCallback(() => setOpen(false), [setOpen]);
 
-    React.useEffect(() => {
-      if (!isOpen) return;
-      const handleMouseDown = (e: MouseEvent) => {
-        if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
-          close();
-        }
-      };
-      document.addEventListener("mousedown", handleMouseDown);
-      return () => document.removeEventListener("mousedown", handleMouseDown);
-    }, [isOpen, close]);
-
-    React.useEffect(() => {
-      if (!isOpen) return;
-      const handleKeyDown = (e: KeyboardEvent) => {
-        if (e.key === "Escape") close();
-      };
-      document.addEventListener("keydown", handleKeyDown);
-      return () => document.removeEventListener("keydown", handleKeyDown);
-    }, [isOpen, close]);
+    useClickOutside(containerRef, close, isOpen);
+    useEscapeClose(close, isOpen);
 
     const childArray = React.Children.toArray(children);
     const hasTrigger = childArray.some(
@@ -209,52 +195,8 @@ DropdownTrigger.displayName = "DropdownTrigger";
 function DropdownContent({ className, children }: DropdownContentProps) {
   const { isOpen, side, align, width, maxHeight, scroll, autoFlip, triggerId, contentId, triggerRef } = useDropdown();
   const [triggerWidth, setTriggerWidth] = React.useState<number | null>(null);
-  const [currentSide, setCurrentSide] = React.useState(side);
   const contentRef = React.useRef<HTMLDivElement>(null);
-
-  const [prevSide, setPrevSide] = React.useState(side);
-  const [prevIsOpen, setPrevIsOpen] = React.useState(isOpen);
-  if (side !== prevSide || isOpen !== prevIsOpen) {
-    setPrevSide(side);
-    setPrevIsOpen(isOpen);
-    setCurrentSide(side);
-  }
-
-  React.useEffect(() => {
-    if (!isOpen || !autoFlip || !contentRef.current || !triggerRef.current) return;
-
-    const measure = () => {
-      if (!contentRef.current || !triggerRef.current) return;
-      const triggerRect = triggerRef.current.getBoundingClientRect();
-      const contentRect = contentRef.current.getBoundingClientRect();
-      const { height, width: w } = contentRect;
-      const { innerHeight, innerWidth } = window;
-
-      let newSide = side;
-
-      if (side === "bottom") {
-        if (triggerRect.bottom + height > innerHeight && triggerRect.top > height) newSide = "top";
-      } else if (side === "top") {
-        if (triggerRect.top - height < 0 && innerHeight - triggerRect.bottom > height) newSide = "bottom";
-      } else if (side === "right") {
-        if (triggerRect.right + w > innerWidth && triggerRect.left > w) newSide = "left";
-      } else if (side === "left") {
-        if (triggerRect.left - w < 0 && innerWidth - triggerRect.right > w) newSide = "right";
-      }
-
-      setCurrentSide(newSide);
-    };
-
-    const timer = requestAnimationFrame(measure);
-    window.addEventListener("scroll", measure, { passive: true });
-    window.addEventListener("resize", measure);
-
-    return () => {
-      cancelAnimationFrame(timer);
-      window.removeEventListener("scroll", measure);
-      window.removeEventListener("resize", measure);
-    };
-  }, [isOpen, autoFlip, side, triggerRef]);
+  const currentSide = useAutoFlip(triggerRef, contentRef, side, isOpen && autoFlip);
 
   React.useEffect(() => {
     if (!isOpen || width !== "trigger") return;

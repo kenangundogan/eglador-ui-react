@@ -168,6 +168,60 @@ export const WithMaxHeight: Story = {
   ),
 };
 
+// ── Auto Flip ────────────────────────────────
+
+export const AutoFlip: Story = {
+  render: (args: DropdownProps) => (
+    <div style={{ display: "flex", flexDirection: "column", gap: 16, padding: 40 }}>
+      <p className="text-xs text-zinc-400">Scroll down — the dropdown near the bottom will flip upward automatically.</p>
+      <div style={{ height: 300 }} />
+      <Dropdown {...args} autoFlip align="left">
+        <Dropdown.Trigger asChild>
+          <Button variant="outline" iconRight={<ChevronDown />}>Auto Flip (scroll here)</Button>
+        </Dropdown.Trigger>
+        <Dropdown.Content>
+          <div className="p-1.5 min-w-45">
+            {menuItems.map((item) => (
+              <MenuItem key={item.label} {...item} />
+            ))}
+          </div>
+        </Dropdown.Content>
+      </Dropdown>
+      <div style={{ height: 100 }} />
+    </div>
+  ),
+};
+
+// ── User Menu (Real-world) ───────────────────
+
+export const UserMenu: Story = {
+  render: (args: DropdownProps) => (
+    <div style={{ padding: 40 }}>
+      <Dropdown {...args} align="left">
+        <Dropdown.Trigger asChild>
+          <Button color="black" iconRight={<ChevronDown />}>John Doe</Button>
+        </Dropdown.Trigger>
+        <Dropdown.Content>
+          <div className="w-56">
+            <div className="px-3 py-2.5 border-b border-zinc-100">
+              <p className="text-sm font-semibold text-zinc-900">John Doe</p>
+              <p className="text-xs text-zinc-400">john@example.com</p>
+            </div>
+            <div className="p-1.5">
+              <MenuItem icon={<Settings />} label="Account settings" />
+              <MenuItem icon={<Edit />} label="Edit profile" />
+              <MenuItem icon={<Share />} label="Invite team" />
+            </div>
+            <div className="border-t border-zinc-100 p-1.5">
+              <MenuItem icon={<Trash2 />} label="Sign out" danger />
+            </div>
+          </div>
+        </Dropdown.Content>
+      </Dropdown>
+    </div>
+  ),
+};
+
 // ── Controlled ───────────────────────────────
 
 export const Controlled: Story = {

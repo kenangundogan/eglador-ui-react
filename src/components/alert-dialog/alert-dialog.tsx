@@ -3,6 +3,8 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { cn } from "../../lib/utils";
+import { useEscapeClose } from "../../lib/use-escape-close";
+import { useBodyScrollLock } from "../../lib/use-body-scroll-lock";
 
 // ── Types ────────────────────────────────────
 
@@ -121,23 +123,8 @@ function AlertDialogRoot({
   const openDialog = React.useCallback(() => setOpen(true), [setOpen]);
   const closeDialog = React.useCallback(() => setOpen(false), [setOpen]);
 
-  // Escape closes dialog
-  React.useEffect(() => {
-    if (!isOpen) return;
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") closeDialog();
-    };
-    document.addEventListener("keydown", handleKeyDown);
-    return () => document.removeEventListener("keydown", handleKeyDown);
-  }, [isOpen, closeDialog]);
-
-  // Body scroll lock
-  React.useEffect(() => {
-    if (!isOpen) return;
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => { document.body.style.overflow = prev; };
-  }, [isOpen]);
+  useEscapeClose(closeDialog, isOpen);
+  useBodyScrollLock(isOpen);
 
   return (
     <AlertDialogContext.Provider value={{ isOpen, open: openDialog, close: closeDialog, color, titleId, descriptionId }}>

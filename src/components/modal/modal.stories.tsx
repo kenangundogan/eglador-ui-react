@@ -169,3 +169,74 @@ export const NoBackdropClose: Story = {
     </Modal>
   ),
 };
+
+// ── Scrollable Content ───────────────────────
+
+export const ScrollableContent: Story = {
+  render: (args) => (
+    <Modal {...args} size="md">
+      <Modal.Trigger asChild>
+        <Button color="primary">Terms & Conditions</Button>
+      </Modal.Trigger>
+      <Modal.Content>
+        <Modal.Header>Terms of Service</Modal.Header>
+        <Modal.Body className="max-h-60 overflow-y-auto">
+          {Array.from({ length: 10 }, (_, i) => (
+            <p key={i} className="mb-3">
+              Section {i + 1}: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.
+            </p>
+          ))}
+        </Modal.Body>
+        <Modal.Footer>
+          <Modal.Trigger asChild>
+            <Button variant="outline" size="sm">Decline</Button>
+          </Modal.Trigger>
+          <Button color="primary" size="sm">Accept</Button>
+        </Modal.Footer>
+      </Modal.Content>
+    </Modal>
+  ),
+};
+
+// ── Form Modal ───────────────────────────────
+
+export const FormModal: Story = {
+  render: (args) => (
+    <Modal {...args}>
+      <Modal.Trigger asChild>
+        <Button color="primary">Edit Profile</Button>
+      </Modal.Trigger>
+      <Modal.Content>
+        <Modal.Header>Edit Profile</Modal.Header>
+        <Modal.Body>
+          <div className="flex flex-col gap-4">
+            <div className="flex gap-3">
+              <div className="flex-1 flex flex-col gap-1.5">
+                <label className="text-sm font-medium text-zinc-700">First Name</label>
+                <input className="w-full px-3 py-2 text-sm border border-zinc-200 rounded-lg bg-zinc-50" placeholder="John" />
+              </div>
+              <div className="flex-1 flex flex-col gap-1.5">
+                <label className="text-sm font-medium text-zinc-700">Last Name</label>
+                <input className="w-full px-3 py-2 text-sm border border-zinc-200 rounded-lg bg-zinc-50" placeholder="Doe" />
+              </div>
+            </div>
+            <div className="flex flex-col gap-1.5">
+              <label className="text-sm font-medium text-zinc-700">Email</label>
+              <input className="w-full px-3 py-2 text-sm border border-zinc-200 rounded-lg bg-zinc-50" placeholder="john@example.com" type="email" />
+            </div>
+            <div className="flex flex-col gap-1.5">
+              <label className="text-sm font-medium text-zinc-700">Bio</label>
+              <textarea className="w-full px-3 py-2 text-sm border border-zinc-200 rounded-lg bg-zinc-50 resize-none" rows={3} placeholder="Tell us about yourself..." />
+            </div>
+          </div>
+        </Modal.Body>
+        <Modal.Footer>
+          <Modal.Trigger asChild>
+            <Button variant="outline" size="sm">Cancel</Button>
+          </Modal.Trigger>
+          <Button color="primary" size="sm">Save Changes</Button>
+        </Modal.Footer>
+      </Modal.Content>
+    </Modal>
+  ),
+};

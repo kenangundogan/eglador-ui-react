@@ -2,6 +2,9 @@
 
 import * as React from "react";
 import { cn } from "../../lib/utils";
+import { useClickOutside } from "../../lib/use-click-outside";
+import { useEscapeClose } from "../../lib/use-escape-close";
+import { useAutoFlip } from "../../lib/use-auto-flip";
 
 // ── Types ────────────────────────────────────
 
@@ -53,7 +56,6 @@ export function Select({
   maxHeight = 240,
 }: SelectProps) {
   const [isOpen, setIsOpen] = React.useState(false);
-  const [openDirection, setOpenDirection] = React.useState<"bottom" | "top">("bottom");
 
   const containerRef = React.useRef<HTMLDivElement>(null);
   const buttonRef = React.useRef<HTMLButtonElement>(null);
@@ -61,52 +63,10 @@ export function Select({
 
   const selectedOption = options.find((opt) => opt.value === value);
 
-  React.useEffect(() => {
-    if (!isOpen) return;
-    const handleClickOutside = (event: MouseEvent) => {
-      if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
-        setIsOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, [isOpen]);
-
-  React.useEffect(() => {
-    if (!isOpen) return;
-    const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setIsOpen(false);
-    };
-    document.addEventListener("keydown", handleEscape);
-    return () => document.removeEventListener("keydown", handleEscape);
-  }, [isOpen]);
-
-  React.useEffect(() => {
-    if (!isOpen || !autoFlip || !buttonRef.current || !dropdownRef.current) return;
-
-    const measure = () => {
-      if (!buttonRef.current || !dropdownRef.current) return;
-      const triggerRect = buttonRef.current.getBoundingClientRect();
-      const contentRect = dropdownRef.current.getBoundingClientRect();
-      const { innerHeight } = window;
-
-      if (triggerRect.bottom + contentRect.height > innerHeight && triggerRect.top > contentRect.height) {
-        setOpenDirection("top");
-      } else {
-        setOpenDirection("bottom");
-      }
-    };
-
-    const timer = requestAnimationFrame(measure);
-    window.addEventListener("scroll", measure, { passive: true });
-    window.addEventListener("resize", measure);
-
-    return () => {
-      cancelAnimationFrame(timer);
-      window.removeEventListener("scroll", measure);
-      window.removeEventListener("resize", measure);
-    };
-  }, [isOpen, autoFlip]);
+  const closeSelect = React.useCallback(() => setIsOpen(false), []);
+  useClickOutside(containerRef, closeSelect, isOpen);
+  useEscapeClose(closeSelect, isOpen);
+  const openDirection = useAutoFlip(buttonRef, dropdownRef, "bottom", isOpen && autoFlip) as "bottom" | "top";
 
   const handleSelect = (option: SelectOption) => {
     onChange?.(option.value, option);

@@ -3,6 +3,8 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { cn } from "../../lib/utils";
+import { useClickOutside } from "../../lib/use-click-outside";
+import { useEscapeClose } from "../../lib/use-escape-close";
 
 // ── Types ────────────────────────────────────
 
@@ -86,25 +88,8 @@ function PopoverRoot({
   const toggle = React.useCallback(() => setOpen(!isOpen), [isOpen, setOpen]);
   const close = React.useCallback(() => setOpen(false), [setOpen]);
 
-  React.useEffect(() => {
-    if (!isOpen || !closeOnOutside) return;
-    const handleMouseDown = (e: MouseEvent) => {
-      if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
-        close();
-      }
-    };
-    document.addEventListener("mousedown", handleMouseDown);
-    return () => document.removeEventListener("mousedown", handleMouseDown);
-  }, [isOpen, closeOnOutside, close]);
-
-  React.useEffect(() => {
-    if (!isOpen || !closeOnEscape) return;
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") close();
-    };
-    document.addEventListener("keydown", handleKeyDown);
-    return () => document.removeEventListener("keydown", handleKeyDown);
-  }, [isOpen, closeOnEscape, close]);
+  useClickOutside(containerRef, close, isOpen && closeOnOutside);
+  useEscapeClose(close, isOpen && closeOnEscape);
 
   const setTriggerNode = React.useCallback((node: HTMLElement | null) => {
     triggerRef.current = node;

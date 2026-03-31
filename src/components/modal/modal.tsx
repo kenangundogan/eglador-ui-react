@@ -3,6 +3,8 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { cn } from "../../lib/utils";
+import { useEscapeClose } from "../../lib/use-escape-close";
+import { useBodyScrollLock } from "../../lib/use-body-scroll-lock";
 
 // ── Types ────────────────────────────────────
 
@@ -112,21 +114,8 @@ function ModalRoot({
   const openModal = React.useCallback(() => setOpen(true), [setOpen]);
   const closeModal = React.useCallback(() => setOpen(false), [setOpen]);
 
-  React.useEffect(() => {
-    if (!isOpen || !closeOnEscape) return;
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") closeModal();
-    };
-    document.addEventListener("keydown", handleKeyDown);
-    return () => document.removeEventListener("keydown", handleKeyDown);
-  }, [isOpen, closeOnEscape, closeModal]);
-
-  React.useEffect(() => {
-    if (!isOpen) return;
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => { document.body.style.overflow = prev; };
-  }, [isOpen]);
+  useEscapeClose(closeModal, isOpen && closeOnEscape);
+  useBodyScrollLock(isOpen);
 
   return (
     <ModalContext.Provider value={{ isOpen, open: openModal, close: closeModal, size, closeOnBackdrop, titleId, descriptionId }}>

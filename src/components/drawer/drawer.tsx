@@ -3,6 +3,8 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { cn } from "../../lib/utils";
+import { useEscapeClose } from "../../lib/use-escape-close";
+import { useBodyScrollLock } from "../../lib/use-body-scroll-lock";
 
 // ── Types ────────────────────────────────────
 
@@ -139,21 +141,8 @@ function DrawerRoot({
   const openDrawer = React.useCallback(() => setOpen(true), [setOpen]);
   const closeDrawer = React.useCallback(() => setOpen(false), [setOpen]);
 
-  React.useEffect(() => {
-    if (!isOpen || !closeOnEscape) return;
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") closeDrawer();
-    };
-    document.addEventListener("keydown", handleKeyDown);
-    return () => document.removeEventListener("keydown", handleKeyDown);
-  }, [isOpen, closeOnEscape, closeDrawer]);
-
-  React.useEffect(() => {
-    if (!isOpen) return;
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => { document.body.style.overflow = prev; };
-  }, [isOpen]);
+  useEscapeClose(closeDrawer, isOpen && closeOnEscape);
+  useBodyScrollLock(isOpen);
 
   return (
     <DrawerContext.Provider value={{ isOpen, open: openDrawer, close: closeDrawer, side, size, closeOnBackdrop, titleId, descriptionId }}>
