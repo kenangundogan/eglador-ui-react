@@ -21,6 +21,7 @@ export * from "./components/kbd";
 export * from "./components/label";
 export * from "./components/link";
 export * from "./components/media-image";
+export * from "./components/menubar";
 export * from "./components/media-video";
 export * from "./components/modal";
 export * from "./components/multi-select";
