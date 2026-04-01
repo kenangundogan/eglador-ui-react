@@ -161,6 +161,7 @@ function DropdownTrigger({ className, children, asChild = false }: DropdownTrigg
         shape="circle"
         icon={<EllipsisIcon />}
         active={isOpen}
+        aria-label="Open menu"
         className={className}
         {...triggerProps}
       />

@@ -56,3 +56,7 @@ export * from "./components/tree-view";
 export * from "./components/typewriter";
 export * from "./components/typography";
 export * from "./lib/utils";
+export * from "./lib/use-auto-flip";
+export * from "./lib/use-body-scroll-lock";
+export * from "./lib/use-click-outside";
+export * from "./lib/use-escape-close";

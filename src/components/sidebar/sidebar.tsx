@@ -459,6 +459,7 @@ function SidebarTrigger({ className }: SidebarTriggerProps) {
     <button
       type="button"
       onClick={toggle}
+      aria-label="Toggle sidebar"
       className={cn(
         "inline-flex items-center justify-center size-8 rounded-lg text-zinc-500 hover:bg-zinc-100 hover:text-zinc-900 transition-colors cursor-pointer",
         className,

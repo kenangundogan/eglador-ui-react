@@ -266,6 +266,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
   ) => {
     const autoId = React.useId();
     const id = idProp || autoId;
+    const messageId = `${id}-message`;
 
     const s = SIZES[size];
     const styles = resolveStyles(variant, color, state);
@@ -311,6 +312,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
             ref={ref}
             id={id}
             disabled={disabled || loading}
+            aria-describedby={message ? messageId : undefined}
             className={cn(
               "w-full transition-colors duration-200",
               "text-zinc-900 placeholder:text-zinc-400",
@@ -350,7 +352,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         </div>
 
         {message && (
-          <p className={cn("mt-1.5 text-xs", styles.messageColor)}>
+          <p id={messageId} className={cn("mt-1.5 text-xs", styles.messageColor)}>
             {message}
           </p>
         )}

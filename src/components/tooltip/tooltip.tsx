@@ -116,6 +116,7 @@ export function Tooltip({
       {visible && ReactDOM.createPortal(
         <div
           ref={tooltipRef}
+          role="tooltip"
           className={cn(
             "fixed z-9999 pointer-events-none",
             "px-2 py-1 rounded-md bg-zinc-800 text-white text-xs font-medium whitespace-nowrap",

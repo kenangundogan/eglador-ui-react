@@ -198,8 +198,8 @@ export function DateTimePicker({
     updateDateTime(date, hours, m);
   };
 
-  const handleClear = (e: React.MouseEvent) => {
-    e.stopPropagation();
+  const handleClear = (e?: { stopPropagation: () => void }) => {
+    e?.stopPropagation();
     onChange?.(null);
   };
 
@@ -240,7 +240,7 @@ export function DateTimePicker({
                 role="button"
                 tabIndex={0}
                 onClick={handleClear}
-                onKeyDown={(e) => { if (e.key === "Enter") handleClear(e as unknown as React.MouseEvent); }}
+                onKeyDown={(e) => { if (e.key === "Enter") { e.preventDefault(); handleClear(e); } }}
                 className="shrink-0 size-4 flex items-center justify-center rounded text-zinc-400 hover:text-zinc-600 transition-colors cursor-pointer"
               >
                 <XIcon className="size-3" />

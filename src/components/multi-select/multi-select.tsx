@@ -137,8 +137,8 @@ export function MultiSelect({
     onChange?.(nextValues, nextOptions);
   };
 
-  const removeOption = (optionValue: string, e: React.MouseEvent) => {
-    e.stopPropagation();
+  const removeOption = (optionValue: string, e?: { stopPropagation: () => void }) => {
+    e?.stopPropagation();
     const nextValues = value.filter((v) => v !== optionValue);
     const nextOptions = options.filter((opt) => nextValues.includes(opt.value));
     onChange?.(nextValues, nextOptions);
@@ -177,7 +177,7 @@ export function MultiSelect({
                       tabIndex={0}
                       onClick={(e) => removeOption(opt.value, e)}
                       onKeyDown={(e) => {
-                        if (e.key === "Enter" || e.key === " ") removeOption(opt.value, e as unknown as React.MouseEvent);
+                        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); removeOption(opt.value, e); }
                       }}
                       className="shrink-0 hover:text-zinc-900 transition-colors cursor-pointer"
                     >

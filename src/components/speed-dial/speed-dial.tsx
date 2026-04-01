@@ -140,6 +140,7 @@ export function SpeedDial({
         type="button"
         disabled={disabled}
         onClick={toggle}
+        aria-label={isOpen ? "Close actions" : "Open actions"}
         className={cn(
           "inline-flex items-center justify-center rounded-full bg-zinc-900 text-white transition-all cursor-pointer",
           s.trigger,

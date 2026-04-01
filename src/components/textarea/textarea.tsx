@@ -102,6 +102,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
   ) => {
     const autoId = React.useId();
     const id = idProp || autoId;
+    const messageId = `${id}-message`;
     const internalRef = React.useRef<HTMLTextAreaElement>(null);
 
     const s = SIZES[size];
@@ -160,6 +161,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
           ref={mergedRef}
           id={id}
           disabled={disabled}
+          aria-describedby={message ? messageId : undefined}
           onChange={handleChange}
           className={cn(
             "w-full rounded-lg transition-colors duration-200",
@@ -179,7 +181,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
         />
 
         {message && (
-          <p className={cn("mt-1.5 text-xs", messageColor)}>{message}</p>
+          <p id={messageId} className={cn("mt-1.5 text-xs", messageColor)}>{message}</p>
         )}
       </div>
     );
