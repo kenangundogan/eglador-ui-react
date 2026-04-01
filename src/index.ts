@@ -30,7 +30,7 @@ export * from "./components/link";
 export * from "./components/media-image";
 export * from "./components/media-video";
 export * from "./components/menubar";
-export * from "./components/modal";
+export * from "./components/dialog";
 export * from "./components/multi-select";
 export * from "./components/native-select";
 export * from "./components/navigation-menu";
