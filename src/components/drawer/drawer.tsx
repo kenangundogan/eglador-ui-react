@@ -83,7 +83,7 @@ const HORIZONTAL_SIZES: Record<DrawerSize, string> = {
 const VERTICAL_SIZES: Record<DrawerSize, string> = {
   sm: "max-h-48",
   md: "max-h-80",
-  lg: "max-h-[32rem]",
+  lg: "max-h-128",
   full: "max-h-full",
 };
 

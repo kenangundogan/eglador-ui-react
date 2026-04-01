@@ -146,7 +146,7 @@ export const Opacity: Story = {
 export const VerticalAxis: Story = {
   render: (args: CarouselProps) => (
     <div className="max-w-md">
-      <Carousel {...args} slides={makeSlides(5, 180)} axis="y" viewportClassName="h-[300px]" slideClassName="pb-3" />
+      <Carousel {...args} slides={makeSlides(5, 180)} axis="y" viewportClassName="h-75" slideClassName="pb-3" />
     </div>
   ),
 };

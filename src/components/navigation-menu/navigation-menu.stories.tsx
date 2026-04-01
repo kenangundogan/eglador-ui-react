@@ -63,7 +63,7 @@ export const Default: Story = {
 
           <NavigationMenu.Item>
             <NavigationMenu.Trigger>Components</NavigationMenu.Trigger>
-            <NavigationMenu.Content className="w-[520px]">
+            <NavigationMenu.Content className="w-130">
               <div className="grid grid-cols-2 gap-1">
                 <ListItem icon={<LayoutGrid />} title="Layout" description="Separator, AspectRatio, ScrollArea" />
                 <ListItem icon={<Palette />} title="Forms" description="Input, Select, Checkbox, Radio" />
@@ -97,7 +97,7 @@ export const WithFeaturedSection: Story = {
         <NavigationMenu.List>
           <NavigationMenu.Item>
             <NavigationMenu.Trigger>Products</NavigationMenu.Trigger>
-            <NavigationMenu.Content className="w-[600px]">
+            <NavigationMenu.Content className="w-150">
               <div className="grid grid-cols-5 gap-4">
                 <div className="col-span-2 bg-zinc-50 rounded-lg p-4 flex flex-col justify-between">
                   <div>
@@ -246,7 +246,7 @@ export const EcommerceHeader: Story = {
             <NavigationMenu.List>
               <NavigationMenu.Item>
                 <NavigationMenu.Trigger>Categories</NavigationMenu.Trigger>
-                <NavigationMenu.Content className="w-[500px]">
+                <NavigationMenu.Content className="w-125">
                   <div className="grid grid-cols-3 gap-1">
                     <ListItem title="Electronics" description="Phones, laptops, accessories" />
                     <ListItem title="Clothing" description="Men's, women's, kids" />
