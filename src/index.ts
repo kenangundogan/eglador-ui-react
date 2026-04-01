@@ -49,6 +49,7 @@ export * from "./components/tabs";
 export * from "./components/textarea";
 export * from "./components/toast";
 export * from "./components/tooltip";
+export * from "./components/tree-view";
 export * from "./components/typewriter";
 export * from "./components/typography";
 export * from "./lib/utils";

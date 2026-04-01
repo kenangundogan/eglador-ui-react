@@ -44,7 +44,7 @@ import { Button, Input, Modal } from "eglador-ui-react";
 | **Forms** | Input, InputGroup, InputOTP, Calendar, DatePicker, DateTimePicker, Textarea, Select, MultiSelect, Checkbox, CheckboxGroup, Radio, RadioGroup, Switch, Label |
 | **Feedback** | Alert, Notification, Toast, Progress, Spinner, Skeleton |
 | **Navigation** | NavigationMenu, Menubar, Stepper, Breadcrumb |
-| **Data Display** | Table, Accordion, Tabs, Badge, Avatar, Empty, Kbd, Tooltip, Typography, Typewriter |
+| **Data Display** | Table, Accordion, Tabs, TreeView, Badge, Avatar, Empty, Kbd, Tooltip, Typography, Typewriter |
 | **Overlays** | Modal, Drawer, Dropdown, Popover, AlertDialog, ContextMenu |
 | **Layout** | Sidebar, Separator, Collapsible, AspectRatio, ScrollArea, Resizable |
 | **Media** | MediaImage, MediaVideo, Carousel |
