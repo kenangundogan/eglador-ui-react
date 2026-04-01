@@ -45,7 +45,7 @@ export const Default: Story = {
   render: (args: PaginationProps) => {
     const [page, setPage] = useState(1);
     return (
-      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+      <div className="flex flex-col gap-2">
         <Pagination {...args} currentPage={page} onPageChange={setPage} />
         <span className="text-xs text-zinc-400">Page {page} of {args.totalPages}</span>
       </div>
@@ -59,7 +59,7 @@ export const Variants: Story = {
   render: () => {
     const [pages, setPages] = useState({ default: 5, outline: 5, ghost: 5 });
     return (
-      <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+      <div className="flex flex-col gap-4">
         {(["default", "outline", "ghost"] as const).map((variant) => (
           <div key={variant}>
             <span className="text-xs text-zinc-400 mb-2 block">{variant}</span>
@@ -80,7 +80,7 @@ export const Variants: Story = {
 
 export const Sizes: Story = {
   render: () => (
-    <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+    <div className="flex flex-col gap-4">
       {(["xs", "sm", "md"] as const).map((size) => (
         <div key={size}>
           <span className="text-xs text-zinc-400 mb-2 block">{size}</span>
@@ -130,7 +130,7 @@ export const MoreSiblings: Story = {
   render: (args: PaginationProps) => {
     const [page, setPage] = useState(10);
     return (
-      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+      <div className="flex flex-col gap-2">
         <span className="text-xs text-zinc-400">siblingCount: 2, boundaryCount: 2</span>
         <Pagination {...args} totalPages={30} currentPage={page} onPageChange={setPage} siblingCount={2} boundaryCount={2} />
       </div>
@@ -169,7 +169,7 @@ export const TableIntegration: Story = {
     const end = Math.min(page * perPage, totalItems);
 
     return (
-      <div style={{ display: "flex", flexDirection: "column", gap: 12, width: 480 }}>
+      <div className="flex flex-col gap-3 w-120">
         <div className="border border-zinc-200 rounded-lg p-4">
           <p className="text-sm text-zinc-600">Showing items {start}-{end} of {totalItems}</p>
         </div>

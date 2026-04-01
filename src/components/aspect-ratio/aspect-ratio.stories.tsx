@@ -33,7 +33,7 @@ function Placeholder({ label }: { label: string }) {
 
 export const Default: Story = {
   render: (args: AspectRatioProps) => (
-    <div style={{ maxWidth: 400 }}>
+    <div className="max-w-sm">
       <AspectRatio {...args}>
         <Placeholder label="16:9" />
       </AspectRatio>
@@ -43,7 +43,7 @@ export const Default: Story = {
 
 export const Presets: Story = {
   render: () => (
-    <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16, maxWidth: 600 }}>
+    <div className="grid grid-cols-3 gap-4 max-w-xl">
       {(["1:1", "16:9", "4:3", "21:9", "3:2", "2:3"] as const).map((ratio) => (
         <div key={ratio}>
           <span className="text-xs text-zinc-400 mb-1 block">{ratio}</span>
@@ -58,7 +58,7 @@ export const Presets: Story = {
 
 export const WithImage: Story = {
   render: (args: AspectRatioProps) => (
-    <div style={{ maxWidth: 400 }}>
+    <div className="max-w-sm">
       <AspectRatio {...args} ratio="16:9" className="rounded-xl">
         <img
           src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=800&q=80"
@@ -72,7 +72,7 @@ export const WithImage: Story = {
 
 export const WithVideo: Story = {
   render: (args: AspectRatioProps) => (
-    <div style={{ maxWidth: 500 }}>
+    <div className="max-w-lg">
       <AspectRatio {...args} ratio="16:9" className="rounded-xl bg-black">
         <video
           src="https://www.w3schools.com/html/mov_bbb.mp4"
@@ -86,14 +86,14 @@ export const WithVideo: Story = {
 
 export const CustomNumericRatio: Story = {
   render: () => (
-    <div style={{ display: "flex", gap: 16, maxWidth: 600 }}>
-      <div style={{ flex: 1 }}>
+    <div className="flex gap-4 max-w-xl">
+      <div className="flex-1">
         <span className="text-xs text-zinc-400 mb-1 block">ratio: 2.35 (cinemascope)</span>
         <AspectRatio ratio={2.35} className="rounded-lg">
           <Placeholder label="2.35:1" />
         </AspectRatio>
       </div>
-      <div style={{ flex: 1 }}>
+      <div className="flex-1">
         <span className="text-xs text-zinc-400 mb-1 block">ratio: 0.75 (portrait)</span>
         <AspectRatio ratio={0.75} className="rounded-lg">
           <Placeholder label="3:4" />
@@ -105,7 +105,7 @@ export const CustomNumericRatio: Story = {
 
 export const Square: Story = {
   render: (args: AspectRatioProps) => (
-    <div style={{ maxWidth: 200 }}>
+    <div className="max-w-50">
       <AspectRatio {...args} ratio="1:1" className="rounded-full">
         <img
           src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=400&q=80"

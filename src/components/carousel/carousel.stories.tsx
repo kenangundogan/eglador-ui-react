@@ -65,7 +65,7 @@ type Story = StoryObj<typeof Carousel>;
 
 export const Default: Story = {
   render: (args: CarouselProps) => (
-    <div style={{ maxWidth: 600 }}>
+    <div className="max-w-xl">
       <Carousel {...args} slides={makeSlides(6)} slidesPerView={3} slideClassName="px-2" />
     </div>
   ),
@@ -75,7 +75,7 @@ export const Default: Story = {
 
 export const SlidesPerViewAuto: Story = {
   render: (args: CarouselProps) => (
-    <div style={{ maxWidth: 600 }}>
+    <div className="max-w-xl">
       <Carousel {...args} slides={makeSlides(8)} slidesPerView="auto" slideClassName="w-48 mr-3" />
     </div>
   ),
@@ -85,7 +85,7 @@ export const SlidesPerViewAuto: Story = {
 
 export const Loop: Story = {
   render: (args: CarouselProps) => (
-    <div style={{ maxWidth: 600 }}>
+    <div className="max-w-xl">
       <Carousel {...args} slides={makeSlides(5)} slidesPerView={3} loop slideClassName="px-2" />
     </div>
   ),
@@ -95,7 +95,7 @@ export const Loop: Story = {
 
 export const Autoplay: Story = {
   render: (args: CarouselProps) => (
-    <div style={{ maxWidth: 600 }}>
+    <div className="max-w-xl">
       <Carousel {...args} slides={makeSlides(6)} slidesPerView={3} loop autoplay={{ delay: 2000 }} showNavigation={false} slideClassName="px-2" />
     </div>
   ),
@@ -105,7 +105,7 @@ export const Autoplay: Story = {
 
 export const AutoScroll: Story = {
   render: (args: CarouselProps) => (
-    <div style={{ maxWidth: 600 }}>
+    <div className="max-w-xl">
       <Carousel {...args} slides={makeSlides(8)} slidesPerView={4} loop autoScroll showNavigation={false} showPagination={false} slideClassName="px-2" />
     </div>
   ),
@@ -115,7 +115,7 @@ export const AutoScroll: Story = {
 
 export const Fade: Story = {
   render: (args: CarouselProps) => (
-    <div style={{ maxWidth: 600 }}>
+    <div className="max-w-xl">
       <Carousel {...args} slides={makeSlides(4, 250)} slidesPerView={1} fade loop />
     </div>
   ),
@@ -125,7 +125,7 @@ export const Fade: Story = {
 
 export const Parallax: Story = {
   render: (args: CarouselProps) => (
-    <div style={{ maxWidth: 600 }}>
+    <div className="max-w-xl">
       <Carousel {...args} slides={makeSlides(6, 220)} slidesPerView={3} loop parallax slideClassName="px-2 overflow-hidden" />
     </div>
   ),
@@ -135,7 +135,7 @@ export const Parallax: Story = {
 
 export const Opacity: Story = {
   render: (args: CarouselProps) => (
-    <div style={{ maxWidth: 600 }}>
+    <div className="max-w-xl">
       <Carousel {...args} slides={makeSlides(6, 200)} slidesPerView={3} loop opacity slideClassName="px-2" />
     </div>
   ),
@@ -145,7 +145,7 @@ export const Opacity: Story = {
 
 export const VerticalAxis: Story = {
   render: (args: CarouselProps) => (
-    <div style={{ maxWidth: 400 }}>
+    <div className="max-w-md">
       <Carousel {...args} slides={makeSlides(5, 180)} axis="y" viewportClassName="h-[300px]" slideClassName="pb-3" />
     </div>
   ),
@@ -155,7 +155,7 @@ export const VerticalAxis: Story = {
 
 export const DragFree: Story = {
   render: (args: CarouselProps) => (
-    <div style={{ maxWidth: 600 }}>
+    <div className="max-w-xl">
       <Carousel {...args} slides={makeSlides(8)} slidesPerView={3} dragFree slideClassName="px-2" />
     </div>
   ),
@@ -165,7 +165,7 @@ export const DragFree: Story = {
 
 export const LazyLoading: Story = {
   render: (args: CarouselProps) => (
-    <div style={{ maxWidth: 600 }}>
+    <div className="max-w-xl">
       <Carousel {...args} slides={makeSlides(12)} slidesPerView={3} lazyLoad slideClassName="px-2" />
     </div>
   ),
@@ -175,7 +175,7 @@ export const LazyLoading: Story = {
 
 export const Breakpoints: Story = {
   render: (args: CarouselProps) => (
-    <div style={{ maxWidth: 800 }}>
+    <div className="max-w-3xl">
       <Carousel
         {...args}
         slides={makeSlides(8)}
@@ -196,8 +196,8 @@ export const ScrollToIndex: Story = {
   render: (args: CarouselProps) => {
     const [scrollIndex, setScrollIndex] = useState(0);
     return (
-      <div style={{ maxWidth: 600 }}>
-        <div style={{ display: "flex", gap: 8, marginBottom: 16 }}>
+      <div className="max-w-xl">
+        <div className="flex gap-2 mb-4">
           {[0, 1, 2, 3, 4].map((i) => (
             <Button
               key={i}
@@ -219,7 +219,7 @@ export const ScrollToIndex: Story = {
 
 export const AutoHeight: Story = {
   render: (args: CarouselProps) => (
-    <div style={{ maxWidth: 600 }}>
+    <div className="max-w-xl">
       <Carousel
         {...args}
         slides={[
@@ -239,7 +239,7 @@ export const AutoHeight: Story = {
 
 export const AlignCenter: Story = {
   render: (args: CarouselProps) => (
-    <div style={{ maxWidth: 600 }}>
+    <div className="max-w-xl">
       <Carousel {...args} slides={makeSlides(6)} align="center" slidesPerView={2} slideClassName="px-2" />
     </div>
   ),

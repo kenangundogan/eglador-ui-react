@@ -49,7 +49,7 @@ type Story = StoryObj<typeof MediaVideo>;
 
 export const Default: Story = {
   render: (args: MediaVideoProps) => (
-    <div style={{ width: 480 }}>
+    <div className="w-120">
       <MediaVideo {...args} />
     </div>
   ),
@@ -59,7 +59,7 @@ export const Default: Story = {
 
 export const WithCaption: Story = {
   render: (args: MediaVideoProps) => (
-    <div style={{ width: 480 }}>
+    <div className="w-120">
       <MediaVideo {...args} caption="Big Buck Bunny - sample video clip" />
     </div>
   ),
@@ -69,7 +69,7 @@ export const WithCaption: Story = {
 
 export const WithPoster: Story = {
   render: (args: MediaVideoProps) => (
-    <div style={{ width: 480 }}>
+    <div className="w-120">
       <MediaVideo {...args} poster={SAMPLE_POSTER} caption="Video with poster image" />
     </div>
   ),
@@ -79,9 +79,9 @@ export const WithPoster: Story = {
 
 export const Ratios: Story = {
   render: (args: MediaVideoProps) => (
-    <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
+    <div className="flex gap-4 flex-wrap">
       {(["16:9", "4:3", "1:1"] as const).map((ratio) => (
-        <div key={ratio} style={{ width: 280 }}>
+        <div key={ratio} className="w-70">
           <MediaVideo {...args} ratio={ratio} caption={ratio} />
         </div>
       ))}
@@ -93,9 +93,9 @@ export const Ratios: Story = {
 
 export const Shapes: Story = {
   render: (args: MediaVideoProps) => (
-    <div style={{ display: "flex", gap: 16, alignItems: "start" }}>
+    <div className="flex gap-4 items-start">
       {(["square", "rounded"] as const).map((shape) => (
-        <div key={shape} style={{ width: 280 }}>
+        <div key={shape} className="w-70">
           <MediaVideo {...args} shape={shape} caption={shape} />
         </div>
       ))}
@@ -107,7 +107,7 @@ export const Shapes: Story = {
 
 export const AutoplayMutedLoop: Story = {
   render: (args: MediaVideoProps) => (
-    <div style={{ width: 480 }}>
+    <div className="w-120">
       <MediaVideo {...args} autoPlay muted loop controls={false} caption="Autoplay, muted, looping" />
     </div>
   ),
@@ -117,7 +117,7 @@ export const AutoplayMutedLoop: Story = {
 
 export const ErrorState: Story = {
   render: (args: MediaVideoProps) => (
-    <div style={{ width: 480 }}>
+    <div className="w-120">
       <MediaVideo {...args} src="" caption="This video failed to load" />
     </div>
   ),
@@ -127,7 +127,7 @@ export const ErrorState: Story = {
 
 export const Sizes: Story = {
   render: (args: MediaVideoProps) => (
-    <div style={{ display: "flex", flexDirection: "column", gap: 16, width: 480 }}>
+    <div className="flex flex-col gap-4 w-120">
       {(["xs", "sm", "md"] as const).map((size) => (
         <MediaVideo key={size} {...args} size={size} caption={`Size: ${size}`} />
       ))}

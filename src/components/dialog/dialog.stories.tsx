@@ -1,6 +1,8 @@
 import { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Button } from "../button";
+import { Input } from "../input";
+import { Label } from "../label";
 import { InfoIcon } from "../../lib/icons";
 import { Dialog } from "./dialog";
 
@@ -224,12 +226,12 @@ export const FormDialog: Story = {
         <Dialog.Body>
           <form className="flex flex-col gap-3">
             <div className="flex flex-col gap-1.5">
-              <label htmlFor="name" className="text-sm font-medium text-zinc-700">Name</label>
-              <input id="name" type="text" defaultValue="Kenan Gundogan" className="px-3 py-2 text-sm rounded-lg border border-zinc-200 bg-zinc-50 outline-none focus:ring-2 focus:ring-black/5 focus:border-black/10" />
+              <Label htmlFor="name">Name</Label>
+              <Input id="name" type="text" defaultValue="Kenan Gundogan" />
             </div>
             <div className="flex flex-col gap-1.5">
-              <label htmlFor="email" className="text-sm font-medium text-zinc-700">Email</label>
-              <input id="email" type="email" defaultValue="kenan@example.com" className="px-3 py-2 text-sm rounded-lg border border-zinc-200 bg-zinc-50 outline-none focus:ring-2 focus:ring-black/5 focus:border-black/10" />
+              <Label htmlFor="email">Email</Label>
+              <Input id="email" type="email" defaultValue="kenan@example.com" />
             </div>
           </form>
         </Dialog.Body>

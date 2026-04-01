@@ -31,7 +31,7 @@ type Story = StoryObj<typeof Tooltip>;
 
 export const Default: Story = {
   render: (args: TooltipProps) => (
-    <div style={{ padding: 80, display: "flex", justifyContent: "center" }}>
+    <div className="p-20 flex justify-center">
       <Tooltip {...args}>
         <Button>Hover me</Button>
       </Tooltip>
@@ -41,7 +41,7 @@ export const Default: Story = {
 
 export const Positions: Story = {
   render: () => (
-    <div style={{ padding: 80, display: "flex", gap: 24, justifyContent: "center" }}>
+    <div className="p-20 flex gap-6 justify-center">
       <Tooltip content="Top" position="top"><Button variant="outline">Top</Button></Tooltip>
       <Tooltip content="Bottom" position="bottom"><Button variant="outline">Bottom</Button></Tooltip>
       <Tooltip content="Left" position="left"><Button variant="outline">Left</Button></Tooltip>
@@ -52,7 +52,7 @@ export const Positions: Story = {
 
 export const NoDelay: Story = {
   render: () => (
-    <div style={{ padding: 80, display: "flex", justifyContent: "center" }}>
+    <div className="p-20 flex justify-center">
       <Tooltip content="Instant tooltip" delay={0}>
         <Button color="primary">No delay</Button>
       </Tooltip>

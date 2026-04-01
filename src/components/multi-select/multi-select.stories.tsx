@@ -56,7 +56,7 @@ export const Default: Story = {
   render: (args: MultiSelectProps) => {
     const [value, setValue] = useState<string[]>([]);
     return (
-      <div style={{ width: 320 }}>
+      <div className="w-80">
         <MultiSelect {...args} options={sampleOptions} value={value} onChange={(v) => setValue(v)} />
       </div>
     );
@@ -69,7 +69,7 @@ export const Preselected: Story = {
   render: (args: MultiSelectProps) => {
     const [value, setValue] = useState(["react", "nextjs", "svelte"]);
     return (
-      <div style={{ width: 320 }}>
+      <div className="w-80">
         <MultiSelect {...args} options={sampleOptions} value={value} onChange={(v) => setValue(v)} />
       </div>
     );
@@ -82,7 +82,7 @@ export const Searchable: Story = {
   render: (args: MultiSelectProps) => {
     const [value, setValue] = useState<string[]>(["react"]);
     return (
-      <div style={{ width: 320 }}>
+      <div className="w-80">
         <MultiSelect {...args} options={sampleOptions} value={value} onChange={(v) => setValue(v)} searchable />
       </div>
     );
@@ -95,7 +95,7 @@ export const MaxSelected: Story = {
   render: (args: MultiSelectProps) => {
     const [value, setValue] = useState<string[]>(["react", "vue"]);
     return (
-      <div style={{ width: 320 }}>
+      <div className="w-80">
         <MultiSelect {...args} options={sampleOptions} value={value} onChange={(v) => setValue(v)} maxSelected={3} />
       </div>
     );
@@ -108,7 +108,7 @@ export const OverflowChips: Story = {
   render: (args: MultiSelectProps) => {
     const [value, setValue] = useState(["react", "vue", "angular", "svelte", "nextjs"]);
     return (
-      <div style={{ width: 320 }}>
+      <div className="w-80">
         <MultiSelect {...args} options={sampleOptions} value={value} onChange={(v) => setValue(v)} />
       </div>
     );
@@ -119,7 +119,7 @@ export const OverflowChips: Story = {
 
 export const Disabled: Story = {
   render: (args: MultiSelectProps) => (
-    <div style={{ width: 320 }}>
+    <div className="w-80">
       <MultiSelect {...args} options={sampleOptions} value={["react", "vue"]} disabled />
     </div>
   ),

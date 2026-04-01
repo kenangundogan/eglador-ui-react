@@ -28,7 +28,7 @@ export const Default: Story = {
     const [theme, setTheme] = useState("system");
 
     return (
-      <div style={{ padding: "20px 20px 250px" }}>
+      <div className="px-5 pt-5 pb-62.5">
         <Menubar>
           <Menubar.Menu>
             <Menubar.Trigger>File</Menubar.Trigger>
@@ -107,7 +107,7 @@ export const Default: Story = {
 
 export const Simple: Story = {
   render: () => (
-    <div style={{ padding: "20px 20px 200px" }}>
+    <div className="px-5 pt-5 pb-50">
       <Menubar>
         <Menubar.Menu>
           <Menubar.Trigger>File</Menubar.Trigger>
@@ -147,7 +147,7 @@ export const Simple: Story = {
 
 export const WithSubMenus: Story = {
   render: () => (
-    <div style={{ padding: "20px 20px 250px" }}>
+    <div className="px-5 pt-5 pb-62.5">
       <Menubar>
         <Menubar.Menu>
           <Menubar.Trigger>Insert</Menubar.Trigger>
@@ -194,7 +194,7 @@ export const WithSubMenus: Story = {
 
 export const DisabledItems: Story = {
   render: () => (
-    <div style={{ padding: "20px 20px 200px" }}>
+    <div className="px-5 pt-5 pb-50">
       <Menubar>
         <Menubar.Menu>
           <Menubar.Trigger>Edit</Menubar.Trigger>

@@ -253,7 +253,7 @@ function DrawerBody({ className, children }: DrawerBodyProps) {
   const { descriptionId } = useDrawer();
 
   return (
-    <div id={descriptionId} className={cn("flex-1 overflow-y-auto px-6 py-4 text-sm text-zinc-600 leading-relaxed", className)}>
+    <div id={descriptionId} className={cn("px-6 py-4 text-sm text-zinc-600 leading-relaxed", className)}>
       {children}
     </div>
   );

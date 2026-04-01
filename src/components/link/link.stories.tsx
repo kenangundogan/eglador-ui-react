@@ -44,7 +44,7 @@ export const Default: Story = {};
 
 export const Variants: Story = {
   render: (args: LinkProps) => (
-    <div style={{ display: "flex", gap: 24 }}>
+    <div className="flex gap-6">
       <Link {...args} variant="default">Default</Link>
       <Link {...args} variant="underline">Underline</Link>
       <Link {...args} variant="ghost">Ghost</Link>
@@ -56,7 +56,7 @@ export const Variants: Story = {
 
 export const Colors: Story = {
   render: (args: LinkProps) => (
-    <div style={{ display: "flex", gap: 24, flexWrap: "wrap" }}>
+    <div className="flex gap-6 flex-wrap">
       {ALL_COLORS.map((c) => (
         <Link {...args} key={c} color={c}>{c.charAt(0).toUpperCase() + c.slice(1)}</Link>
       ))}
@@ -68,7 +68,7 @@ export const Colors: Story = {
 
 export const Sizes: Story = {
   render: (args: LinkProps) => (
-    <div style={{ display: "flex", gap: 24, alignItems: "center" }}>
+    <div className="flex gap-6 items-center">
       <Link {...args} size="xs">Extra Small</Link>
       <Link {...args} size="sm">Small</Link>
       <Link {...args} size="md">Medium</Link>
@@ -80,7 +80,7 @@ export const Sizes: Story = {
 
 export const WithLeftIcon: Story = {
   render: (args: LinkProps) => (
-    <div style={{ display: "flex", gap: 24 }}>
+    <div className="flex gap-6">
       <Link {...args} color="primary" icon={<Mail />}>Contact us</Link>
       <Link {...args} color="success" icon={<Download />}>Download</Link>
     </div>
@@ -91,7 +91,7 @@ export const WithLeftIcon: Story = {
 
 export const WithRightIcon: Story = {
   render: (args: LinkProps) => (
-    <div style={{ display: "flex", gap: 24 }}>
+    <div className="flex gap-6">
       <Link {...args} color="primary" iconRight={<ArrowRight />}>Learn more</Link>
     </div>
   ),
@@ -101,7 +101,7 @@ export const WithRightIcon: Story = {
 
 export const External: Story = {
   render: (args: LinkProps) => (
-    <div style={{ display: "flex", gap: 24 }}>
+    <div className="flex gap-6">
       <Link {...args} href="https://github.com" external>GitHub</Link>
       <Link {...args} href="https://npmjs.com" external color="danger">npm</Link>
       <Link {...args} href="https://tailwindcss.com" external variant="underline">Tailwind CSS</Link>
@@ -113,7 +113,7 @@ export const External: Story = {
 
 export const Disabled: Story = {
   render: (args: LinkProps) => (
-    <div style={{ display: "flex", gap: 24 }}>
+    <div className="flex gap-6">
       <Link {...args} disabled>Disabled link</Link>
       <Link {...args} disabled color="danger">Disabled danger</Link>
     </div>
@@ -124,7 +124,7 @@ export const Disabled: Story = {
 
 export const UnderlineColors: Story = {
   render: (args: LinkProps) => (
-    <div style={{ display: "flex", gap: 24, flexWrap: "wrap" }}>
+    <div className="flex gap-6 flex-wrap">
       {ALL_COLORS.map((c) => (
         <Link {...args} key={c} color={c} variant="underline">{c.charAt(0).toUpperCase() + c.slice(1)}</Link>
       ))}

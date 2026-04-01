@@ -2,6 +2,7 @@ import { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Badge } from "../badge";
 import { Avatar } from "../avatar";
+import { Button } from "../button";
 import { DataTable, type DataTableColumn } from "./data-table";
 
 // ── Sample Data ──────────────────────────────
@@ -67,8 +68,8 @@ function createActionColumn<T extends Record<string, unknown>>(labelKey: string)
     align: "right" as const,
     cell: (_value: unknown, row: T) => (
       <div className="flex gap-1 justify-end">
-        <button type="button" onClick={() => alert(`Edit: ${row[labelKey]}`)} className="px-2 py-1 text-xs border border-zinc-200 rounded hover:bg-zinc-50 cursor-pointer">Edit</button>
-        <button type="button" onClick={() => alert(`Delete: ${row[labelKey]}`)} className="px-2 py-1 text-xs border border-red-200 text-red-600 rounded hover:bg-red-50 cursor-pointer">Delete</button>
+        <Button size="xs" variant="outline" onClick={() => alert(`Edit: ${row[labelKey]}`)}>Edit</Button>
+        <Button size="xs" variant="outline" color="danger" onClick={() => alert(`Delete: ${row[labelKey]}`)}>Delete</Button>
       </div>
     ),
   }];
@@ -136,7 +137,7 @@ export const FullFeatured: Story = {
 
 export const Sizes: Story = {
   render: () => (
-    <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
+    <div className="flex flex-col gap-6">
       {(["xs", "sm", "md"] as const).map((size) => (
         <div key={size}>
           <span className="text-xs text-zinc-400 mb-2 block">{size}</span>
@@ -262,14 +263,14 @@ export const FixedColumns: Story = {
         align: "right" as const,
         cell: (_value: unknown, row: User) => (
           <div className="flex gap-1 justify-end">
-            <button type="button" onClick={() => alert(`Edit: ${row.name}`)} className="px-2 py-1 text-xs border border-zinc-200 rounded hover:bg-zinc-50 cursor-pointer">Edit</button>
-            <button type="button" onClick={() => alert(`Delete: ${row.name}`)} className="px-2 py-1 text-xs border border-red-200 text-red-600 rounded hover:bg-red-50 cursor-pointer">Delete</button>
+            <Button size="xs" variant="outline" onClick={() => alert(`Edit: ${row.name}`)}>Edit</Button>
+            <Button size="xs" variant="outline" color="danger" onClick={() => alert(`Delete: ${row.name}`)}>Delete</Button>
           </div>
         ),
       },
     ];
     return (
-      <div style={{ maxWidth: 700 }}>
+      <div className="max-w-2xl">
         <DataTable data={users} columns={fixedColumns} rowKey="id" bordered pageSize={5} />
       </div>
     );
@@ -304,7 +305,7 @@ export const RemoteServerPagination: Story = {
         accessorKey: "member",
         cell: (value, row) => (
           <div className="flex items-center gap-2">
-            <img src={String(row.avatar)} alt="" className="size-7 rounded-full object-cover" />
+            <Avatar src={String(row.avatar)} size="xs" />
             <span className="font-medium text-zinc-900">{String(value)}</span>
           </div>
         ),

@@ -95,7 +95,7 @@ export const WithoutGripHandle: Story = {
 
 export const MinMaxConstraints: Story = {
   render: (args: ResizableProps) => (
-    <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+    <div className="flex flex-col gap-2">
       <span className="text-xs text-zinc-400">Left panel: min 20%, max 60%</span>
       <Resizable {...args} className="h-48 border border-zinc-200 rounded-lg">
         <Resizable.Panel minSize={20} maxSize={60} className="flex items-center justify-center bg-blue-50 text-sm font-medium text-blue-500">

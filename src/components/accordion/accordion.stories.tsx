@@ -1,6 +1,6 @@
 import { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Settings, Info, AlertTriangle } from "lucide-react";
+import { InfoIcon, WarningIcon, SuccessIcon } from "../../lib/icons";
 import { Accordion, type AccordionProps } from "./accordion";
 
 const meta: Meta<typeof Accordion> = {
@@ -43,12 +43,22 @@ const sampleContent = (
 
 // ── Default ──────────────────────────────────
 
+const faqItems = [
+  { title: "What are your shipping options?", content: "We offer standard shipping (5-7 business days), express shipping (2-3 business days), and overnight delivery. Free standard shipping is available on orders over $50." },
+  { title: "What is your return policy?", content: "You can return any unused item within 30 days of purchase for a full refund. Items must be in their original packaging. Please contact our support team to initiate a return." },
+  { title: "How can I contact customer support?", content: "Our support team is available via email at support@example.com, by phone at (555) 123-4567, or through our live chat feature. Business hours are Monday to Friday, 9am to 6pm EST." },
+  { title: "Do you offer international shipping?", content: "Yes, we ship to over 50 countries worldwide. International shipping rates and delivery times vary by destination. Customs duties and taxes may apply." },
+  { title: "How do I track my order?", content: "Once your order has shipped, you will receive an email with a tracking number. You can use this number on our website or the carrier's website to track your package in real time." },
+];
+
 export const Default: Story = {
   render: (args: AccordionProps) => (
-    <div style={{ width: 400 }}>
-      <Accordion {...args} title="Section Title">
-        {sampleContent}
-      </Accordion>
+    <div className="max-w-md flex flex-col gap-2">
+      {faqItems.map((item, i) => (
+        <Accordion key={item.title} {...args} title={item.title} defaultOpen={i === 0}>
+          <div className="text-sm text-zinc-600 leading-relaxed pb-2">{item.content}</div>
+        </Accordion>
+      ))}
     </div>
   ),
 };
@@ -57,7 +67,7 @@ export const Default: Story = {
 
 export const Variants: Story = {
   render: () => (
-    <div style={{ display: "flex", flexDirection: "column", gap: 12, width: 400 }}>
+    <div className="flex flex-col gap-3 max-w-md">
       <Accordion variant="default" title="Default">
         {sampleContent}
       </Accordion>
@@ -75,7 +85,7 @@ export const Variants: Story = {
 
 export const Sizes: Story = {
   render: () => (
-    <div style={{ display: "flex", flexDirection: "column", gap: 12, width: 400 }}>
+    <div className="flex flex-col gap-3 max-w-md">
       <Accordion variant="bordered" size="xs" title="Extra Small">
         {sampleContent}
       </Accordion>
@@ -93,14 +103,14 @@ export const Sizes: Story = {
 
 export const WithIcon: Story = {
   render: () => (
-    <div style={{ display: "flex", flexDirection: "column", gap: 12, width: 400 }}>
-      <Accordion variant="bordered" title="Settings" icon={<Settings className="size-4" />}>
+    <div className="flex flex-col gap-3 max-w-md">
+      <Accordion variant="bordered" title="Success" icon={<SuccessIcon className="size-4" />}>
         {sampleContent}
       </Accordion>
-      <Accordion variant="bordered" title="Information" icon={<Info className="size-4" />}>
+      <Accordion variant="bordered" title="Information" icon={<InfoIcon className="size-4" />}>
         {sampleContent}
       </Accordion>
-      <Accordion variant="bordered" title="Warning" icon={<AlertTriangle className="size-4" />}>
+      <Accordion variant="bordered" title="Warning" icon={<WarningIcon className="size-4" />}>
         {sampleContent}
       </Accordion>
     </div>
@@ -111,7 +121,7 @@ export const WithIcon: Story = {
 
 export const Multiple: Story = {
   render: () => (
-    <div style={{ display: "flex", flexDirection: "column", gap: 8, width: 400 }}>
+    <div className="flex flex-col gap-2 max-w-md">
       {["What is this?", "How does it work?", "Is it free?"].map((q, i) => (
         <Accordion key={q} variant="bordered" title={q} defaultOpen={i === 0}>
           <div className="text-sm text-zinc-600">
@@ -129,7 +139,7 @@ export const Controlled: Story = {
   render: () => {
     const [open, setOpen] = useState(true);
     return (
-      <div style={{ display: "flex", flexDirection: "column", gap: 8, width: 400 }}>
+      <div className="flex flex-col gap-2 max-w-md">
         <span className="text-xs text-zinc-400">State: {open ? "open" : "closed"}</span>
         <Accordion variant="bordered" title="Controlled" open={open} onOpenChange={setOpen}>
           {sampleContent}
@@ -143,7 +153,7 @@ export const Controlled: Story = {
 
 export const Disabled: Story = {
   render: () => (
-    <div style={{ width: 400 }}>
+    <div className="max-w-md">
       <Accordion variant="bordered" title="Disabled Section" disabled>
         {sampleContent}
       </Accordion>

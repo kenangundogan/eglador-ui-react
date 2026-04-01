@@ -38,7 +38,7 @@ export const Default: Story = {};
 
 export const Headings: Story = {
   render: () => (
-    <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+    <div className="flex flex-col gap-4">
       <Typography variant="h1">Heading 1 — The quick brown fox</Typography>
       <Typography variant="h2">Heading 2 — The quick brown fox</Typography>
       <Typography variant="h3">Heading 3 — The quick brown fox</Typography>
@@ -51,7 +51,7 @@ export const Headings: Story = {
 
 export const BodyText: Story = {
   render: () => (
-    <div style={{ display: "flex", flexDirection: "column", gap: 12, maxWidth: 500 }}>
+    <div className="flex flex-col gap-3 max-w-lg">
       <Typography variant="lead">Lead text — A larger introductory paragraph that draws the reader in.</Typography>
       <Typography variant="large">Large text — Slightly bigger than normal paragraph.</Typography>
       <Typography variant="p">Paragraph — Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</Typography>
@@ -65,7 +65,7 @@ export const BodyText: Story = {
 
 export const Colors: Story = {
   render: () => (
-    <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+    <div className="flex flex-col gap-2">
       {(["default", "muted", "primary", "danger", "success", "warning", "info"] as const).map((color) => (
         <Typography key={color} color={color}>
           {color.charAt(0).toUpperCase() + color.slice(1)} colored text
@@ -79,7 +79,7 @@ export const Colors: Story = {
 
 export const Alignment: Story = {
   render: () => (
-    <div style={{ display: "flex", flexDirection: "column", gap: 8, maxWidth: 500 }}>
+    <div className="flex flex-col gap-2 max-w-lg">
       <Typography align="left">Left aligned text</Typography>
       <Typography align="center">Center aligned text</Typography>
       <Typography align="right">Right aligned text</Typography>
@@ -91,7 +91,7 @@ export const Alignment: Story = {
 
 export const Weights: Story = {
   render: () => (
-    <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+    <div className="flex flex-col gap-2">
       {(["normal", "medium", "semibold", "bold"] as const).map((weight) => (
         <Typography key={weight} weight={weight}>
           {weight.charAt(0).toUpperCase() + weight.slice(1)} weight text
@@ -105,7 +105,7 @@ export const Weights: Story = {
 
 export const Blockquote: Story = {
   render: () => (
-    <div style={{ maxWidth: 500 }}>
+    <div className="max-w-lg">
       <Typography variant="blockquote">
         "The best way to predict the future is to invent it." — Alan Kay
       </Typography>
@@ -117,7 +117,7 @@ export const Blockquote: Story = {
 
 export const CodeAndKbd: Story = {
   render: () => (
-    <div style={{ display: "flex", flexDirection: "column", gap: 12, maxWidth: 500 }}>
+    <div className="flex flex-col gap-3 max-w-lg">
       <Typography>
         Install the package using <Typography variant="code" as="span">npm install eglador-ui-react</Typography> in your terminal.
       </Typography>
@@ -132,7 +132,7 @@ export const CodeAndKbd: Story = {
 
 export const Truncate: Story = {
   render: (args: TypographyProps) => (
-    <div style={{ maxWidth: 300 }}>
+    <div className="max-w-xs">
       <Typography {...args} truncate>
         This is a very long text that should be truncated with an ellipsis when it overflows the container width.
       </Typography>
@@ -144,7 +144,7 @@ export const Truncate: Story = {
 
 export const LineClamp: Story = {
   render: (args: TypographyProps) => (
-    <div style={{ maxWidth: 400 }}>
+    <div className="max-w-sm">
       <Typography {...args} lines={2}>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
       </Typography>
@@ -156,7 +156,7 @@ export const LineClamp: Story = {
 
 export const CustomElement: Story = {
   render: () => (
-    <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+    <div className="flex flex-col gap-2">
       <Typography variant="h3" as="div">H3 styled but rendered as div</Typography>
       <Typography variant="p" as="span">Paragraph styled but rendered as span</Typography>
     </div>
@@ -167,7 +167,7 @@ export const CustomElement: Story = {
 
 export const ArticleExample: Story = {
   render: () => (
-    <article style={{ maxWidth: 600, display: "flex", flexDirection: "column", gap: 16 }}>
+    <article className="max-w-xl flex flex-col gap-4">
       <Typography variant="h1">Building Modern UIs</Typography>
       <Typography variant="lead" color="muted">A comprehensive guide to creating beautiful, accessible user interfaces with React and Tailwind CSS.</Typography>
       <Separator />

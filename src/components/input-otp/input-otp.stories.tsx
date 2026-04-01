@@ -51,7 +51,7 @@ export const Default: Story = {};
 
 export const Sizes: Story = {
   render: (args: InputOTPProps) => (
-    <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+    <div className="flex flex-col gap-4">
       {(["sm", "md", "lg"] as const).map((size) => (
         <div key={size}>
           <span className="text-xs text-zinc-400 mb-2 block">{size}</span>
@@ -102,7 +102,7 @@ export const FourDigitPIN: Story = {
     };
 
     return (
-      <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+      <div className="flex flex-col gap-3">
         <span className="text-sm text-zinc-600">Enter PIN: 1234</span>
         <InputOTP
           length={4}
@@ -142,7 +142,7 @@ export const VerificationFlow: Story = {
     };
 
     return (
-      <div style={{ display: "flex", flexDirection: "column", gap: 16, maxWidth: 320 }}>
+      <div className="flex flex-col gap-4 max-w-xs">
         <div>
           <h3 className="text-base font-semibold text-zinc-900">Verify your email</h3>
           <p className="text-sm text-zinc-500 mt-1">We sent a 6-digit code to john@example.com</p>
@@ -173,9 +173,9 @@ export const VerificationFlow: Story = {
             Clear
           </Button>
         </div>
-        <button type="button" className="text-xs text-zinc-400 hover:text-zinc-600 transition-colors cursor-pointer">
+        <Button variant="ghost" size="xs">
           Didn't receive the code? Resend
-        </button>
+        </Button>
       </div>
     );
   },

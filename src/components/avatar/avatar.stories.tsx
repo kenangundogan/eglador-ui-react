@@ -45,7 +45,7 @@ export const Default: Story = {
 
 export const Sizes: Story = {
   render: (args: AvatarProps) => (
-    <div style={{ display: "flex", gap: 12, alignItems: "center" }}>
+    <div className="flex gap-3 items-center">
       {(["xs", "sm", "md", "lg", "xl"] as const).map((size) => (
         <Avatar {...args} key={size} size={size} src={SAMPLE_IMAGE} />
       ))}
@@ -57,7 +57,7 @@ export const Sizes: Story = {
 
 export const Shapes: Story = {
   render: (args: AvatarProps) => (
-    <div style={{ display: "flex", gap: 12, alignItems: "center" }}>
+    <div className="flex gap-3 items-center">
       <Avatar {...args} shape="circle" src={SAMPLE_IMAGE} size="lg" />
       <Avatar {...args} shape="rounded" src={SAMPLE_IMAGE} size="lg" />
       <Avatar {...args} shape="square" src={SAMPLE_IMAGE} size="lg" />
@@ -69,7 +69,7 @@ export const Shapes: Story = {
 
 export const Initials: Story = {
   render: (args: AvatarProps) => (
-    <div style={{ display: "flex", gap: 12, alignItems: "center" }}>
+    <div className="flex gap-3 items-center">
       {ALL_COLORS.map((c) => (
         <Avatar {...args} key={c} color={c} name="John Doe" size="lg" />
       ))}
@@ -81,7 +81,7 @@ export const Initials: Story = {
 
 export const Names: Story = {
   render: (args: AvatarProps) => (
-    <div style={{ display: "flex", gap: 12, alignItems: "center" }}>
+    <div className="flex gap-3 items-center">
       <Avatar {...args} name="Alice" color="primary" />
       <Avatar {...args} name="Bob Smith" color="success" />
       <Avatar {...args} name="Charlie Brown" color="danger" />
@@ -94,7 +94,7 @@ export const Names: Story = {
 
 export const WithIcon: Story = {
   render: (args: AvatarProps) => (
-    <div style={{ display: "flex", gap: 12, alignItems: "center" }}>
+    <div className="flex gap-3 items-center">
       <Avatar {...args} icon={<User />} color="default" size="lg" />
       <Avatar {...args} icon={<Bot />} color="primary" size="lg" />
       <Avatar {...args} icon={<Crown />} color="warning" size="lg" />
@@ -106,7 +106,7 @@ export const WithIcon: Story = {
 
 export const Fallback: Story = {
   render: (args: AvatarProps) => (
-    <div style={{ display: "flex", gap: 12, alignItems: "center" }}>
+    <div className="flex gap-3 items-center">
       {(["xs", "sm", "md", "lg", "xl"] as const).map((size) => (
         <Avatar {...args} key={size} size={size} color="default" />
       ))}
@@ -118,7 +118,7 @@ export const Fallback: Story = {
 
 export const BrokenImage: Story = {
   render: (args: AvatarProps) => (
-    <div style={{ display: "flex", gap: 12, alignItems: "center" }}>
+    <div className="flex gap-3 items-center">
       <Avatar {...args} src="https://broken-url.com/no-image.jpg" name="Error User" color="danger" size="lg" />
       <Avatar {...args} src="https://broken-url.com/no-image.jpg" color="default" size="lg" />
     </div>
@@ -129,7 +129,7 @@ export const BrokenImage: Story = {
 
 export const Status: Story = {
   render: (args: AvatarProps) => (
-    <div style={{ display: "flex", gap: 16, alignItems: "center" }}>
+    <div className="flex gap-4 items-center">
       <Avatar {...args} src={SAMPLE_IMAGE} status="online" size="lg" />
       <Avatar {...args} src={SAMPLE_IMAGE} status="away" size="lg" />
       <Avatar {...args} src={SAMPLE_IMAGE} status="busy" size="lg" />
@@ -142,7 +142,7 @@ export const Status: Story = {
 
 export const StatusWithInitials: Story = {
   render: (args: AvatarProps) => (
-    <div style={{ display: "flex", gap: 16, alignItems: "center" }}>
+    <div className="flex gap-4 items-center">
       <Avatar {...args} name="Alice B" color="primary" status="online" />
       <Avatar {...args} name="Bob C" color="success" status="away" />
       <Avatar {...args} name="Charlie D" color="danger" status="busy" />
@@ -155,7 +155,7 @@ export const StatusWithInitials: Story = {
 
 export const Group: Story = {
   render: () => (
-    <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+    <div className="flex flex-col gap-4">
       <AvatarGroup size="md">
         <Avatar src={SAMPLE_IMAGE} />
         <Avatar name="Alice" color="primary" />
@@ -178,7 +178,7 @@ export const Group: Story = {
 
 export const GroupWithMax: Story = {
   render: () => (
-    <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+    <div className="flex flex-col gap-4">
       <AvatarGroup size="md" max={3}>
         <Avatar src={SAMPLE_IMAGE} />
         <Avatar name="Alice" color="primary" />

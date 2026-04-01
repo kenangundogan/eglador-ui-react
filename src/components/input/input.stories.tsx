@@ -54,7 +54,7 @@ export const Default: Story = {};
 
 export const Sizes: Story = {
   render: (args: InputProps) => (
-    <div style={{ display: "flex", flexDirection: "column", gap: 12, width: 320 }}>
+    <div className="flex flex-col gap-3 w-80">
       <Input {...args} size="xs" placeholder="Extra Small" />
       <Input {...args} size="sm" placeholder="Small" />
       <Input {...args} size="md" placeholder="Medium" />
@@ -66,7 +66,7 @@ export const Sizes: Story = {
 
 export const Colors: Story = {
   render: (args: InputProps) => (
-    <div style={{ display: "flex", flexDirection: "column", gap: 12, width: 320 }}>
+    <div className="flex flex-col gap-3 w-80">
       {ALL_COLORS.map((c) => (
         <Input {...args} key={c} color={c} placeholder={c.charAt(0).toUpperCase() + c.slice(1)} />
       ))}
@@ -78,7 +78,7 @@ export const Colors: Story = {
 
 export const Variants: Story = {
   render: (args: InputProps) => (
-    <div style={{ display: "flex", flexDirection: "column", gap: 12, width: 320 }}>
+    <div className="flex flex-col gap-3 w-80">
       <Input {...args} variant="default" placeholder="Default" />
       <Input {...args} variant="outline" placeholder="Outline" />
       <Input {...args} variant="ghost" placeholder="Ghost" />
@@ -90,7 +90,7 @@ export const Variants: Story = {
 
 export const WithLabel: Story = {
   render: (args: InputProps) => (
-    <div style={{ display: "flex", flexDirection: "column", gap: 16, width: 320 }}>
+    <div className="flex flex-col gap-4 w-80">
       <Input {...args} label="Email" type="email" placeholder="you@example.com" icon={<Mail />} />
       <Input {...args} label="Password" type="password" placeholder="••••••••" icon={<Lock />} />
     </div>
@@ -101,7 +101,7 @@ export const WithLabel: Story = {
 
 export const WithLeftIcon: Story = {
   render: (args: InputProps) => (
-    <div style={{ display: "flex", flexDirection: "column", gap: 12, width: 320 }}>
+    <div className="flex flex-col gap-3 w-80">
       <Input {...args} icon={<Search />} placeholder="Search..." />
       <Input {...args} icon={<Mail />} placeholder="Email address" />
     </div>
@@ -110,7 +110,7 @@ export const WithLeftIcon: Story = {
 
 export const WithRightIcon: Story = {
   render: (args: InputProps) => (
-    <div style={{ display: "flex", flexDirection: "column", gap: 12, width: 320 }}>
+    <div className="flex flex-col gap-3 w-80">
       <Input {...args} iconRight={<Eye />} type="password" placeholder="Password" />
       <Input {...args} iconRight={<Check />} placeholder="Verified" />
     </div>
@@ -119,7 +119,7 @@ export const WithRightIcon: Story = {
 
 export const WithBothIcons: Story = {
   render: (args: InputProps) => (
-    <div style={{ width: 320 }}>
+    <div className="w-80">
       <Input {...args} icon={<Mail />} iconRight={<Check />} placeholder="you@example.com" />
     </div>
   ),
@@ -129,7 +129,7 @@ export const WithBothIcons: Story = {
 
 export const ErrorState: Story = {
   render: (args: InputProps) => (
-    <div style={{ width: 320 }}>
+    <div className="w-80">
       <Input {...args} state="error" errorMessage="This field is required." placeholder="Email" label="Email" />
     </div>
   ),
@@ -137,7 +137,7 @@ export const ErrorState: Story = {
 
 export const SuccessState: Story = {
   render: (args: InputProps) => (
-    <div style={{ width: 320 }}>
+    <div className="w-80">
       <Input {...args} state="success" successMessage="Valid email address." placeholder="Email" label="Email" />
     </div>
   ),
@@ -145,7 +145,7 @@ export const SuccessState: Story = {
 
 export const Loading: Story = {
   render: (args: InputProps) => (
-    <div style={{ width: 320 }}>
+    <div className="w-80">
       <Input {...args} loading placeholder="Checking availability..." />
     </div>
   ),
@@ -153,7 +153,7 @@ export const Loading: Story = {
 
 export const Disabled: Story = {
   render: (args: InputProps) => (
-    <div style={{ width: 320 }}>
+    <div className="w-80">
       <Input {...args} disabled placeholder="Disabled input" label="Disabled" />
     </div>
   ),
@@ -163,7 +163,7 @@ export const Disabled: Story = {
 
 export const Shapes: Story = {
   render: (args: InputProps) => (
-    <div style={{ display: "flex", flexDirection: "column", gap: 12, width: 320 }}>
+    <div className="flex flex-col gap-3 w-80">
       <Input {...args} shape="square" placeholder="Square" />
       <Input {...args} shape="rounded" placeholder="Rounded" />
     </div>

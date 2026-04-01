@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { cn } from "../../lib/utils";
 import { ScrollArea, type ScrollAreaProps } from "./scroll-area";
 import { Separator } from "../separator";
+import { Table } from "../table";
 
 const meta: Meta<typeof ScrollArea> = {
   title: "Components/ScrollArea",
@@ -33,7 +34,7 @@ type Story = StoryObj<typeof ScrollArea>;
 
 export const Vertical: Story = {
   render: (args: ScrollAreaProps) => (
-    <div style={{ width: 300 }}>
+    <div className="w-75">
       <ScrollArea {...args} maxHeight={250} className="border border-zinc-200 rounded-lg">
         <div className="p-4">
           <h4 className="text-sm font-semibold text-zinc-900 mb-3">Notifications</h4>
@@ -56,9 +57,9 @@ export const Vertical: Story = {
 
 export const Horizontal: Story = {
   render: (args: ScrollAreaProps) => (
-    <div style={{ width: 400 }}>
+    <div className="w-100">
       <ScrollArea {...args} orientation="horizontal" className="border border-zinc-200 rounded-lg">
-        <div className="flex gap-3 p-4" style={{ width: "max-content" }}>
+        <div className="flex gap-3 p-4 w-max">
           {Array.from({ length: 12 }, (_, i) => (
             <div
               key={i}
@@ -78,25 +79,25 @@ export const Horizontal: Story = {
 export const BothDirections: Story = {
   render: (args: ScrollAreaProps) => (
     <ScrollArea {...args} orientation="both" maxHeight={250} maxWidth={400} className="border border-zinc-200 rounded-lg">
-      <div style={{ width: 800 }} className="p-4">
-        <table className="w-full text-sm">
-          <thead>
-            <tr>
+      <div className="w-200 p-4">
+        <Table size="xs">
+          <Table.Head>
+            <Table.Row>
               {Array.from({ length: 10 }, (_, i) => (
-                <th key={i} className="text-left px-3 py-2 font-semibold text-zinc-500 whitespace-nowrap">Column {i + 1}</th>
+                <Table.Header key={i} className="whitespace-nowrap">Column {i + 1}</Table.Header>
               ))}
-            </tr>
-          </thead>
-          <tbody>
+            </Table.Row>
+          </Table.Head>
+          <Table.Body>
             {Array.from({ length: 20 }, (_, row) => (
-              <tr key={row} className="border-t border-zinc-100">
+              <Table.Row key={row}>
                 {Array.from({ length: 10 }, (_, col) => (
-                  <td key={col} className="px-3 py-2 text-zinc-600 whitespace-nowrap">Row {row + 1}, Col {col + 1}</td>
+                  <Table.Cell key={col} className="whitespace-nowrap">Row {row + 1}, Col {col + 1}</Table.Cell>
                 ))}
-              </tr>
+              </Table.Row>
             ))}
-          </tbody>
-        </table>
+          </Table.Body>
+        </Table>
       </div>
     </ScrollArea>
   ),
@@ -106,7 +107,7 @@ export const BothDirections: Story = {
 
 export const HoverScrollbar: Story = {
   render: (args: ScrollAreaProps) => (
-    <div style={{ width: 300 }}>
+    <div className="w-75">
       <ScrollArea {...args} scrollbarVisibility="hover" maxHeight={200} className="border border-zinc-200 rounded-lg">
         <div className="p-4">
           <h4 className="text-sm font-semibold text-zinc-900 mb-3">Hover to see scrollbar</h4>
@@ -123,7 +124,7 @@ export const HoverScrollbar: Story = {
 
 export const AlwaysVisible: Story = {
   render: (args: ScrollAreaProps) => (
-    <div style={{ width: 300 }}>
+    <div className="w-75">
       <ScrollArea {...args} scrollbarVisibility="always" maxHeight={200} className="border border-zinc-200 rounded-lg">
         <div className="p-4">
           <h4 className="text-sm font-semibold text-zinc-900 mb-3">Always visible scrollbar</h4>
@@ -140,7 +141,7 @@ export const AlwaysVisible: Story = {
 
 export const ChatMessages: Story = {
   render: (args: ScrollAreaProps) => (
-    <div style={{ width: 350 }}>
+    <div className="w-87.5">
       <ScrollArea {...args} maxHeight={300} scrollbarVisibility="hover" className="border border-zinc-200 rounded-lg">
         <div className="p-4 flex flex-col gap-3">
           {[

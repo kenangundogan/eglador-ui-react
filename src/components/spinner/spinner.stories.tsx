@@ -32,7 +32,7 @@ export const Default: Story = {};
 
 export const Sizes: Story = {
   render: (args: SpinnerProps) => (
-    <div style={{ display: "flex", gap: 24, alignItems: "center" }}>
+    <div className="flex gap-6 items-center">
       <Spinner {...args} size="xs" />
       <Spinner {...args} size="sm" />
       <Spinner {...args} size="md" />
@@ -43,7 +43,7 @@ export const Sizes: Story = {
 
 export const Colors: Story = {
   render: (args: SpinnerProps) => (
-    <div style={{ display: "flex", gap: 24, alignItems: "center" }}>
+    <div className="flex gap-6 items-center">
       {ALL_COLORS.filter((c) => c !== "white").map((c) => (
         <Spinner {...args} key={c} color={c} />
       ))}
@@ -53,7 +53,7 @@ export const Colors: Story = {
 
 export const WithLabel: Story = {
   render: (args: SpinnerProps) => (
-    <div style={{ display: "flex", gap: 32, alignItems: "start" }}>
+    <div className="flex gap-8 items-start">
       <Spinner {...args} size="sm" color="primary" label="Loading..." />
       <Spinner {...args} size="md" color="success" label="Saving" />
       <Spinner {...args} size="lg" color="danger" label="Processing" />
@@ -63,7 +63,7 @@ export const WithLabel: Story = {
 
 export const OnDarkBackground: Story = {
   render: (args: SpinnerProps) => (
-    <div style={{ display: "flex", gap: 24, alignItems: "center", background: "#18181b", padding: 32, borderRadius: 12 }}>
+    <div className="flex gap-6 items-center bg-zinc-900 p-8 rounded-xl">
       <Spinner {...args} size="sm" color="white" />
       <Spinner {...args} size="md" color="white" label="Loading..." />
       <Spinner {...args} size="lg" color="white" />
@@ -73,7 +73,7 @@ export const OnDarkBackground: Story = {
 
 export const InlineWithText: Story = {
   render: (args: SpinnerProps) => (
-    <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+    <div className="flex items-center gap-2">
       <Spinner {...args} size="xs" color="primary" />
       <span className="text-sm text-zinc-600">Checking availability...</span>
     </div>

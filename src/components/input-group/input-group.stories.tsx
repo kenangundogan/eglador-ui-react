@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Search, Mail, Lock, Globe, Copy, Eye } from "lucide-react";
 import { Input } from "../input";
 import { Button } from "../button";
+import { Label } from "../label";
 import { InputGroup, type InputGroupProps } from "./input-group";
 
 const meta: Meta<typeof InputGroup> = {
@@ -41,7 +42,7 @@ export const Bordered: Story = {
 
 export const WithPrefixText: Story = {
   render: (args: InputGroupProps) => (
-    <div style={{ display: "flex", flexDirection: "column", gap: 12, width: 400 }}>
+    <div className="flex flex-col gap-3 w-100">
       <InputGroup {...args}>
         <InputGroup.Text>https://</InputGroup.Text>
         <Input placeholder="example.com" />
@@ -65,7 +66,7 @@ export const WithPrefixText: Story = {
 
 export const WithSuffixText: Story = {
   render: (args: InputGroupProps) => (
-    <div style={{ display: "flex", flexDirection: "column", gap: 12, width: 400 }}>
+    <div className="flex flex-col gap-3 w-100">
       <InputGroup {...args}>
         <Input placeholder="you" />
         <InputGroup.Text>@example.com</InputGroup.Text>
@@ -83,7 +84,7 @@ export const WithSuffixText: Story = {
 
 export const WithButton: Story = {
   render: (args: InputGroupProps) => (
-    <div style={{ display: "flex", flexDirection: "column", gap: 12, width: 400 }}>
+    <div className="flex flex-col gap-3 w-100">
       <InputGroup {...args}>
         <Input icon={<Search />} placeholder="Search..." />
         <InputGroup.Addon>
@@ -105,7 +106,7 @@ export const WithButton: Story = {
 
 export const WithIconButton: Story = {
   render: (args: InputGroupProps) => (
-    <div style={{ display: "flex", flexDirection: "column", gap: 12, width: 400 }}>
+    <div className="flex flex-col gap-3 w-100">
       <InputGroup {...args}>
         <Input placeholder="https://eglador.com/share/abc123" />
         <InputGroup.Addon>
@@ -127,7 +128,7 @@ export const WithIconButton: Story = {
 
 export const Complex: Story = {
   render: (args: InputGroupProps) => (
-    <div style={{ display: "flex", flexDirection: "column", gap: 12, width: 480 }}>
+    <div className="flex flex-col gap-3 w-120">
       <InputGroup {...args}>
         <InputGroup.Text>https://</InputGroup.Text>
         <Input placeholder="your-domain.com" />
@@ -155,7 +156,7 @@ export const BorderedWithIcons: Story = {
 export const Stacked: Story = {
   args: { variant: "stacked" },
   render: (args: InputGroupProps) => (
-    <div style={{ width: 320 }}>
+    <div className="w-80">
       <InputGroup {...args}>
         <Input icon={<Mail />} placeholder="Email" />
         <Input icon={<Lock />} type="password" placeholder="Password" />
@@ -169,7 +170,7 @@ export const Stacked: Story = {
 export const StackedThreeFields: Story = {
   args: { variant: "stacked" },
   render: (args: InputGroupProps) => (
-    <div style={{ width: 320 }}>
+    <div className="w-80">
       <InputGroup {...args}>
         <Input placeholder="First name" />
         <Input placeholder="Last name" />
@@ -183,16 +184,16 @@ export const StackedThreeFields: Story = {
 
 export const LoginForm: Story = {
   render: () => (
-    <div style={{ display: "flex", flexDirection: "column", gap: 16, width: 320 }}>
+    <div className="flex flex-col gap-4 w-80">
       <div>
-        <label className="text-sm font-medium text-zinc-700 mb-1.5 block">Email</label>
+        <Label>Email</Label>
         <InputGroup variant="bordered">
           <InputGroup.Text><Mail className="size-4 text-zinc-400" /></InputGroup.Text>
           <Input placeholder="you@example.com" type="email" />
         </InputGroup>
       </div>
       <div>
-        <label className="text-sm font-medium text-zinc-700 mb-1.5 block">Password</label>
+        <Label>Password</Label>
         <InputGroup variant="bordered">
           <InputGroup.Text><Lock className="size-4 text-zinc-400" /></InputGroup.Text>
           <Input placeholder="••••••••" type="password" />

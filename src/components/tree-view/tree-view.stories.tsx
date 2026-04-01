@@ -2,6 +2,7 @@ import { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Folder, FileText, Image, Code, Settings, Database, Globe, Package, GitBranch, Lock } from "lucide-react";
 import { TreeView, type TreeViewProps, type TreeViewNode } from "./tree-view";
+import { Button } from "../button";
 
 const meta: Meta<typeof TreeView> = {
   title: "Components/TreeView",
@@ -104,7 +105,7 @@ const fileSystemData: TreeViewNode[] = [
 
 export const Default: Story = {
   render: (args: TreeViewProps) => (
-    <div style={{ width: 300 }} className="border border-zinc-200 rounded-lg">
+    <div className="w-75 border border-zinc-200 rounded-lg">
       <TreeView {...args} data={fileSystemData} defaultExpanded={["src"]} />
     </div>
   ),
@@ -114,7 +115,7 @@ export const Default: Story = {
 
 export const ExpandAll: Story = {
   render: (args: TreeViewProps) => (
-    <div style={{ width: 300 }} className="border border-zinc-200 rounded-lg">
+    <div className="w-75 border border-zinc-200 rounded-lg">
       <TreeView {...args} data={fileSystemData} expandAll />
     </div>
   ),
@@ -126,7 +127,7 @@ export const Selectable: Story = {
   render: (args: TreeViewProps) => {
     const [selected, setSelected] = useState<string[]>([]);
     return (
-      <div style={{ display: "flex", flexDirection: "column", gap: 12, width: 300 }}>
+      <div className="flex flex-col gap-3 w-75">
         <div className="border border-zinc-200 rounded-lg">
           <TreeView {...args} data={fileSystemData} selectable defaultExpanded={["src", "components"]} selected={selected} onSelect={setSelected} />
         </div>
@@ -142,7 +143,7 @@ export const MultiSelect: Story = {
   render: (args: TreeViewProps) => {
     const [selected, setSelected] = useState<string[]>([]);
     return (
-      <div style={{ display: "flex", flexDirection: "column", gap: 12, width: 300 }}>
+      <div className="flex flex-col gap-3 w-75">
         <div className="border border-zinc-200 rounded-lg">
           <TreeView {...args} data={fileSystemData} selectable multiSelect defaultExpanded={["src", "components"]} selected={selected} onSelect={setSelected} />
         </div>
@@ -179,7 +180,7 @@ export const WithDisabledItems: Story = {
     ];
 
     return (
-      <div style={{ width: 300 }} className="border border-zinc-200 rounded-lg">
+      <div className="w-75 border border-zinc-200 rounded-lg">
         <TreeView {...args} data={data} defaultExpanded={["projects"]} selectable />
       </div>
     );
@@ -232,7 +233,7 @@ export const DatabaseSchema: Story = {
     ];
 
     return (
-      <div style={{ width: 320 }} className="border border-zinc-200 rounded-lg">
+      <div className="w-80 border border-zinc-200 rounded-lg">
         <TreeView {...args} data={data} defaultExpanded={["production"]} />
       </div>
     );
@@ -268,7 +269,7 @@ export const GitBranches: Story = {
     ];
 
     return (
-      <div style={{ width: 280 }} className="border border-zinc-200 rounded-lg">
+      <div className="w-70 border border-zinc-200 rounded-lg">
         <TreeView {...args} data={data} expandAll selectable />
       </div>
     );
@@ -283,29 +284,17 @@ export const Controlled: Story = {
     const [selected, setSelected] = useState<string[]>([]);
 
     return (
-      <div style={{ display: "flex", flexDirection: "column", gap: 12, width: 300 }}>
+      <div className="flex flex-col gap-3 w-75">
         <div className="flex gap-2">
-          <button
-            type="button"
-            onClick={() => setExpanded(collectAllExpandable(fileSystemData))}
-            className="text-xs px-2 py-1 rounded border border-zinc-200 hover:bg-zinc-50 cursor-pointer"
-          >
+          <Button variant="outline" size="xs" onClick={() => setExpanded(collectAllExpandable(fileSystemData))}>
             Expand All
-          </button>
-          <button
-            type="button"
-            onClick={() => setExpanded([])}
-            className="text-xs px-2 py-1 rounded border border-zinc-200 hover:bg-zinc-50 cursor-pointer"
-          >
+          </Button>
+          <Button variant="outline" size="xs" onClick={() => setExpanded([])}>
             Collapse All
-          </button>
-          <button
-            type="button"
-            onClick={() => setSelected([])}
-            className="text-xs px-2 py-1 rounded border border-zinc-200 hover:bg-zinc-50 cursor-pointer"
-          >
+          </Button>
+          <Button variant="outline" size="xs" onClick={() => setSelected([])}>
             Clear Selection
-          </button>
+          </Button>
         </div>
         <div className="border border-zinc-200 rounded-lg">
           <TreeView
@@ -331,7 +320,7 @@ export const CheckboxSelection: Story = {
   render: (args: TreeViewProps) => {
     const [selected, setSelected] = useState<string[]>([]);
     return (
-      <div style={{ display: "flex", flexDirection: "column", gap: 12, width: 300 }}>
+      <div className="flex flex-col gap-3 w-75">
         <div className="border border-zinc-200 rounded-lg">
           <TreeView {...args} data={fileSystemData} checkbox multiSelect defaultExpanded={["src", "components"]} selected={selected} onSelect={setSelected} />
         </div>
@@ -347,7 +336,7 @@ export const AutoSelectDescendants: Story = {
   render: (args: TreeViewProps) => {
     const [selected, setSelected] = useState<string[]>([]);
     return (
-      <div style={{ display: "flex", flexDirection: "column", gap: 12, width: 300 }}>
+      <div className="flex flex-col gap-3 w-75">
         <p className="text-xs text-zinc-400">Checking a folder auto-checks all children.</p>
         <div className="border border-zinc-200 rounded-lg">
           <TreeView {...args} data={fileSystemData} checkbox multiSelect autoSelectDescendants defaultExpanded={["src", "components"]} selected={selected} onSelect={setSelected} />
@@ -364,7 +353,7 @@ export const AutoSelectParents: Story = {
   render: (args: TreeViewProps) => {
     const [selected, setSelected] = useState<string[]>([]);
     return (
-      <div style={{ display: "flex", flexDirection: "column", gap: 12, width: 300 }}>
+      <div className="flex flex-col gap-3 w-75">
         <p className="text-xs text-zinc-400">Checking all children auto-checks the parent.</p>
         <div className="border border-zinc-200 rounded-lg">
           <TreeView {...args} data={fileSystemData} checkbox multiSelect autoSelectParents autoSelectDescendants defaultExpanded={["src", "components"]} selected={selected} onSelect={setSelected} />
@@ -378,7 +367,7 @@ export const AutoSelectParents: Story = {
 
 export const WithConnectorLines: Story = {
   render: (args: TreeViewProps) => (
-    <div style={{ width: 300 }} className="border border-zinc-200 rounded-lg">
+    <div className="w-75 border border-zinc-200 rounded-lg">
       <TreeView {...args} data={fileSystemData} showLines defaultExpanded={["src", "components", "button"]} />
     </div>
   ),
@@ -388,9 +377,9 @@ export const WithConnectorLines: Story = {
 
 export const SizeComparison: Story = {
   render: () => (
-    <div style={{ display: "flex", gap: 16 }}>
+    <div className="flex gap-4">
       {(["sm", "md", "lg"] as const).map((size) => (
-        <div key={size} style={{ width: 240 }}>
+        <div key={size} className="w-60">
           <span className="text-xs text-zinc-400 mb-2 block">{size}</span>
           <div className="border border-zinc-200 rounded-lg">
             <TreeView data={fileSystemData.slice(0, 1)} size={size} defaultExpanded={["src", "components"]} />
@@ -432,7 +421,7 @@ export const SecondaryLabels: Story = {
     ];
 
     return (
-      <div style={{ width: 320 }} className="border border-zinc-200 rounded-lg">
+      <div className="w-80 border border-zinc-200 rounded-lg">
         <TreeView {...args} data={data} expandAll />
       </div>
     );

@@ -22,8 +22,8 @@ type Story = StoryObj<typeof Toaster>;
 
 export const BasicTypes: Story = {
   render: () => (
-    <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-      <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+    <div className="flex flex-col gap-2">
+      <div className="flex gap-2 flex-wrap">
         <Button size="xs" variant="outline" onClick={() => toast("This is a default toast")}>Default</Button>
         <Button size="xs" color="success" onClick={() => toast.success("Changes saved successfully!")}>Success</Button>
         <Button size="xs" color="danger" onClick={() => toast.error("Something went wrong!")}>Error</Button>
@@ -40,7 +40,7 @@ export const BasicTypes: Story = {
 
 export const WithDescription: Story = {
   render: () => (
-    <div style={{ display: "flex", gap: 8 }}>
+    <div className="flex gap-2">
       <Button size="xs" color="success" onClick={() => toast.success({ title: "Profile updated", description: "Your changes have been saved and are now visible to others." })}>
         With Description
       </Button>
@@ -81,7 +81,7 @@ export const PromiseToast: Story = {
     });
 
     return (
-      <div style={{ display: "flex", gap: 8 }}>
+      <div className="flex gap-2">
         <Button size="xs" color="primary" onClick={() => toast.promise(fakeUpload(), {
           loading: "Uploading file...",
           success: (data) => `${data.name} uploaded successfully!`,
@@ -99,7 +99,7 @@ export const PromiseToast: Story = {
 
 export const CustomDuration: Story = {
   render: () => (
-    <div style={{ display: "flex", gap: 8 }}>
+    <div className="flex gap-2">
       <Button size="xs" variant="outline" onClick={() => toast({ title: "Quick toast", duration: 1500 })}>1.5s</Button>
       <Button size="xs" variant="outline" onClick={() => toast({ title: "Normal toast", duration: 4000 })}>4s (default)</Button>
       <Button size="xs" variant="outline" onClick={() => toast({ title: "Long toast", duration: 10000 })}>10s</Button>
@@ -115,8 +115,8 @@ export const Positions: Story = {
   render: () => {
     const positions = ["top-right", "top-left", "top-center", "bottom-right", "bottom-left", "bottom-center"] as const;
     return (
-      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-        <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+      <div className="flex flex-col gap-2">
+        <div className="flex gap-2 flex-wrap">
           {positions.map((pos) => (
             <Button key={pos} size="xs" variant="outline" onClick={() => toast.info({ title: pos, duration: 3000 })}>
               {pos}
@@ -136,7 +136,7 @@ export const Stacking: Story = {
   render: () => {
     let counter = 0;
     return (
-      <div style={{ display: "flex", gap: 8 }}>
+      <div className="flex gap-2">
         <Button size="xs" color="primary" onClick={() => toast.info({ title: `Toast ${++counter}`, description: "Click multiple times to stack.", duration: 10000 })}>
           Add Toast
         </Button>

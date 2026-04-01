@@ -43,7 +43,7 @@ export const Default: Story = {
   render: (args: DateTimePickerProps) => {
     const [date, setDate] = useState<Date | null>(null);
     return (
-      <div style={{ width: 300 }}>
+      <div className="w-75">
         <DateTimePicker {...args} value={date} onChange={setDate} label="Date & Time" />
       </div>
     );
@@ -56,7 +56,7 @@ export const Preselected: Story = {
   render: (args: DateTimePickerProps) => {
     const [date, setDate] = useState<Date | null>(new Date());
     return (
-      <div style={{ width: 300 }}>
+      <div className="w-75">
         <DateTimePicker {...args} value={date} onChange={setDate} label="Event Start" />
       </div>
     );
@@ -69,7 +69,7 @@ export const FifteenMinuteSteps: Story = {
   render: (args: DateTimePickerProps) => {
     const [date, setDate] = useState<Date | null>(null);
     return (
-      <div style={{ display: "flex", flexDirection: "column", gap: 8, width: 300 }}>
+      <div className="flex flex-col gap-2 w-75">
         <DateTimePicker {...args} value={date} onChange={setDate} label="Meeting Time" minuteStep={15} />
         <span className="text-xs text-zinc-400">Minutes step in 15-minute intervals.</span>
       </div>
@@ -83,7 +83,7 @@ export const WithMinDate: Story = {
   render: (args: DateTimePickerProps) => {
     const [date, setDate] = useState<Date | null>(null);
     return (
-      <div style={{ display: "flex", flexDirection: "column", gap: 8, width: 300 }}>
+      <div className="flex flex-col gap-2 w-75">
         <DateTimePicker {...args} value={date} onChange={setDate} label="Scheduled At" minDate={new Date()} />
         <span className="text-xs text-zinc-400">Only future dates allowed.</span>
       </div>
@@ -95,7 +95,7 @@ export const WithMinDate: Story = {
 
 export const ErrorState: Story = {
   render: (args: DateTimePickerProps) => (
-    <div style={{ width: 300 }}>
+    <div className="w-75">
       <DateTimePicker {...args} state="error" errorMessage="Please select a future date and time." label="Deadline" />
     </div>
   ),
@@ -105,7 +105,7 @@ export const ErrorState: Story = {
 
 export const Disabled: Story = {
   render: (args: DateTimePickerProps) => (
-    <div style={{ width: 300 }}>
+    <div className="w-75">
       <DateTimePicker {...args} disabled label="Locked" value={new Date()} />
     </div>
   ),
@@ -117,7 +117,7 @@ export const AppointmentScheduler: Story = {
   render: (args: DateTimePickerProps) => {
     const [date, setDate] = useState<Date | null>(null);
     return (
-      <div style={{ display: "flex", flexDirection: "column", gap: 16, width: 320 }}>
+      <div className="flex flex-col gap-4 w-80">
         <div>
           <h3 className="text-base font-semibold text-zinc-900">Schedule Appointment</h3>
           <p className="text-sm text-zinc-500 mt-1">Pick a date and time for your appointment.</p>

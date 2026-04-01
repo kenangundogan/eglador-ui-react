@@ -62,7 +62,7 @@ export const InteractiveWizard: Story = {
       { title: "Done", desc: "All set!" },
     ];
     return (
-      <div style={{ display: "flex", flexDirection: "column", gap: 32, maxWidth: 600 }}>
+      <div className="flex flex-col gap-8 max-w-xl">
         <Stepper {...args} activeStep={step}>
           {steps.map((s) => (
             <Stepper.Step key={s.title} title={s.title} description={s.desc} />
@@ -97,7 +97,7 @@ export const InteractiveWizard: Story = {
           )}
         </div>
 
-        <div style={{ display: "flex", gap: 8, justifyContent: "center" }}>
+        <div className="flex gap-2 justify-center">
           <Button size="xs" variant="outline" disabled={step === 0} onClick={() => setStep((s) => s - 1)}>
             Previous
           </Button>
@@ -114,7 +114,7 @@ export const InteractiveWizard: Story = {
 
 export const VerticalWithContent: Story = {
   render: (args: StepperProps) => (
-    <div style={{ maxWidth: 420 }}>
+    <div className="max-w-sm">
       <Stepper {...args} orientation="vertical" activeStep={1}>
         <Stepper.Step title="Order Placed" description="March 28, 2026" icon={<Package />}>
           <div className="bg-zinc-50 rounded-lg p-3 text-sm text-zinc-600">
@@ -140,7 +140,7 @@ export const VerticalWithContent: Story = {
 
 export const VerticalSimple: Story = {
   render: (args: StepperProps) => (
-    <div style={{ maxWidth: 350 }}>
+    <div className="max-w-sm">
       <Stepper {...args} orientation="vertical" activeStep={2} color="success">
         <Stepper.Step title="Requirements gathered" description="Stakeholder interviews completed, scope document signed off." />
         <Stepper.Step title="Design approved" description="UI mockups reviewed and approved by the product team." />
@@ -168,7 +168,7 @@ export const WithIcons: Story = {
 
 export const Colors: Story = {
   render: () => (
-    <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
+    <div className="flex flex-col gap-6">
       {(["default", "primary", "success", "danger", "warning", "info"] as const).map((color) => (
         <div key={color}>
           <span className="text-xs text-zinc-400 mb-2 block">{color}</span>
@@ -187,7 +187,7 @@ export const Colors: Story = {
 
 export const Sizes: Story = {
   render: () => (
-    <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
+    <div className="flex flex-col gap-6">
       {(["xs", "sm", "md"] as const).map((size) => (
         <div key={size}>
           <span className="text-xs text-zinc-400 mb-2 block">{size}</span>
@@ -206,7 +206,7 @@ export const Sizes: Story = {
 
 export const Bordered: Story = {
   render: (args: StepperProps) => (
-    <div style={{ maxWidth: 600 }}>
+    <div className="max-w-xl">
       <Stepper {...args} variant="bordered" activeStep={2}>
         <Stepper.Step title="Cart" description="Review items" />
         <Stepper.Step title="Shipping" description="Enter address" />
@@ -223,7 +223,7 @@ export const Clickable: Story = {
   render: (args: StepperProps) => {
     const [step, setStep] = useState(2);
     return (
-      <div style={{ display: "flex", flexDirection: "column", gap: 16, maxWidth: 600 }}>
+      <div className="flex flex-col gap-4 max-w-xl">
         <Stepper {...args} activeStep={step} clickable onStepClick={setStep}>
           <Stepper.Step title="Account" />
           <Stepper.Step title="Profile" />

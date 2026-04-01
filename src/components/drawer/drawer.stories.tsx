@@ -1,6 +1,8 @@
 import { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Button } from "../button";
+import { Link } from "../link";
+import { ScrollArea } from "../scroll-area";
 import { Drawer } from "./drawer";
 
 const meta: Meta<typeof Drawer> = {
@@ -70,9 +72,9 @@ export const LeftSide: Story = {
         <Drawer.Body>
           <nav className="flex flex-col gap-2">
             {["Dashboard", "Projects", "Team", "Settings"].map((item) => (
-              <a key={item} href="#" className="px-3 py-2 rounded-lg hover:bg-zinc-100 text-zinc-700 font-medium transition-colors">
+              <Link key={item} href="#" variant="ghost" color="black" className="px-3 py-2 rounded-lg hover:bg-zinc-100 font-medium">
                 {item}
-              </a>
+              </Link>
             ))}
           </nav>
         </Drawer.Body>
@@ -124,7 +126,7 @@ export const BottomSide: Story = {
 
 export const Sizes: Story = {
   render: () => (
-    <div style={{ display: "flex", gap: 12 }}>
+    <div className="flex gap-3">
       {(["sm", "md", "lg"] as const).map((size) => (
         <Drawer key={size} side="right" size={size}>
           <Drawer.Trigger asChild>
@@ -149,7 +151,7 @@ export const Controlled: Story = {
   render: (args) => {
     const [open, setOpen] = useState(false);
     return (
-      <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+      <div className="flex items-center gap-3">
         <Button color="primary" onClick={() => setOpen(true)}>Open Controlled</Button>
         <span className="text-xs text-zinc-400">State: {open ? "open" : "closed"}</span>
         <Drawer {...args} open={open} onOpenChange={setOpen}>
@@ -197,9 +199,11 @@ export const ScrollableContent: Story = {
       <Drawer.Content>
         <Drawer.Header>Long Content</Drawer.Header>
         <Drawer.Body>
-          {Array.from({ length: 20 }, (_, i) => (
-            <p key={i} className="mb-4">Paragraph {i + 1}: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.</p>
-          ))}
+          <ScrollArea orientation="vertical" scrollbarVisibility="hover" maxHeight="calc(100vh - 160px)">
+            {Array.from({ length: 20 }, (_, i) => (
+              <p key={i} className="mb-4">Paragraph {i + 1}: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.</p>
+            ))}
+          </ScrollArea>
         </Drawer.Body>
         <Drawer.Footer>
           <Button color="primary" size="sm">Done</Button>

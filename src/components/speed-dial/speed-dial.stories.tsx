@@ -41,7 +41,7 @@ const defaultActions = [
 
 export const Default: Story = {
   render: (args: SpeedDialProps) => (
-    <div style={{ display: "flex", justifyContent: "center", alignItems: "end", height: 300, padding: 40 }}>
+    <div className="flex justify-center items-end h-75 p-10">
       <SpeedDial {...args} actions={defaultActions} />
     </div>
   ),
@@ -51,26 +51,26 @@ export const Default: Story = {
 
 export const Directions: Story = {
   render: () => (
-    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 40, padding: 80 }}>
-      <div style={{ display: "flex", justifyContent: "center", alignItems: "end", height: 200 }}>
+    <div className="grid grid-cols-2 gap-10 p-20">
+      <div className="flex justify-center items-end h-50">
         <div>
           <span className="text-xs text-zinc-400 block text-center mb-2">up</span>
           <SpeedDial direction="up" actions={defaultActions.slice(0, 3)} />
         </div>
       </div>
-      <div style={{ display: "flex", justifyContent: "center", alignItems: "start", height: 200 }}>
+      <div className="flex justify-center items-start h-50">
         <div>
           <span className="text-xs text-zinc-400 block text-center mb-2">down</span>
           <SpeedDial direction="down" actions={defaultActions.slice(0, 3)} />
         </div>
       </div>
-      <div style={{ display: "flex", justifyContent: "end", alignItems: "center", height: 100 }}>
+      <div className="flex justify-end items-center h-25">
         <div className="flex flex-col items-end">
           <span className="text-xs text-zinc-400 mb-2">left</span>
           <SpeedDial direction="left" actions={defaultActions.slice(0, 3)} />
         </div>
       </div>
-      <div style={{ display: "flex", justifyContent: "start", alignItems: "center", height: 100 }}>
+      <div className="flex justify-start items-center h-25">
         <div>
           <span className="text-xs text-zinc-400 mb-2 block">right</span>
           <SpeedDial direction="right" actions={defaultActions.slice(0, 3)} />
@@ -84,7 +84,7 @@ export const Directions: Story = {
 
 export const Sizes: Story = {
   render: () => (
-    <div style={{ display: "flex", gap: 60, alignItems: "end", height: 280, padding: 40 }}>
+    <div className="flex gap-15 items-end h-70 p-10">
       {(["sm", "md", "lg"] as const).map((size) => (
         <div key={size} className="flex flex-col items-center gap-2">
           <span className="text-xs text-zinc-400">{size}</span>
@@ -99,7 +99,7 @@ export const Sizes: Story = {
 
 export const CustomIcon: Story = {
   render: (args: SpeedDialProps) => (
-    <div style={{ display: "flex", justifyContent: "center", alignItems: "end", height: 300, padding: 40 }}>
+    <div className="flex justify-center items-end h-75 p-10">
       <SpeedDial
         {...args}
         icon={<Plus />}
@@ -117,7 +117,7 @@ export const CustomIcon: Story = {
 
 export const WithDisabledActions: Story = {
   render: (args: SpeedDialProps) => (
-    <div style={{ display: "flex", justifyContent: "center", alignItems: "end", height: 300, padding: 40 }}>
+    <div className="flex justify-center items-end h-75 p-10">
       <SpeedDial
         {...args}
         actions={[
@@ -137,7 +137,7 @@ export const Controlled: Story = {
   render: (args: SpeedDialProps) => {
     const [open, setOpen] = useState(false);
     return (
-      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 16, height: 300, justifyContent: "end", padding: 40 }}>
+      <div className="flex flex-col items-center gap-4 h-75 justify-end p-10">
         <span className="text-xs text-zinc-400">State: {open ? "open" : "closed"}</span>
         <SpeedDial {...args} open={open} onOpenChange={setOpen} actions={defaultActions} />
       </div>
@@ -149,9 +149,9 @@ export const Controlled: Story = {
 
 export const ChatFAB: Story = {
   render: (args: SpeedDialProps) => (
-    <div style={{ position: "relative", height: 400, border: "1px dashed #e4e4e7", borderRadius: 12, overflow: "hidden" }}>
+    <div className="relative h-100 border border-dashed border-zinc-200 rounded-xl overflow-hidden">
       <div className="p-6 text-sm text-zinc-400">Page content area</div>
-      <div style={{ position: "absolute", bottom: 24, right: 24 }}>
+      <div className="absolute bottom-6 right-6">
         <SpeedDial
           {...args}
           icon={<MessageSquare />}
@@ -170,7 +170,7 @@ export const ChatFAB: Story = {
 
 export const Disabled: Story = {
   render: (args: SpeedDialProps) => (
-    <div style={{ display: "flex", justifyContent: "center", alignItems: "end", height: 200, padding: 40 }}>
+    <div className="flex justify-center items-end h-50 p-10">
       <SpeedDial {...args} disabled actions={defaultActions} />
     </div>
   ),

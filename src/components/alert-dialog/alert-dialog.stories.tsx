@@ -1,6 +1,6 @@
 import { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Trash2, AlertTriangle, LogOut, ShieldAlert } from "lucide-react";
+import { ErrorIcon, WarningIcon, InfoIcon } from "../../lib/icons";
 import { Button } from "../button";
 import { AlertDialog } from "./alert-dialog";
 
@@ -11,7 +11,7 @@ const meta: Meta<typeof AlertDialog> = {
   parameters: {
     docs: {
       description: {
-        component: "A confirmation dialog for destructive or critical actions. Unlike Modal, it cannot be dismissed by clicking the backdrop — the user must explicitly confirm or cancel.",
+        component: "A confirmation dialog for destructive or critical actions. Unlike Dialog, it cannot be dismissed by clicking the backdrop — the user must explicitly confirm or cancel.",
       },
     },
   },
@@ -33,10 +33,10 @@ export const DeleteConfirmation: Story = {
   render: (args) => (
     <AlertDialog {...args} color="danger">
       <AlertDialog.Trigger asChild>
-        <Button color="danger" variant="outline">Delete Account</Button>
+        <Button variant="outline">Delete Account</Button>
       </AlertDialog.Trigger>
       <AlertDialog.Content>
-        <AlertDialog.Header icon={<Trash2 />}>
+        <AlertDialog.Header icon={<ErrorIcon />}>
           Delete Account?
         </AlertDialog.Header>
         <AlertDialog.Description>
@@ -47,7 +47,7 @@ export const DeleteConfirmation: Story = {
             <Button variant="outline" size="sm">Cancel</Button>
           </AlertDialog.Cancel>
           <AlertDialog.Action asChild>
-            <Button color="danger" size="sm">Delete</Button>
+            <Button size="sm" color="black">Delete</Button>
           </AlertDialog.Action>
         </AlertDialog.Footer>
       </AlertDialog.Content>
@@ -61,10 +61,10 @@ export const Warning: Story = {
   render: (args) => (
     <AlertDialog {...args} color="warning">
       <AlertDialog.Trigger asChild>
-        <Button color="warning" variant="outline">Discard Changes</Button>
+        <Button variant="outline">Discard Changes</Button>
       </AlertDialog.Trigger>
       <AlertDialog.Content>
-        <AlertDialog.Header icon={<AlertTriangle />}>
+        <AlertDialog.Header icon={<WarningIcon />}>
           Unsaved Changes
         </AlertDialog.Header>
         <AlertDialog.Description>
@@ -75,7 +75,7 @@ export const Warning: Story = {
             <Button variant="outline" size="sm">Keep Editing</Button>
           </AlertDialog.Cancel>
           <AlertDialog.Action asChild>
-            <Button color="warning" size="sm">Discard</Button>
+            <Button size="sm" color="black">Discard</Button>
           </AlertDialog.Action>
         </AlertDialog.Footer>
       </AlertDialog.Content>
@@ -92,7 +92,7 @@ export const Logout: Story = {
         <Button variant="outline">Sign Out</Button>
       </AlertDialog.Trigger>
       <AlertDialog.Content>
-        <AlertDialog.Header icon={<LogOut />}>
+        <AlertDialog.Header icon={<InfoIcon />}>
           Sign Out?
         </AlertDialog.Header>
         <AlertDialog.Description>
@@ -103,7 +103,7 @@ export const Logout: Story = {
             <Button variant="outline" size="sm">Stay</Button>
           </AlertDialog.Cancel>
           <AlertDialog.Action asChild>
-            <Button color="black" size="sm">Sign Out</Button>
+            <Button size="sm" color="black">Sign Out</Button>
           </AlertDialog.Action>
         </AlertDialog.Footer>
       </AlertDialog.Content>
@@ -131,7 +131,7 @@ export const WithoutIcon: Story = {
             <Button variant="outline" size="sm">Cancel</Button>
           </AlertDialog.Cancel>
           <AlertDialog.Action asChild>
-            <Button color="primary" size="sm">Reset</Button>
+            <Button size="sm" color="black">Reset</Button>
           </AlertDialog.Action>
         </AlertDialog.Footer>
       </AlertDialog.Content>
@@ -145,12 +145,12 @@ export const Controlled: Story = {
   render: (args) => {
     const [open, setOpen] = useState(false);
     return (
-      <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-        <Button color="danger" onClick={() => setOpen(true)}>Revoke Access</Button>
+      <div className="flex items-center gap-3">
+        <Button variant="outline" onClick={() => setOpen(true)}>Revoke Access</Button>
         <span className="text-xs text-zinc-400">State: {open ? "open" : "closed"}</span>
         <AlertDialog {...args} open={open} onOpenChange={setOpen} color="danger">
           <AlertDialog.Content>
-            <AlertDialog.Header icon={<ShieldAlert />}>
+            <AlertDialog.Header icon={<ErrorIcon />}>
               Revoke API Access?
             </AlertDialog.Header>
             <AlertDialog.Description>
@@ -161,7 +161,7 @@ export const Controlled: Story = {
                 <Button variant="outline" size="sm">Keep Access</Button>
               </AlertDialog.Cancel>
               <AlertDialog.Action asChild>
-                <Button color="danger" size="sm" onClick={() => alert("Access revoked!")}>Revoke</Button>
+                <Button size="sm" color="black" onClick={() => alert("Access revoked!")}>Revoke</Button>
               </AlertDialog.Action>
             </AlertDialog.Footer>
           </AlertDialog.Content>

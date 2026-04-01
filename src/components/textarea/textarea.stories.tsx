@@ -43,7 +43,7 @@ export const Default: Story = {};
 
 export const Sizes: Story = {
   render: (args: TextareaProps) => (
-    <div style={{ display: "flex", flexDirection: "column", gap: 16, maxWidth: 400 }}>
+    <div className="flex flex-col gap-4 max-w-md">
       <Textarea {...args} size="xs" placeholder="Extra Small" label="XS" />
       <Textarea {...args} size="sm" placeholder="Small" label="SM" />
       <Textarea {...args} size="md" placeholder="Medium" label="MD" />
@@ -53,7 +53,7 @@ export const Sizes: Story = {
 
 export const Colors: Story = {
   render: (args: TextareaProps) => (
-    <div style={{ display: "flex", flexDirection: "column", gap: 12, maxWidth: 400 }}>
+    <div className="flex flex-col gap-3 max-w-md">
       {ALL_COLORS.map((c) => (
         <Textarea {...args} key={c} color={c} placeholder={`${c.charAt(0).toUpperCase() + c.slice(1)} color`} />
       ))}
@@ -63,7 +63,7 @@ export const Colors: Story = {
 
 export const Variants: Story = {
   render: (args: TextareaProps) => (
-    <div style={{ display: "flex", flexDirection: "column", gap: 12, maxWidth: 400 }}>
+    <div className="flex flex-col gap-3 max-w-md">
       <Textarea {...args} variant="default" placeholder="Default variant" label="Default" />
       <Textarea {...args} variant="outline" placeholder="Outline variant" label="Outline" />
       <Textarea {...args} variant="ghost" placeholder="Ghost variant" label="Ghost" />
@@ -73,7 +73,7 @@ export const Variants: Story = {
 
 export const WithLabel: Story = {
   render: (args: TextareaProps) => (
-    <div style={{ maxWidth: 400 }}>
+    <div className="max-w-md">
       <Textarea {...args} label="Description" placeholder="Write a brief description of your project..." rows={4} />
     </div>
   ),
@@ -81,7 +81,7 @@ export const WithLabel: Story = {
 
 export const ErrorState: Story = {
   render: (args: TextareaProps) => (
-    <div style={{ maxWidth: 400 }}>
+    <div className="max-w-md">
       <Textarea {...args} state="error" errorMessage="This field is required." label="Bio" placeholder="Tell us about yourself" />
     </div>
   ),
@@ -89,7 +89,7 @@ export const ErrorState: Story = {
 
 export const SuccessState: Story = {
   render: (args: TextareaProps) => (
-    <div style={{ maxWidth: 400 }}>
+    <div className="max-w-md">
       <Textarea {...args} state="success" successMessage="Looks good!" label="Message" placeholder="Your message" defaultValue="Lorem ipsum dolor sit amet." />
     </div>
   ),
@@ -97,7 +97,7 @@ export const SuccessState: Story = {
 
 export const AutoGrow: Story = {
   render: (args: TextareaProps) => (
-    <div style={{ maxWidth: 400 }}>
+    <div className="max-w-md">
       <Textarea {...args} autoGrow label="Auto-grow" placeholder="Start typing and the textarea will grow automatically..." />
     </div>
   ),
@@ -105,7 +105,7 @@ export const AutoGrow: Story = {
 
 export const AutoGrowWithMaxRows: Story = {
   render: (args: TextareaProps) => (
-    <div style={{ maxWidth: 400 }}>
+    <div className="max-w-md">
       <Textarea {...args} autoGrow maxRows={5} label="Max 5 rows" placeholder="This textarea grows up to 5 rows, then scrolls..." />
     </div>
   ),
@@ -113,7 +113,7 @@ export const AutoGrowWithMaxRows: Story = {
 
 export const Disabled: Story = {
   render: (args: TextareaProps) => (
-    <div style={{ maxWidth: 400 }}>
+    <div className="max-w-md">
       <Textarea {...args} disabled label="Disabled" placeholder="Cannot edit" defaultValue="This field is disabled." />
     </div>
   ),
@@ -121,7 +121,7 @@ export const Disabled: Story = {
 
 export const NoResize: Story = {
   render: (args: TextareaProps) => (
-    <div style={{ maxWidth: 400 }}>
+    <div className="max-w-md">
       <Textarea {...args} resize="none" label="No resize" placeholder="Resize handle is disabled" />
     </div>
   ),

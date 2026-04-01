@@ -34,7 +34,7 @@ export const Default: Story = {};
 
 export const Sizes: Story = {
   render: (args: LabelProps) => (
-    <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+    <div className="flex flex-col gap-2">
       <Label {...args} size="xs">Extra Small Label</Label>
       <Label {...args} size="sm">Small Label</Label>
       <Label {...args} size="md">Medium Label</Label>
@@ -52,7 +52,7 @@ export const Disabled: Story = {
 
 export const WithInput: Story = {
   render: () => (
-    <div style={{ display: "flex", flexDirection: "column", gap: 12, maxWidth: 320 }}>
+    <div className="flex flex-col gap-3 max-w-xs">
       <div className="flex flex-col gap-1.5">
         <Label htmlFor="email" required>Email</Label>
         <Input id="email" placeholder="you@example.com" />

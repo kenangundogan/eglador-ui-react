@@ -47,7 +47,7 @@ export const Default: Story = {
 
 export const Soft: Story = {
   render: (args: AlertProps) => (
-    <div style={{ display: "flex", flexDirection: "column", gap: 12, maxWidth: 500 }}>
+    <div className="flex flex-col gap-3 max-w-lg">
       {ALL_COLORS.map((c) => (
         <Alert {...args} key={c} variant="soft" color={c} title={c.charAt(0).toUpperCase() + c.slice(1)}>
           This is a {c} soft alert.
@@ -61,7 +61,7 @@ export const Soft: Story = {
 
 export const Outline: Story = {
   render: (args: AlertProps) => (
-    <div style={{ display: "flex", flexDirection: "column", gap: 12, maxWidth: 500 }}>
+    <div className="flex flex-col gap-3 max-w-lg">
       {ALL_COLORS.map((c) => (
         <Alert {...args} key={c} variant="outline" color={c} title={c.charAt(0).toUpperCase() + c.slice(1)}>
           This is a {c} outline alert.
@@ -75,7 +75,7 @@ export const Outline: Story = {
 
 export const Filled: Story = {
   render: (args: AlertProps) => (
-    <div style={{ display: "flex", flexDirection: "column", gap: 12, maxWidth: 500 }}>
+    <div className="flex flex-col gap-3 max-w-lg">
       {ALL_COLORS.map((c) => (
         <Alert {...args} key={c} variant="filled" color={c} title={c.charAt(0).toUpperCase() + c.slice(1)}>
           This is a {c} filled alert.
@@ -89,7 +89,7 @@ export const Filled: Story = {
 
 export const WithIcons: Story = {
   render: (args: AlertProps) => (
-    <div style={{ display: "flex", flexDirection: "column", gap: 12, maxWidth: 500 }}>
+    <div className="flex flex-col gap-3 max-w-lg">
       <Alert {...args} color="info" icon={<Info />} title="Information">
         Your account has been updated successfully.
       </Alert>
@@ -110,7 +110,7 @@ export const WithIcons: Story = {
 
 export const Sizes: Story = {
   render: (args: AlertProps) => (
-    <div style={{ display: "flex", flexDirection: "column", gap: 12, maxWidth: 500 }}>
+    <div className="flex flex-col gap-3 max-w-lg">
       <Alert {...args} size="sm" color="primary" icon={<Info />} title="Small">
         This is a small alert.
       </Alert>
@@ -125,7 +125,7 @@ export const Sizes: Story = {
 
 export const Dismissible: Story = {
   render: (args: AlertProps) => (
-    <div style={{ display: "flex", flexDirection: "column", gap: 12, maxWidth: 500 }}>
+    <div className="flex flex-col gap-3 max-w-lg">
       <Alert {...args} color="info" icon={<Bell />} title="Notification" dismissible>
         You have 3 unread messages. Click the X to dismiss.
       </Alert>
@@ -143,7 +143,7 @@ export const Dismissible: Story = {
 
 export const TitleOnly: Story = {
   render: (args: AlertProps) => (
-    <div style={{ display: "flex", flexDirection: "column", gap: 12, maxWidth: 500 }}>
+    <div className="flex flex-col gap-3 max-w-lg">
       <Alert {...args} color="success" icon={<CheckCircle />} title="Changes saved successfully!" />
       <Alert {...args} color="danger" icon={<XCircle />} title="Something went wrong." />
     </div>
@@ -154,7 +154,7 @@ export const TitleOnly: Story = {
 
 export const DescriptionOnly: Story = {
   render: (args: AlertProps) => (
-    <div style={{ display: "flex", flexDirection: "column", gap: 12, maxWidth: 500 }}>
+    <div className="flex flex-col gap-3 max-w-lg">
       <Alert {...args} color="info" icon={<Info />}>
         You can customize your notification preferences in the settings page.
       </Alert>

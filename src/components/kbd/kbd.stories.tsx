@@ -34,7 +34,7 @@ export const Default: Story = {};
 
 export const SingleKeys: Story = {
   render: (args: KbdProps) => (
-    <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+    <div className="flex gap-2 items-center">
       <Kbd {...args}>⌘</Kbd>
       <Kbd {...args}>Shift</Kbd>
       <Kbd {...args}>Enter</Kbd>
@@ -51,7 +51,7 @@ export const SingleKeys: Story = {
 
 export const ComboKeys: Story = {
   render: (args: KbdProps) => (
-    <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+    <div className="flex flex-col gap-3">
       <div className="flex items-center gap-3">
         <Kbd {...args} keys={["⌘", "C"]} />
         <span className="text-sm text-zinc-500">Copy</span>
@@ -76,7 +76,7 @@ export const ComboKeys: Story = {
 
 export const Sizes: Story = {
   render: (args: KbdProps) => (
-    <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+    <div className="flex flex-col gap-3">
       {(["xs", "sm", "md"] as const).map((size) => (
         <div key={size} className="flex items-center gap-3">
           <span className="text-xs text-zinc-400 w-6">{size}</span>
@@ -91,7 +91,7 @@ export const Sizes: Story = {
 
 export const Variants: Story = {
   render: (args: KbdProps) => (
-    <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+    <div className="flex flex-col gap-3">
       {(["default", "outline", "ghost"] as const).map((variant) => (
         <div key={variant} className="flex items-center gap-3">
           <span className="text-xs text-zinc-400 w-12">{variant}</span>
@@ -106,7 +106,7 @@ export const Variants: Story = {
 
 export const InlineUsage: Story = {
   render: (args: KbdProps) => (
-    <div style={{ display: "flex", flexDirection: "column", gap: 12, maxWidth: 400 }}>
+    <div className="flex flex-col gap-3 max-w-sm">
       <p className="text-sm text-zinc-600">
         Press <Kbd {...args} keys={["⌘", "K"]} /> to open the command palette.
       </p>
@@ -133,7 +133,7 @@ export const ShortcutList: Story = {
       { keys: ["⌘", "Q"], label: "Quit" },
     ];
     return (
-      <div className="border border-zinc-200 rounded-lg divide-y divide-zinc-100" style={{ maxWidth: 320 }}>
+      <div className="border border-zinc-200 rounded-lg divide-y divide-zinc-100 max-w-xs">
         {shortcuts.map((s, i) => (
           <div key={i} className="flex items-center justify-between px-4 py-2.5">
             <span className="text-sm text-zinc-700">{s.label}</span>

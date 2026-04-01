@@ -51,7 +51,7 @@ export const Sizes: Story = {
   render: () => {
     const [checks, setChecks] = useState({ xs: false, sm: true, md: false });
     return (
-      <div style={{ display: "flex", gap: 24 }}>
+      <div className="flex gap-6">
         <Checkbox size="xs" checked={checks.xs} onChange={() => setChecks((p) => ({ ...p, xs: !p.xs }))} label="Extra Small" />
         <Checkbox size="sm" checked={checks.sm} onChange={() => setChecks((p) => ({ ...p, sm: !p.sm }))} label="Small" />
         <Checkbox size="md" checked={checks.md} onChange={() => setChecks((p) => ({ ...p, md: !p.md }))} label="Medium" />
@@ -64,7 +64,7 @@ export const Sizes: Story = {
 
 export const ColorsChecked: Story = {
   render: (args: CheckboxProps) => (
-    <div style={{ display: "flex", gap: 24 }}>
+    <div className="flex gap-6">
       {ALL_COLORS.map((c) => (
         <Checkbox {...args} key={c} color={c} checked label={c.charAt(0).toUpperCase() + c.slice(1)} />
       ))}
@@ -76,7 +76,7 @@ export const ColorsChecked: Story = {
 
 export const ColorsUnchecked: Story = {
   render: (args: CheckboxProps) => (
-    <div style={{ display: "flex", gap: 24 }}>
+    <div className="flex gap-6">
       {ALL_COLORS.map((c) => (
         <Checkbox {...args} key={c} color={c} label={c.charAt(0).toUpperCase() + c.slice(1)} />
       ))}
@@ -90,7 +90,7 @@ export const WithLabel: Story = {
   render: () => {
     const [checks, setChecks] = useState({ terms: false, remember: true });
     return (
-      <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+      <div className="flex flex-col gap-3">
         <Checkbox checked={checks.terms} onChange={() => setChecks((p) => ({ ...p, terms: !p.terms }))} label="I accept the terms and conditions" />
         <Checkbox checked={checks.remember} onChange={() => setChecks((p) => ({ ...p, remember: !p.remember }))} label="Remember me" />
       </div>
@@ -104,7 +104,7 @@ export const LabelDescription: Story = {
   render: () => {
     const [checks, setChecks] = useState({ email: true, push: false, sms: false });
     return (
-      <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+      <div className="flex flex-col gap-4">
         <Checkbox
           checked={checks.email}
           onChange={() => setChecks((p) => ({ ...p, email: !p.email }))}
@@ -133,7 +133,7 @@ export const LabelDescription: Story = {
 
 export const Indeterminate: Story = {
   render: (args: CheckboxProps) => (
-    <div style={{ display: "flex", gap: 24 }}>
+    <div className="flex gap-6">
       <Checkbox {...args} indeterminate label="Default" />
       <Checkbox {...args} indeterminate color="primary" label="Primary" />
       <Checkbox {...args} indeterminate color="danger" label="Danger" />
@@ -146,7 +146,7 @@ export const Indeterminate: Story = {
 
 export const Disabled: Story = {
   render: (args: CheckboxProps) => (
-    <div style={{ display: "flex", gap: 24 }}>
+    <div className="flex gap-6">
       <Checkbox {...args} disabled label="Unchecked" />
       <Checkbox {...args} disabled checked label="Checked" />
       <Checkbox {...args} disabled indeterminate label="Indeterminate" />
@@ -160,7 +160,7 @@ export const WithoutLabel: Story = {
   render: () => {
     const [checks, setChecks] = useState({ a: true, b: false, c: true });
     return (
-      <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
+      <div className="flex items-center gap-4">
         <Checkbox size="xs" checked={checks.a} onChange={() => setChecks((p) => ({ ...p, a: !p.a }))} />
         <Checkbox size="sm" checked={checks.b} onChange={() => setChecks((p) => ({ ...p, b: !p.b }))} />
         <Checkbox size="md" checked={checks.c} onChange={() => setChecks((p) => ({ ...p, c: !p.c }))} />
@@ -182,7 +182,7 @@ export const VariantList: Story = {
       Object.fromEntries(items.map((name, i) => [name, i < 3])),
     );
     return (
-      <div style={{ display: "flex", flexDirection: "column", gap: 2, border: "1px solid #e4e4e7", borderRadius: 12, padding: 8, width: 280 }}>
+      <div className="flex flex-col gap-0.5 border border-zinc-200 rounded-xl p-2 w-70">
         {items.map((name) => (
           <Checkbox
             key={name}
@@ -206,7 +206,7 @@ export const VariantCard: Story = {
       Object.fromEntries(items.map((name, i) => [name, i < 2])),
     );
     return (
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, width: 320 }}>
+      <div className="grid grid-cols-2 gap-2 w-80">
         {items.map((name) => (
           <Checkbox
             key={name}
@@ -226,7 +226,7 @@ export const VariantCard: Story = {
 
 export const VariantCardColors: Story = {
   render: (args: CheckboxProps) => (
-    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, width: 320 }}>
+    <div className="grid grid-cols-2 gap-2 w-80">
       {ALL_COLORS.map((c) => (
         <Checkbox {...args} key={c} variant="card" color={c} checked label={c.charAt(0).toUpperCase() + c.slice(1)} />
       ))}

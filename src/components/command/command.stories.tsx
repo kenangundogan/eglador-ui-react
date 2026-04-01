@@ -27,7 +27,7 @@ export const Default: Story = {
   render: () => {
     const [open, setOpen] = useState(false);
     return (
-      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 12 }}>
+      <div className="flex flex-col items-center gap-3">
         <Button variant="outline" onClick={() => setOpen(true)}>
           <span className="flex items-center gap-2">
             <Search className="size-4" />
@@ -65,7 +65,7 @@ export const ApplicationLauncher: Story = {
   render: () => {
     const [open, setOpen] = useState(false);
     return (
-      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 12 }}>
+      <div className="flex flex-col items-center gap-3">
         <Button color="primary" onClick={() => setOpen(true)}>Open Command Menu</Button>
 
         <Command open={open} onOpenChange={setOpen}>
@@ -108,7 +108,7 @@ export const WithDisabledItems: Story = {
   render: () => {
     const [open, setOpen] = useState(false);
     return (
-      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 12 }}>
+      <div className="flex flex-col items-center gap-3">
         <Button variant="outline" onClick={() => setOpen(true)}>Open Command</Button>
 
         <Command open={open} onOpenChange={setOpen}>
@@ -143,7 +143,7 @@ export const SearchOnly: Story = {
     ];
 
     return (
-      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 12 }}>
+      <div className="flex flex-col items-center gap-3">
         <Button variant="outline" onClick={() => setOpen(true)}>
           <span className="flex items-center gap-2">
             <Search className="size-4" />

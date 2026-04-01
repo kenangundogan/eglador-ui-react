@@ -25,8 +25,8 @@ export const Default: Story = {
   render: () => {
     const { notifications, push, dismiss } = useNotification();
     return (
-      <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-        <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+      <div className="flex flex-col gap-3">
+        <div className="flex gap-2 flex-wrap">
           <Button size="xs" color="success" onClick={() => push({ title: "Success", message: "Your changes have been saved.", icon: <CheckCircle />, color: "success" })}>
             Success
           </Button>
@@ -56,7 +56,7 @@ export const WithProgressBar: Story = {
   render: () => {
     const { notifications, push, dismiss } = useNotification();
     return (
-      <div style={{ display: "flex", gap: 8 }}>
+      <div className="flex gap-2">
         <Button size="xs" color="primary" onClick={() => push({ title: "Uploading...", message: "Your file is being processed.", icon: <Download />, color: "primary", showProgress: true, duration: 8000 })}>
           With Progress (8s)
         </Button>
@@ -136,7 +136,7 @@ export const PauseOnHover: Story = {
   render: () => {
     const { notifications, push, dismiss } = useNotification();
     return (
-      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+      <div className="flex flex-col gap-2">
         <Button size="xs" color="warning" onClick={() => push({
           title: "Hover to pause",
           message: "This notification pauses its timer when you hover over it.",
@@ -166,8 +166,8 @@ export const Positions: Story = {
     const { notifications, push, dismiss } = useNotification();
     const positions = ["top-right", "top-left", "top-center", "bottom-right", "bottom-left", "bottom-center"] as const;
     return (
-      <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-        <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+      <div className="flex flex-col gap-3">
+        <div className="flex gap-2 flex-wrap">
           {positions.map((pos) => (
             <Button key={pos} size="xs" variant="outline" onClick={() => push({ title: pos, message: `Notification at ${pos}`, icon: <Bell />, color: "primary", id: pos })}>
               {pos}
@@ -193,7 +193,7 @@ export const MaxVisible: Story = {
     const { notifications, push, dismiss, dismissAll } = useNotification();
     let counter = 0;
     return (
-      <div style={{ display: "flex", gap: 8 }}>
+      <div className="flex gap-2">
         <Button size="xs" color="primary" onClick={() => push({ title: `Notification ${++counter}`, message: "Click multiple times to test stacking limit.", icon: <Bell />, color: "primary", duration: 15000, showProgress: true })}>
           Add Notification
         </Button>
@@ -237,7 +237,7 @@ export const UpdateExisting: Story = {
   render: () => {
     const { notifications, push, dismiss, update } = useNotification();
     return (
-      <div style={{ display: "flex", gap: 8 }}>
+      <div className="flex gap-2">
         <Button size="xs" color="primary" onClick={() => {
           const id = push({ title: "Uploading...", message: "0% complete", icon: <Download />, color: "primary", duration: 0, showProgress: true });
           setTimeout(() => update(id, { message: "50% complete" }), 1500);

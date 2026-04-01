@@ -2,6 +2,8 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { CalendarDays, MapPin, Link as LinkIcon } from "lucide-react";
 import { Avatar } from "../avatar";
 import { Badge } from "../badge";
+import { Button } from "../button";
+import { Link } from "../link";
 import { HoverCard, type HoverCardProps } from "./hover-card";
 
 const meta: Meta<typeof HoverCard> = {
@@ -36,10 +38,10 @@ type Story = StoryObj<typeof HoverCard>;
 
 export const UserProfile: Story = {
   render: (args: HoverCardProps) => (
-    <div style={{ padding: 100, display: "flex", justifyContent: "center" }}>
+    <div className="p-25 flex justify-center">
       <HoverCard {...args}>
         <HoverCard.Trigger>
-          <a href="#" className="text-sm font-medium text-blue-600 hover:underline">@kenangundogan</a>
+          <Link href="#">@kenangundogan</Link>
         </HoverCard.Trigger>
         <HoverCard.Content className="w-72">
           <div className="flex gap-3">
@@ -69,13 +71,13 @@ export const UserProfile: Story = {
 
 export const Positions: Story = {
   render: () => (
-    <div style={{ display: "flex", gap: 40, padding: 120, flexWrap: "wrap", justifyContent: "center" }}>
+    <div className="flex gap-10 p-30 flex-wrap justify-center">
       {(["top", "bottom", "left", "right"] as const).map((side) => (
         <HoverCard key={side} side={side} openDelay={0}>
           <HoverCard.Trigger>
-            <button type="button" className="px-3 py-1.5 text-sm border border-zinc-200 rounded-lg hover:bg-zinc-50 cursor-pointer">
+            <Button variant="outline">
               {side}
-            </button>
+            </Button>
           </HoverCard.Trigger>
           <HoverCard.Content className="w-48">
             <p className="text-sm text-zinc-600">Card on the <strong>{side}</strong> side.</p>
@@ -90,12 +92,12 @@ export const Positions: Story = {
 
 export const LinkPreview: Story = {
   render: (args: HoverCardProps) => (
-    <div style={{ padding: 100, maxWidth: 500 }}>
+    <div className="p-25 max-w-lg">
       <p className="text-sm text-zinc-600 leading-relaxed">
         Check out the{" "}
         <HoverCard {...args} openDelay={200}>
           <HoverCard.Trigger>
-            <a href="#" className="text-blue-600 hover:underline font-medium">eglador-ui-react</a>
+            <Link href="#">eglador-ui-react</Link>
           </HoverCard.Trigger>
           <HoverCard.Content className="w-80">
             <div className="flex flex-col gap-2">
@@ -125,7 +127,7 @@ export const LinkPreview: Story = {
 
 export const ProductCard: Story = {
   render: (args: HoverCardProps) => (
-    <div style={{ padding: 100, display: "flex", justifyContent: "center" }}>
+    <div className="p-25 flex justify-center">
       <HoverCard {...args} side="right" align="start">
         <HoverCard.Trigger>
           <div className="flex items-center gap-2 px-3 py-2 border border-zinc-200 rounded-lg cursor-pointer hover:bg-zinc-50">
@@ -160,7 +162,7 @@ export const ProductCard: Story = {
 
 export const InlineText: Story = {
   render: (args: HoverCardProps) => (
-    <div style={{ padding: 80, maxWidth: 480 }}>
+    <div className="p-20 max-w-lg">
       <p className="text-sm text-zinc-600 leading-relaxed">
         The team includes{" "}
         <HoverCard {...args} openDelay={200}>
@@ -217,7 +219,7 @@ export const InlineText: Story = {
 
 export const NoDelay: Story = {
   render: (args: HoverCardProps) => (
-    <div style={{ padding: 100, display: "flex", justifyContent: "center" }}>
+    <div className="p-25 flex justify-center">
       <HoverCard {...args} openDelay={0} closeDelay={0}>
         <HoverCard.Trigger>
           <span className="text-sm font-medium text-blue-600 cursor-pointer hover:underline">Instant hover</span>

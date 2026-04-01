@@ -28,7 +28,7 @@ type Story = StoryObj<typeof Separator>;
 
 export const Default: Story = {
   render: () => (
-    <div style={{ maxWidth: 400 }}>
+    <div className="max-w-sm">
       <p className="text-sm text-zinc-600 mb-3">Content above the separator.</p>
       <Separator />
       <p className="text-sm text-zinc-600 mt-3">Content below the separator.</p>
@@ -38,7 +38,7 @@ export const Default: Story = {
 
 export const Variants: Story = {
   render: () => (
-    <div style={{ display: "flex", flexDirection: "column", gap: 16, maxWidth: 400 }}>
+    <div className="flex flex-col gap-4 max-w-sm">
       <div>
         <span className="text-xs text-zinc-400 mb-2 block">solid</span>
         <Separator variant="solid" />
@@ -57,7 +57,7 @@ export const Variants: Story = {
 
 export const WithLabel: Story = {
   render: () => (
-    <div style={{ display: "flex", flexDirection: "column", gap: 16, maxWidth: 400 }}>
+    <div className="flex flex-col gap-4 max-w-sm">
       <Separator label="OR" />
       <Separator label="Section" variant="dashed" />
       <Separator label="End" variant="dotted" />
@@ -67,7 +67,7 @@ export const WithLabel: Story = {
 
 export const Vertical: Story = {
   render: () => (
-    <div style={{ display: "flex", alignItems: "center", gap: 12, height: 40 }}>
+    <div className="flex items-center gap-3 h-10">
       <span className="text-sm text-zinc-600">Left</span>
       <Separator orientation="vertical" />
       <span className="text-sm text-zinc-600">Center</span>

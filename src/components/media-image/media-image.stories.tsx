@@ -43,7 +43,7 @@ type Story = StoryObj<typeof MediaImage>;
 
 export const Default: Story = {
   render: (args: MediaImageProps) => (
-    <div style={{ width: 400 }}>
+    <div className="w-100">
       <MediaImage {...args} />
     </div>
   ),
@@ -53,9 +53,9 @@ export const Default: Story = {
 
 export const Ratios: Story = {
   render: (args: MediaImageProps) => (
-    <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
+    <div className="flex gap-4 flex-wrap">
       {(["1:1", "16:9", "4:3"] as const).map((ratio) => (
-        <div key={ratio} style={{ width: 200 }}>
+        <div key={ratio} className="w-50">
           <MediaImage {...args} ratio={ratio} caption={ratio} />
         </div>
       ))}
@@ -67,14 +67,14 @@ export const Ratios: Story = {
 
 export const Shapes: Story = {
   render: (args: MediaImageProps) => (
-    <div style={{ display: "flex", gap: 16, alignItems: "start" }}>
-      <div style={{ width: 160 }}>
+    <div className="flex gap-4 items-start">
+      <div className="w-40">
         <MediaImage {...args} shape="square" ratio="1:1" caption="Square" />
       </div>
-      <div style={{ width: 160 }}>
+      <div className="w-40">
         <MediaImage {...args} shape="rounded" ratio="1:1" caption="Rounded" />
       </div>
-      <div style={{ width: 160 }}>
+      <div className="w-40">
         <MediaImage {...args} shape="circle" ratio="1:1" caption="Circle" />
       </div>
     </div>
@@ -85,7 +85,7 @@ export const Shapes: Story = {
 
 export const Sizes: Story = {
   render: (args: MediaImageProps) => (
-    <div style={{ display: "flex", flexDirection: "column", gap: 16, width: 400 }}>
+    <div className="flex flex-col gap-4 w-100">
       {(["xs", "sm", "md", "lg"] as const).map((size) => (
         <MediaImage key={size} {...args} size={size} caption={`Size: ${size}`} />
       ))}
@@ -97,7 +97,7 @@ export const Sizes: Story = {
 
 export const WithCaption: Story = {
   render: (args: MediaImageProps) => (
-    <div style={{ width: 400 }}>
+    <div className="w-100">
       <MediaImage {...args} caption="A beautiful mountain landscape at sunset with warm golden light." />
     </div>
   ),
@@ -107,7 +107,7 @@ export const WithCaption: Story = {
 
 export const ErrorState: Story = {
   render: (args: MediaImageProps) => (
-    <div style={{ width: 400 }}>
+    <div className="w-100">
       <MediaImage {...args} src="" alt="Broken image" caption="This image failed to load" />
     </div>
   ),
@@ -117,9 +117,9 @@ export const ErrorState: Story = {
 
 export const ObjectFit: Story = {
   render: (args: MediaImageProps) => (
-    <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
+    <div className="flex gap-4 flex-wrap">
       {(["cover", "contain", "fill", "none"] as const).map((fit) => (
-        <div key={fit} style={{ width: 200 }}>
+        <div key={fit} className="w-50">
           <MediaImage {...args} objectFit={fit} ratio="1:1" caption={fit} />
         </div>
       ))}

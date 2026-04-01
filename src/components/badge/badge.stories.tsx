@@ -45,7 +45,7 @@ export const Default: Story = {};
 
 export const Solid: Story = {
   render: (args: BadgeProps) => (
-    <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+    <div className="flex gap-2 flex-wrap">
       {ALL_COLORS.map((c) => (
         <Badge {...args} key={c} variant="solid" color={c}>{c.charAt(0).toUpperCase() + c.slice(1)}</Badge>
       ))}
@@ -57,7 +57,7 @@ export const Solid: Story = {
 
 export const Soft: Story = {
   render: (args: BadgeProps) => (
-    <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+    <div className="flex gap-2 flex-wrap">
       {ALL_COLORS.map((c) => (
         <Badge {...args} key={c} variant="soft" color={c}>{c.charAt(0).toUpperCase() + c.slice(1)}</Badge>
       ))}
@@ -69,7 +69,7 @@ export const Soft: Story = {
 
 export const Outline: Story = {
   render: (args: BadgeProps) => (
-    <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+    <div className="flex gap-2 flex-wrap">
       {ALL_COLORS.map((c) => (
         <Badge {...args} key={c} variant="outline" color={c}>{c.charAt(0).toUpperCase() + c.slice(1)}</Badge>
       ))}
@@ -81,7 +81,7 @@ export const Outline: Story = {
 
 export const Sizes: Story = {
   render: (args: BadgeProps) => (
-    <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+    <div className="flex gap-2 items-center">
       <Badge {...args} size="xs" color="primary">Extra Small</Badge>
       <Badge {...args} size="sm" color="primary">Small</Badge>
       <Badge {...args} size="md" color="primary">Medium</Badge>
@@ -93,7 +93,7 @@ export const Sizes: Story = {
 
 export const Shapes: Story = {
   render: (args: BadgeProps) => (
-    <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+    <div className="flex gap-2 items-center">
       <Badge {...args} shape="square" color="primary">Square</Badge>
       <Badge {...args} shape="rounded" color="primary">Rounded</Badge>
       <Badge {...args} shape="pill" color="primary">Pill</Badge>
@@ -105,7 +105,7 @@ export const Shapes: Story = {
 
 export const WithIcons: Story = {
   render: (args: BadgeProps) => (
-    <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+    <div className="flex gap-2 flex-wrap">
       <Badge {...args} color="warning" icon={<Star />}>Featured</Badge>
       <Badge {...args} color="primary" icon={<Zap />}>New</Badge>
       <Badge {...args} color="danger" icon={<AlertTriangle />}>Critical</Badge>
@@ -121,7 +121,7 @@ export const Removable: Story = {
   render: (args: BadgeProps) => {
     const [tags, setTags] = useState(["React", "TypeScript", "Tailwind", "Storybook", "Next.js"]);
     return (
-      <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+      <div className="flex gap-2 flex-wrap">
         {tags.map((tag) => (
           <Badge
             {...args}
@@ -144,7 +144,7 @@ export const Removable: Story = {
 
 export const StatusBadges: Story = {
   render: (args: BadgeProps) => (
-    <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+    <div className="flex gap-2 flex-wrap">
       <Badge {...args} variant="soft" color="success" shape="pill" icon={<Check />}>Active</Badge>
       <Badge {...args} variant="soft" color="warning" shape="pill" icon={<Clock />}>Pending</Badge>
       <Badge {...args} variant="soft" color="danger" shape="pill" icon={<AlertTriangle />}>Error</Badge>

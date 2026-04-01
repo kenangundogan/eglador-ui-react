@@ -52,7 +52,7 @@ export const Default: Story = {};
 
 export const Solid: Story = {
   render: (args: ButtonProps) => (
-    <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+    <div className="flex gap-2 flex-wrap">
       {ALL_COLORS.map((c) => (
         <Button {...args} key={c} color={c}>{c.charAt(0).toUpperCase() + c.slice(1)}</Button>
       ))}
@@ -63,7 +63,7 @@ export const Solid: Story = {
 export const SolidSoft: Story = {
   args: { soft: true },
   render: (args: ButtonProps) => (
-    <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+    <div className="flex gap-2 flex-wrap">
       {ALL_COLORS.map((c) => (
         <Button {...args} key={c} color={c}>{c.charAt(0).toUpperCase() + c.slice(1)}</Button>
       ))}
@@ -74,7 +74,7 @@ export const SolidSoft: Story = {
 export const Outline: Story = {
   args: { variant: "outline" },
   render: (args: ButtonProps) => (
-    <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+    <div className="flex gap-2 flex-wrap">
       {ALL_COLORS.map((c) => (
         <Button {...args} key={c} color={c}>{c.charAt(0).toUpperCase() + c.slice(1)}</Button>
       ))}
@@ -85,7 +85,7 @@ export const Outline: Story = {
 export const Ghost: Story = {
   args: { variant: "ghost" },
   render: (args: ButtonProps) => (
-    <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+    <div className="flex gap-2 flex-wrap">
       {ALL_COLORS.map((c) => (
         <Button {...args} key={c} color={c}>{c.charAt(0).toUpperCase() + c.slice(1)}</Button>
       ))}
@@ -98,7 +98,7 @@ export const Ghost: Story = {
 export const Sizes: Story = {
   args: { color: "default" },
   render: (args: ButtonProps) => (
-    <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+    <div className="flex gap-2 items-center">
       <Button {...args} size="xs">Extra Small</Button>
       <Button {...args} size="sm">Small</Button>
       <Button {...args} size="md">Medium</Button>
@@ -109,7 +109,7 @@ export const Sizes: Story = {
 export const Shapes: Story = {
   args: { color: "default" },
   render: (args: ButtonProps) => (
-    <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+    <div className="flex gap-2 items-center">
       <Button {...args} shape="square">Square</Button>
       <Button {...args} shape="rounded">Rounded</Button>
       <Button {...args} shape="circle">Circle</Button>
@@ -122,7 +122,7 @@ export const Shapes: Story = {
 export const WithLeftIcon: Story = {
   args: { color: "primary" },
   render: (args: ButtonProps) => (
-    <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+    <div className="flex gap-2 items-center">
       <Button {...args} color="primary" icon={<Plus />}>Add item</Button>
       <Button {...args} color="danger" icon={<Trash2 />}>Delete</Button>
       <Button {...args} color="success" icon={<Download />}>Download</Button>
@@ -133,7 +133,7 @@ export const WithLeftIcon: Story = {
 
 export const WithRightIcon: Story = {
   render: (args: ButtonProps) => (
-    <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+    <div className="flex gap-2 items-center">
       <Button {...args} color="primary" iconRight={<Plus />}>Add item</Button>
       <Button {...args} color="danger" iconRight={<Trash2 />}>Delete</Button>
       <Button {...args} color="success" iconRight={<Download />}>Download</Button>
@@ -145,7 +145,7 @@ export const WithRightIcon: Story = {
 export const IconOnly: Story = {
   args: { children: undefined },
   render: (args: ButtonProps) => (
-    <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+    <div className="flex gap-2 items-center">
       <Button {...args} color="default" icon={<Settings />} />
       <Button {...args} color="primary" icon={<Plus />} />
       <Button {...args} color="danger" icon={<Trash2 />} />
@@ -161,7 +161,7 @@ export const IconOnly: Story = {
 export const Loading: Story = {
   args: { color: "primary" },
   render: (args: ButtonProps) => (
-    <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+    <div className="flex gap-2 items-center">
       <Button {...args} loading>Saving...</Button>
       <Button {...args} color="black" loading>Loading</Button>
       <Button {...args} color="danger" loading icon={<Trash2 />} />
@@ -172,7 +172,7 @@ export const Loading: Story = {
 export const Disabled: Story = {
   args: { disabled: true },
   render: (args: ButtonProps) => (
-    <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+    <div className="flex gap-2 items-center">
       <Button {...args} color="primary">Primary</Button>
       <Button {...args} color="danger" variant="outline">Outline</Button>
       <Button {...args} color="black" variant="ghost">Ghost</Button>
@@ -183,7 +183,7 @@ export const Disabled: Story = {
 export const Active: Story = {
   args: { active: true },
   render: (args: ButtonProps) => (
-    <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+    <div className="flex gap-2 items-center">
       <Button {...args}>Active</Button>
       <Button {...args} active={false}>Inactive</Button>
     </div>

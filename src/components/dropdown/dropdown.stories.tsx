@@ -42,13 +42,15 @@ const menuItems = [
 
 function MenuItem({ icon, label, danger, onClick }: { icon: React.ReactNode; label: string; danger?: boolean; onClick?: () => void }) {
   return (
-    <button
+    <Button
+      variant="ghost"
+      color={danger ? "danger" : "default"}
       onClick={onClick}
-      className={`flex w-full items-center gap-2 px-3 py-2 text-sm transition-colors rounded-lg ${danger ? "text-red-600 hover:bg-red-50" : "text-zinc-700 hover:bg-zinc-100"}`}
+      icon={icon}
+      className="w-full justify-start"
     >
-      <span className="size-4 shrink-0 [&>svg]:w-full [&>svg]:h-full">{icon}</span>
       {label}
-    </button>
+    </Button>
   );
 }
 
@@ -56,7 +58,7 @@ function MenuItem({ icon, label, danger, onClick }: { icon: React.ReactNode; lab
 
 export const Default: Story = {
   render: (args: DropdownProps) => (
-    <div style={{ padding: 40 }}>
+    <div className="p-10">
       <Dropdown {...args}>
         <Dropdown.Content>
           <div className="p-1.5 min-w-45">
@@ -74,7 +76,7 @@ export const Default: Story = {
 
 export const CustomTrigger: Story = {
   render: (args: DropdownProps) => (
-    <div style={{ padding: 40 }}>
+    <div className="p-10">
       <Dropdown {...args} align="left">
         <Dropdown.Trigger asChild>
           <Button color="primary" iconRight={<ChevronDown />}>Options</Button>
@@ -95,7 +97,7 @@ export const CustomTrigger: Story = {
 
 export const Positioning: Story = {
   render: () => (
-    <div style={{ display: "flex", gap: 32, padding: 80 }}>
+    <div className="flex gap-8 p-20">
       <Dropdown side="bottom" align="left">
         <Dropdown.Trigger asChild>
           <Button variant="outline">Bottom Left</Button>
@@ -130,7 +132,7 @@ export const Positioning: Story = {
 
 export const TriggerWidth: Story = {
   render: (args: DropdownProps) => (
-    <div style={{ padding: 40 }}>
+    <div className="p-10">
       <Dropdown {...args} width="trigger" align="left">
         <Dropdown.Trigger asChild>
           <Button color="black" iconRight={<ChevronDown />} className="w-60 justify-between">Select option</Button>
@@ -151,7 +153,7 @@ export const TriggerWidth: Story = {
 
 export const WithMaxHeight: Story = {
   render: (args: DropdownProps) => (
-    <div style={{ padding: 40 }}>
+    <div className="p-10">
       <Dropdown {...args} maxHeight={200} align="left">
         <Dropdown.Trigger asChild>
           <Button variant="outline" iconRight={<ChevronDown />}>Scrollable</Button>
@@ -172,9 +174,9 @@ export const WithMaxHeight: Story = {
 
 export const AutoFlip: Story = {
   render: (args: DropdownProps) => (
-    <div style={{ display: "flex", flexDirection: "column", gap: 16, padding: 40 }}>
+    <div className="flex flex-col gap-4 p-10">
       <p className="text-xs text-zinc-400">Scroll down — the dropdown near the bottom will flip upward automatically.</p>
-      <div style={{ height: 300 }} />
+      <div className="h-75" />
       <Dropdown {...args} autoFlip align="left">
         <Dropdown.Trigger asChild>
           <Button variant="outline" iconRight={<ChevronDown />}>Auto Flip (scroll here)</Button>
@@ -187,7 +189,7 @@ export const AutoFlip: Story = {
           </div>
         </Dropdown.Content>
       </Dropdown>
-      <div style={{ height: 100 }} />
+      <div className="h-25" />
     </div>
   ),
 };
@@ -196,7 +198,7 @@ export const AutoFlip: Story = {
 
 export const UserMenu: Story = {
   render: (args: DropdownProps) => (
-    <div style={{ padding: 40 }}>
+    <div className="p-10">
       <Dropdown {...args} align="left">
         <Dropdown.Trigger asChild>
           <Button color="black" iconRight={<ChevronDown />}>John Doe</Button>
@@ -228,7 +230,7 @@ export const Controlled: Story = {
   render: (args: DropdownProps) => {
     const [open, setOpen] = useState(false);
     return (
-      <div style={{ display: "flex", alignItems: "center", gap: 12, padding: 40 }}>
+      <div className="flex items-center gap-3 p-10">
         <Button color="primary" onClick={() => setOpen(!open)}>
           {open ? "Close" : "Open"} Dropdown
         </Button>

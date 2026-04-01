@@ -45,7 +45,7 @@ export const Default: Story = {};
 
 export const Colors: Story = {
   render: (args: ProgressProps) => (
-    <div style={{ display: "flex", flexDirection: "column", gap: 16, maxWidth: 400 }}>
+    <div className="flex flex-col gap-4 max-w-sm">
       {ALL_COLORS.map((c) => (
         <Progress {...args} key={c} color={c} value={65} label={c.charAt(0).toUpperCase() + c.slice(1)} showValue />
       ))}
@@ -55,7 +55,7 @@ export const Colors: Story = {
 
 export const Sizes: Story = {
   render: (args: ProgressProps) => (
-    <div style={{ display: "flex", flexDirection: "column", gap: 16, maxWidth: 400 }}>
+    <div className="flex flex-col gap-4 max-w-sm">
       {(["xs", "sm", "md"] as const).map((size) => (
         <Progress {...args} key={size} size={size} value={70} label={size} showValue />
       ))}
@@ -65,7 +65,7 @@ export const Sizes: Story = {
 
 export const Shapes: Story = {
   render: (args: ProgressProps) => (
-    <div style={{ display: "flex", flexDirection: "column", gap: 16, maxWidth: 400 }}>
+    <div className="flex flex-col gap-4 max-w-sm">
       {(["square", "rounded", "pill"] as const).map((shape) => (
         <Progress {...args} key={shape} shape={shape} value={55} label={shape} />
       ))}
@@ -83,7 +83,7 @@ export const Animated: Story = {
 
 export const WithLabel: Story = {
   render: (args: ProgressProps) => (
-    <div style={{ maxWidth: 400 }}>
+    <div className="max-w-sm">
       <Progress {...args} value={42} label="Storage used" showValue />
     </div>
   ),
@@ -102,9 +102,9 @@ export const LiveProgress: Story = {
     }, [value, running]);
 
     return (
-      <div style={{ display: "flex", flexDirection: "column", gap: 12, maxWidth: 400 }}>
+      <div className="flex flex-col gap-3 max-w-sm">
         <Progress value={value} color={value >= 100 ? "success" : "primary"} label={value >= 100 ? "Complete!" : "Downloading..."} showValue />
-        <div style={{ display: "flex", gap: 8 }}>
+        <div className="flex gap-2">
           <Button size="xs" color="primary" disabled={running} onClick={() => { setValue(0); setRunning(true); }}>Start</Button>
           <Button size="xs" variant="outline" onClick={() => { setValue(0); setRunning(false); }}>Reset</Button>
         </div>

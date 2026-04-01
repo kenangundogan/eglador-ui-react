@@ -51,7 +51,7 @@ export const WithIcon: Story = {
 
 export const CustomSeparator: Story = {
   render: () => (
-    <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+    <div className="flex flex-col gap-4">
       <Breadcrumb separator={<Slash className="size-3.5 text-zinc-300" />}>
         <Breadcrumb.Item href="/">Home</Breadcrumb.Item>
         <Breadcrumb.Item href="/docs">Docs</Breadcrumb.Item>

@@ -33,7 +33,7 @@ type Story = StoryObj<typeof Collapsible>;
 
 export const Default: Story = {
   render: (args: CollapsibleProps) => (
-    <div style={{ maxWidth: 400 }}>
+    <div className="max-w-md">
       <Collapsible {...args}>
         <Collapsible.Trigger asChild>
           <Button variant="outline" iconRight={<ChevronDown />} className="w-full justify-between">
@@ -56,7 +56,7 @@ export const CustomTrigger: Story = {
   render: (args: CollapsibleProps) => {
     const [open, setOpen] = useState(false);
     return (
-      <div style={{ maxWidth: 400 }}>
+      <div className="max-w-md">
         <Collapsible {...args} open={open} onOpenChange={setOpen}>
           <div className="flex items-center justify-between p-3 bg-zinc-50 rounded-lg">
             <span className="text-sm font-semibold text-zinc-900">Advanced Settings</span>
@@ -96,7 +96,7 @@ export const FAQStyle: Story = {
       { q: "Is it free to use?", a: "Yes, the library is open source and available under the MIT license. You can use it in personal and commercial projects without any restrictions." },
     ];
     return (
-      <div style={{ display: "flex", flexDirection: "column", gap: 8, maxWidth: 500 }}>
+      <div className="flex flex-col gap-2 max-w-lg">
         {faqs.map((faq, i) => (
           <Collapsible key={i} className="border border-zinc-200 rounded-lg">
             <Collapsible.Trigger className="flex items-center justify-between w-full p-3 text-left text-sm font-semibold text-zinc-900 hover:bg-zinc-50 rounded-lg transition-colors">
@@ -119,7 +119,7 @@ export const FAQStyle: Story = {
 
 export const Nested: Story = {
   render: () => (
-    <div style={{ maxWidth: 400 }}>
+    <div className="max-w-md">
       <Collapsible defaultOpen className="border border-zinc-200 rounded-lg p-3">
         <Collapsible.Trigger className="flex items-center gap-2 w-full text-left text-sm font-semibold text-zinc-900">
           <Settings className="size-4 text-zinc-400" />
@@ -157,7 +157,7 @@ export const Nested: Story = {
 
 export const Disabled: Story = {
   render: () => (
-    <div style={{ maxWidth: 400 }}>
+    <div className="max-w-md">
       <Collapsible disabled>
         <Collapsible.Trigger asChild>
           <Button variant="outline" className="w-full">Disabled Collapsible</Button>
@@ -176,7 +176,7 @@ export const Controlled: Story = {
   render: () => {
     const [open, setOpen] = useState(false);
     return (
-      <div style={{ display: "flex", flexDirection: "column", gap: 12, maxWidth: 400 }}>
+      <div className="flex flex-col gap-3 max-w-md">
         <div className="flex items-center gap-3">
           <Button size="xs" color="primary" onClick={() => setOpen(!open)}>
             {open ? "Close" : "Open"}

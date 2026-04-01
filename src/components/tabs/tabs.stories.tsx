@@ -104,7 +104,7 @@ export const Segmented: Story = {
 
 export const Sizes: Story = {
   render: () => (
-    <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
+    <div className="flex flex-col gap-6">
       {(["xs", "sm", "md"] as const).map((size) => (
         <Tabs key={size} defaultValue="tab1" variant="segmented" size={size}>
           <Tabs.List>
@@ -167,7 +167,7 @@ export const Controlled: Story = {
   render: (args: TabsProps) => {
     const [value, setValue] = useState("tab1");
     return (
-      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+      <div className="flex flex-col gap-2">
         <span className="text-xs text-zinc-400">Active: {value}</span>
         <Tabs {...args} value={value} onValueChange={setValue} variant="segmented">
           <Tabs.List>

@@ -32,7 +32,7 @@ type Story = StoryObj<typeof Skeleton>;
 
 export const Default: Story = {
   render: (args: SkeletonProps) => (
-    <div style={{ maxWidth: 400 }}>
+    <div className="max-w-sm">
       <Skeleton {...args} />
     </div>
   ),
@@ -42,7 +42,7 @@ export const Default: Story = {
 
 export const Variants: Story = {
   render: () => (
-    <div style={{ display: "flex", flexDirection: "column", gap: 16, maxWidth: 400 }}>
+    <div className="flex flex-col gap-4 max-w-sm">
       <div>
         <span className="text-xs text-zinc-400 mb-2 block">text</span>
         <Skeleton variant="text" />
@@ -67,7 +67,7 @@ export const Variants: Story = {
 
 export const MultiLineText: Story = {
   render: (args: SkeletonProps) => (
-    <div style={{ maxWidth: 400 }}>
+    <div className="max-w-sm">
       <Skeleton {...args} variant="text" lines={4} />
     </div>
   ),
@@ -77,7 +77,7 @@ export const MultiLineText: Story = {
 
 export const Animations: Story = {
   render: () => (
-    <div style={{ display: "flex", flexDirection: "column", gap: 16, maxWidth: 400 }}>
+    <div className="flex flex-col gap-4 max-w-sm">
       <div>
         <span className="text-xs text-zinc-400 mb-2 block">pulse</span>
         <Skeleton animation="pulse" variant="rounded" height={60} />
@@ -98,7 +98,7 @@ export const Animations: Story = {
 
 export const CardSkeleton: Story = {
   render: () => (
-    <div className="border border-zinc-200 rounded-xl overflow-hidden" style={{ maxWidth: 320 }}>
+    <div className="border border-zinc-200 rounded-xl overflow-hidden max-w-xs">
       <Skeleton variant="rectangular" height={180} />
       <div className="p-4 flex flex-col gap-3">
         <Skeleton variant="text" width="70%" height="1.25rem" />
@@ -119,7 +119,7 @@ export const CardSkeleton: Story = {
 
 export const ProfileSkeleton: Story = {
   render: () => (
-    <div className="flex items-start gap-4" style={{ maxWidth: 400 }}>
+    <div className="flex items-start gap-4 max-w-sm">
       <Skeleton variant="circular" width={64} height={64} />
       <div className="flex-1 flex flex-col gap-2 pt-1">
         <Skeleton variant="text" width="40%" height="1.25rem" />
@@ -134,7 +134,7 @@ export const ProfileSkeleton: Story = {
 
 export const ListSkeleton: Story = {
   render: () => (
-    <div className="flex flex-col gap-4" style={{ maxWidth: 400 }}>
+    <div className="flex flex-col gap-4 max-w-sm">
       {Array.from({ length: 4 }, (_, i) => (
         <div key={i} className="flex items-center gap-3">
           <Skeleton variant="circular" width={40} height={40} />
@@ -152,7 +152,7 @@ export const ListSkeleton: Story = {
 
 export const TableSkeleton: Story = {
   render: () => (
-    <div className="border border-zinc-200 rounded-lg overflow-hidden" style={{ maxWidth: 500 }}>
+    <div className="border border-zinc-200 rounded-lg overflow-hidden max-w-lg">
       <div className="bg-zinc-50 px-4 py-3 flex gap-4">
         <Skeleton variant="text" width="20%" />
         <Skeleton variant="text" width="30%" />
@@ -175,7 +175,7 @@ export const TableSkeleton: Story = {
 
 export const MediaGridSkeleton: Story = {
   render: () => (
-    <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 12, maxWidth: 500 }}>
+    <div className="grid grid-cols-3 gap-3 max-w-lg">
       {Array.from({ length: 6 }, (_, i) => (
         <Skeleton key={i} variant="rounded" height={120} />
       ))}

@@ -32,7 +32,7 @@ type Story = StoryObj<typeof Empty>;
 
 export const Default: Story = {
   render: (args: EmptyProps) => (
-    <div className="border border-zinc-200 rounded-lg" style={{ maxWidth: 420 }}>
+    <div className="border border-zinc-200 rounded-lg max-w-md">
       <Empty {...args} title="No data" description="There is no data to display at the moment." />
     </div>
   ),
@@ -42,7 +42,7 @@ export const Default: Story = {
 
 export const CloudStorage: Story = {
   render: (args: EmptyProps) => (
-    <div className="border border-zinc-200 rounded-lg" style={{ maxWidth: 420 }}>
+    <div className="border border-zinc-200 rounded-lg max-w-md">
       <Empty
         {...args}
         icon={<Cloud strokeWidth={1} />}
@@ -58,7 +58,7 @@ export const CloudStorage: Story = {
 
 export const NoProjects: Story = {
   render: (args: EmptyProps) => (
-    <div className="border border-zinc-200 rounded-lg" style={{ maxWidth: 420 }}>
+    <div className="border border-zinc-200 rounded-lg max-w-md">
       <Empty
         {...args}
         icon={<FolderPlus strokeWidth={1} />}
@@ -78,7 +78,7 @@ export const NoProjects: Story = {
 
 export const NoNotifications: Story = {
   render: (args: EmptyProps) => (
-    <div className="border border-zinc-200 rounded-lg" style={{ maxWidth: 420 }}>
+    <div className="border border-zinc-200 rounded-lg max-w-md">
       <Empty
         {...args}
         icon={<Bell strokeWidth={1} />}
@@ -94,7 +94,7 @@ export const NoNotifications: Story = {
 
 export const NotFound: Story = {
   render: (args: EmptyProps) => (
-    <div className="border border-zinc-200 rounded-lg" style={{ maxWidth: 480 }}>
+    <div className="border border-zinc-200 rounded-lg max-w-lg">
       <Empty
         {...args}
         size="lg"
@@ -116,7 +116,7 @@ export const NotFound: Story = {
 
 export const NoSearchResults: Story = {
   render: (args: EmptyProps) => (
-    <div className="border border-zinc-200 rounded-lg" style={{ maxWidth: 420 }}>
+    <div className="border border-zinc-200 rounded-lg max-w-md">
       <Empty
         {...args}
         icon={<Search strokeWidth={1} />}
@@ -132,7 +132,7 @@ export const NoSearchResults: Story = {
 
 export const ErrorState: Story = {
   render: (args: EmptyProps) => (
-    <div className="border border-zinc-200 rounded-lg" style={{ maxWidth: 420 }}>
+    <div className="border border-zinc-200 rounded-lg max-w-md">
       <Empty
         {...args}
         icon={<FileX strokeWidth={1} />}
@@ -148,7 +148,7 @@ export const ErrorState: Story = {
 
 export const PermissionDenied: Story = {
   render: (args: EmptyProps) => (
-    <div className="border border-zinc-200 rounded-lg" style={{ maxWidth: 420 }}>
+    <div className="border border-zinc-200 rounded-lg max-w-md">
       <Empty
         {...args}
         icon={<ShieldX strokeWidth={1} />}
@@ -163,7 +163,7 @@ export const PermissionDenied: Story = {
 
 export const Offline: Story = {
   render: (args: EmptyProps) => (
-    <div className="border border-zinc-200 rounded-lg" style={{ maxWidth: 420 }}>
+    <div className="border border-zinc-200 rounded-lg max-w-md">
       <Empty
         {...args}
         icon={<WifiOff strokeWidth={1} />}
@@ -179,9 +179,9 @@ export const Offline: Story = {
 
 export const Sizes: Story = {
   render: () => (
-    <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+    <div className="flex flex-col gap-4">
       {(["sm", "md", "lg"] as const).map((size) => (
-        <div key={size} className="border border-zinc-200 rounded-lg" style={{ maxWidth: 420 }}>
+        <div key={size} className="border border-zinc-200 rounded-lg max-w-md">
           <Empty size={size} icon={<Bell strokeWidth={1} />} title={`Size: ${size}`} description="This is an empty state placeholder." />
         </div>
       ))}

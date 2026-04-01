@@ -48,7 +48,7 @@ export const Default: Story = {};
 
 export const CursorStyles: Story = {
   render: () => (
-    <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+    <div className="flex flex-col gap-4">
       <div className="text-lg">
         <span className="text-zinc-400 text-sm mr-2">line:</span>
         <Typewriter texts={["Line cursor style"]} cursorStyle="line" loop={false} />
@@ -129,7 +129,7 @@ export const WithStartDelay: Story = {
 
 export const Styled: Story = {
   render: () => (
-    <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+    <div className="flex flex-col gap-4">
       <h1 className="text-3xl font-bold text-zinc-900">
         <Typewriter texts={["Build.", "Ship.", "Scale."]} pauseDuration={1500} />
       </h1>

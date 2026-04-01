@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Table, type TableProps } from "./table";
+import { Badge } from "../badge";
 
 const sampleData = [
   { id: 1, name: "Alice Johnson", email: "alice@example.com", role: "Admin", status: "Active" },
@@ -60,9 +61,11 @@ export const Default: Story = {
             <Table.Cell>{row.email}</Table.Cell>
             <Table.Cell>{row.role}</Table.Cell>
             <Table.Cell align="center">
-              <span className={`inline-flex px-2 py-0.5 rounded-full text-xs font-medium ${row.status === "Active" ? "bg-green-50 text-green-700" : "bg-zinc-100 text-zinc-500"}`}>
-                {row.status}
-              </span>
+              {row.status === "Active" ? (
+                <Badge size="xs" color="success" shape="pill">Active</Badge>
+              ) : (
+                <Badge size="xs" shape="pill">Inactive</Badge>
+              )}
             </Table.Cell>
           </Table.Row>
         ))}
@@ -127,7 +130,7 @@ export const Striped: Story = {
 
 export const Sizes: Story = {
   render: () => (
-    <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
+    <div className="flex flex-col gap-6">
       {(["xs", "sm", "md"] as const).map((size) => (
         <div key={size}>
           <span className="text-xs text-zinc-400 mb-2 block">size: {size}</span>
@@ -203,7 +206,7 @@ export const ActiveRow: Story = {
 
 export const Truncate: Story = {
   render: (args: TableProps) => (
-    <div style={{ maxWidth: 400 }}>
+    <div className="max-w-md">
       <Table {...args} variant="bordered">
         <Table.Head>
           <Table.Row>

@@ -36,7 +36,7 @@ export const Single: Story = {
   render: (args: CalendarProps) => {
     const [date, setDate] = useState<Date | null>(null);
     return (
-      <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+      <div className="flex flex-col gap-3">
         <Calendar {...args} selected={date} onSelect={(d) => setDate(d as Date)} />
         <span className="text-xs text-zinc-400">
           Selected: {date ? date.toLocaleDateString() : "none"}
@@ -52,7 +52,7 @@ export const Range: Story = {
   render: (args: CalendarProps) => {
     const [range, setRange] = useState<DateRange>({ from: null, to: null });
     return (
-      <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+      <div className="flex flex-col gap-3">
         <Calendar {...args} mode="range" selected={range} onSelect={(r) => setRange(r as DateRange)} />
         <span className="text-xs text-zinc-400">
           From: {range.from?.toLocaleDateString() || "—"} → To: {range.to?.toLocaleDateString() || "—"}
@@ -68,7 +68,7 @@ export const RangeTwoMonths: Story = {
   render: (args: CalendarProps) => {
     const [range, setRange] = useState<DateRange>({ from: null, to: null });
     return (
-      <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+      <div className="flex flex-col gap-3">
         <Calendar {...args} mode="range" numberOfMonths={2} selected={range} onSelect={(r) => setRange(r as DateRange)} />
         <span className="text-xs text-zinc-400">
           From: {range.from?.toLocaleDateString() || "—"} → To: {range.to?.toLocaleDateString() || "—"}
@@ -95,7 +95,7 @@ export const Multiple: Story = {
   render: (args: CalendarProps) => {
     const [dates, setDates] = useState<Date[]>([]);
     return (
-      <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+      <div className="flex flex-col gap-3">
         <Calendar {...args} mode="multiple" selected={dates} onSelect={(d) => setDates(d as Date[])} />
         <span className="text-xs text-zinc-400">
           Selected: {dates.length} date{dates.length !== 1 ? "s" : ""}
@@ -109,7 +109,7 @@ export const Multiple: Story = {
 
 export const Sizes: Story = {
   render: () => (
-    <div style={{ display: "flex", gap: 16 }}>
+    <div className="flex gap-4">
       <div>
         <span className="text-xs text-zinc-400 mb-2 block">sm</span>
         <Calendar size="sm" />
@@ -132,7 +132,7 @@ export const MinMaxDates: Story = {
     const [date, setDate] = useState<Date | null>(null);
 
     return (
-      <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+      <div className="flex flex-col gap-3">
         <Calendar {...args} selected={date} onSelect={(d) => setDate(d as Date)} minDate={minDate} maxDate={maxDate} />
         <span className="text-xs text-zinc-400">
           Only dates between {minDate.toLocaleDateString()} and {maxDate.toLocaleDateString()} are selectable.
@@ -148,7 +148,7 @@ export const DisabledWeekends: Story = {
   render: (args: CalendarProps) => {
     const [date, setDate] = useState<Date | null>(null);
     return (
-      <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+      <div className="flex flex-col gap-3">
         <Calendar {...args} selected={date} onSelect={(d) => setDate(d as Date)} disabledDaysOfWeek={[0, 6]} />
         <span className="text-xs text-zinc-400">Weekends are disabled.</span>
       </div>
@@ -170,7 +170,7 @@ export const DisabledDates: Story = {
     const [date, setDate] = useState<Date | null>(null);
 
     return (
-      <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+      <div className="flex flex-col gap-3">
         <Calendar {...args} selected={date} onSelect={(d) => setDate(d as Date)} disabledDates={disabled} />
         <span className="text-xs text-zinc-400">10th, 15th, 20th, 25th are disabled.</span>
       </div>
@@ -214,7 +214,7 @@ export const BookingExample: Story = {
     const nights = range.from && range.to ? Math.round((range.to.getTime() - range.from.getTime()) / 86400000) : 0;
 
     return (
-      <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+      <div className="flex flex-col gap-3">
         <h3 className="text-sm font-semibold text-zinc-900">Select dates</h3>
         <Calendar
           {...args}

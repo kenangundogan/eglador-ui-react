@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Zap, BookOpen, LayoutGrid, Users, Settings, Code, Palette, Globe, Database, Shield, Rocket, FileText, HelpCircle, MessageSquare, Star } from "lucide-react";
+import { Link } from "../link";
 import { NavigationMenu, type NavigationMenuProps } from "./navigation-menu";
 
 const meta: Meta<typeof NavigationMenu> = {
@@ -28,7 +29,7 @@ type Story = StoryObj<typeof NavigationMenu>;
 
 function ListItem({ title, description, icon, href = "#" }: { title: string; description: string; icon?: React.ReactNode; href?: string }) {
   return (
-    <a href={href} className="flex gap-3 p-3 rounded-lg hover:bg-zinc-50 transition-colors group">
+    <Link href={href} className="flex gap-3 p-3 rounded-lg hover:bg-zinc-50 transition-colors group">
       {icon && (
         <div className="shrink-0 size-9 rounded-lg bg-zinc-100 flex items-center justify-center text-zinc-500 group-hover:bg-zinc-200 transition-colors">
           <span className="[&>svg]:w-full [&>svg]:h-full size-4">{icon}</span>
@@ -38,7 +39,7 @@ function ListItem({ title, description, icon, href = "#" }: { title: string; des
         <span className="text-sm font-medium text-zinc-900">{title}</span>
         <span className="text-xs text-zinc-400 leading-relaxed mt-0.5">{description}</span>
       </div>
-    </a>
+    </Link>
   );
 }
 
@@ -46,7 +47,7 @@ function ListItem({ title, description, icon, href = "#" }: { title: string; des
 
 export const Default: Story = {
   render: (args: NavigationMenuProps) => (
-    <div style={{ padding: "20px 20px 300px" }}>
+    <div className="px-5 pt-5 pb-75">
       <NavigationMenu {...args}>
         <NavigationMenu.List>
           <NavigationMenu.Item>
@@ -91,7 +92,7 @@ export const Default: Story = {
 
 export const WithFeaturedSection: Story = {
   render: (args: NavigationMenuProps) => (
-    <div style={{ padding: "20px 20px 350px" }}>
+    <div className="px-5 pt-5 pb-87.5">
       <NavigationMenu {...args}>
         <NavigationMenu.List>
           <NavigationMenu.Item>
@@ -106,9 +107,9 @@ export const WithFeaturedSection: Story = {
                     <h3 className="text-sm font-semibold text-zinc-900">eglador-ui-react</h3>
                     <p className="text-xs text-zinc-500 mt-1 leading-relaxed">A lightweight UI component library built with Tailwind CSS v4.</p>
                   </div>
-                  <a href="#" className="text-xs font-medium text-zinc-900 hover:text-zinc-600 transition-colors mt-4">
+                  <Link href="#" className="text-xs font-medium text-zinc-900 hover:text-zinc-600 transition-colors mt-4">
                     Get started →
-                  </a>
+                  </Link>
                 </div>
                 <div className="col-span-3 flex flex-col gap-1">
                   <ListItem icon={<Code />} title="Components" description="40+ ready-to-use React components." />
@@ -167,8 +168,8 @@ export const SimpleLinksOnly: Story = {
 
 export const Vertical: Story = {
   render: (args: NavigationMenuProps) => (
-    <div style={{ padding: "20px", display: "flex", gap: 40 }}>
-      <div style={{ width: 220 }}>
+    <div className="p-5 flex gap-10">
+      <div className="w-55">
         <NavigationMenu {...args} orientation="vertical">
           <NavigationMenu.List>
             <NavigationMenu.Item>
@@ -237,7 +238,7 @@ export const WithActiveState: Story = {
 
 export const EcommerceHeader: Story = {
   render: (args: NavigationMenuProps) => (
-    <div style={{ padding: "20px 20px 320px" }}>
+    <div className="px-5 pt-5 pb-80">
       <div className="flex items-center justify-between border-b border-zinc-200 pb-3">
         <div className="flex items-center gap-6">
           <span className="text-lg font-bold text-zinc-900">Store</span>
@@ -266,9 +267,9 @@ export const EcommerceHeader: Story = {
           </NavigationMenu>
         </div>
         <div className="flex items-center gap-2 text-sm text-zinc-500">
-          <a href="#" className="hover:text-zinc-900 transition-colors">Sign In</a>
+          <Link href="#" className="hover:text-zinc-900 transition-colors">Sign In</Link>
           <span className="text-zinc-300">|</span>
-          <a href="#" className="hover:text-zinc-900 transition-colors">Cart (0)</a>
+          <Link href="#" className="hover:text-zinc-900 transition-colors">Cart (0)</Link>
         </div>
       </div>
     </div>

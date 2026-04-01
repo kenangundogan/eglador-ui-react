@@ -40,7 +40,7 @@ export const Single: Story = {
   render: (args: DatePickerProps) => {
     const [date, setDate] = useState<Date | null>(null);
     return (
-      <div style={{ width: 280 }}>
+      <div className="w-70">
         <DatePicker {...args} value={date} onChange={(d) => setDate(d as Date)} label="Date" />
       </div>
     );
@@ -53,7 +53,7 @@ export const Range: Story = {
   render: (args: DatePickerProps) => {
     const [range, setRange] = useState<DateRange>({ from: null, to: null });
     return (
-      <div style={{ width: 320 }}>
+      <div className="w-80">
         <DatePicker {...args} mode="range" value={range} onChange={(r) => setRange(r as DateRange)} label="Date Range" />
       </div>
     );
@@ -66,7 +66,7 @@ export const Preselected: Story = {
   render: (args: DatePickerProps) => {
     const [date, setDate] = useState<Date | null>(new Date());
     return (
-      <div style={{ width: 280 }}>
+      <div className="w-70">
         <DatePicker {...args} value={date} onChange={(d) => setDate(d as Date)} label="Birthday" />
       </div>
     );
@@ -80,7 +80,7 @@ export const WithMinMax: Story = {
     const today = new Date();
     const [date, setDate] = useState<Date | null>(null);
     return (
-      <div style={{ display: "flex", flexDirection: "column", gap: 8, width: 280 }}>
+      <div className="flex flex-col gap-2 w-70">
         <DatePicker
           {...args}
           value={date}
@@ -101,7 +101,7 @@ export const DisabledWeekends: Story = {
   render: (args: DatePickerProps) => {
     const [date, setDate] = useState<Date | null>(null);
     return (
-      <div style={{ width: 280 }}>
+      <div className="w-70">
         <DatePicker {...args} value={date} onChange={(d) => setDate(d as Date)} label="Working Day" disabledDaysOfWeek={[0, 6]} />
       </div>
     );
@@ -112,7 +112,7 @@ export const DisabledWeekends: Story = {
 
 export const ErrorState: Story = {
   render: (args: DatePickerProps) => (
-    <div style={{ width: 280 }}>
+    <div className="w-70">
       <DatePicker {...args} state="error" errorMessage="Please select a valid date." label="Event Date" />
     </div>
   ),
@@ -124,7 +124,7 @@ export const SuccessState: Story = {
   render: (args: DatePickerProps) => {
     const [date, setDate] = useState<Date | null>(new Date());
     return (
-      <div style={{ width: 280 }}>
+      <div className="w-70">
         <DatePicker {...args} value={date} onChange={(d) => setDate(d as Date)} state="success" successMessage="Date confirmed." label="Check-in" />
       </div>
     );
@@ -135,7 +135,7 @@ export const SuccessState: Story = {
 
 export const Disabled: Story = {
   render: (args: DatePickerProps) => (
-    <div style={{ width: 280 }}>
+    <div className="w-70">
       <DatePicker {...args} disabled label="Locked Date" value={new Date()} />
     </div>
   ),
@@ -150,7 +150,7 @@ export const BookingFlow: Story = {
     const nights = range.from && range.to ? Math.round((range.to.getTime() - range.from.getTime()) / 86400000) : 0;
 
     return (
-      <div style={{ display: "flex", flexDirection: "column", gap: 12, width: 360 }}>
+      <div className="flex flex-col gap-3 w-90">
         <DatePicker
           {...args}
           mode="range"

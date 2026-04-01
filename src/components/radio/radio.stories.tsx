@@ -48,7 +48,7 @@ export const Sizes: Story = {
   render: () => {
     const [selected, setSelected] = useState("sm");
     return (
-      <div style={{ display: "flex", gap: 24 }}>
+      <div className="flex gap-6">
         {(["xs", "sm", "md"] as const).map((size) => (
           <Radio key={size} size={size} checked={selected === size} onChange={() => setSelected(size)} label={size.toUpperCase()} />
         ))}
@@ -61,7 +61,7 @@ export const Sizes: Story = {
 
 export const ColorsChecked: Story = {
   render: (args: RadioProps) => (
-    <div style={{ display: "flex", gap: 24 }}>
+    <div className="flex gap-6">
       {ALL_COLORS.map((c) => (
         <Radio {...args} key={c} color={c} checked label={c.charAt(0).toUpperCase() + c.slice(1)} />
       ))}
@@ -73,7 +73,7 @@ export const ColorsChecked: Story = {
 
 export const ColorsUnchecked: Story = {
   render: (args: RadioProps) => (
-    <div style={{ display: "flex", gap: 24 }}>
+    <div className="flex gap-6">
       {ALL_COLORS.map((c) => (
         <Radio {...args} key={c} color={c} label={c.charAt(0).toUpperCase() + c.slice(1)} />
       ))}
@@ -87,7 +87,7 @@ export const SingleSelection: Story = {
   render: () => {
     const [selected, setSelected] = useState("option1");
     return (
-      <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+      <div className="flex flex-col gap-3">
         <Radio name="plan" checked={selected === "option1"} onChange={() => setSelected("option1")} label="Free plan" description="Up to 5 projects" />
         <Radio name="plan" checked={selected === "option2"} onChange={() => setSelected("option2")} label="Pro plan" description="Unlimited projects" />
         <Radio name="plan" checked={selected === "option3"} onChange={() => setSelected("option3")} label="Enterprise" description="Custom solutions" />
@@ -102,7 +102,7 @@ export const WithDescription: Story = {
   render: () => {
     const [selected, setSelected] = useState("email");
     return (
-      <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+      <div className="flex flex-col gap-4">
         <Radio color="primary" checked={selected === "email"} onChange={() => setSelected("email")} label="Email notifications" description="Receive updates via email." />
         <Radio color="primary" checked={selected === "push"} onChange={() => setSelected("push")} label="Push notifications" description="Get instant alerts on your device." />
         <Radio color="primary" size="md" checked={selected === "sms"} onChange={() => setSelected("sms")} label="SMS notifications" description="Be informed via text message." />
@@ -115,7 +115,7 @@ export const WithDescription: Story = {
 
 export const Disabled: Story = {
   render: (args: RadioProps) => (
-    <div style={{ display: "flex", gap: 24 }}>
+    <div className="flex gap-6">
       <Radio {...args} disabled label="Unchecked" />
       <Radio {...args} disabled checked label="Checked" color="primary" />
     </div>
@@ -128,7 +128,7 @@ export const WithoutLabel: Story = {
   render: () => {
     const [selected, setSelected] = useState(1);
     return (
-      <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
+      <div className="flex items-center gap-4">
         {[0, 1, 2].map((i) => (
           <Radio key={i} size="sm" checked={selected === i} onChange={() => setSelected(i)} />
         ))}
@@ -147,7 +147,7 @@ export const VariantList: Story = {
     const items = ["Standard", "Express", "Overnight", "Same Day"];
     const [selected, setSelected] = useState("Standard");
     return (
-      <div style={{ display: "flex", flexDirection: "column", gap: 2, border: "1px solid #e4e4e7", borderRadius: 12, padding: 8, width: 280 }}>
+      <div className="flex flex-col gap-0.5 border border-zinc-200 rounded-xl p-2 w-70">
         {items.map((name) => (
           <Radio key={name} variant="list" color="primary" checked={selected === name} onChange={() => setSelected(name)} label={name} />
         ))}
@@ -163,7 +163,7 @@ export const VariantCard: Story = {
     const items = ["Monthly", "Quarterly", "Yearly", "Lifetime"];
     const [selected, setSelected] = useState("Monthly");
     return (
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, width: 320 }}>
+      <div className="grid grid-cols-2 gap-2 w-80">
         {items.map((name) => (
           <Radio key={name} variant="card" size="xs" checked={selected === name} onChange={() => setSelected(name)} label={name} />
         ))}
@@ -178,7 +178,7 @@ export const VariantCardColors: Story = {
   render: () => {
     const [selected, setSelected] = useState("primary");
     return (
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, width: 320 }}>
+      <div className="grid grid-cols-2 gap-2 w-80">
         {ALL_COLORS.map((c) => (
           <Radio key={c} variant="card" color={c} checked={selected === c} onChange={() => setSelected(c)} label={c.charAt(0).toUpperCase() + c.slice(1)} />
         ))}

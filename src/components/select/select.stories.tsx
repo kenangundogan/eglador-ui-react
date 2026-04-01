@@ -48,7 +48,7 @@ export const Default: Story = {
   render: (args: SelectProps) => {
     const [value, setValue] = useState<string | undefined>();
     return (
-      <div style={{ width: 280 }}>
+      <div className="w-70">
         <Select {...args} options={sampleOptions} value={value} onChange={(v) => setValue(v)} />
       </div>
     );
@@ -61,7 +61,7 @@ export const Preselected: Story = {
   render: (args: SelectProps) => {
     const [value, setValue] = useState("react");
     return (
-      <div style={{ width: 280 }}>
+      <div className="w-70">
         <Select {...args} options={sampleOptions} value={value} onChange={(v) => setValue(v)} />
       </div>
     );
@@ -72,7 +72,7 @@ export const Preselected: Story = {
 
 export const Disabled: Story = {
   render: (args: SelectProps) => (
-    <div style={{ width: 280 }}>
+    <div className="w-70">
       <Select {...args} options={sampleOptions} value="react" disabled />
     </div>
   ),
@@ -84,7 +84,7 @@ export const EmptyOptions: Story = {
   render: (args: SelectProps) => {
     const [value, setValue] = useState<string | undefined>();
     return (
-      <div style={{ width: 280 }}>
+      <div className="w-70">
         <Select {...args} options={[]} value={value} onChange={(v) => setValue(v)} placeholder="No options available" />
       </div>
     );
@@ -101,7 +101,7 @@ export const ManyOptions: Story = {
     }));
     const [value, setValue] = useState<string | undefined>();
     return (
-      <div style={{ width: 280 }}>
+      <div className="w-70">
         <Select {...args} options={manyOptions} value={value} onChange={(v) => setValue(v)} maxHeight={200} />
       </div>
     );

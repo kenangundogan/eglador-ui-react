@@ -39,7 +39,7 @@ type Story = StoryObj<typeof Popover>;
 
 export const Default: Story = {
   render: (args: PopoverProps) => (
-    <div style={{ padding: 80 }}>
+    <div className="p-20">
       <Popover {...args}>
         <Popover.Trigger asChild>
           <Button variant="outline" icon={<Settings />}>Open Popover</Button>
@@ -58,7 +58,7 @@ export const Default: Story = {
 
 export const Positions: Story = {
   render: () => (
-    <div style={{ display: "flex", gap: 24, padding: 100, flexWrap: "wrap" }}>
+    <div className="flex gap-6 p-25 flex-wrap">
       {(["top", "bottom", "left", "right"] as const).map((side) => (
         <Popover key={side} side={side} align="center">
           <Popover.Trigger asChild>
@@ -77,7 +77,7 @@ export const Positions: Story = {
 
 export const Alignments: Story = {
   render: () => (
-    <div style={{ display: "flex", gap: 24, padding: 100 }}>
+    <div className="flex gap-6 p-25">
       {(["start", "center", "end"] as const).map((align) => (
         <Popover key={align} align={align}>
           <Popover.Trigger asChild>
@@ -96,7 +96,7 @@ export const Alignments: Story = {
 
 export const NotificationPanel: Story = {
   render: (args: PopoverProps) => (
-    <div style={{ padding: 80 }}>
+    <div className="p-20">
       <Popover {...args}>
         <Popover.Trigger asChild>
           <Button variant="outline" icon={<Bell />}>Notifications</Button>
@@ -132,7 +132,7 @@ export const SettingsForm: Story = {
     const [notifications, setNotifications] = useState(true);
     const [darkMode, setDarkMode] = useState(false);
     return (
-      <div style={{ padding: 80 }}>
+      <div className="p-20">
         <Popover>
           <Popover.Trigger asChild>
             <Button variant="outline" icon={<Settings />}>Preferences</Button>
@@ -163,7 +163,7 @@ export const SettingsForm: Story = {
 
 export const NoCloseOnOutside: Story = {
   render: (args: PopoverProps) => (
-    <div style={{ padding: 80 }}>
+    <div className="p-20">
       <Popover {...args} closeOnOutside={false}>
         <Popover.Trigger asChild>
           <Button variant="outline">Persistent Popover</Button>
@@ -182,7 +182,7 @@ export const Controlled: Story = {
   render: (args: PopoverProps) => {
     const [open, setOpen] = useState(false);
     return (
-      <div style={{ display: "flex", alignItems: "center", gap: 12, padding: 80 }}>
+      <div className="flex items-center gap-3 p-20">
         <Popover {...args} open={open} onOpenChange={setOpen}>
           <Popover.Trigger asChild>
             <Button color="primary">Toggle</Button>
