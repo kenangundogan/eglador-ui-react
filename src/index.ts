@@ -32,6 +32,7 @@ export * from "./components/menubar";
 export * from "./components/modal";
 export * from "./components/multi-select";
 export * from "./components/navigation-menu";
+export * from "./components/pagination";
 export * from "./components/notification";
 export * from "./components/popover";
 export * from "./components/progress";
