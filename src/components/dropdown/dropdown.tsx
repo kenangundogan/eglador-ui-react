@@ -6,6 +6,7 @@ import { useClickOutside } from "../../lib/use-click-outside";
 import { useEscapeClose } from "../../lib/use-escape-close";
 import { useAutoFlip } from "../../lib/use-auto-flip";
 import { Button } from "../button";
+import { EllipsisIcon } from "../../lib/icons";
 
 // ── Types ────────────────────────────────────
 
@@ -35,18 +36,6 @@ export interface DropdownTriggerProps {
 export interface DropdownContentProps {
   className?: string;
   children: React.ReactNode;
-}
-
-// ── Ellipsis Icon ────────────────────────────
-
-function EllipsisIcon({ className }: { className?: string }) {
-  return (
-    <svg className={className} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="12" cy="12" r="1" />
-      <circle cx="19" cy="12" r="1" />
-      <circle cx="5" cy="12" r="1" />
-    </svg>
-  );
 }
 
 // ── Context ──────────────────────────────────

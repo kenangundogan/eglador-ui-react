@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { cn } from "../../lib/utils";
+import { CheckIcon } from "../../lib/icons";
 
 // ── Types ────────────────────────────────────
 
@@ -29,16 +30,6 @@ export interface StepProps {
   icon?: React.ReactNode;
   className?: string;
   children?: React.ReactNode;
-}
-
-// ── Icons ────────────────────────────────────
-
-function CheckIcon({ className }: { className?: string }) {
-  return (
-    <svg className={className} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M20 6 9 17l-5-5" />
-    </svg>
-  );
 }
 
 // ── Context ──────────────────────────────────
@@ -209,7 +200,7 @@ function StepIndicator({ index, status, icon }: { index: number; status: StepSta
       )}
     >
       {status === "completed" ? (
-        <CheckIcon className={s.checkSize} />
+        <CheckIcon className={s.checkSize} strokeWidth={3} />
       ) : icon ? (
         <span className={cn("flex items-center justify-center [&>svg]:w-full [&>svg]:h-full", s.iconSize)}>
           {icon}

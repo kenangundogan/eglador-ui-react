@@ -2,7 +2,13 @@
 
 import * as React from "react";
 import { cn } from "../../lib/utils";
+import { Checkbox } from "../checkbox";
+import { Empty } from "../empty";
+import { Input } from "../input";
+import { NativeSelect } from "../native-select";
 import { Pagination } from "../pagination";
+import { Spinner } from "../spinner";
+import { SearchIcon, ChevronUpIcon, ChevronDownIcon, ChevronsUpDownIcon, ColumnsIcon, CheckIcon } from "../../lib/icons";
 
 // ── Types ────────────────────────────────────
 
@@ -94,68 +100,6 @@ export interface DataTableProps<T> {
   stickyHeader?: boolean;
   maxHeight?: string;
   className?: string;
-}
-
-// ── Icons ────────────────────────────────────
-
-function SearchIcon({ className }: { className?: string }) {
-  return (
-    <svg className={className} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="11" cy="11" r="8" />
-      <path d="m21 21-4.3-4.3" />
-    </svg>
-  );
-}
-
-function ChevronUpIcon({ className }: { className?: string }) {
-  return (
-    <svg className={className} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="m18 15-6-6-6 6" />
-    </svg>
-  );
-}
-
-function ChevronDownIcon({ className }: { className?: string }) {
-  return (
-    <svg className={className} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="m6 9 6 6 6-6" />
-    </svg>
-  );
-}
-
-function ChevronsUpDownIcon({ className }: { className?: string }) {
-  return (
-    <svg className={className} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="m7 15 5 5 5-5" />
-      <path d="m7 9 5-5 5 5" />
-    </svg>
-  );
-}
-
-function ColumnsIcon({ className }: { className?: string }) {
-  return (
-    <svg className={className} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <rect width="18" height="18" x="3" y="3" rx="2" />
-      <path d="M9 3v18" />
-      <path d="M15 3v18" />
-    </svg>
-  );
-}
-
-function CheckIcon({ className }: { className?: string }) {
-  return (
-    <svg className={className} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M20 6 9 17l-5-5" />
-    </svg>
-  );
-}
-
-function MinusIcon({ className }: { className?: string }) {
-  return (
-    <svg className={className} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M5 12h14" />
-    </svg>
-  );
 }
 
 // ── Size definitions ─────────────────────────
@@ -722,18 +666,14 @@ export function DataTable<T = Record<string, unknown>>({
       {(searchable || showColumnToggle) && (
         <div className="flex flex-wrap items-center gap-2">
           {searchable && (
-            <div className="relative flex-1 min-w-0 max-w-xs sm:max-w-sm">
-              <SearchIcon className="absolute left-2.5 top-1/2 -translate-y-1/2 size-4 text-zinc-400" />
-              <input
+            <div className="flex-1 min-w-0 max-w-xs sm:max-w-sm">
+              <Input
                 type="text"
+                size={size}
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder={searchPlaceholder}
-                className={cn(
-                  "w-full pl-9 pr-3 rounded-lg border border-zinc-200 bg-zinc-50 text-zinc-900 placeholder:text-zinc-400 outline-none transition-colors",
-                  "focus:border-zinc-300 focus:ring-2 focus:ring-zinc-900/5",
-                  s.font, s.searchHeight,
-                )}
+                icon={<SearchIcon />}
               />
             </div>
           )}
@@ -787,10 +727,7 @@ export function DataTable<T = Record<string, unknown>>({
             <tr>
               {selectable && (
                 <th className={cn(s.header, "w-10", getCheckboxFixedClass("bg-zinc-50"))} style={checkboxFixedStyle}>
-                  <button type="button" onClick={toggleAll} className={cn("flex items-center justify-center size-4 rounded border transition-colors cursor-pointer", pageAllSelected ? "bg-zinc-900 border-zinc-900 text-white" : pageSomeSelected ? "bg-zinc-900 border-zinc-900 text-white" : "border-zinc-300 bg-white")}>
-                    {pageAllSelected && <CheckIcon className="size-3" />}
-                    {pageSomeSelected && !pageAllSelected && <MinusIcon className="size-3" />}
-                  </button>
+                  <Checkbox size="xs" checked={pageAllSelected} indeterminate={pageSomeSelected && !pageAllSelected} onChange={toggleAll} />
                 </th>
               )}
               {visibleColumns.map((col) => (
@@ -816,61 +753,31 @@ export function DataTable<T = Record<string, unknown>>({
                   if (col.filterable === false) return <th key={col.id} className={cn(s.header, getFixedCellClass(col, "bg-zinc-50/50"))} style={getFixedCellStyle(col)} />;
 
                   const filterType = col.filterType || "text";
-                  const filterInputClass = cn("w-full rounded border border-zinc-200 bg-white px-2 py-1 outline-none transition-colors focus:border-zinc-300 focus:ring-1 focus:ring-zinc-900/5", s.font, "text-zinc-700 placeholder:text-zinc-400");
 
                   return (
                     <th key={col.id} className={cn(s.header, "font-normal", getFixedCellClass(col, "bg-zinc-50/50"))} style={getFixedCellStyle(col)}>
                       {filterType === "select" ? (
-                        <select
+                        <NativeSelect
+                          size="xs"
                           value={columnFilters[col.id] || ""}
                           onChange={(e) => setColumnFilter(col.id, e.target.value)}
-                          className={cn(filterInputClass, "cursor-pointer")}
-                        >
-                          <option value="">All</option>
-                          {(col.filterOptions || columnUniqueValues[col.id] || []).map((opt) => (
-                            <option key={opt} value={opt}>{opt}</option>
-                          ))}
-                        </select>
+                          options={[
+                            { label: "All", value: "" },
+                            ...(col.filterOptions || columnUniqueValues[col.id] || []).map((opt) => ({ label: opt, value: opt })),
+                          ]}
+                        />
                       ) : filterType === "number" ? (
                         <div className="flex gap-1">
-                          <input
-                            type="number"
-                            placeholder="Min"
-                            value={columnFilterRanges[col.id]?.min || ""}
-                            onChange={(e) => setColumnFilterRange(col.id, e.target.value, columnFilterRanges[col.id]?.max)}
-                            className={cn(filterInputClass, "w-1/2")}
-                          />
-                          <input
-                            type="number"
-                            placeholder="Max"
-                            value={columnFilterRanges[col.id]?.max || ""}
-                            onChange={(e) => setColumnFilterRange(col.id, columnFilterRanges[col.id]?.min, e.target.value)}
-                            className={cn(filterInputClass, "w-1/2")}
-                          />
+                          <Input size="xs" type="number" placeholder="Min" value={columnFilterRanges[col.id]?.min || ""} onChange={(e) => setColumnFilterRange(col.id, e.target.value, columnFilterRanges[col.id]?.max)} wrapperClassName="w-1/2" />
+                          <Input size="xs" type="number" placeholder="Max" value={columnFilterRanges[col.id]?.max || ""} onChange={(e) => setColumnFilterRange(col.id, columnFilterRanges[col.id]?.min, e.target.value)} wrapperClassName="w-1/2" />
                         </div>
                       ) : filterType === "date" ? (
                         <div className="flex gap-1">
-                          <input
-                            type="date"
-                            value={columnFilterRanges[col.id]?.min || ""}
-                            onChange={(e) => setColumnFilterRange(col.id, e.target.value, columnFilterRanges[col.id]?.max)}
-                            className={cn(filterInputClass, "w-1/2")}
-                          />
-                          <input
-                            type="date"
-                            value={columnFilterRanges[col.id]?.max || ""}
-                            onChange={(e) => setColumnFilterRange(col.id, columnFilterRanges[col.id]?.min, e.target.value)}
-                            className={cn(filterInputClass, "w-1/2")}
-                          />
+                          <Input size="xs" type="date" value={columnFilterRanges[col.id]?.min || ""} onChange={(e) => setColumnFilterRange(col.id, e.target.value, columnFilterRanges[col.id]?.max)} wrapperClassName="w-1/2" />
+                          <Input size="xs" type="date" value={columnFilterRanges[col.id]?.max || ""} onChange={(e) => setColumnFilterRange(col.id, columnFilterRanges[col.id]?.min, e.target.value)} wrapperClassName="w-1/2" />
                         </div>
                       ) : (
-                        <input
-                          type="text"
-                          placeholder="Filter..."
-                          value={columnFilters[col.id] || ""}
-                          onChange={(e) => setColumnFilter(col.id, e.target.value)}
-                          className={filterInputClass}
-                        />
+                        <Input size="xs" type="text" placeholder="Filter..." value={columnFilters[col.id] || ""} onChange={(e) => setColumnFilter(col.id, e.target.value)} />
                       )}
                     </th>
                   );
@@ -882,16 +789,13 @@ export function DataTable<T = Record<string, unknown>>({
             {loading ? (
               <tr>
                 <td colSpan={visibleColumns.length + (selectable ? 1 : 0)} className={cn(s.cell, "text-center")}>
-                  <div className="flex items-center justify-center gap-2 py-8 text-zinc-400">
-                    <svg className="size-4 animate-spin" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="3" className="opacity-25" /><path d="M12 2a10 10 0 0 1 10 10" stroke="currentColor" strokeWidth="3" strokeLinecap="round" className="opacity-75" /></svg>
-                    <span className={s.font}>Loading...</span>
-                  </div>
+                  <Spinner size="xs" label="Loading..." className="py-8" />
                 </td>
               </tr>
             ) : paginatedData.length === 0 ? (
               <tr>
                 <td colSpan={visibleColumns.length + (selectable ? 1 : 0)} className={cn(s.cell, "text-center")}>
-                  <div className={cn("py-8 text-zinc-400", s.font)}>{emptyMessage}</div>
+                  <Empty size="sm" description={emptyMessage} />
                 </td>
               </tr>
             ) : (
@@ -903,9 +807,7 @@ export function DataTable<T = Record<string, unknown>>({
                   <tr key={key} onClick={onRowClick ? () => onRowClick(row, globalIndex) : undefined} className={cn("border-b border-zinc-100 last:border-0 transition-colors", striped && "even:bg-zinc-50/50", isSelected && "bg-zinc-50", onRowClick && "cursor-pointer hover:bg-zinc-50")}>
                     {selectable && (
                       <td className={cn(s.cell, "w-10", getCheckboxFixedClass())} style={checkboxFixedStyle} onClick={(e) => e.stopPropagation()}>
-                        <button type="button" onClick={() => toggleRow(key)} className={cn("flex items-center justify-center size-4 rounded border transition-colors cursor-pointer", isSelected ? "bg-zinc-900 border-zinc-900 text-white" : "border-zinc-300 bg-white")}>
-                          {isSelected && <CheckIcon className="size-3" />}
-                        </button>
+                        <Checkbox size="xs" checked={isSelected} onChange={() => toggleRow(key)} />
                       </td>
                     )}
                     {visibleColumns.map((col) => {
@@ -944,13 +846,13 @@ export function DataTable<T = Record<string, unknown>>({
       {/* Pagination footer */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4">
         <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
-          <select
-            value={pageSize}
+          <NativeSelect
+            size="xs"
+            value={String(pageSize)}
             onChange={(e) => { setPageSize(Number(e.target.value)); setCurrentPage(1); }}
-            className={cn("appearance-none bg-transparent border border-zinc-200 rounded-md px-2 py-1 text-zinc-700 cursor-pointer outline-none", s.font)}
-          >
-            {pageSizes.map((ps) => <option key={ps} value={ps}>{ps}</option>)}
-          </select>
+            options={pageSizes.map((ps) => ({ label: String(ps), value: String(ps) }))}
+            wrapperClassName="w-18"
+          />
           <span className={cn("text-zinc-400 whitespace-nowrap", s.font)}>
             {totalItems === 0 ? "0" : `${displayFrom}-${displayTo}`} of {totalItems}
           </span>

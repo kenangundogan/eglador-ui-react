@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { cn } from "../../lib/utils";
+import { GripVerticalIcon, GripHorizontalIcon } from "../../lib/icons";
 
 // ── Types ────────────────────────────────────
 
@@ -47,39 +48,6 @@ function useResizable(): ResizableContextValue {
   const ctx = React.useContext(ResizableContext);
   if (!ctx) throw new Error("Resizable sub-components must be used within <Resizable>");
   return ctx;
-}
-
-// ── GripIcon ─────────────────────────────────
-
-function GripIcon({ className, direction }: { className?: string; direction: ResizableDirection }) {
-  return (
-    <svg
-      className={className}
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 6 14"
-      fill="currentColor"
-    >
-      {direction === "horizontal" ? (
-        <>
-          <circle cx="1.5" cy="3" r="1" />
-          <circle cx="4.5" cy="3" r="1" />
-          <circle cx="1.5" cy="7" r="1" />
-          <circle cx="4.5" cy="7" r="1" />
-          <circle cx="1.5" cy="11" r="1" />
-          <circle cx="4.5" cy="11" r="1" />
-        </>
-      ) : (
-        <>
-          <circle cx="1" cy="1.5" r="1" />
-          <circle cx="1" cy="4.5" r="1" />
-          <circle cx="3" cy="1.5" r="1" />
-          <circle cx="3" cy="4.5" r="1" />
-          <circle cx="5" cy="1.5" r="1" />
-          <circle cx="5" cy="4.5" r="1" />
-        </>
-      )}
-    </svg>
-  );
 }
 
 // ── Resizable Root ───────────────────────────
@@ -288,10 +256,11 @@ function ResizableHandle({ className, withHandle = false, ...rest }: ResizableHa
             direction === "horizontal" ? "h-6 w-3" : "w-6 h-3",
           )}
         >
-          <GripIcon
-            className={direction === "horizontal" ? "size-2.5" : "size-2.5 rotate-90"}
-            direction={direction}
-          />
+          {direction === "horizontal" ? (
+            <GripVerticalIcon className="size-2.5" />
+          ) : (
+            <GripHorizontalIcon className="size-2.5 rotate-90" />
+          )}
         </div>
       )}
     </div>

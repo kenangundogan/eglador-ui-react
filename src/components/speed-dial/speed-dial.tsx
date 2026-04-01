@@ -5,6 +5,7 @@ import { cn } from "../../lib/utils";
 import { useClickOutside } from "../../lib/use-click-outside";
 import { useEscapeClose } from "../../lib/use-escape-close";
 import { Tooltip } from "../tooltip";
+import { PlusIcon, XIcon } from "../../lib/icons";
 
 // ── Types ────────────────────────────────────
 
@@ -30,26 +31,6 @@ export interface SpeedDialProps {
   onOpenChange?: (open: boolean) => void;
   disabled?: boolean;
   className?: string;
-}
-
-// ── Icons ────────────────────────────────────
-
-function PlusIcon({ className }: { className?: string }) {
-  return (
-    <svg className={className} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M5 12h14" />
-      <path d="M12 5v14" />
-    </svg>
-  );
-}
-
-function XIcon({ className }: { className?: string }) {
-  return (
-    <svg className={className} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M18 6 6 18" />
-      <path d="m6 6 12 12" />
-    </svg>
-  );
 }
 
 // ── Size definitions ─────────────────────────

@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { cn } from "../../lib/utils";
+import { ChevronDownIcon, PanelLeftIcon } from "../../lib/icons";
 import { Tooltip } from "../tooltip";
 
 // ── Types ────────────────────────────────────
@@ -108,25 +109,6 @@ export interface SidebarTriggerProps {
 
 export interface SidebarRailProps {
   className?: string;
-}
-
-// ── Icons ────────────────────────────────────
-
-function PanelLeftIcon({ className }: { className?: string }) {
-  return (
-    <svg className={className} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <rect width="18" height="18" x="3" y="3" rx="2" />
-      <path d="M9 3v18" />
-    </svg>
-  );
-}
-
-function ChevronDownIcon({ className }: { className?: string }) {
-  return (
-    <svg className={className} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="m6 9 6 6 6-6" />
-    </svg>
-  );
 }
 
 // ── Context ──────────────────────────────────

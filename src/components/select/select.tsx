@@ -5,6 +5,7 @@ import { cn } from "../../lib/utils";
 import { useClickOutside } from "../../lib/use-click-outside";
 import { useEscapeClose } from "../../lib/use-escape-close";
 import { useAutoFlip } from "../../lib/use-auto-flip";
+import { ChevronDownIcon, CheckIcon } from "../../lib/icons";
 
 // ── Types ────────────────────────────────────
 
@@ -23,24 +24,6 @@ export interface SelectProps {
   disabled?: boolean;
   autoFlip?: boolean;
   maxHeight?: number;
-}
-
-// ── Icons ────────────────────────────────────
-
-function ChevronDownIcon({ className, strokeWidth = 2 }: { className?: string; strokeWidth?: number }) {
-  return (
-    <svg className={className} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round">
-      <path d="m6 9 6 6 6-6" />
-    </svg>
-  );
-}
-
-function CheckIcon({ className, strokeWidth = 2.5 }: { className?: string; strokeWidth?: number }) {
-  return (
-    <svg className={className} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round">
-      <path d="M20 6 9 17l-5-5" />
-    </svg>
-  );
 }
 
 // ── Component ────────────────────────────────

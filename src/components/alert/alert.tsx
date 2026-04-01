@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { cn } from "../../lib/utils";
+import { XIcon } from "../../lib/icons";
 
 // ── Types ────────────────────────────────────
 
@@ -19,17 +20,6 @@ export interface AlertProps {
   onDismiss?: () => void;
   className?: string;
   children?: React.ReactNode;
-}
-
-// ── Icons ────────────────────────────────────
-
-function XIcon({ className }: { className?: string }) {
-  return (
-    <svg className={className} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M18 6 6 18" />
-      <path d="m6 6 12 12" />
-    </svg>
-  );
 }
 
 // ── Size definitions ─────────────────────────
