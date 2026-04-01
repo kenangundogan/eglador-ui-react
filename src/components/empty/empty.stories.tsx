@@ -48,7 +48,7 @@ export const CloudStorage: Story = {
         icon={<Cloud strokeWidth={1} />}
         title="Cloud Storage Empty"
         description="Upload files to your cloud storage to access them anywhere."
-        action={<Button size="xs" color="primary">Upload Files</Button>}
+        action={<Button size="xs" color="black">Upload Files</Button>}
       />
     </div>
   ),
@@ -66,7 +66,7 @@ export const NoProjects: Story = {
         description="You haven't created any projects yet. Get started by creating your first project."
       >
         <div className="flex gap-2 mt-1">
-          <Button size="xs" color="primary">Create Project</Button>
+          <Button size="xs" color="black">Create Project</Button>
           <Button size="xs" variant="outline" icon={<Import />}>Import Project</Button>
         </div>
       </Empty>

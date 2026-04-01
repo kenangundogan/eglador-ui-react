@@ -103,9 +103,9 @@ export const WithDescription: Story = {
     const [selected, setSelected] = useState("email");
     return (
       <div className="flex flex-col gap-4">
-        <Radio color="primary" checked={selected === "email"} onChange={() => setSelected("email")} label="Email notifications" description="Receive updates via email." />
-        <Radio color="primary" checked={selected === "push"} onChange={() => setSelected("push")} label="Push notifications" description="Get instant alerts on your device." />
-        <Radio color="primary" size="md" checked={selected === "sms"} onChange={() => setSelected("sms")} label="SMS notifications" description="Be informed via text message." />
+        <Radio checked={selected === "email"} onChange={() => setSelected("email")} label="Email notifications" description="Receive updates via email." />
+        <Radio checked={selected === "push"} onChange={() => setSelected("push")} label="Push notifications" description="Get instant alerts on your device." />
+        <Radio size="md" checked={selected === "sms"} onChange={() => setSelected("sms")} label="SMS notifications" description="Be informed via text message." />
       </div>
     );
   },
@@ -117,7 +117,7 @@ export const Disabled: Story = {
   render: (args: RadioProps) => (
     <div className="flex gap-6">
       <Radio {...args} disabled label="Unchecked" />
-      <Radio {...args} disabled checked label="Checked" color="primary" />
+      <Radio {...args} disabled checked label="Checked" />
     </div>
   ),
 };
@@ -132,9 +132,9 @@ export const WithoutLabel: Story = {
         {[0, 1, 2].map((i) => (
           <Radio key={i} size="sm" checked={selected === i} onChange={() => setSelected(i)} />
         ))}
-        <Radio size="sm" color="primary" checked />
-        <Radio size="sm" color="danger" checked />
-        <Radio size="sm" color="success" checked />
+        <Radio size="sm" checked />
+        <Radio size="sm" checked />
+        <Radio size="sm" checked />
       </div>
     );
   },
@@ -149,7 +149,7 @@ export const VariantList: Story = {
     return (
       <div className="flex flex-col gap-0.5 border border-zinc-200 rounded-xl p-2 w-70">
         {items.map((name) => (
-          <Radio key={name} variant="list" color="primary" checked={selected === name} onChange={() => setSelected(name)} label={name} />
+          <Radio key={name} variant="list" checked={selected === name} onChange={() => setSelected(name)} label={name} />
         ))}
       </div>
     );

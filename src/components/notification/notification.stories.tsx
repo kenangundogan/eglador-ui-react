@@ -57,10 +57,10 @@ export const WithProgressBar: Story = {
     const { notifications, push, dismiss } = useNotification();
     return (
       <div className="flex gap-2">
-        <Button size="xs" color="primary" onClick={() => push({ title: "Uploading...", message: "Your file is being processed.", icon: <Download />, color: "primary", showProgress: true, duration: 8000 })}>
+        <Button size="xs" color="black" onClick={() => push({ title: "Uploading...", message: "Your file is being processed.", icon: <Download />, color: "primary", showProgress: true, duration: 8000 })}>
           With Progress (8s)
         </Button>
-        <Button size="xs" color="success" onClick={() => push({ title: "Saved", message: "Changes saved successfully.", icon: <CheckCircle />, color: "success", showProgress: true, duration: 5000 })}>
+        <Button size="xs" color="black" onClick={() => push({ title: "Saved", message: "Changes saved successfully.", icon: <CheckCircle />, color: "success", showProgress: true, duration: 5000 })}>
           With Progress (5s)
         </Button>
         <NotificationContainer>
@@ -80,7 +80,7 @@ export const WithActions: Story = {
     const { notifications, push, dismiss } = useNotification();
     return (
       <div>
-        <Button size="xs" color="primary" onClick={() => push({
+        <Button size="xs" color="black" onClick={() => push({
           title: "New update available",
           message: "Version 2.0 is ready to install.",
           icon: <Zap />,
@@ -110,7 +110,7 @@ export const WithTimestamp: Story = {
     const { notifications, push, dismiss } = useNotification();
     return (
       <div>
-        <Button size="xs" color="info" onClick={() => push({
+        <Button size="xs" color="black" onClick={() => push({
           title: "New message",
           message: "You have a new message from the team.",
           icon: <Bell />,
@@ -137,7 +137,7 @@ export const PauseOnHover: Story = {
     const { notifications, push, dismiss } = useNotification();
     return (
       <div className="flex flex-col gap-2">
-        <Button size="xs" color="warning" onClick={() => push({
+        <Button size="xs" color="black" onClick={() => push({
           title: "Hover to pause",
           message: "This notification pauses its timer when you hover over it.",
           icon: <AlertTriangle />,
@@ -194,7 +194,7 @@ export const MaxVisible: Story = {
     let counter = 0;
     return (
       <div className="flex gap-2">
-        <Button size="xs" color="primary" onClick={() => push({ title: `Notification ${++counter}`, message: "Click multiple times to test stacking limit.", icon: <Bell />, color: "primary", duration: 15000, showProgress: true })}>
+        <Button size="xs" color="black" onClick={() => push({ title: `Notification ${++counter}`, message: "Click multiple times to test stacking limit.", icon: <Bell />, color: "primary", duration: 15000, showProgress: true })}>
           Add Notification
         </Button>
         <Button size="xs" variant="outline" onClick={dismissAll}>
@@ -238,7 +238,7 @@ export const UpdateExisting: Story = {
     const { notifications, push, dismiss, update } = useNotification();
     return (
       <div className="flex gap-2">
-        <Button size="xs" color="primary" onClick={() => {
+        <Button size="xs" color="black" onClick={() => {
           const id = push({ title: "Uploading...", message: "0% complete", icon: <Download />, color: "primary", duration: 0, showProgress: true });
           setTimeout(() => update(id, { message: "50% complete" }), 1500);
           setTimeout(() => update(id, { title: "Complete!", message: "File uploaded successfully.", color: "success", icon: <CheckCircle />, duration: 3000 }), 3000);

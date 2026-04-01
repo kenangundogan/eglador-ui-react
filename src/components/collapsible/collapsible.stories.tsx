@@ -178,7 +178,7 @@ export const Controlled: Story = {
     return (
       <div className="flex flex-col gap-3 max-w-md">
         <div className="flex items-center gap-3">
-          <Button size="xs" color="primary" onClick={() => setOpen(!open)}>
+          <Button size="xs" color="black" onClick={() => setOpen(!open)}>
             {open ? "Close" : "Open"}
           </Button>
           <span className="text-xs text-zinc-400">State: {open ? "open" : "closed"}</span>

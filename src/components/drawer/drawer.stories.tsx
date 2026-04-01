@@ -40,7 +40,7 @@ export const Default: Story = {
   render: (args) => (
     <Drawer {...args}>
       <Drawer.Trigger asChild>
-        <Button color="primary">Open Drawer</Button>
+        <Button color="black">Open Drawer</Button>
       </Drawer.Trigger>
       <Drawer.Content>
         <Drawer.Header>Drawer Title</Drawer.Header>
@@ -49,7 +49,7 @@ export const Default: Story = {
           <p className="mt-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
         </Drawer.Body>
         <Drawer.Footer>
-          <Button color="primary" size="sm">Save</Button>
+          <Button color="black" size="sm">Save</Button>
           <Drawer.Trigger asChild>
             <Button variant="outline" size="sm">Cancel</Button>
           </Drawer.Trigger>
@@ -113,7 +113,7 @@ export const BottomSide: Story = {
         <Drawer.Header>Actions</Drawer.Header>
         <Drawer.Body>
           <div className="flex gap-3">
-            <Button color="primary" size="sm" className="flex-1">Share</Button>
+            <Button color="black" size="sm" className="flex-1">Share</Button>
             <Button color="danger" size="sm" className="flex-1">Delete</Button>
           </div>
         </Drawer.Body>
@@ -136,7 +136,7 @@ export const Sizes: Story = {
             <Drawer.Header>Size: {size}</Drawer.Header>
             <Drawer.Body>This drawer uses the "{size}" size variant.</Drawer.Body>
             <Drawer.Footer>
-              <Button color="primary" size="sm">Close</Button>
+              <Button color="black" size="sm">Close</Button>
             </Drawer.Footer>
           </Drawer.Content>
         </Drawer>
@@ -152,7 +152,7 @@ export const Controlled: Story = {
     const [open, setOpen] = useState(false);
     return (
       <div className="flex items-center gap-3">
-        <Button color="primary" onClick={() => setOpen(true)}>Open Controlled</Button>
+        <Button color="black" onClick={() => setOpen(true)}>Open Controlled</Button>
         <span className="text-xs text-zinc-400">State: {open ? "open" : "closed"}</span>
         <Drawer {...args} open={open} onOpenChange={setOpen}>
           <Drawer.Content>
@@ -160,7 +160,7 @@ export const Controlled: Story = {
             <Drawer.Body>This drawer is controlled externally via the open prop.</Drawer.Body>
             <Drawer.Footer>
               <Button variant="outline" size="sm" onClick={() => setOpen(false)}>Cancel</Button>
-              <Button color="primary" size="sm" onClick={() => setOpen(false)}>Confirm</Button>
+              <Button color="black" size="sm" onClick={() => setOpen(false)}>Confirm</Button>
             </Drawer.Footer>
           </Drawer.Content>
         </Drawer>
@@ -181,7 +181,7 @@ export const NoBackdropClose: Story = {
         <Drawer.Header>Persistent</Drawer.Header>
         <Drawer.Body>This drawer cannot be closed by clicking the backdrop. Use the X button or Escape key.</Drawer.Body>
         <Drawer.Footer>
-          <Button color="primary" size="sm">Close</Button>
+          <Button color="black" size="sm">Close</Button>
         </Drawer.Footer>
       </Drawer.Content>
     </Drawer>
@@ -194,7 +194,7 @@ export const ScrollableContent: Story = {
   render: (args) => (
     <Drawer {...args} size="sm">
       <Drawer.Trigger asChild>
-        <Button color="primary">Open Scrollable</Button>
+        <Button color="black">Open Scrollable</Button>
       </Drawer.Trigger>
       <Drawer.Content>
         <Drawer.Header>Long Content</Drawer.Header>
@@ -206,7 +206,7 @@ export const ScrollableContent: Story = {
           </ScrollArea>
         </Drawer.Body>
         <Drawer.Footer>
-          <Button color="primary" size="sm">Done</Button>
+          <Button color="black" size="sm">Done</Button>
         </Drawer.Footer>
       </Drawer.Content>
     </Drawer>

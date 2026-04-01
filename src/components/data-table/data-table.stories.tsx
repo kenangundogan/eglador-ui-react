@@ -34,7 +34,7 @@ const userColumns: DataTableColumn<User>[] = [
     accessorKey: "name",
     cell: (value) => (
       <div className="flex items-center gap-2">
-        <Avatar name={String(value)} size="xs" color="primary" />
+        <Avatar name={String(value)} size="xs" />
         <span className="font-medium text-zinc-900">{String(value)}</span>
       </div>
     ),

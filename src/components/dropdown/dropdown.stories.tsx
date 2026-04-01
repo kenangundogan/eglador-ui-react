@@ -79,7 +79,7 @@ export const CustomTrigger: Story = {
     <div className="p-10">
       <Dropdown {...args} align="left">
         <Dropdown.Trigger asChild>
-          <Button color="primary" iconRight={<ChevronDown />}>Options</Button>
+          <Button color="black" iconRight={<ChevronDown />}>Options</Button>
         </Dropdown.Trigger>
         <Dropdown.Content>
           <div className="p-1.5 min-w-45">
@@ -231,7 +231,7 @@ export const Controlled: Story = {
     const [open, setOpen] = useState(false);
     return (
       <div className="flex items-center gap-3 p-10">
-        <Button color="primary" onClick={() => setOpen(!open)}>
+        <Button color="black" onClick={() => setOpen(!open)}>
           {open ? "Close" : "Open"} Dropdown
         </Button>
         <Dropdown {...args} open={open} onOpenChange={setOpen} align="left">

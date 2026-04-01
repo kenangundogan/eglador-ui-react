@@ -82,9 +82,9 @@ export const Outline: Story = {
 export const Sizes: Story = {
   render: (args: BadgeProps) => (
     <div className="flex gap-2 items-center">
-      <Badge {...args} size="xs" color="primary">Extra Small</Badge>
-      <Badge {...args} size="sm" color="primary">Small</Badge>
-      <Badge {...args} size="md" color="primary">Medium</Badge>
+      <Badge {...args} size="xs">Extra Small</Badge>
+      <Badge {...args} size="sm">Small</Badge>
+      <Badge {...args} size="md">Medium</Badge>
     </div>
   ),
 };
@@ -94,9 +94,9 @@ export const Sizes: Story = {
 export const Shapes: Story = {
   render: (args: BadgeProps) => (
     <div className="flex gap-2 items-center">
-      <Badge {...args} shape="square" color="primary">Square</Badge>
-      <Badge {...args} shape="rounded" color="primary">Rounded</Badge>
-      <Badge {...args} shape="pill" color="primary">Pill</Badge>
+      <Badge {...args} shape="square">Square</Badge>
+      <Badge {...args} shape="rounded">Rounded</Badge>
+      <Badge {...args} shape="pill">Pill</Badge>
     </div>
   ),
 };
@@ -106,11 +106,11 @@ export const Shapes: Story = {
 export const WithIcons: Story = {
   render: (args: BadgeProps) => (
     <div className="flex gap-2 flex-wrap">
-      <Badge {...args} color="warning" icon={<Star />}>Featured</Badge>
-      <Badge {...args} color="primary" icon={<Zap />}>New</Badge>
-      <Badge {...args} color="danger" icon={<AlertTriangle />}>Critical</Badge>
-      <Badge {...args} color="success" icon={<Check />}>Verified</Badge>
-      <Badge {...args} color="info" iconRight={<Clock />}>Pending</Badge>
+      <Badge {...args} icon={<Star />}>Featured</Badge>
+      <Badge {...args} icon={<Zap />}>New</Badge>
+      <Badge {...args} icon={<AlertTriangle />}>Critical</Badge>
+      <Badge {...args} icon={<Check />}>Verified</Badge>
+      <Badge {...args} iconRight={<Clock />}>Pending</Badge>
     </div>
   ),
 };
@@ -126,7 +126,6 @@ export const Removable: Story = {
           <Badge
             {...args}
             key={tag}
-            color="primary"
             shape="pill"
             removable
             onRemove={() => setTags((t) => t.filter((v) => v !== tag))}

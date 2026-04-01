@@ -20,7 +20,7 @@ const meta: Meta<typeof Stepper> = {
     activeStep: 1,
     variant: "default",
     size: "sm",
-    color: "primary",
+    color: "default",
     orientation: "horizontal",
     clickable: false,
   },
@@ -101,7 +101,7 @@ export const InteractiveWizard: Story = {
           <Button size="xs" variant="outline" disabled={step === 0} onClick={() => setStep((s) => s - 1)}>
             Previous
           </Button>
-          <Button size="xs" color="primary" disabled={step === steps.length} onClick={() => setStep((s) => s + 1)}>
+          <Button size="xs" color="black" disabled={step === steps.length} onClick={() => setStep((s) => s + 1)}>
             {step === steps.length - 1 ? "Finish" : "Next"}
           </Button>
         </div>
@@ -240,7 +240,7 @@ export const Clickable: Story = {
 
 export const AllCompleted: Story = {
   render: (args: StepperProps) => (
-    <Stepper {...args} activeStep={4} color="success">
+    <Stepper {...args} activeStep={4}>
       <Stepper.Step title="Account" />
       <Stepper.Step title="Profile" />
       <Stepper.Step title="Payment" />

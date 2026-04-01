@@ -45,11 +45,11 @@ export const UserProfile: Story = {
         </HoverCard.Trigger>
         <HoverCard.Content className="w-72">
           <div className="flex gap-3">
-            <Avatar name="Kenan Gundogan" size="md" color="primary" />
+            <Avatar name="Kenan Gundogan" size="md" />
             <div className="flex flex-col gap-1 min-w-0">
               <div className="flex items-center gap-2">
                 <span className="text-sm font-semibold text-zinc-900">Kenan Gundogan</span>
-                <Badge size="xs" color="primary" shape="pill">Pro</Badge>
+                <Badge size="xs" shape="pill">Pro</Badge>
               </div>
               <span className="text-xs text-zinc-400">@kenangundogan</span>
               <p className="text-xs text-zinc-600 mt-1 leading-relaxed">
@@ -139,7 +139,7 @@ export const ProductCard: Story = {
           <div className="flex flex-col gap-2">
             <div className="flex items-center justify-between">
               <h4 className="text-sm font-semibold text-zinc-900">Premium Plan</h4>
-              <Badge size="xs" color="success">Active</Badge>
+              <Badge size="xs">Active</Badge>
             </div>
             <p className="text-xs text-zinc-500">Unlimited projects, priority support, and advanced analytics.</p>
             <div className="flex flex-col gap-1 mt-1 text-xs text-zinc-600">
@@ -171,7 +171,7 @@ export const InlineText: Story = {
           </HoverCard.Trigger>
           <HoverCard.Content className="w-60">
             <div className="flex items-center gap-3">
-              <Avatar name="Alice Johnson" size="sm" color="success" />
+              <Avatar name="Alice Johnson" size="sm" />
               <div>
                 <p className="text-sm font-semibold text-zinc-900">Alice Johnson</p>
                 <p className="text-xs text-zinc-400">Frontend Engineer</p>
@@ -186,7 +186,7 @@ export const InlineText: Story = {
           </HoverCard.Trigger>
           <HoverCard.Content className="w-60">
             <div className="flex items-center gap-3">
-              <Avatar name="Bob Smith" size="sm" color="primary" />
+              <Avatar name="Bob Smith" size="sm" />
               <div>
                 <p className="text-sm font-semibold text-zinc-900">Bob Smith</p>
                 <p className="text-xs text-zinc-400">Backend Engineer</p>
@@ -201,7 +201,7 @@ export const InlineText: Story = {
           </HoverCard.Trigger>
           <HoverCard.Content className="w-60">
             <div className="flex items-center gap-3">
-              <Avatar name="Charlie Brown" size="sm" color="warning" />
+              <Avatar name="Charlie Brown" size="sm" />
               <div>
                 <p className="text-sm font-semibold text-zinc-900">Charlie Brown</p>
                 <p className="text-xs text-zinc-400">Product Designer</p>

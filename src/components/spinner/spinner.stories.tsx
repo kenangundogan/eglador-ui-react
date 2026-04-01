@@ -54,9 +54,9 @@ export const Colors: Story = {
 export const WithLabel: Story = {
   render: (args: SpinnerProps) => (
     <div className="flex gap-8 items-start">
-      <Spinner {...args} size="sm" color="primary" label="Loading..." />
-      <Spinner {...args} size="md" color="success" label="Saving" />
-      <Spinner {...args} size="lg" color="danger" label="Processing" />
+      <Spinner {...args} size="sm" label="Loading..." />
+      <Spinner {...args} size="md" label="Saving" />
+      <Spinner {...args} size="lg" label="Processing" />
     </div>
   ),
 };
@@ -74,7 +74,7 @@ export const OnDarkBackground: Story = {
 export const InlineWithText: Story = {
   render: (args: SpinnerProps) => (
     <div className="flex items-center gap-2">
-      <Spinner {...args} size="xs" color="primary" />
+      <Spinner {...args} size="xs" />
       <span className="text-sm text-zinc-600">Checking availability...</span>
     </div>
   ),

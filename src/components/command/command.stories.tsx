@@ -66,7 +66,7 @@ export const ApplicationLauncher: Story = {
     const [open, setOpen] = useState(false);
     return (
       <div className="flex flex-col items-center gap-3">
-        <Button color="primary" onClick={() => setOpen(true)}>Open Command Menu</Button>
+        <Button color="black" onClick={() => setOpen(true)}>Open Command Menu</Button>
 
         <Command open={open} onOpenChange={setOpen}>
           <Command.Input placeholder="What do you need?" />

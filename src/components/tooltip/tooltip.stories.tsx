@@ -54,7 +54,7 @@ export const NoDelay: Story = {
   render: () => (
     <div className="p-20 flex justify-center">
       <Tooltip content="Instant tooltip" delay={0}>
-        <Button color="primary">No delay</Button>
+        <Button>No delay</Button>
       </Tooltip>
     </div>
   ),

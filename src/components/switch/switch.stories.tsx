@@ -101,21 +101,18 @@ export const LabelDescription: Story = {
     return (
       <div className="flex flex-col gap-4">
         <Switch
-          color="primary"
           checked={checks.email}
           onChange={() => setChecks((p) => ({ ...p, email: !p.email }))}
           label="Email Notifications"
           description="Receive emails for news and updates."
         />
         <Switch
-          color="primary"
           checked={checks.push}
           onChange={() => setChecks((p) => ({ ...p, push: !p.push }))}
           label="Push Notifications"
           description="Get instant alerts for breaking news."
         />
         <Switch
-          color="primary"
           size="md"
           checked={checks.sms}
           onChange={() => setChecks((p) => ({ ...p, sms: !p.sms }))}
@@ -133,7 +130,7 @@ export const Disabled: Story = {
   render: (args: SwitchProps) => (
     <div className="flex gap-6">
       <Switch {...args} disabled label="Off (disabled)" />
-      <Switch {...args} disabled checked label="On (disabled)" color="primary" />
+      <Switch {...args} disabled checked label="On (disabled)" />
     </div>
   ),
 };
@@ -148,9 +145,9 @@ export const WithoutLabel: Story = {
         <Switch size="xs" checked={checks.a} onChange={() => setChecks((p) => ({ ...p, a: !p.a }))} />
         <Switch size="sm" checked={checks.b} onChange={() => setChecks((p) => ({ ...p, b: !p.b }))} />
         <Switch size="md" checked={checks.c} onChange={() => setChecks((p) => ({ ...p, c: !p.c }))} />
-        <Switch size="sm" color="primary" checked />
-        <Switch size="sm" color="danger" checked />
-        <Switch size="sm" color="success" checked />
+        <Switch size="sm" checked />
+        <Switch size="sm" checked />
+        <Switch size="sm" checked />
       </div>
     );
   },
@@ -170,10 +167,10 @@ export const SettingsPanel: Story = {
       setSettings((p) => ({ ...p, [key]: !p[key] }));
     return (
       <div className="flex flex-col gap-4 w-80 border border-zinc-200 rounded-xl p-4">
-        <Switch color="primary" checked={settings.darkMode} onChange={() => toggle("darkMode")} label="Dark Mode" description="Switch to dark theme." />
-        <Switch color="primary" checked={settings.notifications} onChange={() => toggle("notifications")} label="Notifications" description="Enable push notifications." />
-        <Switch color="primary" checked={settings.analytics} onChange={() => toggle("analytics")} label="Analytics" description="Help us improve with usage data." />
-        <Switch color="primary" checked={settings.marketing} onChange={() => toggle("marketing")} label="Marketing" description="Receive promotional emails." />
+        <Switch checked={settings.darkMode} onChange={() => toggle("darkMode")} label="Dark Mode" description="Switch to dark theme." />
+        <Switch checked={settings.notifications} onChange={() => toggle("notifications")} label="Notifications" description="Enable push notifications." />
+        <Switch checked={settings.analytics} onChange={() => toggle("analytics")} label="Analytics" description="Help us improve with usage data." />
+        <Switch checked={settings.marketing} onChange={() => toggle("marketing")} label="Marketing" description="Receive promotional emails." />
       </div>
     );
   },

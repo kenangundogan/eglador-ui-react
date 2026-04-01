@@ -88,7 +88,7 @@ export const WithButton: Story = {
       <InputGroup {...args}>
         <Input icon={<Search />} placeholder="Search..." />
         <InputGroup.Addon>
-          <Button color="primary" shape="square" size="sm">Search</Button>
+          <Button color="black" shape="square" size="sm">Search</Button>
         </InputGroup.Addon>
       </InputGroup>
 
@@ -133,7 +133,7 @@ export const Complex: Story = {
         <InputGroup.Text>https://</InputGroup.Text>
         <Input placeholder="your-domain.com" />
         <InputGroup.Addon>
-          <Button color="primary" shape="square" size="sm" icon={<Globe />}>Verify</Button>
+          <Button color="black" shape="square" size="sm" icon={<Globe />}>Verify</Button>
         </InputGroup.Addon>
       </InputGroup>
     </div>
@@ -202,7 +202,7 @@ export const LoginForm: Story = {
           </InputGroup.Addon>
         </InputGroup>
       </div>
-      <Button color="primary" className="w-full">Sign In</Button>
+      <Button color="black" className="w-full">Sign In</Button>
     </div>
   ),
 };

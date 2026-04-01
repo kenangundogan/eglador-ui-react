@@ -111,10 +111,10 @@ export const WithIcons: Story = {
 export const Sizes: Story = {
   render: (args: AlertProps) => (
     <div className="flex flex-col gap-3 max-w-lg">
-      <Alert {...args} size="sm" color="primary" icon={<Info />} title="Small">
+      <Alert {...args} size="sm" icon={<Info />} title="Small">
         This is a small alert.
       </Alert>
-      <Alert {...args} size="md" color="primary" icon={<Info />} title="Medium">
+      <Alert {...args} size="md" icon={<Info />} title="Medium">
         This is a medium alert.
       </Alert>
     </div>

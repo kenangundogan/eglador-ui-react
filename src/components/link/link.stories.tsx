@@ -19,7 +19,7 @@ const meta: Meta<typeof Link> = {
     children: "Click here",
     href: "#",
     variant: "default",
-    color: "primary",
+    color: "default",
     size: "sm",
     external: false,
     disabled: false,
@@ -81,8 +81,8 @@ export const Sizes: Story = {
 export const WithLeftIcon: Story = {
   render: (args: LinkProps) => (
     <div className="flex gap-6">
-      <Link {...args} color="primary" icon={<Mail />}>Contact us</Link>
-      <Link {...args} color="success" icon={<Download />}>Download</Link>
+      <Link {...args} icon={<Mail />}>Contact us</Link>
+      <Link {...args} icon={<Download />}>Download</Link>
     </div>
   ),
 };
@@ -92,7 +92,7 @@ export const WithLeftIcon: Story = {
 export const WithRightIcon: Story = {
   render: (args: LinkProps) => (
     <div className="flex gap-6">
-      <Link {...args} color="primary" iconRight={<ArrowRight />}>Learn more</Link>
+      <Link {...args} iconRight={<ArrowRight />}>Learn more</Link>
     </div>
   ),
 };

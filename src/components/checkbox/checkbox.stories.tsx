@@ -135,9 +135,9 @@ export const Indeterminate: Story = {
   render: (args: CheckboxProps) => (
     <div className="flex gap-6">
       <Checkbox {...args} indeterminate label="Default" />
-      <Checkbox {...args} indeterminate color="primary" label="Primary" />
-      <Checkbox {...args} indeterminate color="danger" label="Danger" />
-      <Checkbox {...args} indeterminate color="info" label="Info" />
+      <Checkbox {...args} indeterminate label="Primary" />
+      <Checkbox {...args} indeterminate label="Danger" />
+      <Checkbox {...args} indeterminate label="Info" />
     </div>
   ),
 };
@@ -164,10 +164,10 @@ export const WithoutLabel: Story = {
         <Checkbox size="xs" checked={checks.a} onChange={() => setChecks((p) => ({ ...p, a: !p.a }))} />
         <Checkbox size="sm" checked={checks.b} onChange={() => setChecks((p) => ({ ...p, b: !p.b }))} />
         <Checkbox size="md" checked={checks.c} onChange={() => setChecks((p) => ({ ...p, c: !p.c }))} />
-        <Checkbox size="sm" color="primary" checked />
-        <Checkbox size="sm" color="danger" checked />
-        <Checkbox size="sm" color="success" checked />
-        <Checkbox size="sm" color="info" checked />
+        <Checkbox size="sm" checked />
+        <Checkbox size="sm" checked />
+        <Checkbox size="sm" checked />
+        <Checkbox size="sm" checked />
       </div>
     );
   },
@@ -230,7 +230,7 @@ export const VariantCardColors: Story = {
       {ALL_COLORS.map((c) => (
         <Checkbox {...args} key={c} variant="card" color={c} checked label={c.charAt(0).toUpperCase() + c.slice(1)} />
       ))}
-      <Checkbox {...args} variant="card" color="primary" label="Unchecked" />
+      <Checkbox {...args} variant="card" label="Unchecked" />
     </div>
   ),
 };

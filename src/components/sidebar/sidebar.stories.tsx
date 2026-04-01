@@ -78,7 +78,7 @@ function UserMenu() {
     <Popover side="top" align="start">
       <Popover.Trigger asChild>
         <button type="button" className="flex w-full items-center gap-2 rounded-lg hover:bg-zinc-50 p-1 transition-colors cursor-pointer">
-          <Avatar name="Kenan Gundogan" size="sm" color="primary" />
+          <Avatar name="Kenan Gundogan" size="sm" />
           {isOpen && (
             <>
               <div className="flex-1 min-w-0 text-left">
@@ -172,12 +172,12 @@ export const Default: Story = {
             <Sidebar.GroupContent>
               <Sidebar.Menu>
                 <Sidebar.MenuItem>
-                  <Sidebar.MenuButton icon={<Mail />} badge={<Badge size="xs" color="primary" shape="pill">3</Badge>} tooltip="Messages">
+                  <Sidebar.MenuButton icon={<Mail />} badge={<Badge size="xs" shape="pill">3</Badge>} tooltip="Messages">
                     Messages
                   </Sidebar.MenuButton>
                 </Sidebar.MenuItem>
                 <Sidebar.MenuItem>
-                  <Sidebar.MenuButton icon={<Bell />} badge={<Badge size="xs" color="danger" shape="pill">12</Badge>} tooltip="Notifications">
+                  <Sidebar.MenuButton icon={<Bell />} badge={<Badge size="xs" shape="pill">12</Badge>} tooltip="Notifications">
                     Notifications
                   </Sidebar.MenuButton>
                 </Sidebar.MenuItem>

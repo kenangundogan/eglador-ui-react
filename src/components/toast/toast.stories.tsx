@@ -82,7 +82,7 @@ export const PromiseToast: Story = {
 
     return (
       <div className="flex gap-2">
-        <Button size="xs" color="primary" onClick={() => toast.promise(fakeUpload(), {
+        <Button size="xs" color="black" onClick={() => toast.promise(fakeUpload(), {
           loading: "Uploading file...",
           success: (data) => `${data.name} uploaded successfully!`,
           error: "Upload failed. Please try again.",
@@ -137,7 +137,7 @@ export const Stacking: Story = {
     let counter = 0;
     return (
       <div className="flex gap-2">
-        <Button size="xs" color="primary" onClick={() => toast.info({ title: `Toast ${++counter}`, description: "Click multiple times to stack.", duration: 10000 })}>
+        <Button size="xs" color="black" onClick={() => toast.info({ title: `Toast ${++counter}`, description: "Click multiple times to stack.", duration: 10000 })}>
           Add Toast
         </Button>
         <Button size="xs" variant="outline" onClick={() => toast.dismissAll()}>
@@ -171,7 +171,7 @@ export const CustomIcon: Story = {
 export const UpdateExisting: Story = {
   render: () => (
     <div>
-      <Button size="xs" color="primary" onClick={() => {
+      <Button size="xs" color="black" onClick={() => {
         const id = toast.loading("Processing payment...");
         setTimeout(() => toast.update(id, { type: "success", title: "Payment complete!", description: "$49.99 charged.", duration: 4000 }), 2500);
       }}>

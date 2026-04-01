@@ -20,7 +20,7 @@ const meta: Meta<typeof Progress> = {
     value: 60,
     max: 100,
     size: "sm",
-    color: "primary",
+    color: "default",
     variant: "default",
     shape: "pill",
     showValue: false,
@@ -103,9 +103,9 @@ export const LiveProgress: Story = {
 
     return (
       <div className="flex flex-col gap-3 max-w-sm">
-        <Progress value={value} color={value >= 100 ? "success" : "primary"} label={value >= 100 ? "Complete!" : "Downloading..."} showValue />
+        <Progress value={value} label={value >= 100 ? "Complete!" : "Downloading..."} showValue />
         <div className="flex gap-2">
-          <Button size="xs" color="primary" disabled={running} onClick={() => { setValue(0); setRunning(true); }}>Start</Button>
+          <Button size="xs" color="black" disabled={running} onClick={() => { setValue(0); setRunning(true); }}>Start</Button>
           <Button size="xs" variant="outline" onClick={() => { setValue(0); setRunning(false); }}>Reset</Button>
         </div>
       </div>

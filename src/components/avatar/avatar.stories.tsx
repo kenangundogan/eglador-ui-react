@@ -82,10 +82,10 @@ export const Initials: Story = {
 export const Names: Story = {
   render: (args: AvatarProps) => (
     <div className="flex gap-3 items-center">
-      <Avatar {...args} name="Alice" color="primary" />
-      <Avatar {...args} name="Bob Smith" color="success" />
-      <Avatar {...args} name="Charlie Brown" color="danger" />
-      <Avatar {...args} name="Diana" color="warning" />
+      <Avatar {...args} name="Alice" />
+      <Avatar {...args} name="Bob Smith" />
+      <Avatar {...args} name="Charlie Brown" />
+      <Avatar {...args} name="Diana" />
     </div>
   ),
 };
@@ -95,9 +95,9 @@ export const Names: Story = {
 export const WithIcon: Story = {
   render: (args: AvatarProps) => (
     <div className="flex gap-3 items-center">
-      <Avatar {...args} icon={<User />} color="default" size="lg" />
-      <Avatar {...args} icon={<Bot />} color="primary" size="lg" />
-      <Avatar {...args} icon={<Crown />} color="warning" size="lg" />
+      <Avatar {...args} icon={<User />} size="lg" />
+      <Avatar {...args} icon={<Bot />} size="lg" />
+      <Avatar {...args} icon={<Crown />} size="lg" />
     </div>
   ),
 };
@@ -143,10 +143,10 @@ export const Status: Story = {
 export const StatusWithInitials: Story = {
   render: (args: AvatarProps) => (
     <div className="flex gap-4 items-center">
-      <Avatar {...args} name="Alice B" color="primary" status="online" />
-      <Avatar {...args} name="Bob C" color="success" status="away" />
-      <Avatar {...args} name="Charlie D" color="danger" status="busy" />
-      <Avatar {...args} name="Diana E" color="default" status="offline" />
+      <Avatar {...args} name="Alice B" status="online" />
+      <Avatar {...args} name="Bob C" status="away" />
+      <Avatar {...args} name="Charlie D" status="busy" />
+      <Avatar {...args} name="Diana E" status="offline" />
     </div>
   ),
 };
@@ -158,17 +158,17 @@ export const Group: Story = {
     <div className="flex flex-col gap-4">
       <AvatarGroup size="md">
         <Avatar src={SAMPLE_IMAGE} />
-        <Avatar name="Alice" color="primary" />
-        <Avatar name="Bob" color="success" />
-        <Avatar name="Charlie" color="danger" />
+        <Avatar name="Alice" />
+        <Avatar name="Bob" />
+        <Avatar name="Charlie" />
       </AvatarGroup>
 
       <AvatarGroup size="lg">
         <Avatar src={SAMPLE_IMAGE} />
-        <Avatar name="Alice" color="primary" />
-        <Avatar name="Bob" color="success" />
-        <Avatar name="Charlie" color="danger" />
-        <Avatar name="Diana" color="warning" />
+        <Avatar name="Alice" />
+        <Avatar name="Bob" />
+        <Avatar name="Charlie" />
+        <Avatar name="Diana" />
       </AvatarGroup>
     </div>
   ),
@@ -181,21 +181,21 @@ export const GroupWithMax: Story = {
     <div className="flex flex-col gap-4">
       <AvatarGroup size="md" max={3}>
         <Avatar src={SAMPLE_IMAGE} />
-        <Avatar name="Alice" color="primary" />
-        <Avatar name="Bob" color="success" />
-        <Avatar name="Charlie" color="danger" />
-        <Avatar name="Diana" color="warning" />
-        <Avatar name="Edward" color="info" />
+        <Avatar name="Alice" />
+        <Avatar name="Bob" />
+        <Avatar name="Charlie" />
+        <Avatar name="Diana" />
+        <Avatar name="Edward" />
       </AvatarGroup>
 
       <AvatarGroup size="sm" max={4}>
-        <Avatar name="A" color="primary" />
-        <Avatar name="B" color="success" />
-        <Avatar name="C" color="danger" />
-        <Avatar name="D" color="warning" />
-        <Avatar name="E" color="info" />
-        <Avatar name="F" color="default" />
-        <Avatar name="G" color="primary" />
+        <Avatar name="A" />
+        <Avatar name="B" />
+        <Avatar name="C" />
+        <Avatar name="D" />
+        <Avatar name="E" />
+        <Avatar name="F" />
+        <Avatar name="G" />
       </AvatarGroup>
     </div>
   ),
