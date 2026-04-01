@@ -267,9 +267,9 @@ export const EcommerceHeader: Story = {
           </NavigationMenu>
         </div>
         <div className="flex items-center gap-2 text-sm text-zinc-500">
-          <Link href="#" className="hover:text-zinc-900 transition-colors">Sign In</Link>
+          <Link color="default" href="#">Sign In</Link>
           <span className="text-zinc-300">|</span>
-          <Link href="#" className="hover:text-zinc-900 transition-colors">Cart (0)</Link>
+          <Link color="default" href="#">Cart (0)</Link>
         </div>
       </div>
     </div>

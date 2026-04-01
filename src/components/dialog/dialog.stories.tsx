@@ -46,7 +46,7 @@ export const Default: Story = {
           <Dialog.Close asChild>
             <Button variant="outline">Cancel</Button>
           </Dialog.Close>
-          <Button>Save</Button>
+          <Button color="black">Save</Button>
         </Dialog.Footer>
       </Dialog.Content>
     </Dialog>
@@ -70,7 +70,7 @@ export const WithIcon: Story = {
         </Dialog.Body>
         <Dialog.Footer>
           <Dialog.Close asChild>
-            <Button>Got it</Button>
+            <Button color="black">Got it</Button>
           </Dialog.Close>
         </Dialog.Footer>
       </Dialog.Content>
@@ -82,7 +82,7 @@ export const Confirmation: Story = {
   render: () => (
     <Dialog size="sm">
       <Dialog.Trigger asChild>
-        <Button variant="outline" color="danger">Delete Item</Button>
+        <Button variant="outline">Delete Item</Button>
       </Dialog.Trigger>
       <Dialog.Content>
         <Dialog.Close />
@@ -148,7 +148,7 @@ export const Controlled: Story = {
               <p className="text-sm text-zinc-600">You can control this dialog programmatically.</p>
             </Dialog.Body>
             <Dialog.Footer>
-              <Button onClick={() => setOpen(false)}>Done</Button>
+              <Button color="black" onClick={() => setOpen(false)}>Done</Button>
             </Dialog.Footer>
           </Dialog.Content>
         </Dialog>
@@ -203,7 +203,7 @@ export const ScrollableContent: Story = {
             <Button variant="outline">Decline</Button>
           </Dialog.Close>
           <Dialog.Close asChild>
-            <Button>Accept</Button>
+            <Button color="black">Accept</Button>
           </Dialog.Close>
         </Dialog.Footer>
       </Dialog.Content>
@@ -239,7 +239,7 @@ export const FormDialog: Story = {
           <Dialog.Close asChild>
             <Button variant="outline">Cancel</Button>
           </Dialog.Close>
-          <Button>Save Changes</Button>
+          <Button color="black">Save Changes</Button>
         </Dialog.Footer>
       </Dialog.Content>
     </Dialog>

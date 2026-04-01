@@ -41,7 +41,7 @@ export const UserProfile: Story = {
     <div className="p-25 flex justify-center">
       <HoverCard {...args}>
         <HoverCard.Trigger>
-          <Link href="#">@kenangundogan</Link>
+          <Link color="default" href="#">@kenangundogan</Link>
         </HoverCard.Trigger>
         <HoverCard.Content className="w-72">
           <div className="flex gap-3">
@@ -97,7 +97,7 @@ export const LinkPreview: Story = {
         Check out the{" "}
         <HoverCard {...args} openDelay={200}>
           <HoverCard.Trigger>
-            <Link href="#">eglador-ui-react</Link>
+            <Link color="default" href="#" className="font-bold">eglador-ui-react</Link>
           </HoverCard.Trigger>
           <HoverCard.Content className="w-80">
             <div className="flex flex-col gap-2">
@@ -222,7 +222,7 @@ export const NoDelay: Story = {
     <div className="p-25 flex justify-center">
       <HoverCard {...args} openDelay={0} closeDelay={0}>
         <HoverCard.Trigger>
-          <span className="text-sm font-medium text-blue-600 cursor-pointer hover:underline">Instant hover</span>
+          <span className="text-sm font-medium cursor-pointer hover:underline">Instant hover</span>
         </HoverCard.Trigger>
         <HoverCard.Content className="w-48">
           <p className="text-sm text-zinc-600">Opens and closes instantly.</p>

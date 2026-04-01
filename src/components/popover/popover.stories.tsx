@@ -150,7 +150,7 @@ export const SettingsForm: Story = {
               </div>
               <Separator />
               <Input size="xs" label="Display Name" placeholder="John Doe" />
-              <Button size="xs" color="primary" className="w-full">Save</Button>
+              <Button size="xs" color="black" className="w-full">Save</Button>
             </div>
           </Popover.Content>
         </Popover>
@@ -185,7 +185,7 @@ export const Controlled: Story = {
       <div className="flex items-center gap-3 p-20">
         <Popover {...args} open={open} onOpenChange={setOpen}>
           <Popover.Trigger asChild>
-            <Button color="primary">Toggle</Button>
+            <Button variant="outline">Toggle</Button>
           </Popover.Trigger>
           <Popover.Content className="w-60">
             <p className="text-sm text-zinc-600">This popover is controlled externally.</p>

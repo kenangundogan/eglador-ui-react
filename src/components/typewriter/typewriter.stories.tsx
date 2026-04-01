@@ -133,7 +133,7 @@ export const Styled: Story = {
       <h1 className="text-3xl font-bold text-zinc-900">
         <Typewriter texts={["Build.", "Ship.", "Scale."]} pauseDuration={1500} />
       </h1>
-      <p className="text-lg text-blue-600">
+      <p className="text-lg">
         <Typewriter texts={["React components", "Tailwind CSS v4", "TypeScript ready"]} typingSpeed={30} pauseDuration={2000} />
       </p>
       <span className="text-sm text-zinc-400 font-mono">

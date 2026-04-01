@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Cloud, FolderPlus, Bell, Search, FileX, ShieldX, WifiOff, Import } from "lucide-react";
 import { Button } from "../button";
 import { Input } from "../input";
+import { Link } from "../link";
 import { Empty, type EmptyProps } from "./empty";
 
 const meta: Meta<typeof Empty> = {
@@ -104,7 +105,7 @@ export const NotFound: Story = {
         <div className="flex flex-col items-center gap-3 mt-1 w-full max-w-xs">
           <Input size="xs" icon={<Search />} placeholder="Try searching for pages..." className="w-full" />
           <span className="text-xs text-zinc-400">
-            Need help? <a href="#" className="text-blue-500 hover:text-blue-600 font-medium">Contact support</a>
+            Need help? <Link color="default" href="#">Contact support</Link>
           </span>
         </div>
       </Empty>
@@ -138,7 +139,7 @@ export const ErrorState: Story = {
         icon={<FileX strokeWidth={1} />}
         title="Failed to load"
         description="Something went wrong while loading the data. Please try again."
-        action={<Button size="xs" color="danger" variant="outline">Retry</Button>}
+        action={<Button size="xs" variant="outline">Retry</Button>}
       />
     </div>
   ),

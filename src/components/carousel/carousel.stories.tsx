@@ -3,15 +3,15 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Button } from "../button";
 import { Carousel, type CarouselProps } from "./carousel";
 
-const COLORS = [
-  "bg-blue-400", "bg-emerald-400", "bg-amber-400", "bg-rose-400",
-  "bg-violet-400", "bg-cyan-400", "bg-pink-400", "bg-indigo-400",
+const SHADES = [
+  "bg-zinc-800", "bg-zinc-700", "bg-zinc-600", "bg-zinc-500",
+  "bg-zinc-800", "bg-zinc-700", "bg-zinc-600", "bg-zinc-500",
 ];
 
 function Slide({ index, height }: { index: number; height?: number }) {
   return (
     <div
-      className={`${COLORS[index % COLORS.length]} rounded-xl flex items-center justify-center text-white font-bold text-lg select-none`}
+      className={`${SHADES[index % SHADES.length]} rounded-xl flex items-center justify-center text-white font-bold text-lg select-none`}
       style={{ height: height || 200 }}
     >
       Slide {index + 1}

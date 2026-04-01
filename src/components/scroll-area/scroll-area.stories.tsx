@@ -158,7 +158,7 @@ export const ChatMessages: Story = {
           ].map((item, i) => (
             <div key={i} className={cn("flex flex-col max-w-[80%]", item.self ? "self-end items-end" : "self-start items-start")}>
               <span className="text-[10px] text-zinc-400 mb-0.5">{item.from}</span>
-              <div className={cn("px-3 py-2 rounded-xl text-sm", item.self ? "bg-blue-500 text-white rounded-br-sm" : "bg-zinc-100 text-zinc-700 rounded-bl-sm")}>
+              <div className={cn("px-3 py-2 rounded-xl text-sm", item.self ? "bg-black text-white rounded-br-sm" : "bg-zinc-100 text-zinc-700 rounded-bl-sm")}>
                 {item.msg}
               </div>
             </div>

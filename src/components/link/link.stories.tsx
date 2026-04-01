@@ -103,7 +103,7 @@ export const External: Story = {
   render: (args: LinkProps) => (
     <div className="flex gap-6">
       <Link {...args} href="https://github.com" external>GitHub</Link>
-      <Link {...args} href="https://npmjs.com" external color="danger">npm</Link>
+      <Link {...args} href="https://npmjs.com" external>npm</Link>
       <Link {...args} href="https://tailwindcss.com" external variant="underline">Tailwind CSS</Link>
     </div>
   ),
@@ -115,19 +115,7 @@ export const Disabled: Story = {
   render: (args: LinkProps) => (
     <div className="flex gap-6">
       <Link {...args} disabled>Disabled link</Link>
-      <Link {...args} disabled color="danger">Disabled danger</Link>
-    </div>
-  ),
-};
-
-// ── Underline Colors ─────────────────────────
-
-export const UnderlineColors: Story = {
-  render: (args: LinkProps) => (
-    <div className="flex gap-6 flex-wrap">
-      {ALL_COLORS.map((c) => (
-        <Link {...args} key={c} color={c} variant="underline">{c.charAt(0).toUpperCase() + c.slice(1)}</Link>
-      ))}
+      <Link {...args} disabled>Disabled danger</Link>
     </div>
   ),
 };

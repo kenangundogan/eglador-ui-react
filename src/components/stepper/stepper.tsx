@@ -218,7 +218,7 @@ function StepperRoot({
   activeStep = 0,
   variant = "default",
   size = "sm",
-  color = "primary",
+  color = "default",
   orientation = "horizontal",
   clickable = false,
   onStepClick,

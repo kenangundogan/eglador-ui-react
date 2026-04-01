@@ -161,7 +161,7 @@ export const VerificationFlow: Story = {
         <div className="flex gap-2">
           <Button
             size="xs"
-            color="primary"
+            color="black"
             loading={loading}
             disabled={value.length < 6 || verified}
             onClick={handleVerify}

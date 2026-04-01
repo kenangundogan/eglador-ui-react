@@ -141,7 +141,7 @@ export const VerticalWithContent: Story = {
 export const VerticalSimple: Story = {
   render: (args: StepperProps) => (
     <div className="max-w-sm">
-      <Stepper {...args} orientation="vertical" activeStep={2} color="success">
+      <Stepper {...args} orientation="vertical" activeStep={2}>
         <Stepper.Step title="Requirements gathered" description="Stakeholder interviews completed, scope document signed off." />
         <Stepper.Step title="Design approved" description="UI mockups reviewed and approved by the product team." />
         <Stepper.Step title="Development" description="Frontend and backend implementation in progress." />
