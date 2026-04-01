@@ -242,6 +242,40 @@ export const ExcludeColumns: Story = {
   ),
 };
 
+export const FixedColumns: Story = {
+  render: () => {
+    const fixedColumns: DataTableColumn<User>[] = [
+      { id: "name", header: "Name", accessorKey: "name", fixed: "left", width: "180px", cell: (value) => <span className="font-medium text-zinc-900">{String(value)}</span> },
+      { id: "email", header: "Email", accessorKey: "email", minWidth: "220px" },
+      { id: "role", header: "Role", accessorKey: "role", minWidth: "150px" },
+      { id: "status", header: "Status", accessorKey: "status", minWidth: "150px", align: "center", cell: (value) => <Badge size="xs" color={value === "Active" ? "success" : "default"} shape="pill">{String(value)}</Badge> },
+      { id: "department", header: "Department", accessorKey: "department", minWidth: "180px" },
+      { id: "joinDate", header: "Joined", accessorKey: "joinDate", minWidth: "160px" },
+      {
+        id: "actions",
+        header: "Actions",
+        sortable: false,
+        filterable: false,
+        hideable: false,
+        fixed: "right",
+        width: "160px",
+        align: "right" as const,
+        cell: (_value: unknown, row: User) => (
+          <div className="flex gap-1 justify-end">
+            <button type="button" onClick={() => alert(`Edit: ${row.name}`)} className="px-2 py-1 text-xs border border-zinc-200 rounded hover:bg-zinc-50 cursor-pointer">Edit</button>
+            <button type="button" onClick={() => alert(`Delete: ${row.name}`)} className="px-2 py-1 text-xs border border-red-200 text-red-600 rounded hover:bg-red-50 cursor-pointer">Delete</button>
+          </div>
+        ),
+      },
+    ];
+    return (
+      <div style={{ maxWidth: 700 }}>
+        <DataTable data={users} columns={fixedColumns} rowKey="id" bordered pageSize={5} />
+      </div>
+    );
+  },
+};
+
 // ── REMOTE MODE ──────────────────────────────
 
 export const RemoteClientPagination: Story = {

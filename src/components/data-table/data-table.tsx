@@ -28,6 +28,8 @@ export interface DataTableColumn<T> {
   width?: string;
   minWidth?: string;
   align?: "left" | "center" | "right";
+  /** Fix column to left or right side (sticky) */
+  fixed?: "left" | "right";
 }
 
 export interface DataTablePaginationMapping {
@@ -448,6 +450,56 @@ export function DataTable<T = Record<string, unknown>>({
   // Server-side pagination mode: only when both remote AND paginationMapping provided
   const hasServerPagination = isRemote && !!paginationMapping;
 
+  // Fixed (sticky) column offset calculation
+  const hasFixedColumns = visibleColumns.some((col) => col.fixed);
+  const fixedColumnStyles = React.useMemo(() => {
+    if (!hasFixedColumns) return {};
+
+    const styles: Record<string, React.CSSProperties> = {};
+
+    // Calculate left offsets
+    let leftOffset = selectable ? 40 : 0; // checkbox column width
+    visibleColumns.forEach((col) => {
+      if (col.fixed === "left") {
+        styles[col.id] = { position: "sticky", left: leftOffset, zIndex: 1 };
+        const w = col.width ? parseInt(col.width, 10) : col.minWidth ? parseInt(col.minWidth, 10) : 150;
+        leftOffset += w;
+      }
+    });
+
+    // Calculate right offsets (iterate from right)
+    let rightOffset = 0;
+    [...visibleColumns].reverse().forEach((col) => {
+      if (col.fixed === "right") {
+        styles[col.id] = { position: "sticky", right: rightOffset, zIndex: 1 };
+        const w = col.width ? parseInt(col.width, 10) : col.minWidth ? parseInt(col.minWidth, 10) : 150;
+        rightOffset += w;
+      }
+    });
+
+    // Checkbox column if selectable and first fixed-left exists
+    if (selectable) {
+      styles["__checkbox"] = { position: "sticky", left: 0, zIndex: 1 };
+    }
+
+    return styles;
+  }, [hasFixedColumns, visibleColumns, selectable]);
+
+  const getFixedCellClass = (col: DataTableColumn<T>, bg?: string) => {
+    if (!col.fixed) return "";
+    return cn("sticky z-[1]", bg || "bg-white");
+  };
+
+  const getFixedCellStyle = (col: DataTableColumn<T>): React.CSSProperties | undefined => {
+    return fixedColumnStyles[col.id];
+  };
+
+  const checkboxFixedStyle = fixedColumnStyles["__checkbox"];
+  const getCheckboxFixedClass = (bg?: string) => {
+    if (!selectable || !hasFixedColumns) return "";
+    return cn("sticky left-0 z-[1]", bg || "bg-white");
+  };
+
   // Unique values per column (for select filter options)
   const columnUniqueValues = React.useMemo(() => {
     if (!showColumnFilters) return {};
@@ -668,9 +720,9 @@ export function DataTable<T = Record<string, unknown>>({
     <div className={cn("flex flex-col gap-3", className)}>
       {/* Toolbar */}
       {(searchable || showColumnToggle) && (
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2">
           {searchable && (
-            <div className="relative flex-1 max-w-xs">
+            <div className="relative flex-1 min-w-0 max-w-xs sm:max-w-sm">
               <SearchIcon className="absolute left-2.5 top-1/2 -translate-y-1/2 size-4 text-zinc-400" />
               <input
                 type="text"
@@ -693,7 +745,7 @@ export function DataTable<T = Record<string, unknown>>({
                 className={cn("inline-flex items-center gap-1.5 px-3 rounded-lg border border-zinc-200 text-zinc-600 hover:bg-zinc-50 transition-colors cursor-pointer", s.font, s.searchHeight)}
               >
                 <ColumnsIcon className="size-4" />
-                Columns
+                <span className="hidden sm:inline">Columns</span>
               </button>
               {columnMenuOpen && (
                 <div className="absolute right-0 top-full mt-1.5 z-50 min-w-44 bg-white border border-zinc-200 rounded-lg p-1.5">
@@ -734,7 +786,7 @@ export function DataTable<T = Record<string, unknown>>({
           <thead className={cn("bg-zinc-50 border-b border-zinc-200", stickyHeader && "sticky top-0 z-10")}>
             <tr>
               {selectable && (
-                <th className={cn(s.header, "w-10")}>
+                <th className={cn(s.header, "w-10", getCheckboxFixedClass("bg-zinc-50"))} style={checkboxFixedStyle}>
                   <button type="button" onClick={toggleAll} className={cn("flex items-center justify-center size-4 rounded border transition-colors cursor-pointer", pageAllSelected ? "bg-zinc-900 border-zinc-900 text-white" : pageSomeSelected ? "bg-zinc-900 border-zinc-900 text-white" : "border-zinc-300 bg-white")}>
                     {pageAllSelected && <CheckIcon className="size-3" />}
                     {pageSomeSelected && !pageAllSelected && <MinusIcon className="size-3" />}
@@ -742,7 +794,7 @@ export function DataTable<T = Record<string, unknown>>({
                 </th>
               )}
               {visibleColumns.map((col) => (
-                <th key={col.id} style={{ width: col.width, minWidth: col.minWidth }} className={cn("font-semibold text-zinc-500 uppercase tracking-wider whitespace-nowrap", s.header, s.font, ALIGN_MAP[col.align || "left"])}>
+                <th key={col.id} style={{ width: col.width, minWidth: col.minWidth, ...getFixedCellStyle(col) }} className={cn("font-semibold text-zinc-500 uppercase tracking-wider whitespace-nowrap bg-zinc-50", s.header, s.font, ALIGN_MAP[col.align || "left"], getFixedCellClass(col, "bg-zinc-50"))}>
                   {col.sortable !== false ? (
                     <button type="button" onClick={() => handleSort(col.id)} className="inline-flex items-center gap-1 cursor-pointer hover:text-zinc-700 transition-colors">
                       {col.header}
@@ -759,15 +811,15 @@ export function DataTable<T = Record<string, unknown>>({
             {/* Column filter row */}
             {showColumnFilters && (
               <tr className="border-b border-zinc-200 bg-zinc-50/50">
-                {selectable && <th className={cn(s.header, "w-10")} />}
+                {selectable && <th className={cn(s.header, "w-10", getCheckboxFixedClass("bg-zinc-50/50"))} style={checkboxFixedStyle} />}
                 {visibleColumns.map((col) => {
-                  if (col.filterable === false) return <th key={col.id} className={s.header} />;
+                  if (col.filterable === false) return <th key={col.id} className={cn(s.header, getFixedCellClass(col, "bg-zinc-50/50"))} style={getFixedCellStyle(col)} />;
 
                   const filterType = col.filterType || "text";
                   const filterInputClass = cn("w-full rounded border border-zinc-200 bg-white px-2 py-1 outline-none transition-colors focus:border-zinc-300 focus:ring-1 focus:ring-zinc-900/5", s.font, "text-zinc-700 placeholder:text-zinc-400");
 
                   return (
-                    <th key={col.id} className={cn(s.header, "font-normal")}>
+                    <th key={col.id} className={cn(s.header, "font-normal", getFixedCellClass(col, "bg-zinc-50/50"))} style={getFixedCellStyle(col)}>
                       {filterType === "select" ? (
                         <select
                           value={columnFilters[col.id] || ""}
@@ -850,7 +902,7 @@ export function DataTable<T = Record<string, unknown>>({
                 return (
                   <tr key={key} onClick={onRowClick ? () => onRowClick(row, globalIndex) : undefined} className={cn("border-b border-zinc-100 last:border-0 transition-colors", striped && "even:bg-zinc-50/50", isSelected && "bg-zinc-50", onRowClick && "cursor-pointer hover:bg-zinc-50")}>
                     {selectable && (
-                      <td className={cn(s.cell, "w-10")} onClick={(e) => e.stopPropagation()}>
+                      <td className={cn(s.cell, "w-10", getCheckboxFixedClass())} style={checkboxFixedStyle} onClick={(e) => e.stopPropagation()}>
                         <button type="button" onClick={() => toggleRow(key)} className={cn("flex items-center justify-center size-4 rounded border transition-colors cursor-pointer", isSelected ? "bg-zinc-900 border-zinc-900 text-white" : "border-zinc-300 bg-white")}>
                           {isSelected && <CheckIcon className="size-3" />}
                         </button>
@@ -859,7 +911,7 @@ export function DataTable<T = Record<string, unknown>>({
                     {visibleColumns.map((col) => {
                       const value = getCellValue(row, col);
                       return (
-                        <td key={col.id} className={cn("text-zinc-700", s.cell, s.font, ALIGN_MAP[col.align || "left"])}>
+                        <td key={col.id} className={cn("text-zinc-700", s.cell, s.font, ALIGN_MAP[col.align || "left"], getFixedCellClass(col))} style={getFixedCellStyle(col)}>
                           {col.cell ? col.cell(value, row, globalIndex) : String(value ?? "")}
                         </td>
                       );
@@ -876,9 +928,9 @@ export function DataTable<T = Record<string, unknown>>({
                 footerContent(visibleColumns, paginatedData)
               ) : (
                 <tr>
-                  {selectable && <td className={s.header} />}
+                  {selectable && <td className={cn(s.header, getCheckboxFixedClass("bg-zinc-50"))} style={checkboxFixedStyle} />}
                   {visibleColumns.map((col) => (
-                    <td key={col.id} className={cn("font-semibold text-zinc-500", s.header, s.font, ALIGN_MAP[col.align || "left"])}>
+                    <td key={col.id} className={cn("font-semibold text-zinc-500", s.header, s.font, ALIGN_MAP[col.align || "left"], getFixedCellClass(col, "bg-zinc-50"))} style={getFixedCellStyle(col)}>
                       {col.header}
                     </td>
                   ))}
@@ -890,9 +942,8 @@ export function DataTable<T = Record<string, unknown>>({
       </div>
 
       {/* Pagination footer */}
-      <div className="flex items-center justify-between gap-4">
-        <div className="flex items-center gap-2">
-          <span className={cn("text-zinc-400", s.font)}>Rows per page</span>
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4">
+        <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
           <select
             value={pageSize}
             onChange={(e) => { setPageSize(Number(e.target.value)); setCurrentPage(1); }}
@@ -900,20 +951,22 @@ export function DataTable<T = Record<string, unknown>>({
           >
             {pageSizes.map((ps) => <option key={ps} value={ps}>{ps}</option>)}
           </select>
-          <span className={cn("text-zinc-400 ml-2", s.font)}>
+          <span className={cn("text-zinc-400 whitespace-nowrap", s.font)}>
             {totalItems === 0 ? "0" : `${displayFrom}-${displayTo}`} of {totalItems}
           </span>
         </div>
-        <Pagination
-          totalPages={totalPages}
-          currentPage={currentPage}
-          onPageChange={setCurrentPage}
-          size={size === "md" ? "sm" : "xs"}
-          variant="ghost"
-          showPrevNext
-          siblingCount={1}
-          boundaryCount={1}
-        />
+        <div className="w-full sm:w-auto overflow-x-auto">
+          <Pagination
+            totalPages={totalPages}
+            currentPage={currentPage}
+            onPageChange={setCurrentPage}
+            size={size === "md" ? "sm" : "xs"}
+            variant="ghost"
+            showPrevNext
+            siblingCount={1}
+            boundaryCount={1}
+          />
+        </div>
       </div>
     </div>
   );
