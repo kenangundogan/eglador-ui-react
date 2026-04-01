@@ -5,7 +5,7 @@ import { cn } from "../../lib/utils";
 
 // ── Types ────────────────────────────────────
 
-export type InputOTPSize = "sm" | "md" | "lg";
+export type InputOTPSize = "xs" | "sm" | "md" | "lg";
 export type InputOTPVariant = "default" | "outline";
 
 export interface InputOTPProps {
@@ -31,6 +31,7 @@ export interface InputOTPProps {
 // ── Size definitions ─────────────────────────
 
 const SIZES: Record<InputOTPSize, { slot: string; font: string; gap: string }> = {
+  xs: { slot: "size-7", font: "text-xs", gap: "gap-1" },
   sm: { slot: "size-9", font: "text-sm", gap: "gap-1.5" },
   md: { slot: "size-11", font: "text-lg", gap: "gap-2" },
   lg: { slot: "size-13", font: "text-xl", gap: "gap-2.5" },
@@ -61,7 +62,7 @@ const STATE_STYLES: Record<string, { border: string; focusBorder: string; messag
 function SeparatorDot({ size }: { size: InputOTPSize }) {
   return (
     <div className="flex items-center justify-center px-1">
-      <div className={cn("rounded-full bg-zinc-300", size === "sm" ? "size-1" : size === "md" ? "size-1.5" : "size-2")} />
+      <div className={cn("rounded-full bg-zinc-300", size === "xs" ? "size-0.5" : size === "sm" ? "size-1" : size === "md" ? "size-1.5" : "size-2")} />
     </div>
   );
 }

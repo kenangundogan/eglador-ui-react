@@ -7,7 +7,7 @@ import { cn } from "../../lib/utils";
 
 export type AlertVariant = "soft" | "outline" | "filled";
 export type AlertColor = "default" | "primary" | "danger" | "success" | "warning" | "info";
-export type AlertSize = "sm" | "md";
+export type AlertSize = "xs" | "sm" | "md";
 
 export interface AlertProps {
   variant?: AlertVariant;
@@ -35,6 +35,7 @@ function XIcon({ className }: { className?: string }) {
 // ── Size definitions ─────────────────────────
 
 const SIZES: Record<AlertSize, { padding: string; font: string; titleFont: string; iconSize: string; gap: string }> = {
+  xs: { padding: "px-2.5 py-2", font: "text-[10px]", titleFont: "text-xs", iconSize: "size-3.5", gap: "gap-2" },
   sm: { padding: "px-3 py-2.5", font: "text-xs", titleFont: "text-sm", iconSize: "size-4", gap: "gap-2.5" },
   md: { padding: "px-4 py-3.5", font: "text-sm", titleFont: "text-base", iconSize: "size-5", gap: "gap-3" },
 };

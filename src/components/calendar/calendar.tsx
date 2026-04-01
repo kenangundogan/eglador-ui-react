@@ -6,7 +6,7 @@ import { cn } from "../../lib/utils";
 // ── Types ────────────────────────────────────
 
 export type CalendarMode = "single" | "range" | "multiple";
-export type CalendarSize = "sm" | "md";
+export type CalendarSize = "xs" | "sm" | "md";
 
 export interface CalendarProps {
   mode?: CalendarMode;
@@ -51,6 +51,7 @@ function ChevronRightIcon({ className }: { className?: string }) {
 // ── Size definitions ─────────────────────────
 
 const SIZES: Record<CalendarSize, { cell: string; font: string; headerFont: string; dayFont: string; padding: string }> = {
+  xs: { cell: "size-6", font: "text-[10px]", headerFont: "text-xs", dayFont: "text-[9px]", padding: "p-1.5" },
   sm: { cell: "size-8", font: "text-xs", headerFont: "text-sm", dayFont: "text-[10px]", padding: "p-2" },
   md: { cell: "size-10", font: "text-sm", headerFont: "text-sm", dayFont: "text-xs", padding: "p-3" },
 };

@@ -6,7 +6,7 @@ import { cn } from "../../lib/utils";
 // ── Types ────────────────────────────────────
 
 export type MediaVideoRatio = "1:1" | "16:9" | "4:3" | "1:2" | "free";
-export type MediaVideoSize = "xs" | "sm" | "md";
+export type MediaVideoSize = "xs" | "sm" | "md" | "lg";
 export type MediaVideoShape = "square" | "rounded" | "circle";
 
 export interface MediaVideoProps {
@@ -67,6 +67,7 @@ const SIZES: Record<MediaVideoSize, {
   xs: { rounded: "rounded-lg", captionFont: "text-xs", errorIconSize: "size-6", errorFont: "text-[10px]" },
   sm: { rounded: "rounded-xl", captionFont: "text-sm", errorIconSize: "size-8", errorFont: "text-xs" },
   md: { rounded: "rounded-2xl", captionFont: "text-base", errorIconSize: "size-10", errorFont: "text-sm" },
+  lg: { rounded: "rounded-2xl", captionFont: "text-base", errorIconSize: "size-10", errorFont: "text-sm" },
 };
 
 // ── Component ────────────────────────────────
