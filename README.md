@@ -45,7 +45,7 @@ import { Button, Input, Modal } from "eglador-ui-react";
 | **Feedback** | Alert, Notification, Toast, Progress, Spinner, Skeleton |
 | **Navigation** | NavigationMenu, Menubar, Stepper, Breadcrumb |
 | **Data Display** | Table, Accordion, Tabs, TreeView, Badge, Avatar, Empty, Kbd, Tooltip, Typography, Typewriter |
-| **Overlays** | Modal, Drawer, Dropdown, Popover, HoverCard, AlertDialog, ContextMenu |
+| **Overlays** | Modal, Drawer, Dropdown, Popover, HoverCard, AlertDialog, ContextMenu, Command |
 | **Layout** | Sidebar, Separator, Collapsible, AspectRatio, ScrollArea, Resizable |
 | **Media** | MediaImage, MediaVideo, Carousel |
 
