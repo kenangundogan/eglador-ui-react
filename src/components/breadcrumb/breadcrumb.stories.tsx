@@ -1,6 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Home, Slash } from "lucide-react";
+import { EllipsisIcon } from "../../lib/icons";
 import { Breadcrumb } from "./breadcrumb";
+import { Dropdown } from "../dropdown";
 
 const meta: Meta<typeof Breadcrumb> = {
   title: "Components/Breadcrumb",
@@ -10,7 +12,7 @@ const meta: Meta<typeof Breadcrumb> = {
     docs: {
       description: {
         component:
-          "A breadcrumb navigation component with compound API, custom separator support, and active state.",
+          "A breadcrumb navigation component with compound API, custom separator, ellipsis for collapsed items, dropdown integration, and asChild support for custom link components.",
       },
     },
   },
@@ -65,6 +67,85 @@ export const CustomSeparator: Story = {
       </Breadcrumb>
     </div>
   ),
+};
+
+// ── Separator Component ──────────────────────
+
+export const SeparatorComponent: Story = {
+  render: () => (
+    <Breadcrumb>
+      <Breadcrumb.Item href="/">Home</Breadcrumb.Item>
+      <Breadcrumb.Separator />
+      <Breadcrumb.Item href="/docs">Docs</Breadcrumb.Item>
+      <Breadcrumb.Separator>
+        <Slash className="size-3.5" />
+      </Breadcrumb.Separator>
+      <Breadcrumb.Item isActive>API</Breadcrumb.Item>
+    </Breadcrumb>
+  ),
+};
+
+// ── Ellipsis (Collapsed) ─────────────────────
+
+export const Collapsed: Story = {
+  render: () => (
+    <Breadcrumb>
+      <Breadcrumb.Item href="/">Home</Breadcrumb.Item>
+      <Breadcrumb.Ellipsis />
+      <Breadcrumb.Item href="/category/sub">Subcategory</Breadcrumb.Item>
+      <Breadcrumb.Item isActive>Current Page</Breadcrumb.Item>
+    </Breadcrumb>
+  ),
+};
+
+// ── With Dropdown ────────────────────────────
+
+export const WithDropdown: Story = {
+  render: () => (
+    <Breadcrumb>
+      <Breadcrumb.Item href="/">Home</Breadcrumb.Item>
+      <Breadcrumb.Ellipsis>
+        <Dropdown side="bottom" align="start">
+          <Dropdown.Trigger asChild>
+            <button type="button" aria-label="Show hidden pages" className="flex items-center justify-center size-6 rounded text-zinc-400 hover:text-zinc-600 hover:bg-zinc-100 transition-colors cursor-pointer">
+              <EllipsisIcon className="size-4" />
+            </button>
+          </Dropdown.Trigger>
+          <Dropdown.Content>
+            <a href="/category" className="block px-3 py-1.5 text-sm text-zinc-600 hover:bg-zinc-50 rounded-md">Category</a>
+            <a href="/category/sub" className="block px-3 py-1.5 text-sm text-zinc-600 hover:bg-zinc-50 rounded-md">Subcategory</a>
+            <a href="/category/sub/items" className="block px-3 py-1.5 text-sm text-zinc-600 hover:bg-zinc-50 rounded-md">Items</a>
+          </Dropdown.Content>
+        </Dropdown>
+      </Breadcrumb.Ellipsis>
+      <Breadcrumb.Item href="/category/sub/items/detail">Detail</Breadcrumb.Item>
+      <Breadcrumb.Item isActive>Current Page</Breadcrumb.Item>
+    </Breadcrumb>
+  ),
+};
+
+// ── asChild (Custom Link) ────────────────────
+
+export const AsChild: Story = {
+  render: () => {
+    const CustomLink = ({ href, children, className }: { href: string; children: React.ReactNode; className?: string }) => (
+      <a href={href} className={className} onClick={(e) => { e.preventDefault(); alert(`Navigate to ${href}`); }}>
+        {children}
+      </a>
+    );
+
+    return (
+      <Breadcrumb>
+        <Breadcrumb.Item asChild>
+          <CustomLink href="/">Home</CustomLink>
+        </Breadcrumb.Item>
+        <Breadcrumb.Item asChild>
+          <CustomLink href="/products">Products</CustomLink>
+        </Breadcrumb.Item>
+        <Breadcrumb.Item isActive>Details</Breadcrumb.Item>
+      </Breadcrumb>
+    );
+  },
 };
 
 // ── Long Path ────────────────────────────────
