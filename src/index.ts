@@ -20,6 +20,7 @@ export * from "./components/context-menu";
 export * from "./components/drawer";
 export * from "./components/dropdown";
 export * from "./components/empty";
+export * from "./components/file-manager";
 export * from "./components/hover-card";
 export * from "./components/input";
 export * from "./components/input-group";
