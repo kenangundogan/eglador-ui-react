@@ -116,6 +116,15 @@ export const OptionGroups: Story = {
   ),
 };
 
+export const Shapes: Story = {
+  render: () => (
+    <div className="flex flex-col gap-4 max-w-xs">
+      <NativeSelect shape="rounded" label="Rounded (default)" options={fruitOptions} defaultValue="apple" />
+      <NativeSelect shape="square" label="Square" options={fruitOptions} defaultValue="apple" />
+    </div>
+  ),
+};
+
 export const Disabled: Story = {
   render: () => (
     <div className="max-w-xs">

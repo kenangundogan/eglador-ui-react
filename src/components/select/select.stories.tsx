@@ -26,11 +26,13 @@ const meta: Meta<typeof Select> = {
   },
   args: {
     placeholder: "Select...",
+    shape: "rounded",
     disabled: false,
     autoFlip: true,
     maxHeight: 240,
   },
   argTypes: {
+    shape: { control: "select", options: ["square", "rounded"] },
     disabled: { control: "boolean" },
     autoFlip: { control: "boolean" },
     maxHeight: { control: "number" },
@@ -86,6 +88,21 @@ export const EmptyOptions: Story = {
     return (
       <div className="w-70">
         <Select {...args} options={[]} value={value} onChange={(v) => setValue(v)} placeholder="No options available" />
+      </div>
+    );
+  },
+};
+
+// ── Shapes ──────────────────────────────────
+
+export const Shapes: Story = {
+  render: (args: SelectProps) => {
+    const [squareVal, setSquareVal] = useState<string | undefined>();
+    const [roundedVal, setRoundedVal] = useState<string | undefined>();
+    return (
+      <div className="flex flex-col gap-4 w-70">
+        <Select {...args} options={sampleOptions} value={squareVal} onChange={(v) => setSquareVal(v)} shape="square" placeholder="Square" />
+        <Select {...args} options={sampleOptions} value={roundedVal} onChange={(v) => setRoundedVal(v)} shape="rounded" placeholder="Rounded" />
       </div>
     );
   },

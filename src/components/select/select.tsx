@@ -9,6 +9,8 @@ import { ChevronDownIcon, CheckIcon } from "../../lib/icons";
 
 // ── Types ────────────────────────────────────
 
+export type SelectShape = "square" | "rounded";
+
 export interface SelectOption {
   label: string;
   value: string;
@@ -20,11 +22,19 @@ export interface SelectProps {
   onChange?: (value: string, option?: SelectOption) => void;
   options?: SelectOption[];
   placeholder?: string;
+  shape?: SelectShape;
   className?: string;
   disabled?: boolean;
   autoFlip?: boolean;
   maxHeight?: number;
 }
+
+// ── Shape definitions ────────────────────────
+
+const SHAPES: Record<SelectShape, string> = {
+  square: "",
+  rounded: "rounded-lg",
+};
 
 // ── Component ────────────────────────────────
 
@@ -33,6 +43,7 @@ export function Select({
   onChange,
   options = [],
   placeholder = "Select...",
+  shape = "rounded",
   className,
   disabled = false,
   autoFlip = true,
@@ -64,7 +75,8 @@ export function Select({
         disabled={disabled}
         onClick={() => !disabled && setIsOpen((prev) => !prev)}
         className={cn(
-          "flex w-full items-center justify-between rounded-lg border bg-white px-3 py-2 text-sm font-medium transition-all duration-200 outline-none",
+          "flex w-full items-center justify-between border bg-white px-3 py-2 text-sm font-medium transition-all duration-200 outline-none",
+          SHAPES[shape],
           disabled ? "opacity-50 cursor-not-allowed border-zinc-200 text-zinc-400" : "cursor-pointer",
           isOpen ? "border-zinc-300 ring-2 ring-zinc-900/5 text-zinc-900" : "border-zinc-200 text-zinc-700 hover:border-zinc-300 hover:bg-zinc-50",
         )}
@@ -84,7 +96,8 @@ export function Select({
         <div
           ref={dropdownRef}
           className={cn(
-            "absolute left-0 z-50 w-full rounded-lg border border-zinc-200 bg-white p-1.5",
+            "absolute left-0 z-50 w-full border border-zinc-200 bg-white p-1.5",
+            SHAPES[shape],
             openDirection === "bottom" ? "top-[calc(100%+4px)]" : "bottom-[calc(100%+4px)]",
           )}
         >

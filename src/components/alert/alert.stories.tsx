@@ -25,6 +25,7 @@ const meta: Meta<typeof Alert> = {
     variant: { control: "select", options: ["soft", "outline", "filled"] },
     color: { control: "select", options: [...ALL_COLORS] },
     size: { control: "select", options: ["sm", "md"] },
+    shape: { control: "select", options: ["square", "rounded"] },
     dismissible: { control: "boolean" },
     title: { control: "text" },
     onDismiss: { action: "dismissed" },
@@ -117,6 +118,20 @@ export const Sizes: Story = {
       <Alert {...args} size="md" icon={<Info />} title="Medium">
         This is a medium alert.
       </Alert>
+    </div>
+  ),
+};
+
+// ── Shapes ──────────────────────────────────
+
+export const Shapes: Story = {
+  render: (args: AlertProps) => (
+    <div className="flex flex-col gap-3 max-w-lg">
+      {(["square", "rounded"] as const).map((shape) => (
+        <Alert {...args} key={shape} shape={shape} color="info" icon={<Info />} title={shape.charAt(0).toUpperCase() + shape.slice(1)}>
+          This is a {shape} alert.
+        </Alert>
+      ))}
     </div>
   ),
 };

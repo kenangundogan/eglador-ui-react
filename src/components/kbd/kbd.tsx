@@ -5,10 +5,12 @@ import { cn } from "../../lib/utils";
 
 export type KbdSize = "xs" | "sm" | "md";
 export type KbdVariant = "default" | "outline" | "ghost";
+export type KbdShape = "square" | "rounded";
 
 export interface KbdProps {
   size?: KbdSize;
   variant?: KbdVariant;
+  shape?: KbdShape;
   keys?: string[];
   separator?: React.ReactNode;
   className?: string;
@@ -23,6 +25,13 @@ const SIZES: Record<KbdSize, { padding: string; font: string; minWidth: string; 
   md: { padding: "px-2 py-1", font: "text-sm", minWidth: "min-w-6", gap: "gap-1.5" },
 };
 
+// ── Shape definitions ───────────────────────
+
+const SHAPES: Record<KbdShape, string> = {
+  square: "",
+  rounded: "rounded",
+};
+
 // ── Variant styles ───────────────────────────
 
 const VARIANTS: Record<KbdVariant, string> = {
@@ -33,13 +42,14 @@ const VARIANTS: Record<KbdVariant, string> = {
 
 // ── Key ──────────────────────────────────────
 
-function Key({ children, size, variant, className }: { children: React.ReactNode; size: KbdSize; variant: KbdVariant; className?: string }) {
+function Key({ children, size, variant, shape = "rounded", className }: { children: React.ReactNode; size: KbdSize; variant: KbdVariant; shape?: KbdShape; className?: string }) {
   const s = SIZES[size];
 
   return (
     <kbd
       className={cn(
-        "inline-flex items-center justify-center rounded font-mono font-medium text-zinc-700 leading-none",
+        "inline-flex items-center justify-center font-mono font-medium text-zinc-700 leading-none",
+        SHAPES[shape],
         s.padding,
         s.font,
         s.minWidth,
@@ -57,6 +67,7 @@ function Key({ children, size, variant, className }: { children: React.ReactNode
 export function Kbd({
   size = "sm",
   variant = "default",
+  shape = "rounded",
   keys,
   separator,
   className,
@@ -67,7 +78,7 @@ export function Kbd({
   // Single key mode
   if (!keys || keys.length === 0) {
     return (
-      <Key size={size} variant={variant} className={className}>
+      <Key size={size} variant={variant} shape={shape} className={className}>
         {children}
       </Key>
     );
@@ -82,7 +93,7 @@ export function Kbd({
     <span className={cn("inline-flex items-center", s.gap, className)}>
       {keys.map((key, i) => (
         <React.Fragment key={i}>
-          <Key size={size} variant={variant}>{key}</Key>
+          <Key size={size} variant={variant} shape={shape}>{key}</Key>
           {i < keys.length - 1 && sep}
         </React.Fragment>
       ))}

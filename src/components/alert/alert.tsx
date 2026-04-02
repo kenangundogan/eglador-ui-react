@@ -9,11 +9,13 @@ import { XIcon } from "../../lib/icons";
 export type AlertVariant = "soft" | "outline" | "filled";
 export type AlertColor = "default" | "primary" | "danger" | "success" | "warning" | "info";
 export type AlertSize = "xs" | "sm" | "md";
+export type AlertShape = "square" | "rounded";
 
 export interface AlertProps {
   variant?: AlertVariant;
   color?: AlertColor;
   size?: AlertSize;
+  shape?: AlertShape;
   icon?: React.ReactNode;
   title?: React.ReactNode;
   dismissible?: boolean;
@@ -28,6 +30,13 @@ const SIZES: Record<AlertSize, { padding: string; font: string; titleFont: strin
   xs: { padding: "px-2.5 py-2", font: "text-[10px]", titleFont: "text-xs", iconSize: "size-3.5", gap: "gap-2" },
   sm: { padding: "px-3 py-2.5", font: "text-xs", titleFont: "text-sm", iconSize: "size-4", gap: "gap-2.5" },
   md: { padding: "px-4 py-3.5", font: "text-sm", titleFont: "text-base", iconSize: "size-5", gap: "gap-3" },
+};
+
+// ── Shape definitions ───────────────────────
+
+const SHAPES: Record<AlertShape, string> = {
+  square: "",
+  rounded: "rounded-lg",
 };
 
 // ── Color definitions ────────────────────────
@@ -105,6 +114,7 @@ export function Alert({
   variant = "soft",
   color = "default",
   size = "md",
+  shape = "rounded",
   icon,
   title,
   dismissible = false,
@@ -129,7 +139,8 @@ export function Alert({
     <div
       role="alert"
       className={cn(
-        "relative flex rounded-lg",
+        "relative flex",
+        SHAPES[shape],
         s.padding,
         s.gap,
         c[variant],

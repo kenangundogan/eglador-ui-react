@@ -20,6 +20,7 @@ const meta: Meta<typeof Kbd> = {
   argTypes: {
     size: { control: "select", options: ["xs", "sm", "md"] },
     variant: { control: "select", options: ["default", "outline", "ghost"] },
+    shape: { control: "select", options: ["square", "rounded"] },
   },
 };
 
@@ -96,6 +97,21 @@ export const Variants: Story = {
         <div key={variant} className="flex items-center gap-3">
           <span className="text-xs text-zinc-400 w-12">{variant}</span>
           <Kbd {...args} variant={variant} keys={["⌘", "Shift", "K"]} />
+        </div>
+      ))}
+    </div>
+  ),
+};
+
+// ── Shapes ──────────────────────────────────
+
+export const Shapes: Story = {
+  render: (args: KbdProps) => (
+    <div className="flex flex-col gap-3">
+      {(["square", "rounded"] as const).map((shape) => (
+        <div key={shape} className="flex items-center gap-3">
+          <span className="text-xs text-zinc-400 w-16">{shape}</span>
+          <Kbd {...args} shape={shape} keys={["Ctrl", "Shift", "K"]} />
         </div>
       ))}
     </div>

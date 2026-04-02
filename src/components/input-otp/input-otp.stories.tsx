@@ -28,6 +28,7 @@ const meta: Meta<typeof InputOTP> = {
   argTypes: {
     length: { control: { type: "number", min: 3, max: 8 } },
     size: { control: "select", options: ["sm", "md", "lg"] },
+    shape: { control: "select", options: ["square", "rounded"] },
     variant: { control: "select", options: ["default", "outline"] },
     type: { control: "select", options: ["text", "number"] },
     state: { control: "select", options: ["idle", "error", "success"] },
@@ -211,6 +212,23 @@ export const Disabled: Story = {
 
 export const Outline: Story = {
   args: { variant: "outline", length: 6, separator: true },
+};
+
+// ── Shapes ──────────────────────────────────
+
+export const Shapes: Story = {
+  render: () => (
+    <div className="flex flex-col gap-4">
+      <div>
+        <span className="text-xs text-zinc-400 mb-2 block">Rounded (default)</span>
+        <InputOTP shape="rounded" length={4} />
+      </div>
+      <div>
+        <span className="text-xs text-zinc-400 mb-2 block">Square</span>
+        <InputOTP shape="square" length={4} />
+      </div>
+    </div>
+  ),
 };
 
 // ── With Placeholder ─────────────────────────

@@ -5,10 +5,13 @@ import { cn } from "../../lib/utils";
 
 // ── Types ────────────────────────────────────
 
+export type CollapsibleShape = "square" | "rounded";
+
 export interface CollapsibleProps {
   open?: boolean;
   defaultOpen?: boolean;
   onOpenChange?: (open: boolean) => void;
+  shape?: CollapsibleShape;
   disabled?: boolean;
   className?: string;
   children: React.ReactNode;
@@ -42,12 +45,20 @@ function useCollapsible(): CollapsibleContextValue {
   return ctx;
 }
 
+// ── Shape definitions ────────────────────────
+
+const SHAPES: Record<CollapsibleShape, string> = {
+  square: "",
+  rounded: "rounded-lg",
+};
+
 // ── Collapsible Root ─────────────────────────
 
 function CollapsibleRoot({
   open,
   defaultOpen = false,
   onOpenChange,
+  shape = "rounded",
   disabled = false,
   className,
   children,
@@ -68,7 +79,7 @@ function CollapsibleRoot({
 
   return (
     <CollapsibleContext.Provider value={{ isOpen, toggle, disabled, contentId }}>
-      <div className={cn(disabled && "opacity-50", className)}>
+      <div className={cn(SHAPES[shape], disabled && "opacity-50", className)}>
         {children}
       </div>
     </CollapsibleContext.Provider>

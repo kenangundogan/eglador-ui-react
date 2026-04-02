@@ -25,6 +25,7 @@ const meta: Meta<typeof Accordion> = {
   argTypes: {
     variant: { control: "select", options: ["default", "bordered", "filled"] },
     size: { control: "select", options: ["xs", "sm", "md"] },
+    shape: { control: "select", options: ["square", "rounded"] },
     defaultOpen: { control: "boolean" },
     disabled: { control: "boolean" },
     hideChevron: { control: "boolean" },
@@ -147,6 +148,27 @@ export const Controlled: Story = {
       </div>
     );
   },
+};
+
+// ── Shapes ──────────────────────────────────
+
+export const Shapes: Story = {
+  render: () => (
+    <div className="flex flex-col gap-3 max-w-md">
+      <Accordion variant="bordered" shape="rounded" title="Rounded (default)">
+        {sampleContent}
+      </Accordion>
+      <Accordion variant="bordered" shape="square" title="Square">
+        {sampleContent}
+      </Accordion>
+      <Accordion variant="filled" shape="rounded" title="Filled Rounded">
+        {sampleContent}
+      </Accordion>
+      <Accordion variant="filled" shape="square" title="Filled Square">
+        {sampleContent}
+      </Accordion>
+    </div>
+  ),
 };
 
 // ── Disabled ─────────────────────────────────

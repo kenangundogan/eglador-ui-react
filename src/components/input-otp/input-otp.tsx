@@ -6,6 +6,7 @@ import { cn } from "../../lib/utils";
 // ── Types ────────────────────────────────────
 
 export type InputOTPSize = "xs" | "sm" | "md" | "lg";
+export type InputOTPShape = "square" | "rounded";
 export type InputOTPVariant = "default" | "outline";
 
 export interface InputOTPProps {
@@ -14,6 +15,7 @@ export interface InputOTPProps {
   onChange?: (value: string) => void;
   onComplete?: (value: string) => void;
   size?: InputOTPSize;
+  shape?: InputOTPShape;
   variant?: InputOTPVariant;
   separator?: boolean;
   separatorAfter?: number[];
@@ -35,6 +37,13 @@ const SIZES: Record<InputOTPSize, { slot: string; font: string; gap: string }> =
   sm: { slot: "size-9", font: "text-sm", gap: "gap-1.5" },
   md: { slot: "size-11", font: "text-lg", gap: "gap-2" },
   lg: { slot: "size-13", font: "text-xl", gap: "gap-2.5" },
+};
+
+// ── Shape definitions ────────────────────────
+
+const SHAPES: Record<InputOTPShape, string> = {
+  square: "",
+  rounded: "rounded-lg",
 };
 
 // ── State styles ─────────────────────────────
@@ -75,6 +84,7 @@ export function InputOTP({
   onChange,
   onComplete,
   size = "md",
+  shape = "rounded",
   variant = "default",
   separator = false,
   separatorAfter,
@@ -198,7 +208,8 @@ export function InputOTP({
                 onFocus={(e) => e.target.select()}
                 aria-label={`Digit ${index + 1} of ${length}`}
                 className={cn(
-                  "flex items-center justify-center text-center font-semibold rounded-lg border bg-white transition-colors outline-none",
+                  "flex items-center justify-center text-center font-semibold border bg-white transition-colors outline-none",
+                  SHAPES[shape],
                   s.slot,
                   s.font,
                   stateStyle.border,

@@ -29,6 +29,7 @@ const meta: Meta<typeof MultiSelect> = {
   },
   args: {
     placeholder: "Select...",
+    shape: "rounded",
     disabled: false,
     autoFlip: true,
     maxHeight: 240,
@@ -36,6 +37,7 @@ const meta: Meta<typeof MultiSelect> = {
     maxVisibleChips: 3,
   },
   argTypes: {
+    shape: { control: "select", options: ["square", "rounded"] },
     disabled: { control: "boolean" },
     autoFlip: { control: "boolean" },
     searchable: { control: "boolean" },
@@ -110,6 +112,21 @@ export const OverflowChips: Story = {
     return (
       <div className="w-80">
         <MultiSelect {...args} options={sampleOptions} value={value} onChange={(v) => setValue(v)} />
+      </div>
+    );
+  },
+};
+
+// ── Shapes ──────────────────────────────────
+
+export const Shapes: Story = {
+  render: (args: MultiSelectProps) => {
+    const [squareVal, setSquareVal] = useState<string[]>([]);
+    const [roundedVal, setRoundedVal] = useState<string[]>([]);
+    return (
+      <div className="flex flex-col gap-4 w-80">
+        <MultiSelect {...args} options={sampleOptions} value={squareVal} onChange={(v) => setSquareVal(v)} shape="square" placeholder="Square" />
+        <MultiSelect {...args} options={sampleOptions} value={roundedVal} onChange={(v) => setRoundedVal(v)} shape="rounded" placeholder="Rounded" />
       </div>
     );
   },

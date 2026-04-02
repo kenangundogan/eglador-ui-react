@@ -9,11 +9,13 @@ export type TextareaSize = "xs" | "sm" | "md";
 export type TextareaVariant = "default" | "outline" | "ghost";
 export type TextareaColor = "default" | "black" | "primary" | "danger" | "success" | "warning" | "info";
 export type TextareaState = "idle" | "error" | "success";
+export type TextareaShape = "square" | "rounded";
 export type TextareaResize = "none" | "vertical" | "horizontal" | "both";
 
 export interface TextareaProps extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, "size"> {
   variant?: TextareaVariant;
   size?: TextareaSize;
+  shape?: TextareaShape;
   color?: TextareaColor;
   state?: TextareaState;
   label?: string;
@@ -25,6 +27,13 @@ export interface TextareaProps extends Omit<React.TextareaHTMLAttributes<HTMLTex
   wrapperClassName?: string;
   className?: string;
 }
+
+// ── Shape definitions ────────────────────────
+
+const SHAPES: Record<TextareaShape, string> = {
+  square: "",
+  rounded: "rounded-lg",
+};
 
 // ── Size definitions ─────────────────────────
 
@@ -83,6 +92,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
     {
       variant = "default",
       size = "sm",
+      shape = "rounded",
       color = "default",
       state = "idle",
       label,
@@ -164,7 +174,8 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
           aria-describedby={message ? messageId : undefined}
           onChange={handleChange}
           className={cn(
-            "w-full rounded-lg transition-colors duration-200",
+            "w-full transition-colors duration-200",
+            SHAPES[shape],
             "text-zinc-900 placeholder:text-zinc-400",
             "disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none",
             s.padding,

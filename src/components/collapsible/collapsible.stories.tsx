@@ -22,6 +22,7 @@ const meta: Meta<typeof Collapsible> = {
   argTypes: {
     defaultOpen: { control: "boolean" },
     disabled: { control: "boolean" },
+    shape: { control: "select", options: ["square", "rounded"] },
     onOpenChange: { action: "openChanged" },
   },
 };
@@ -147,6 +148,33 @@ export const Nested: Story = {
               </Collapsible.Content>
             </Collapsible>
           </div>
+        </Collapsible.Content>
+      </Collapsible>
+    </div>
+  ),
+};
+
+// ── Shapes ──────────────────────────────────
+
+export const Shapes: Story = {
+  render: () => (
+    <div className="flex flex-col gap-3 max-w-md">
+      <Collapsible shape="rounded" defaultOpen className="border border-zinc-200 p-3">
+        <Collapsible.Trigger className="flex items-center justify-between w-full text-left text-sm font-semibold text-zinc-900">
+          Rounded (default)
+          <ChevronDown className="size-4 text-zinc-400 shrink-0" />
+        </Collapsible.Trigger>
+        <Collapsible.Content>
+          <p className="mt-2 text-sm text-zinc-500">Content with rounded shape.</p>
+        </Collapsible.Content>
+      </Collapsible>
+      <Collapsible shape="square" defaultOpen className="border border-zinc-200 p-3">
+        <Collapsible.Trigger className="flex items-center justify-between w-full text-left text-sm font-semibold text-zinc-900">
+          Square
+          <ChevronDown className="size-4 text-zinc-400 shrink-0" />
+        </Collapsible.Trigger>
+        <Collapsible.Content>
+          <p className="mt-2 text-sm text-zinc-500">Content with square shape.</p>
         </Collapsible.Content>
       </Collapsible>
     </div>

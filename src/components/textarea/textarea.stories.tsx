@@ -19,6 +19,7 @@ const meta: Meta<typeof Textarea> = {
     variant: "default",
     color: "default",
     size: "sm",
+    shape: "rounded",
     state: "idle",
     resize: "vertical",
     autoGrow: false,
@@ -28,6 +29,7 @@ const meta: Meta<typeof Textarea> = {
     variant: { control: "select", options: ["default", "outline", "ghost"] },
     color: { control: "select", options: [...ALL_COLORS] },
     size: { control: "select", options: ["xs", "sm", "md"] },
+    shape: { control: "select", options: ["square", "rounded"] },
     state: { control: "select", options: ["idle", "error", "success"] },
     resize: { control: "select", options: ["none", "vertical", "horizontal", "both"] },
     autoGrow: { control: "boolean" },
@@ -123,6 +125,15 @@ export const NoResize: Story = {
   render: (args: TextareaProps) => (
     <div className="max-w-md">
       <Textarea {...args} resize="none" label="No resize" placeholder="Resize handle is disabled" />
+    </div>
+  ),
+};
+
+export const Shapes: Story = {
+  render: (args: TextareaProps) => (
+    <div className="flex flex-col gap-3 max-w-md">
+      <Textarea {...args} shape="square" placeholder="Square" label="Square" />
+      <Textarea {...args} shape="rounded" placeholder="Rounded" label="Rounded" />
     </div>
   ),
 };

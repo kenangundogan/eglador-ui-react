@@ -231,6 +231,31 @@ export const Persistent: Story = {
   },
 };
 
+// ── Shapes ──────────────────────────────────
+
+export const Shapes: Story = {
+  render: () => {
+    const { notifications, push, dismiss } = useNotification();
+    return (
+      <div className="flex flex-col gap-3">
+        <div className="flex gap-2 flex-wrap">
+          <Button size="xs" color="black" onClick={() => push({ title: "Rounded", message: "This notification has rounded corners.", icon: <Bell />, color: "primary", shape: "rounded", duration: 0 })}>
+            Rounded
+          </Button>
+          <Button size="xs" variant="outline" onClick={() => push({ title: "Square", message: "This notification has square corners.", icon: <Bell />, color: "primary", shape: "square", duration: 0 })}>
+            Square
+          </Button>
+        </div>
+        <NotificationContainer position="top-right">
+          {notifications.map((item) => (
+            <Notification key={item.id} item={item} onDismiss={dismiss} />
+          ))}
+        </NotificationContainer>
+      </div>
+    );
+  },
+};
+
 // ── Update Existing ──────────────────────────
 
 export const UpdateExisting: Story = {

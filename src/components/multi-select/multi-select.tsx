@@ -9,6 +9,8 @@ import { ChevronDownIcon, CheckIcon, XIcon, SearchIcon } from "../../lib/icons";
 
 // ── Types ────────────────────────────────────
 
+export type MultiSelectShape = "square" | "rounded";
+
 export interface MultiSelectOption {
   label: string;
   value: string;
@@ -20,6 +22,7 @@ export interface MultiSelectProps {
   onChange?: (values: string[], options?: MultiSelectOption[]) => void;
   options?: MultiSelectOption[];
   placeholder?: string;
+  shape?: MultiSelectShape;
   className?: string;
   disabled?: boolean;
   autoFlip?: boolean;
@@ -34,6 +37,13 @@ export interface MultiSelectProps {
   noOptionsLabel?: string;
 }
 
+// ── Shape definitions ────────────────────────
+
+const SHAPES: Record<MultiSelectShape, string> = {
+  square: "",
+  rounded: "rounded-lg",
+};
+
 // ── Component ────────────────────────────────
 
 export function MultiSelect({
@@ -41,6 +51,7 @@ export function MultiSelect({
   onChange,
   options = [],
   placeholder = "Select...",
+  shape = "rounded",
   className,
   disabled = false,
   autoFlip = true,
@@ -122,7 +133,8 @@ export function MultiSelect({
         disabled={disabled}
         onClick={() => !disabled && setIsOpen((prev) => !prev)}
         className={cn(
-          "flex w-full items-center justify-between rounded-lg border bg-white px-3 py-2 text-sm font-medium transition-all duration-200 outline-none min-h-9.5",
+          "flex w-full items-center justify-between border bg-white px-3 py-2 text-sm font-medium transition-all duration-200 outline-none min-h-9.5",
+          SHAPES[shape],
           disabled ? "opacity-50 cursor-not-allowed border-zinc-200 text-zinc-400" : "cursor-pointer",
           isOpen ? "border-zinc-300 ring-2 ring-zinc-900/5 text-zinc-900" : "border-zinc-200 text-zinc-700 hover:border-zinc-300 hover:bg-zinc-50",
         )}
@@ -173,7 +185,8 @@ export function MultiSelect({
         <div
           ref={dropdownRef}
           className={cn(
-            "absolute left-0 z-50 w-full rounded-lg border border-zinc-200 bg-white",
+            "absolute left-0 z-50 w-full border border-zinc-200 bg-white",
+            SHAPES[shape],
             openDirection === "bottom" ? "top-[calc(100%+4px)]" : "bottom-[calc(100%+4px)]",
           )}
         >

@@ -9,6 +9,7 @@ import { XIcon } from "../../lib/icons";
 
 export type NotificationColor = "default" | "primary" | "danger" | "success" | "warning" | "info";
 export type NotificationPosition = "top-right" | "top-left" | "bottom-right" | "bottom-left" | "top-center" | "bottom-center";
+export type NotificationShape = "square" | "rounded";
 
 export interface NotificationAction {
   label: string;
@@ -36,6 +37,8 @@ export interface NotificationItem {
   onDismiss?: () => void;
   /** Timestamp for "time ago" display */
   timestamp?: Date;
+  /** Shape of the notification container */
+  shape?: NotificationShape;
 }
 
 export interface NotificationProps {
@@ -106,6 +109,13 @@ const COLORS: Record<NotificationColor, NotificationColorDef> = {
   },
 };
 
+// ── Shape definitions ───────────────────────
+
+const SHAPES: Record<NotificationShape, string> = {
+  square: "",
+  rounded: "rounded-lg",
+};
+
 // ── Position definitions ─────────────────────
 
 const POSITIONS: Record<NotificationPosition, string> = {
@@ -146,6 +156,7 @@ export function Notification({ item, onDismiss }: NotificationProps) {
     pauseOnHover = true,
     onDismiss: onItemDismiss,
     timestamp,
+    shape = "rounded",
   } = item;
 
   const c = COLORS[color];
@@ -210,7 +221,8 @@ export function Notification({ item, onDismiss }: NotificationProps) {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       className={cn(
-        "relative flex flex-col w-80 bg-white border border-zinc-200 border-l-4 rounded-lg overflow-hidden",
+        "relative flex flex-col w-80 bg-white border border-zinc-200 border-l-4 overflow-hidden",
+        SHAPES[shape],
         c.border,
       )}
     >

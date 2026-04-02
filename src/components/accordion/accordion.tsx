@@ -8,6 +8,7 @@ import { ChevronDownIcon } from "../../lib/icons";
 
 export type AccordionVariant = "default" | "bordered" | "filled";
 export type AccordionSize = "xs" | "sm" | "md";
+export type AccordionShape = "square" | "rounded";
 
 export interface AccordionProps {
   title: React.ReactNode;
@@ -18,6 +19,7 @@ export interface AccordionProps {
   onOpenChange?: (open: boolean) => void;
   variant?: AccordionVariant;
   size?: AccordionSize;
+  shape?: AccordionShape;
   disabled?: boolean;
   hideChevron?: boolean;
   children: React.ReactNode;
@@ -39,6 +41,13 @@ const SIZES: Record<AccordionSize, {
   md: { trigger: "px-4 py-3", triggerCompact: "py-3", gap: "gap-2", font: "text-base", chevronSize: "size-6", contentPadding: "px-4 pb-4" },
 };
 
+// ── Shape definitions ────────────────────────
+
+const SHAPES: Record<AccordionShape, string> = {
+  square: "",
+  rounded: "rounded-lg",
+};
+
 // ── Component ────────────────────────────────
 
 export function Accordion({
@@ -50,6 +59,7 @@ export function Accordion({
   onOpenChange,
   variant = "default",
   size = "sm",
+  shape = "rounded",
   disabled = false,
   hideChevron = false,
   children,
@@ -76,8 +86,8 @@ export function Accordion({
       className={cn(
         "flex flex-col",
         variant === "default" && "border-b border-zinc-200",
-        variant === "bordered" && "border border-zinc-200 rounded-lg",
-        variant === "filled" && "bg-zinc-50 rounded-lg",
+        variant === "bordered" && cn("border border-zinc-200", SHAPES[shape]),
+        variant === "filled" && cn("bg-zinc-50", SHAPES[shape]),
         disabled && "opacity-50",
         className,
       )}
@@ -93,7 +103,7 @@ export function Accordion({
           s.gap,
           !disabled && "cursor-pointer",
           isBoxed ? s.trigger : s.triggerCompact,
-          !disabled && isBoxed && "hover:bg-zinc-100/50 rounded-lg",
+          !disabled && isBoxed && cn("hover:bg-zinc-100/50", SHAPES[shape]),
         )}
       >
         {icon && (
