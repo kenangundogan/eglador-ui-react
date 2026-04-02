@@ -69,7 +69,7 @@ export function MultiSelect({
   const [search, setSearch] = React.useState("");
 
   const containerRef = React.useRef<HTMLDivElement>(null);
-  const triggerRef = React.useRef<HTMLButtonElement>(null);
+  const triggerRef = React.useRef<HTMLDivElement>(null);
   const dropdownRef = React.useRef<HTMLDivElement>(null);
   const searchInputRef = React.useRef<HTMLInputElement>(null);
 
@@ -127,11 +127,15 @@ export function MultiSelect({
 
   return (
     <div ref={containerRef} className={cn("relative w-full", className)}>
-      <button
+      <div
         ref={triggerRef}
-        type="button"
-        disabled={disabled}
+        role="combobox"
+        aria-label={placeholder || "Select options"}
+        aria-expanded={isOpen}
+        aria-haspopup="listbox"
+        tabIndex={disabled ? -1 : 0}
         onClick={() => !disabled && setIsOpen((prev) => !prev)}
+        onKeyDown={(e) => { if (!disabled && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); setIsOpen((prev) => !prev); } }}
         className={cn(
           "flex w-full items-center justify-between border bg-white px-3 py-2 text-sm font-medium transition-all duration-200 outline-none min-h-9.5",
           SHAPES[shape],
@@ -149,17 +153,14 @@ export function MultiSelect({
                 >
                   <span className="truncate">{opt.label}</span>
                   {!disabled && (
-                    <span
-                      role="button"
-                      tabIndex={0}
+                    <button
+                      type="button"
+                      aria-label={`Remove ${opt.label}`}
                       onClick={(e) => removeOption(opt.value, e)}
-                      onKeyDown={(e) => {
-                        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); removeOption(opt.value, e); }
-                      }}
                       className="shrink-0 hover:text-zinc-900 transition-colors cursor-pointer"
                     >
                       <XIcon className="size-3" />
-                    </span>
+                    </button>
                   )}
                 </span>
               ))}
@@ -179,7 +180,7 @@ export function MultiSelect({
             isOpen && openDirection === "bottom" ? "rotate-180 text-zinc-900" : isOpen && openDirection === "top" ? "text-zinc-900" : "text-zinc-400",
           )}
         />
-      </button>
+      </div>
 
       {isOpen && (
         <div

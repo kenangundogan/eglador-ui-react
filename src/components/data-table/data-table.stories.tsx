@@ -141,7 +141,7 @@ export const Sizes: Story = {
       {(["xs", "sm", "md"] as const).map((size) => (
         <div key={size}>
           <span className="text-xs text-zinc-400 mb-2 block">{size}</span>
-          <DataTable data={users.slice(0, 3)} columns={userColumns.slice(0, 4)} rowKey="id" size={size} bordered />
+          <DataTable data={users.slice(0, 3)} columns={userColumns.slice(0, 4)} rowKey="id" size={size} bordered aria-label={`${size} table`} />
         </div>
       ))}
     </div>

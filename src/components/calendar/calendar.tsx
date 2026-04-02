@@ -273,6 +273,7 @@ export function Calendar({
           {isFirst && (
             <button
               type="button"
+              aria-label="Previous month"
               onClick={goToPrevMonth}
               className="absolute left-0 inline-flex items-center justify-center size-8 rounded-lg text-zinc-500 hover:bg-zinc-100 hover:text-zinc-900 transition-colors cursor-pointer"
             >
@@ -282,6 +283,7 @@ export function Calendar({
 
           <div className="flex items-center gap-1">
             <select
+              aria-label="Month"
               value={monthData.month}
               onChange={handleMonthSelect}
               className={cn("appearance-none bg-transparent font-semibold text-zinc-900 hover:text-zinc-600 transition-colors cursor-pointer outline-none text-center", s.headerFont)}
@@ -291,6 +293,7 @@ export function Calendar({
               ))}
             </select>
             <select
+              aria-label="Year"
               value={monthData.year}
               onChange={handleYearSelect}
               className={cn("appearance-none bg-transparent font-semibold text-zinc-900 hover:text-zinc-600 transition-colors cursor-pointer outline-none text-center", s.headerFont)}
@@ -304,6 +307,7 @@ export function Calendar({
           {isLast && (
             <button
               type="button"
+              aria-label="Next month"
               onClick={goToNextMonth}
               className="absolute right-0 inline-flex items-center justify-center size-8 rounded-lg text-zinc-500 hover:bg-zinc-100 hover:text-zinc-900 transition-colors cursor-pointer"
             >

@@ -127,6 +127,8 @@ function TableRoot({
   return (
     <TableContext.Provider value={{ size, variant }}>
       <div
+        tabIndex={(scrollX || scrollY) ? 0 : undefined}
+        role={(scrollX || scrollY) ? "region" : undefined}
         className={cn(
           TABLE_VARIANTS[variant],
           SHAPES[shape],

@@ -146,12 +146,12 @@ export const IconOnly: Story = {
   args: { children: undefined },
   render: (args: ButtonProps) => (
     <div className="flex gap-2 items-center">
-      <Button {...args} color="default" icon={<Settings />} />
-      <Button {...args} icon={<Plus />} />
-      <Button {...args} color="danger" icon={<Trash2 />} />
-      <Button {...args} color="success" shape="circle" icon={<Heart />} />
-      <Button {...args} variant="outline" icon={<Download />} />
-      <Button {...args} color="black" variant="ghost" icon={<Settings />} />
+      <Button {...args} icon={<Settings />} aria-label="Settings" />
+      <Button {...args} icon={<Plus />} aria-label="Add" />
+      <Button {...args} icon={<Trash2 />} aria-label="Delete" />
+      <Button {...args} shape="circle" icon={<Heart />} aria-label="Like" />
+      <Button {...args} variant="outline" icon={<Download />} aria-label="Download" />
+      <Button {...args} variant="ghost" icon={<Settings />} aria-label="Settings" />
     </div>
   ),
 };

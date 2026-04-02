@@ -338,6 +338,7 @@ function SidebarMenuButton({
       type="button"
       disabled={disabled}
       onClick={handleClick}
+      aria-label={isCollapsed && tooltip ? String(tooltip) : undefined}
       className={cn(
         "flex w-full items-center gap-2 rounded-lg text-sm font-medium transition-colors cursor-pointer outline-none",
         isCollapsed ? "justify-center px-2 py-2" : "px-2.5 py-1.5",
@@ -461,6 +462,7 @@ function SidebarRail({ className }: SidebarRailProps) {
   return (
     <button
       type="button"
+      aria-label="Toggle sidebar"
       onClick={toggle}
       className={cn(
         "absolute inset-y-0 right-0 w-1 hover:w-1.5 bg-transparent hover:bg-zinc-300 transition-all cursor-col-resize",

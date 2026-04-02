@@ -68,6 +68,7 @@ export const Variants: Story = {
               variant={variant}
               currentPage={pages[variant]}
               onPageChange={(p) => setPages((prev) => ({ ...prev, [variant]: p }))}
+              aria-label={`${variant} pagination`}
             />
           </div>
         ))}
@@ -84,7 +85,7 @@ export const Sizes: Story = {
       {(["xs", "sm", "md"] as const).map((size) => (
         <div key={size}>
           <span className="text-xs text-zinc-400 mb-2 block">{size}</span>
-          <Pagination totalPages={10} defaultPage={5} size={size} />
+          <Pagination totalPages={10} defaultPage={5} size={size} aria-label={`${size} pagination`} />
         </div>
       ))}
     </div>

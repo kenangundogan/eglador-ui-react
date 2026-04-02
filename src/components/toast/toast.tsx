@@ -267,6 +267,7 @@ function ToastItem({ data, onDismiss }: { data: ToastData; onDismiss: (id: strin
       {dismissible && (
         <button
           type="button"
+          aria-label="Dismiss"
           onClick={() => onDismiss(id)}
           className="shrink-0 flex items-center justify-center size-5 rounded text-zinc-400 hover:text-zinc-600 hover:bg-zinc-100 transition-colors cursor-pointer"
         >

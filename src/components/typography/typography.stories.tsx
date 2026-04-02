@@ -174,7 +174,7 @@ export const ArticleExample: Story = {
       <Typography>
         Modern web development has evolved significantly over the past decade. Component-based architectures have become the standard, enabling developers to build complex interfaces from simple, reusable building blocks.
       </Typography>
-      <Typography variant="h3">Getting Started</Typography>
+      <Typography variant="h2">Getting Started</Typography>
       <Typography>
         To begin, install the required dependencies using <Typography variant="code" as="span">npm install</Typography>. This will set up everything you need to start building components.
       </Typography>

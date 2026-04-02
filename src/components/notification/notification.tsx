@@ -255,6 +255,7 @@ export function Notification({ item, onDismiss }: NotificationProps) {
               {dismissible && (
                 <button
                   type="button"
+                  aria-label="Dismiss"
                   onClick={handleDismiss}
                   className={cn(
                     "flex items-center justify-center size-5 rounded text-zinc-400 transition-colors cursor-pointer",

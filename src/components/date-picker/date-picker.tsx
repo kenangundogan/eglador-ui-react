@@ -119,35 +119,37 @@ export function DatePicker({
       )}
 
       <Popover open={open} onOpenChange={setOpen} side="bottom" align="start">
-        <Popover.Trigger asChild>
-          <button
-            type="button"
-            id={autoId}
-            disabled={disabled}
-            className={cn(
-              "flex w-full items-center gap-2 rounded-lg border bg-white px-3 h-10 text-sm transition-colors outline-none text-left",
-              disabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer",
-              open ? stateStyle.focus : stateStyle.border,
-              !open && !disabled && "hover:border-zinc-300",
-            )}
-          >
-            <CalendarIcon className="size-4 text-zinc-400 shrink-0" />
-            <span className={cn("flex-1 truncate", hasValue ? "text-zinc-900" : "text-zinc-400")}>
-              {displayValue || displayPlaceholder}
-            </span>
-            {clearable && hasValue && !disabled && (
-              <span
-                role="button"
-                tabIndex={0}
-                onClick={handleClear}
-                onKeyDown={(e) => { if (e.key === "Enter") { e.preventDefault(); handleClear(e); } }}
-                className="shrink-0 size-4 flex items-center justify-center rounded text-zinc-400 hover:text-zinc-600 transition-colors cursor-pointer"
-              >
-                <XIcon className="size-3" />
+        <div className="relative flex items-center">
+          <Popover.Trigger asChild>
+            <button
+              type="button"
+              id={autoId}
+              disabled={disabled}
+              className={cn(
+                "flex w-full items-center gap-2 rounded-lg border bg-white px-3 h-10 text-sm transition-colors outline-none text-left",
+                disabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer",
+                open ? stateStyle.focus : stateStyle.border,
+                !open && !disabled && "hover:border-zinc-300",
+                clearable && hasValue && !disabled && "pr-8",
+              )}
+            >
+              <CalendarIcon className="size-4 text-zinc-400 shrink-0" />
+              <span className={cn("flex-1 truncate", hasValue ? "text-zinc-900" : "text-zinc-400")}>
+                {displayValue || displayPlaceholder}
               </span>
-            )}
-          </button>
-        </Popover.Trigger>
+            </button>
+          </Popover.Trigger>
+          {clearable && hasValue && !disabled && (
+            <button
+              type="button"
+              aria-label="Clear date"
+              onClick={handleClear}
+              className="absolute right-2 shrink-0 size-4 flex items-center justify-center rounded text-zinc-400 hover:text-zinc-600 transition-colors cursor-pointer"
+            >
+              <XIcon className="size-3" />
+            </button>
+          )}
+        </div>
         <Popover.Content className="p-0 w-auto max-w-[calc(100vw-2rem)]">
           <Calendar
             mode={mode}

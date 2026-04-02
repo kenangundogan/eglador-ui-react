@@ -138,6 +138,7 @@ export function Badge({
       {removable && (
         <button
           type="button"
+          aria-label="Remove"
           onClick={onRemove}
           className={cn(
             "shrink-0 flex items-center justify-center rounded-full transition-colors cursor-pointer -mr-0.5",

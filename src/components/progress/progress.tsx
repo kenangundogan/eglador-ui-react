@@ -84,6 +84,7 @@ export function Progress({
       )}
       <div
         role="progressbar"
+        aria-label={label ? String(label) : "Progress"}
         aria-valuenow={value}
         aria-valuemin={0}
         aria-valuemax={max}

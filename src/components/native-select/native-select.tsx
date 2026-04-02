@@ -264,6 +264,7 @@ export const NativeSelect = React.forwardRef<HTMLSelectElement, NativeSelectProp
             ref={ref}
             id={id}
             disabled={disabled}
+            aria-label={!label ? (placeholder || "Select") : undefined}
             aria-describedby={message ? messageId : undefined}
             className={cn(
               "w-full appearance-none cursor-pointer transition-colors duration-200",

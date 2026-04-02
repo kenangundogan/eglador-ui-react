@@ -34,6 +34,7 @@ interface CollapsibleContextValue {
   isOpen: boolean;
   toggle: () => void;
   disabled: boolean;
+  triggerId: string;
   contentId: string;
 }
 
@@ -68,6 +69,7 @@ function CollapsibleRoot({
   const isOpen = isControlled ? open : internalOpen;
 
   const autoId = React.useId();
+  const triggerId = `collapsible-trigger-${autoId}`;
   const contentId = `collapsible-content-${autoId}`;
 
   const toggle = React.useCallback(() => {
@@ -78,7 +80,7 @@ function CollapsibleRoot({
   }, [isOpen, isControlled, disabled, onOpenChange]);
 
   return (
-    <CollapsibleContext.Provider value={{ isOpen, toggle, disabled, contentId }}>
+    <CollapsibleContext.Provider value={{ isOpen, toggle, disabled, triggerId, contentId }}>
       <div className={cn(SHAPES[shape], disabled && "opacity-50", className)}>
         {children}
       </div>
@@ -90,7 +92,7 @@ CollapsibleRoot.displayName = "Collapsible";
 // ── Trigger ──────────────────────────────────
 
 function CollapsibleTrigger({ asChild = false, className, children }: CollapsibleTriggerProps) {
-  const { isOpen, toggle, disabled, contentId } = useCollapsible();
+  const { isOpen, toggle, disabled, triggerId, contentId } = useCollapsible();
 
   const handleClick = React.useCallback((e: React.MouseEvent) => {
     if (asChild && React.isValidElement(children)) {
@@ -101,6 +103,7 @@ function CollapsibleTrigger({ asChild = false, className, children }: Collapsibl
   }, [asChild, children, toggle]);
 
   const triggerProps = {
+    id: triggerId,
     "aria-expanded": isOpen,
     "aria-controls": contentId,
     "aria-disabled": disabled,
@@ -130,7 +133,7 @@ CollapsibleTrigger.displayName = "CollapsibleTrigger";
 // ── Content ──────────────────────────────────
 
 function CollapsibleContent({ className, children }: CollapsibleContentProps) {
-  const { isOpen, contentId } = useCollapsible();
+  const { isOpen, triggerId, contentId } = useCollapsible();
 
   if (!isOpen) return null;
 
@@ -138,6 +141,7 @@ function CollapsibleContent({ className, children }: CollapsibleContentProps) {
     <div
       id={contentId}
       role="region"
+      aria-labelledby={triggerId}
       className={className}
     >
       {children}

@@ -8,6 +8,7 @@ export interface BreadcrumbProps {
   children: React.ReactNode;
   className?: string;
   separator?: React.ReactNode;
+  "aria-label"?: string;
 }
 
 export interface BreadcrumbItemProps {
@@ -19,12 +20,12 @@ export interface BreadcrumbItemProps {
 
 // ── Breadcrumb Root ──────────────────────────
 
-function BreadcrumbRoot({ children, className, separator }: BreadcrumbProps) {
+function BreadcrumbRoot({ children, className, separator, "aria-label": ariaLabel }: BreadcrumbProps) {
   const items = React.Children.toArray(children);
   const defaultSeparator = <ChevronRightIcon className="size-3.5 text-zinc-400" />;
 
   return (
-    <nav aria-label="Breadcrumb" className={cn("flex", className)}>
+    <nav aria-label={ariaLabel || "Breadcrumb"} className={cn("flex", className)}>
       <ol className="flex flex-wrap items-center gap-1.5 text-sm text-zinc-500">
         {items.map((child, index) => {
           const isLast = index === items.length - 1;

@@ -68,6 +68,7 @@ export function ScrollArea({
   return (
     <div className={cn("relative", className)}>
       <div
+        tabIndex={0}
         className={cn(
           OVERFLOW_STYLES[orientation],
           VISIBILITY_STYLES[scrollbarVisibility],

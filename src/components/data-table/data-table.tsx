@@ -99,6 +99,7 @@ export interface DataTableProps<T> {
   bordered?: boolean;
   stickyHeader?: boolean;
   maxHeight?: string;
+  "aria-label"?: string;
   className?: string;
 }
 
@@ -184,6 +185,7 @@ export function DataTable<T = Record<string, unknown>>({
   bordered = false,
   stickyHeader = false,
   maxHeight,
+  "aria-label": ariaLabel,
   className,
 }: DataTableProps<T>) {
   const isRemote = !!endpoint;
@@ -681,6 +683,7 @@ export function DataTable<T = Record<string, unknown>>({
             <div ref={columnMenuRef} className="relative">
               <button
                 type="button"
+                aria-label="Toggle columns"
                 onClick={() => setColumnMenuOpen(!columnMenuOpen)}
                 className={cn("inline-flex items-center gap-1.5 px-3 rounded-lg border border-zinc-200 text-zinc-600 hover:bg-zinc-50 transition-colors cursor-pointer", s.font, s.searchHeight)}
               >
@@ -719,6 +722,9 @@ export function DataTable<T = Record<string, unknown>>({
 
       {/* Table */}
       <div
+        tabIndex={0}
+        role="region"
+        aria-label={ariaLabel || "Data table"}
         className={cn("overflow-x-auto rounded-lg", bordered && "border border-zinc-200", stickyHeader && maxHeight && "overflow-y-auto")}
         style={maxHeight ? { maxHeight } : undefined}
       >
@@ -748,9 +754,9 @@ export function DataTable<T = Record<string, unknown>>({
             {/* Column filter row */}
             {showColumnFilters && (
               <tr className="border-b border-zinc-200 bg-zinc-50/50">
-                {selectable && <th className={cn(s.header, "w-10", getCheckboxFixedClass("bg-zinc-50/50"))} style={checkboxFixedStyle} />}
+                {selectable && <th className={cn(s.header, "w-10", getCheckboxFixedClass("bg-zinc-50/50"))} style={checkboxFixedStyle}><span className="sr-only">Select</span></th>}
                 {visibleColumns.map((col) => {
-                  if (col.filterable === false) return <th key={col.id} className={cn(s.header, getFixedCellClass(col, "bg-zinc-50/50"))} style={getFixedCellStyle(col)} />;
+                  if (col.filterable === false) return <th key={col.id} className={cn(s.header, getFixedCellClass(col, "bg-zinc-50/50"))} style={getFixedCellStyle(col)}><span className="sr-only">No filter</span></th>;
 
                   const filterType = col.filterType || "text";
 
@@ -867,6 +873,7 @@ export function DataTable<T = Record<string, unknown>>({
             showPrevNext
             siblingCount={1}
             boundaryCount={1}
+            aria-label={ariaLabel ? `${ariaLabel} pagination` : "Table pagination"}
           />
         </div>
       </div>

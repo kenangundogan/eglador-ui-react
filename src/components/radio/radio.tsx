@@ -199,6 +199,7 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
           ref={ref}
           id={id}
           type="radio"
+          aria-label={!label ? (typeof name === "string" ? name : "Option") : undefined}
           className="sr-only"
           checked={checked}
           onChange={handleChange}

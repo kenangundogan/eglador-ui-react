@@ -110,14 +110,14 @@ export const WithIconButton: Story = {
       <InputGroup {...args}>
         <Input placeholder="https://eglador.com/share/abc123" />
         <InputGroup.Addon>
-          <Button variant="ghost" shape="square" size="sm" icon={<Copy />} />
+          <Button variant="ghost" shape="square" size="sm" icon={<Copy />} aria-label="Copy" />
         </InputGroup.Addon>
       </InputGroup>
 
       <InputGroup {...args}>
         <Input type="password" placeholder="Password" />
         <InputGroup.Addon>
-          <Button variant="ghost" shape="square" size="sm" icon={<Eye />} />
+          <Button variant="ghost" shape="square" size="sm" icon={<Eye />} aria-label="Show password" />
         </InputGroup.Addon>
       </InputGroup>
     </div>
@@ -198,7 +198,7 @@ export const LoginForm: Story = {
           <InputGroup.Text><Lock className="size-4 text-zinc-400" /></InputGroup.Text>
           <Input placeholder="••••••••" type="password" />
           <InputGroup.Addon>
-            <Button variant="ghost" shape="square" size="sm" icon={<Eye />} />
+            <Button variant="ghost" shape="square" size="sm" icon={<Eye />} aria-label="Show password" />
           </InputGroup.Addon>
         </InputGroup>
       </div>

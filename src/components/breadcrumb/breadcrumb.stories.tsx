@@ -52,13 +52,13 @@ export const WithIcon: Story = {
 export const CustomSeparator: Story = {
   render: () => (
     <div className="flex flex-col gap-4">
-      <Breadcrumb separator={<Slash className="size-3.5 text-zinc-300" />}>
+      <Breadcrumb aria-label="Slash separator" separator={<Slash className="size-3.5 text-zinc-300" />}>
         <Breadcrumb.Item href="/">Home</Breadcrumb.Item>
         <Breadcrumb.Item href="/docs">Docs</Breadcrumb.Item>
         <Breadcrumb.Item isActive>API</Breadcrumb.Item>
       </Breadcrumb>
 
-      <Breadcrumb separator={<span className="text-zinc-300">→</span>}>
+      <Breadcrumb aria-label="Arrow separator" separator={<span className="text-zinc-300">→</span>}>
         <Breadcrumb.Item href="/">Home</Breadcrumb.Item>
         <Breadcrumb.Item href="/blog">Blog</Breadcrumb.Item>
         <Breadcrumb.Item isActive>Post Title</Breadcrumb.Item>

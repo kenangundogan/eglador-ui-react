@@ -142,6 +142,7 @@ export const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(
           type="checkbox"
           role="switch"
           aria-checked={checked}
+          aria-label={!label ? (typeof name === "string" ? name : "Toggle") : undefined}
           className="sr-only"
           checked={checked}
           onChange={handleChange}

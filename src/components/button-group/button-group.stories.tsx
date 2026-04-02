@@ -29,9 +29,9 @@ type Story = StoryObj<typeof ButtonGroup>;
 export const Default: Story = {
   render: (args: ButtonGroupProps) => (
     <ButtonGroup {...args}>
-      <Button icon={<Settings />} />
-      <Button icon={<Plus />} />
-      <Button icon={<Check />} />
+      <Button icon={<Settings />} aria-label="Settings" />
+      <Button icon={<Plus />} aria-label="Add" />
+      <Button icon={<Check />} aria-label="Confirm" />
     </ButtonGroup>
   ),
 };
@@ -40,9 +40,9 @@ export const Segmented: Story = {
   args: { variant: "segmented" },
   render: (args: ButtonGroupProps) => (
     <ButtonGroup {...args}>
-      <Button icon={<Settings />} active />
-      <Button icon={<Plus />} />
-      <Button icon={<Check />} />
+      <Button icon={<Settings />} aria-label="Settings" active />
+      <Button icon={<Plus />} aria-label="Add" />
+      <Button icon={<Check />} aria-label="Confirm" />
     </ButtonGroup>
   ),
 };
@@ -50,9 +50,9 @@ export const Segmented: Story = {
 export const TextAlignment: Story = {
   render: (args: ButtonGroupProps) => (
     <ButtonGroup {...args}>
-      <Button icon={<AlignLeft />} />
-      <Button icon={<AlignCenter />} />
-      <Button icon={<AlignRight />} />
+      <Button icon={<AlignLeft />} aria-label="Align left" />
+      <Button icon={<AlignCenter />} aria-label="Align center" />
+      <Button icon={<AlignRight />} aria-label="Align right" />
     </ButtonGroup>
   ),
 };
@@ -61,9 +61,9 @@ export const TextFormatting: Story = {
   args: { variant: "segmented" },
   render: (args: ButtonGroupProps) => (
     <ButtonGroup {...args}>
-      <Button icon={<Bold />} active />
-      <Button icon={<Italic />} />
-      <Button icon={<Underline />} />
+      <Button icon={<Bold />} aria-label="Bold" active />
+      <Button icon={<Italic />} aria-label="Italic" />
+      <Button icon={<Underline />} aria-label="Underline" />
     </ButtonGroup>
   ),
 };

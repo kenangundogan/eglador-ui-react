@@ -62,7 +62,7 @@ export const CustomTrigger: Story = {
           <div className="flex items-center justify-between p-3 bg-zinc-50 rounded-lg">
             <span className="text-sm font-semibold text-zinc-900">Advanced Settings</span>
             <Collapsible.Trigger asChild>
-              <Button size="xs" variant="ghost" icon={open ? <Minus /> : <Plus />} />
+              <Button size="xs" variant="ghost" icon={open ? <Minus /> : <Plus />} aria-label="Toggle advanced settings" />
             </Collapsible.Trigger>
           </div>
           <Collapsible.Content>

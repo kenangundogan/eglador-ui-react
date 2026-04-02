@@ -130,6 +130,7 @@ function PrevButton({ className, ...restProps }: NavButtonProps) {
   return (
     <button
       type="button"
+      aria-label="Previous slide"
       className={cn(
         "inline-flex items-center justify-center size-8 rounded-full border bg-white/50 border-zinc-200/80 hover:bg-white hover:border-zinc-300 disabled:opacity-40 transition-colors cursor-pointer",
         className,
@@ -145,6 +146,7 @@ function NextButton({ className, ...restProps }: NavButtonProps) {
   return (
     <button
       type="button"
+      aria-label="Next slide"
       className={cn(
         "inline-flex items-center justify-center size-8 rounded-full border bg-white/50 border-zinc-200/80 hover:bg-white hover:border-zinc-300 disabled:opacity-40 transition-colors cursor-pointer",
         className,
@@ -448,6 +450,7 @@ export function Carousel({
                 <button
                   type="button"
                   key={index}
+                  aria-label={`Go to slide ${index + 1}`}
                   onClick={() => onDotButtonClick(index)}
                   className={cn(
                     styles?.dot

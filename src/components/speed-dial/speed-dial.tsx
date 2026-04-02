@@ -149,6 +149,7 @@ export function SpeedDial({
             <Tooltip key={action.id} content={action.label} position={resolvedTooltipPosition} delay={0}>
               <button
                 type="button"
+                aria-label={action.label}
                 disabled={action.disabled}
                 onClick={() => handleActionClick(action)}
                 className={cn(

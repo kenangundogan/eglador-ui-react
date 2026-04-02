@@ -207,6 +207,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
           ref={ref}
           id={id}
           type="checkbox"
+          aria-label={!label ? (typeof name === "string" ? name : "Toggle") : undefined}
           className="sr-only"
           checked={checked}
           onChange={handleChange}

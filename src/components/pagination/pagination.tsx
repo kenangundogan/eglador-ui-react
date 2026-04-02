@@ -21,6 +21,7 @@ export interface PaginationProps {
   showFirstLast?: boolean;
   showPrevNext?: boolean;
   disabled?: boolean;
+  "aria-label"?: string;
   className?: string;
 }
 
@@ -106,6 +107,7 @@ export function Pagination({
   showFirstLast = false,
   showPrevNext = true,
   disabled = false,
+  "aria-label": ariaLabel,
   className,
 }: PaginationProps) {
   const [internalPage, setInternalPage] = React.useState(defaultPage);
@@ -135,7 +137,7 @@ export function Pagination({
   );
 
   return (
-    <nav role="navigation" aria-label="Pagination" className={cn("flex items-center", s.gap, className)}>
+    <nav role="navigation" aria-label={ariaLabel || "Pagination"} className={cn("flex items-center", s.gap, className)}>
       {/* First page */}
       {showFirstLast && (
         <button

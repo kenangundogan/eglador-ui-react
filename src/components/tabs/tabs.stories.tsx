@@ -112,6 +112,9 @@ export const Sizes: Story = {
             <Tabs.Trigger value="tab2">Tab 2</Tabs.Trigger>
             <Tabs.Trigger value="tab3">Tab 3</Tabs.Trigger>
           </Tabs.List>
+          <Tabs.Content value="tab1"><p className="text-sm text-zinc-500 mt-2">Size: {size}</p></Tabs.Content>
+          <Tabs.Content value="tab2"><p className="text-sm text-zinc-500 mt-2">Tab 2 content</p></Tabs.Content>
+          <Tabs.Content value="tab3"><p className="text-sm text-zinc-500 mt-2">Tab 3 content</p></Tabs.Content>
         </Tabs>
       ))}
     </div>
