@@ -9,7 +9,7 @@ const meta: Meta<typeof Calendar> = {
   parameters: {
     docs: {
       description: {
-        component: "A date picker calendar with single, range, and multiple selection modes. Supports min/max dates, disabled dates/days, outside days visibility, locale, week start day, and two sizes.",
+        component: "A date picker calendar with single, range, and multiple selection modes. Supports min/max dates, disabled dates/days, outside days visibility, locale, week start day, and multiple sizes.",
       },
     },
   },
@@ -18,21 +18,64 @@ const meta: Meta<typeof Calendar> = {
     size: "md",
     showOutsideDays: true,
     weekStartsOn: 1,
+    numberOfMonths: 1,
   },
   argTypes: {
     mode: { control: "select", options: ["single", "range", "multiple"] },
-    size: { control: "select", options: ["sm", "md"] },
+    size: { control: "select", options: ["xs", "sm", "md"] },
+    numberOfMonths: { control: { type: "number", min: 1, max: 4 } },
     weekStartsOn: { control: "select", options: [0, 1] },
     showOutsideDays: { control: "boolean" },
+    selected: { table: { disable: true } },
+    onSelect: { table: { disable: true } },
+    defaultMonth: { table: { disable: true } },
+    minDate: { table: { disable: true } },
+    maxDate: { table: { disable: true } },
+    disabledDates: { table: { disable: true } },
+    disabledDaysOfWeek: { table: { disable: true } },
   },
 };
 
 export default meta;
 type Story = StoryObj<typeof Calendar>;
 
+// ── Default (handles all modes via controls) ──
+
+export const Default: Story = {
+  render: (args: CalendarProps) => {
+    const [singleDate, setSingleDate] = useState<Date | null>(null);
+    const [range, setRange] = useState<DateRange>({ from: null, to: null });
+    const [dates, setDates] = useState<Date[]>([]);
+
+    const mode = args.mode || "single";
+
+    const selected = mode === "single" ? singleDate : mode === "range" ? range : dates;
+    const onSelect = (val: Date | Date[] | DateRange | null) => {
+      if (mode === "single") setSingleDate(val as Date);
+      else if (mode === "range") setRange(val as DateRange);
+      else setDates(val as Date[]);
+    };
+
+    const label =
+      mode === "single"
+        ? `Selected: ${singleDate ? singleDate.toLocaleDateString() : "none"}`
+        : mode === "range"
+          ? `From: ${range.from?.toLocaleDateString() || "—"} → To: ${range.to?.toLocaleDateString() || "—"}`
+          : `Selected: ${dates.length} date${dates.length !== 1 ? "s" : ""}`;
+
+    return (
+      <div className="flex flex-col gap-3">
+        <Calendar {...args} selected={selected} onSelect={onSelect} />
+        <span className="text-xs text-zinc-400">{label}</span>
+      </div>
+    );
+  },
+};
+
 // ── Single Selection ─────────────────────────
 
 export const Single: Story = {
+  args: { mode: "single" },
   render: (args: CalendarProps) => {
     const [date, setDate] = useState<Date | null>(null);
     return (
@@ -49,6 +92,7 @@ export const Single: Story = {
 // ── Range Selection ──────────────────────────
 
 export const Range: Story = {
+  args: { mode: "range" },
   render: (args: CalendarProps) => {
     const [range, setRange] = useState<DateRange>({ from: null, to: null });
     return (
@@ -65,6 +109,7 @@ export const Range: Story = {
 // ── Range with Two Months ────────────────────
 
 export const RangeTwoMonths: Story = {
+  args: { mode: "range", numberOfMonths: 2 },
   render: (args: CalendarProps) => {
     const [range, setRange] = useState<DateRange>({ from: null, to: null });
     return (
@@ -81,6 +126,7 @@ export const RangeTwoMonths: Story = {
 // ── Three Months ─────────────────────────────
 
 export const ThreeMonths: Story = {
+  args: { numberOfMonths: 3 },
   render: (args: CalendarProps) => {
     const [date, setDate] = useState<Date | null>(null);
     return (
@@ -92,6 +138,7 @@ export const ThreeMonths: Story = {
 // ── Multiple Selection ───────────────────────
 
 export const Multiple: Story = {
+  args: { mode: "multiple" },
   render: (args: CalendarProps) => {
     const [dates, setDates] = useState<Date[]>([]);
     return (
@@ -110,14 +157,12 @@ export const Multiple: Story = {
 export const Sizes: Story = {
   render: () => (
     <div className="flex gap-4">
-      <div>
-        <span className="text-xs text-zinc-400 mb-2 block">sm</span>
-        <Calendar size="sm" />
-      </div>
-      <div>
-        <span className="text-xs text-zinc-400 mb-2 block">md</span>
-        <Calendar size="md" />
-      </div>
+      {(["xs", "sm", "md"] as const).map((size) => (
+        <div key={size}>
+          <span className="text-xs text-zinc-400 mb-2 block">{size}</span>
+          <Calendar size={size} />
+        </div>
+      ))}
     </div>
   ),
 };
@@ -181,6 +226,7 @@ export const DisabledDates: Story = {
 // ── Week Starts on Sunday ────────────────────
 
 export const WeekStartsSunday: Story = {
+  args: { weekStartsOn: 0 },
   render: (args: CalendarProps) => (
     <Calendar {...args} weekStartsOn={0} />
   ),
@@ -189,6 +235,7 @@ export const WeekStartsSunday: Story = {
 // ── Hide Outside Days ────────────────────────
 
 export const HideOutsideDays: Story = {
+  args: { showOutsideDays: false },
   render: (args: CalendarProps) => (
     <Calendar {...args} showOutsideDays={false} />
   ),
@@ -208,6 +255,7 @@ export const Preselected: Story = {
 // ── Booking Example ──────────────────────────
 
 export const BookingExample: Story = {
+  args: { mode: "range", numberOfMonths: 2 },
   render: (args: CalendarProps) => {
     const today = new Date();
     const [range, setRange] = useState<DateRange>({ from: null, to: null });

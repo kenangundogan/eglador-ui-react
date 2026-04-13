@@ -1,29 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { NativeSelect } from "./native-select";
+import { NativeSelect, type NativeSelectProps } from "./native-select";
 
-const meta: Meta<typeof NativeSelect> = {
-  title: "Components/NativeSelect",
-  component: NativeSelect,
-  tags: ["autodocs"],
-  parameters: {
-    docs: {
-      description: {
-        component: "A native HTML select element with consistent styling. Supports sizes, colors, variants, states, option groups, labels, and validation messages.",
-      },
-    },
-  },
-  argTypes: {
-    size: { control: "select", options: ["xs", "sm", "md"] },
-    variant: { control: "select", options: ["default", "outline", "ghost"] },
-    color: { control: "select", options: ["default", "black", "primary", "danger", "success", "warning", "info"] },
-    state: { control: "select", options: ["idle", "error", "success"] },
-    shape: { control: "select", options: ["square", "rounded"] },
-    disabled: { control: "boolean" },
-  },
-};
-
-export default meta;
-type Story = StoryObj<typeof NativeSelect>;
+const ALL_COLORS = ["default", "black", "primary", "danger", "success", "warning", "info"] as const;
 
 const fruitOptions = [
   { label: "Apple", value: "apple" },
@@ -33,66 +11,120 @@ const fruitOptions = [
   { label: "Orange", value: "orange" },
 ];
 
-export const Default: Story = {
-  render: () => (
-    <div className="max-w-xs">
-      <NativeSelect options={fruitOptions} placeholder="Select a fruit" />
-    </div>
-  ),
+const meta: Meta<typeof NativeSelect> = {
+  title: "Components/NativeSelect",
+  component: NativeSelect,
+  tags: ["autodocs"],
+  parameters: {
+    docs: {
+      description: {
+        component: "A native HTML select element with consistent styling. Supports 3 sizes, 7 colors, 3 variants, 2 shapes, validation states, option groups, labels, and validation messages.",
+      },
+    },
+  },
+  args: {
+    options: fruitOptions,
+    placeholder: "Select a fruit",
+    variant: "default",
+    color: "default",
+    size: "sm",
+    shape: "rounded",
+    state: "idle",
+    disabled: false,
+  },
+  argTypes: {
+    variant: { control: "select", options: ["default", "outline", "ghost"] },
+    color: { control: "select", options: [...ALL_COLORS] },
+    size: { control: "select", options: ["xs", "sm", "md"] },
+    shape: { control: "select", options: ["square", "rounded"] },
+    state: { control: "select", options: ["idle", "error", "success"] },
+    disabled: { control: "boolean" },
+    label: { control: "text" },
+    placeholder: { control: "text" },
+    errorMessage: { control: "text" },
+    successMessage: { control: "text" },
+  },
 };
+
+export default meta;
+type Story = StoryObj<typeof NativeSelect>;
+
+// ── Default ─────────────────────────────────
+
+export const Default: Story = {};
+
+// ── With Label ──────────────────────────────
 
 export const WithLabel: Story = {
-  render: () => (
-    <div className="max-w-xs">
-      <NativeSelect label="Fruit" options={fruitOptions} placeholder="Select a fruit" />
-    </div>
-  ),
+  args: { label: "Fruit" },
 };
+
+// ── Sizes ───────────────────────────────────
 
 export const Sizes: Story = {
-  render: () => (
+  render: (args: NativeSelectProps) => (
     <div className="flex flex-col gap-4 max-w-xs">
       {(["xs", "sm", "md"] as const).map((size) => (
-        <NativeSelect key={size} size={size} label={size} options={fruitOptions} defaultValue="apple" />
+        <NativeSelect {...args} key={size} size={size} label={size.toUpperCase()} defaultValue="apple" />
       ))}
     </div>
   ),
 };
+
+// ── Colors ──────────────────────────────────
 
 export const Colors: Story = {
-  render: () => (
+  render: (args: NativeSelectProps) => (
     <div className="flex flex-col gap-4 max-w-xs">
-      {(["default", "black", "primary", "danger", "success", "warning", "info"] as const).map((color) => (
-        <NativeSelect key={color} color={color} label={color} options={fruitOptions} defaultValue="banana" />
+      {ALL_COLORS.map((color) => (
+        <NativeSelect {...args} key={color} color={color} label={color.charAt(0).toUpperCase() + color.slice(1)} defaultValue="banana" />
       ))}
     </div>
   ),
 };
+
+// ── Variants ────────────────────────────────
 
 export const Variants: Story = {
-  render: () => (
+  render: (args: NativeSelectProps) => (
     <div className="flex flex-col gap-4 max-w-xs">
       {(["default", "outline", "ghost"] as const).map((variant) => (
-        <NativeSelect key={variant} variant={variant} label={variant} options={fruitOptions} defaultValue="cherry" />
+        <NativeSelect {...args} key={variant} variant={variant} label={variant.charAt(0).toUpperCase() + variant.slice(1)} defaultValue="cherry" />
       ))}
     </div>
   ),
 };
 
-export const States: Story = {
-  render: () => (
+// ── Shapes ──────────────────────────────────
+
+export const Shapes: Story = {
+  render: (args: NativeSelectProps) => (
     <div className="flex flex-col gap-4 max-w-xs">
-      <NativeSelect state="idle" label="Idle" options={fruitOptions} defaultValue="apple" />
-      <NativeSelect state="error" label="Error" options={fruitOptions} defaultValue="apple" errorMessage="Please select a valid option" />
-      <NativeSelect state="success" label="Success" options={fruitOptions} defaultValue="apple" successMessage="Looks good!" />
+      <NativeSelect {...args} shape="rounded" label="Rounded (default)" defaultValue="apple" />
+      <NativeSelect {...args} shape="square" label="Square" defaultValue="apple" />
     </div>
   ),
 };
 
+// ── States ──────────────────────────────────
+
+export const States: Story = {
+  render: (args: NativeSelectProps) => (
+    <div className="flex flex-col gap-4 max-w-xs">
+      <NativeSelect {...args} state="idle" label="Idle" defaultValue="apple" />
+      <NativeSelect {...args} state="error" label="Error" defaultValue="apple" errorMessage="Please select a valid option" />
+      <NativeSelect {...args} state="success" label="Success" defaultValue="apple" successMessage="Looks good!" />
+    </div>
+  ),
+};
+
+// ── Option Groups ───────────────────────────
+
 export const OptionGroups: Story = {
-  render: () => (
+  render: (args: NativeSelectProps) => (
     <div className="max-w-xs">
       <NativeSelect
+        {...args}
         label="Food"
         placeholder="Select a food"
         options={[
@@ -116,19 +148,33 @@ export const OptionGroups: Story = {
   ),
 };
 
-export const Shapes: Story = {
-  render: () => (
-    <div className="flex flex-col gap-4 max-w-xs">
-      <NativeSelect shape="rounded" label="Rounded (default)" options={fruitOptions} defaultValue="apple" />
-      <NativeSelect shape="square" label="Square" options={fruitOptions} defaultValue="apple" />
-    </div>
-  ),
+// ── Error State ─────────────────────────────
+
+export const ErrorState: Story = {
+  args: {
+    state: "error",
+    label: "Fruit",
+    errorMessage: "Please select a valid option.",
+  },
 };
 
+// ── Success State ───────────────────────────
+
+export const SuccessState: Story = {
+  args: {
+    state: "success",
+    label: "Fruit",
+    defaultValue: "apple",
+    successMessage: "Looks good!",
+  },
+};
+
+// ── Disabled ────────────────────────────────
+
 export const Disabled: Story = {
-  render: () => (
-    <div className="max-w-xs">
-      <NativeSelect label="Disabled" options={fruitOptions} defaultValue="grape" disabled />
-    </div>
-  ),
+  args: {
+    label: "Disabled",
+    defaultValue: "grape",
+    disabled: true,
+  },
 };

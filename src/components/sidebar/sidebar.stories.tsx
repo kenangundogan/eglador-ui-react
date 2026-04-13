@@ -7,6 +7,121 @@ import { Avatar } from "../avatar";
 import { Input } from "../input";
 import { Popover } from "../popover";
 
+const requirementsMarkdown = `
+A full-featured sidebar layout component with collapsible state, icon-only mode, menu groups, collapsible sub-menus, tenant switcher header, user profile dropdown footer, trigger, and rail.
+
+<details>
+<summary><strong>Requirements</strong> — helper components used by the examples (click to expand)</summary>
+
+The examples below use two small helper components — \`TenantSwitcher\` (rendered in \`Sidebar.Header\`) and \`UserMenu\` (rendered in \`Sidebar.Footer\`). They are **not** exported by the library; copy them into your project and adapt as needed. Both read the \`isOpen\` flag from \`useSidebar()\` so they adapt between expanded and collapsed states.
+
+### \`TenantSwitcher\`
+
+\`\`\`tsx
+import { useState } from "react";
+import { ChevronDown } from "lucide-react";
+import { Popover, useSidebar } from "eglador-ui-react";
+
+function TenantSwitcher() {
+  const { isOpen } = useSidebar();
+  const [tenant, setTenant] = useState("Eglador");
+  const tenants = ["Eglador", "Acme Corp", "Stark Industries"];
+
+  return (
+    <Popover side="bottom" align="start">
+      <Popover.Trigger asChild>
+        <button type="button" className="flex w-full items-center gap-2 rounded-lg hover:bg-zinc-50 p-1 transition-colors cursor-pointer">
+          <div className="size-8 rounded-lg bg-zinc-900 flex items-center justify-center text-white text-xs font-bold shrink-0">
+            {tenant[0]}
+          </div>
+          {isOpen && (
+            <>
+              <div className="flex-1 min-w-0 text-left">
+                <p className="text-sm font-semibold text-zinc-900 truncate">{tenant}</p>
+                <p className="text-[10px] text-zinc-400 truncate">Free Plan</p>
+              </div>
+              <ChevronDown className="size-3.5 text-zinc-400 shrink-0" />
+            </>
+          )}
+        </button>
+      </Popover.Trigger>
+      <Popover.Content className="w-56 p-1.5">
+        <p className="px-2 py-1.5 text-[10px] font-semibold text-zinc-400 uppercase tracking-wider">Switch Workspace</p>
+        {tenants.map((t) => (
+          <button
+            key={t}
+            type="button"
+            onClick={() => setTenant(t)}
+            className={\`flex w-full items-center gap-2 px-2 py-1.5 text-sm rounded-md transition-colors cursor-pointer \${tenant === t ? "bg-zinc-100 text-zinc-900 font-medium" : "text-zinc-600 hover:bg-zinc-50"}\`}
+          >
+            <div className="size-5 rounded bg-zinc-200 flex items-center justify-center text-[10px] font-bold text-zinc-600">
+              {t[0]}
+            </div>
+            {t}
+          </button>
+        ))}
+      </Popover.Content>
+    </Popover>
+  );
+}
+\`\`\`
+
+### \`UserMenu\`
+
+\`\`\`tsx
+import { ChevronUp, CreditCard, LogOut, Settings, Shield, User } from "lucide-react";
+import { Avatar, Popover, useSidebar } from "eglador-ui-react";
+
+function UserMenu() {
+  const { isOpen } = useSidebar();
+
+  return (
+    <Popover side="top" align="start">
+      <Popover.Trigger asChild>
+        <button type="button" className="flex w-full items-center gap-2 rounded-lg hover:bg-zinc-50 p-1 transition-colors cursor-pointer">
+          <Avatar name="Kenan Gundogan" size="sm" />
+          {isOpen && (
+            <>
+              <div className="flex-1 min-w-0 text-left">
+                <p className="text-sm font-medium text-zinc-900 truncate">Kenan Gundogan</p>
+                <p className="text-[10px] text-zinc-400 truncate">kenan@eglador.com</p>
+              </div>
+              <ChevronUp className="size-3.5 text-zinc-400 shrink-0" />
+            </>
+          )}
+        </button>
+      </Popover.Trigger>
+      <Popover.Content className="w-56 p-1.5">
+        <div className="px-2 py-2 border-b border-zinc-100 mb-1">
+          <p className="text-sm font-semibold text-zinc-900">Kenan Gundogan</p>
+          <p className="text-xs text-zinc-400">kenan@eglador.com</p>
+        </div>
+        <button type="button" className="flex w-full items-center gap-2 px-2 py-1.5 text-sm text-zinc-600 rounded-md hover:bg-zinc-50 transition-colors cursor-pointer">
+          <User className="size-4 opacity-60" /> Profile
+        </button>
+        <button type="button" className="flex w-full items-center gap-2 px-2 py-1.5 text-sm text-zinc-600 rounded-md hover:bg-zinc-50 transition-colors cursor-pointer">
+          <CreditCard className="size-4 opacity-60" /> Billing
+        </button>
+        <button type="button" className="flex w-full items-center gap-2 px-2 py-1.5 text-sm text-zinc-600 rounded-md hover:bg-zinc-50 transition-colors cursor-pointer">
+          <Shield className="size-4 opacity-60" /> Security
+        </button>
+        <button type="button" className="flex w-full items-center gap-2 px-2 py-1.5 text-sm text-zinc-600 rounded-md hover:bg-zinc-50 transition-colors cursor-pointer">
+          <Settings className="size-4 opacity-60" /> Settings
+        </button>
+        <div className="border-t border-zinc-100 mt-1 pt-1">
+          <button type="button" className="flex w-full items-center gap-2 px-2 py-1.5 text-sm text-red-600 rounded-md hover:bg-red-50 transition-colors cursor-pointer">
+            <LogOut className="size-4 opacity-60" /> Sign Out
+          </button>
+        </div>
+      </Popover.Content>
+    </Popover>
+  );
+}
+\`\`\`
+
+</details>
+`;
+
 const meta: Meta<typeof Sidebar> = {
   title: "Components/Sidebar",
   component: Sidebar,
@@ -14,7 +129,7 @@ const meta: Meta<typeof Sidebar> = {
   parameters: {
     docs: {
       description: {
-        component: "A full-featured sidebar layout component with collapsible state, icon-only mode, menu groups, collapsible sub-menus, tenant switcher header, user profile dropdown footer, trigger, and rail.",
+        component: requirementsMarkdown,
       },
     },
     layout: "fullscreen",
