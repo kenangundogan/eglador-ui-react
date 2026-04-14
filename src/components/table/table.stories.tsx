@@ -229,6 +229,39 @@ export const Truncate: Story = {
   ),
 };
 
+// ── Scroll X ─────────────────────────────────
+
+export const ScrollX: Story = {
+  render: (args: TableProps) => (
+    <div className="md:max-w-1/2">
+    <Table {...args} variant="bordered" scrollX >
+      <Table.Head>
+        <Table.Row>
+          <Table.Header>ID</Table.Header>
+          <Table.Header>Name</Table.Header>
+          <Table.Header>User Name</Table.Header>
+          <Table.Header>Phone</Table.Header>
+          <Table.Header>Email</Table.Header>
+          <Table.Header>Address</Table.Header>
+        </Table.Row>
+      </Table.Head>
+      <Table.Body>
+        {Array.from({ length: 3 }, (_, i) => (
+          <Table.Row key={i}>
+            <Table.Cell>{i + 1}</Table.Cell>
+            <Table.Cell>User {i + 1}</Table.Cell>
+            <Table.Cell>user-name-{i + 1}</Table.Cell>
+            <Table.Cell>(55{i + 1}) 113 52 77</Table.Cell>
+            <Table.Cell>user{i + 1}@example.com</Table.Cell>
+            <Table.Cell>Beyoğlu/Taksim - İstanbul </Table.Cell>
+          </Table.Row>
+        ))}
+      </Table.Body>
+    </Table>
+    </div>
+  ),
+};
+
 // ── Scroll Y ─────────────────────────────────
 
 export const ScrollY: Story = {
