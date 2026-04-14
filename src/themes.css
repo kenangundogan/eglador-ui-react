@@ -14,7 +14,7 @@
   --color-black: light-dark(#09090b, #ffffff);
 
   /* ───── ZINC ───── */
-  --color-zinc-50:  light-dark(#fafafa, #09090b);
+  --color-zinc-50:  light-dark(#fafafa, #18181b);
   --color-zinc-100: light-dark(#f4f4f5, #18181b);
   --color-zinc-200: light-dark(#e4e4e7, #27272a);
   --color-zinc-300: light-dark(#d4d4d8, #3f3f46);
