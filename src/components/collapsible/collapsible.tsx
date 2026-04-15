@@ -128,7 +128,7 @@ function CollapsibleTrigger({ asChild = false, className, children }: Collapsibl
     </button>
   );
 }
-CollapsibleTrigger.displayName = "CollapsibleTrigger";
+CollapsibleTrigger.displayName = "Collapsible.Trigger";
 
 // ── Content ──────────────────────────────────
 
@@ -148,7 +148,7 @@ function CollapsibleContent({ className, children }: CollapsibleContentProps) {
     </div>
   );
 }
-CollapsibleContent.displayName = "CollapsibleContent";
+CollapsibleContent.displayName = "Collapsible.Content";
 
 // ── Export ────────────────────────────────────
 

@@ -35,7 +35,7 @@ function InputGroupText({ className, children }: InputGroupTextProps) {
     </span>
   );
 }
-InputGroupText.displayName = "InputGroupText";
+InputGroupText.displayName = "InputGroup.Text";
 
 // ── InputGroup Addon ─────────────────────────
 
@@ -46,7 +46,7 @@ function InputGroupAddon({ className, children }: InputGroupAddonProps) {
     </div>
   );
 }
-InputGroupAddon.displayName = "InputGroupAddon";
+InputGroupAddon.displayName = "InputGroup.Addon";
 
 // ── Component ────────────────────────────────
 
@@ -140,6 +140,8 @@ function InputGroupRoot({
     </div>
   );
 }
+
+InputGroupRoot.displayName = "InputGroup";
 
 // ── Export ────────────────────────────────────
 
