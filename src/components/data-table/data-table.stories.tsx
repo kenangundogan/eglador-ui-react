@@ -116,21 +116,53 @@ export const FullFeatured: Story = {
   render: () => {
     const [selected, setSelected] = useState<User[]>([]);
     return (
-      <DataTable
-        data={users}
-        columns={userColumns}
-        rowKey="id"
-        searchable
-        searchPlaceholder="Search users..."
-        selectable
-        showColumnToggle
-        striped
-        bordered
-        selectedRows={selected}
-        onSelectionChange={setSelected}
-        pageSizes={[5, 10, 25]}
-        pageSize={10}
-      />
+      <div className="flex flex-col gap-4">
+        <DataTable
+          data={users}
+          columns={userColumns}
+          rowKey="id"
+          searchable
+          searchPlaceholder="Search users..."
+          selectable
+          showColumnToggle
+          striped
+          bordered
+          selectedRows={selected}
+          onSelectionChange={setSelected}
+          pageSizes={[5, 10, 25]}
+          pageSize={10}
+        />
+        {selected.length > 0 && (
+          <div className="border border-zinc-200 rounded-lg p-4 bg-zinc-50">
+            <div className="flex items-center justify-between mb-3">
+              <span className="text-sm font-medium text-zinc-700">
+                {selected.length} user selected
+              </span>
+              <div className="flex gap-2">
+                <Button size="xs" variant="outline" onClick={() => console.log(selected)}>
+                  Get JSON Log
+                </Button>
+                <Button
+                  size="xs"
+                  variant="outline"
+                  color="danger"
+                  onClick={() => setSelected([])}
+                >
+                  Clear selection
+                </Button>
+              </div>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {selected.map((user) => (
+                <Badge key={user.id} size="xs" shape="pill">
+                  {user.name}
+                </Badge>
+              ))}
+            </div>
+          </div>
+        )}
+
+      </div>
     );
   },
 };
