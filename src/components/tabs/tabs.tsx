@@ -191,9 +191,17 @@ function TabsContent({ value, className, children }: TabsContentProps) {
   );
 }
 
+// ── Display names ────────────────────────────
+
+TabsRoot.displayName = "Tabs";
+TabsList.displayName = "Tabs.List";
+TabsTrigger.displayName = "Tabs.Trigger";
+TabsContent.displayName = "Tabs.Content";
+
 // ── Export ────────────────────────────────────
 
 export const Tabs = Object.assign(TabsRoot, {
+  Root: TabsRoot,
   List: TabsList,
   Trigger: TabsTrigger,
   Content: TabsContent,

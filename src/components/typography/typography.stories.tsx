@@ -21,9 +21,9 @@ const meta: Meta<typeof Typography> = {
     variant: { control: "select", options: ["h1", "h2", "h3", "h4", "p", "lead", "large", "small", "muted", "blockquote", "code", "kbd"] },
     color: { control: "select", options: ["default", "muted", "primary", "danger", "success", "warning", "info"] },
     align: { control: "select", options: ["left", "center", "right"] },
-    weight: { control: "select", options: ["normal", "medium", "semibold", "bold"] },
+    weight: { control: "select", options: ["thin", "extralight", "light", "normal", "medium", "semibold", "bold", "extrabold", "black"] },
     truncate: { control: "boolean" },
-    lines: { control: { type: "number", min: 1, max: 5 } },
+    lines: { control: { type: "number", min: 1, max: 10 } },
   },
 };
 
@@ -92,7 +92,7 @@ export const Alignment: Story = {
 export const Weights: Story = {
   render: () => (
     <div className="flex flex-col gap-2">
-      {(["normal", "medium", "semibold", "bold"] as const).map((weight) => (
+      {(["thin", "extralight", "light", "normal", "medium", "semibold", "bold", "extrabold", "black"] as const).map((weight) => (
         <Typography key={weight} weight={weight}>
           {weight.charAt(0).toUpperCase() + weight.slice(1)} weight text
         </Typography>
@@ -143,13 +143,19 @@ export const Truncate: Story = {
 // ── Line Clamp ───────────────────────────────
 
 export const LineClamp: Story = {
-  render: (args: TypographyProps) => (
-    <div className="max-w-sm">
-      <Typography {...args} lines={2}>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-      </Typography>
-    </div>
-  ),
+  render: (args: TypographyProps) => {
+    const text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
+    return (
+      <div className="flex flex-col gap-4 max-w-sm">
+        {[1, 2, 3, 4, 5].map((n) => (
+          <div key={n} className="flex flex-col gap-1">
+            <span className="text-xs text-zinc-400">lines = {n}</span>
+            <Typography {...args} lines={n}>{text}</Typography>
+          </div>
+        ))}
+      </div>
+    );
+  },
 };
 
 // ── Custom Element ───────────────────────────

@@ -1,6 +1,7 @@
+import { useState, useEffect } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Button } from "../button";
-import { toast, Toaster } from "./toast";
+import { toast, Toaster, type ToastPosition } from "./toast";
 
 const meta: Meta<typeof Toaster> = {
   title: "Components/Toast",
@@ -13,6 +14,14 @@ const meta: Meta<typeof Toaster> = {
       },
     },
   },
+  decorators: [
+    (Story) => {
+      useEffect(() => {
+        return () => toast.dismissAll();
+      }, []);
+      return <Story />;
+    },
+  ],
 };
 
 export default meta;
@@ -76,7 +85,8 @@ export const PromiseToast: Story = {
   render: () => {
     const fakeUpload = () => new Promise<{ name: string }>((resolve, reject) => {
       setTimeout(() => {
-        Math.random() > 0.3 ? resolve({ name: "report.pdf" }) : reject(new Error("Network error"));
+        const rnd = Math.round(Math.random() * 10);
+        rnd >= 5 ? resolve({ name: "report.pdf" }) : reject(new Error("Network error"));
       }, 2000);
     });
 
@@ -114,17 +124,18 @@ export const CustomDuration: Story = {
 export const Positions: Story = {
   render: () => {
     const positions = ["top-right", "top-left", "top-center", "bottom-right", "bottom-left", "bottom-center"] as const;
+    const [position, setPosition] = useState<ToastPosition>("bottom-right");
     return (
       <div className="flex flex-col gap-2">
         <div className="flex gap-2 flex-wrap">
           {positions.map((pos) => (
-            <Button key={pos} size="xs" variant="outline" onClick={() => toast.info({ title: pos, duration: 3000 })}>
+            <Button key={pos} size="xs" variant={position === pos ? "solid" : "outline"} onClick={() => { setPosition(pos); toast.dismissAll(); toast.info({ title: pos, duration: 3000 }); }}>
               {pos}
             </Button>
           ))}
         </div>
-        <p className="text-xs text-zinc-400">Note: position is set on the Toaster component, not per-toast. Default: bottom-right.</p>
-        <Toaster position="top-center" />
+        <p className="text-xs text-zinc-400">Note: position is set on the Toaster component, not per-toast. Click a button to change position.</p>
+        <Toaster position={position} />
       </div>
     );
   },

@@ -78,19 +78,24 @@ export const WithProgressBar: Story = {
 export const WithActions: Story = {
   render: () => {
     const { notifications, push, dismiss } = useNotification();
+    let counter = 0;
     return (
       <div>
-        <Button size="xs" color="black" onClick={() => push({
-          title: "New update available",
-          message: "Version 2.0 is ready to install.",
-          icon: <Zap />,
-          color: "primary",
-          duration: 0,
-          actions: [
-            { label: "Update now", onClick: () => alert("Updating..."), variant: "primary" },
-            { label: "Later", onClick: () => dismiss(notifications[notifications.length - 1]?.id || "") },
-          ],
-        })}>
+        <Button size="xs" color="black" onClick={() => {
+          const id = `action-notif-${++counter}`;
+          push({
+            id,
+            title: "New update available",
+            message: "Version 2.0 is ready to install.",
+            icon: <Zap />,
+            color: "primary",
+            duration: 0,
+            actions: [
+              { label: "Update now", onClick: () => alert("Updating..."), variant: "primary" },
+              { label: "Later", onClick: () => dismiss(id) },
+            ],
+          });
+        }}>
           Show with Actions
         </Button>
         <NotificationContainer>

@@ -6,7 +6,7 @@ import { cn } from "../../lib/utils";
 export type TypographyVariant = "h1" | "h2" | "h3" | "h4" | "p" | "lead" | "large" | "small" | "muted" | "blockquote" | "code" | "kbd";
 export type TypographyColor = "default" | "muted" | "primary" | "danger" | "success" | "warning" | "info";
 export type TypographyAlign = "left" | "center" | "right";
-export type TypographyWeight = "normal" | "medium" | "semibold" | "bold";
+export type TypographyWeight = "thin" | "extralight" | "light" | "normal" | "medium" | "semibold" | "bold" | "extrabold" | "black";
 
 export interface TypographyProps {
   variant?: TypographyVariant;
@@ -65,10 +65,15 @@ const ALIGNS: Record<TypographyAlign, string> = {
 // ── Weight styles ────────────────────────────
 
 const WEIGHTS: Record<TypographyWeight, string> = {
+  thin: "font-thin",
+  extralight: "font-extralight",
+  light: "font-light",
   normal: "font-normal",
   medium: "font-medium",
   semibold: "font-semibold",
   bold: "font-bold",
+  extrabold: "font-extrabold",
+  black: "font-black",
 };
 
 // ── Component ────────────────────────────────
@@ -92,6 +97,17 @@ export function Typography({
     ? COLORS[color]
     : variant === "muted" ? "" : COLORS.default;
 
+
+  const lineClampStyle: React.CSSProperties | undefined =
+    lines && lines > 0
+      ? {
+        display: "-webkit-box",
+        WebkitBoxOrient: "vertical",
+        WebkitLineClamp: lines,
+        overflow: "hidden",
+      }
+      : undefined;
+
   return (
     <Tag
       className={cn(
@@ -100,9 +116,9 @@ export function Typography({
         align && ALIGNS[align],
         weight && WEIGHTS[weight],
         truncate && !lines && "truncate",
-        lines && `line-clamp-${lines}`,
         className,
       )}
+      style={lineClampStyle}
     >
       {children}
     </Tag>

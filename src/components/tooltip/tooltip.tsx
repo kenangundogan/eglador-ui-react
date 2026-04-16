@@ -76,7 +76,7 @@ export function Tooltip({
   className,
 }: TooltipProps) {
   const [visible, setVisible] = React.useState(false);
-  const [pos, setPos] = React.useState({ top: 0, left: 0 });
+  const [pos, setPos] = React.useState<{ top: number; left: number } | null>(null);
   const timerRef = React.useRef<ReturnType<typeof setTimeout> | null>(null);
   const triggerRef = React.useRef<HTMLDivElement>(null);
   const tooltipRef = React.useRef<HTMLDivElement>(null);
@@ -88,18 +88,16 @@ export function Tooltip({
   const hide = React.useCallback(() => {
     if (timerRef.current) clearTimeout(timerRef.current);
     setVisible(false);
+    setPos(null);
   }, []);
 
-  React.useEffect(() => {
+  React.useLayoutEffect(() => {
     if (!visible || !triggerRef.current || !tooltipRef.current) return;
 
-    requestAnimationFrame(() => {
-      if (!triggerRef.current || !tooltipRef.current) return;
-      const triggerRect = triggerRef.current.getBoundingClientRect();
-      const tooltipRect = tooltipRef.current.getBoundingClientRect();
-      setPos(computeTooltipPosition(triggerRect, tooltipRect, position));
-    });
-  }, [visible, position]);
+    const triggerRect = triggerRef.current.getBoundingClientRect();
+    const tooltipRect = tooltipRef.current.getBoundingClientRect();
+    setPos(computeTooltipPosition(triggerRect, tooltipRect, position));
+  }, [visible, position, content]);
 
   return (
     <>
@@ -122,7 +120,11 @@ export function Tooltip({
             "px-2 py-1 rounded-md bg-zinc-800 text-white text-xs font-medium whitespace-nowrap",
             className,
           )}
-          style={{ top: pos.top, left: pos.left }}
+          style={{
+            top: pos?.top ?? 0,
+            left: pos?.left ?? 0,
+            visibility: pos ? "visible" : "hidden",
+          }}
         >
           {content}
           <span className={cn("absolute w-0 h-0", ARROW_STYLES[position])} />

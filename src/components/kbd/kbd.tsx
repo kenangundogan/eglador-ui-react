@@ -17,6 +17,13 @@ export interface KbdProps {
   children?: React.ReactNode;
 }
 
+export interface KbdGroupProps {
+  size?: KbdSize;
+  separator?: React.ReactNode;
+  className?: string;
+  children?: React.ReactNode;
+}
+
 // ── Size definitions ─────────────────────────
 
 const SIZES: Record<KbdSize, { padding: string; font: string; minWidth: string; gap: string }> = {
@@ -102,3 +109,32 @@ export function Kbd({
 }
 
 Kbd.displayName = "Kbd";
+
+// ── KbdGroup ─────────────────────────────────
+
+export function KbdGroup({
+  size = "sm",
+  separator,
+  className,
+  children,
+}: KbdGroupProps) {
+  const s = SIZES[size];
+  const childArray = React.Children.toArray(children).filter(Boolean);
+
+  const sep = separator ?? (
+    <span className={cn("text-zinc-400 font-mono font-medium", s.font)}>+</span>
+  );
+
+  return (
+    <span className={cn("inline-flex items-center", s.gap, className)}>
+      {childArray.map((child, i) => (
+        <React.Fragment key={i}>
+          {child}
+          {i < childArray.length - 1 && sep}
+        </React.Fragment>
+      ))}
+    </span>
+  );
+}
+
+KbdGroup.displayName = "KbdGroup";
