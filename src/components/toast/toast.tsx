@@ -208,6 +208,11 @@ function ToastItem({ data, onDismiss }: { data: ToastData; onDismiss: (id: strin
   React.useEffect(() => {
     if (!duration || duration === Infinity || paused) return;
 
+    // Reset remaining when duration changes (e.g., loading → success)
+    if (remainingRef.current === Infinity || remainingRef.current > duration) {
+      remainingRef.current = duration;
+    }
+
     startRef.current = Date.now();
     const timer = setTimeout(() => {
       data.onAutoClose?.();

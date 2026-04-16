@@ -32,9 +32,13 @@ type Story = StoryObj<typeof Empty>;
 // ── Default ──────────────────────────────────
 
 export const Default: Story = {
+  args: {
+    title: "No data",
+    description: "There is no data to display at the moment.",
+  },
   render: (args: EmptyProps) => (
     <div className="border border-zinc-200 rounded-lg max-w-md">
-      <Empty {...args} title="No data" description="There is no data to display at the moment." />
+      <Empty {...args} />
     </div>
   ),
 };
@@ -42,13 +46,15 @@ export const Default: Story = {
 // ── Cloud Storage ────────────────────────────
 
 export const CloudStorage: Story = {
+  args: {
+    title: "Cloud Storage Empty",
+    description: "Upload files to your cloud storage to access them anywhere.",
+  },
   render: (args: EmptyProps) => (
     <div className="border border-zinc-200 rounded-lg max-w-md">
       <Empty
         {...args}
         icon={<Cloud strokeWidth={1} />}
-        title="Cloud Storage Empty"
-        description="Upload files to your cloud storage to access them anywhere."
         action={<Button size="xs" color="black">Upload Files</Button>}
       />
     </div>
@@ -58,13 +64,15 @@ export const CloudStorage: Story = {
 // ── No Projects ──────────────────────────────
 
 export const NoProjects: Story = {
+  args: {
+    title: "No Projects Yet",
+    description: "You haven't created any projects yet. Get started by creating your first project.",
+  },
   render: (args: EmptyProps) => (
     <div className="border border-zinc-200 rounded-lg max-w-md">
       <Empty
         {...args}
         icon={<FolderPlus strokeWidth={1} />}
-        title="No Projects Yet"
-        description="You haven't created any projects yet. Get started by creating your first project."
       >
         <div className="flex gap-2 mt-1">
           <Button size="xs" color="black">Create Project</Button>
@@ -78,13 +86,15 @@ export const NoProjects: Story = {
 // ── No Notifications ─────────────────────────
 
 export const NoNotifications: Story = {
+  args: {
+    title: "No Notifications",
+    description: "You're all caught up. New notifications will appear here.",
+  },
   render: (args: EmptyProps) => (
     <div className="border border-zinc-200 rounded-lg max-w-md">
       <Empty
         {...args}
         icon={<Bell strokeWidth={1} />}
-        title="No Notifications"
-        description="You're all caught up. New notifications will appear here."
         action={<Button size="xs" variant="outline">Refresh</Button>}
       />
     </div>
@@ -94,14 +104,14 @@ export const NoNotifications: Story = {
 // ── 404 Not Found ────────────────────────────
 
 export const NotFound: Story = {
+  args: {
+    size: "lg",
+    title: "404 - Not Found",
+    description: "The page you're looking for doesn't exist. Try searching for what you need below.",
+  },
   render: (args: EmptyProps) => (
     <div className="border border-zinc-200 rounded-lg max-w-lg">
-      <Empty
-        {...args}
-        size="lg"
-        title="404 - Not Found"
-        description="The page you're looking for doesn't exist. Try searching for what you need below."
-      >
+      <Empty {...args}>
         <div className="flex flex-col items-center gap-3 mt-1 w-full max-w-xs">
           <Input size="xs" icon={<Search />} placeholder="Try searching for pages..." className="w-full" />
           <span className="text-xs text-zinc-400">
@@ -116,13 +126,15 @@ export const NotFound: Story = {
 // ── No Search Results ────────────────────────
 
 export const NoSearchResults: Story = {
+  args: {
+    title: "No results found",
+    description: "We couldn't find anything matching your search. Try adjusting your filters or search terms.",
+  },
   render: (args: EmptyProps) => (
     <div className="border border-zinc-200 rounded-lg max-w-md">
       <Empty
         {...args}
         icon={<Search strokeWidth={1} />}
-        title="No results found"
-        description="We couldn't find anything matching your search. Try adjusting your filters or search terms."
         action={<Button size="xs" variant="outline">Clear filters</Button>}
       />
     </div>
@@ -132,13 +144,15 @@ export const NoSearchResults: Story = {
 // ── Error State ──────────────────────────────
 
 export const ErrorState: Story = {
+  args: {
+    title: "Failed to load",
+    description: "Something went wrong while loading the data. Please try again.",
+  },
   render: (args: EmptyProps) => (
     <div className="border border-zinc-200 rounded-lg max-w-md">
       <Empty
         {...args}
         icon={<FileX strokeWidth={1} />}
-        title="Failed to load"
-        description="Something went wrong while loading the data. Please try again."
         action={<Button size="xs" variant="outline">Retry</Button>}
       />
     </div>
@@ -148,13 +162,15 @@ export const ErrorState: Story = {
 // ── Permission Denied ────────────────────────
 
 export const PermissionDenied: Story = {
+  args: {
+    title: "Access denied",
+    description: "You don't have permission to view this content. Contact your administrator.",
+  },
   render: (args: EmptyProps) => (
     <div className="border border-zinc-200 rounded-lg max-w-md">
       <Empty
         {...args}
         icon={<ShieldX strokeWidth={1} />}
-        title="Access denied"
-        description="You don't have permission to view this content. Contact your administrator."
       />
     </div>
   ),
@@ -163,13 +179,15 @@ export const PermissionDenied: Story = {
 // ── Offline ──────────────────────────────────
 
 export const Offline: Story = {
+  args: {
+    title: "You're offline",
+    description: "Check your internet connection and try again.",
+  },
   render: (args: EmptyProps) => (
     <div className="border border-zinc-200 rounded-lg max-w-md">
       <Empty
         {...args}
         icon={<WifiOff strokeWidth={1} />}
-        title="You're offline"
-        description="Check your internet connection and try again."
         action={<Button size="xs" variant="outline">Retry</Button>}
       />
     </div>

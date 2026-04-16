@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Kbd, type KbdProps } from "./kbd";
+import { Kbd, KbdGroup, type KbdProps } from "./kbd";
 
 const meta: Meta<typeof Kbd> = {
   title: "Components/Kbd",
@@ -132,6 +132,37 @@ export const InlineUsage: Story = {
       <p className="text-sm text-zinc-600">
         Press <Kbd {...args}>Esc</Kbd> to close the dialog.
       </p>
+    </div>
+  ),
+};
+
+// ── Kbd Group ────────────────────────────────
+
+export const Group: Story = {
+  render: (args: KbdProps) => (
+    <div className="flex flex-col gap-3">
+      <div className="flex items-center gap-3">
+        <KbdGroup size={args.size}>
+          <Kbd {...args}>⌘</Kbd>
+          <Kbd {...args}>K</Kbd>
+        </KbdGroup>
+        <span className="text-sm text-zinc-500">Command palette</span>
+      </div>
+      <div className="flex items-center gap-3">
+        <KbdGroup size={args.size}>
+          <Kbd {...args}>Ctrl</Kbd>
+          <Kbd {...args}>Shift</Kbd>
+          <Kbd {...args}>P</Kbd>
+        </KbdGroup>
+        <span className="text-sm text-zinc-500">Quick actions</span>
+      </div>
+      <div className="flex items-center gap-3">
+        <KbdGroup size={args.size} separator={<span className="text-zinc-400 text-xs">then</span>}>
+          <Kbd {...args}>G</Kbd>
+          <Kbd {...args}>H</Kbd>
+        </KbdGroup>
+        <span className="text-sm text-zinc-500">Go home (sequence)</span>
+      </div>
     </div>
   ),
 };

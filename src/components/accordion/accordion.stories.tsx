@@ -36,12 +36,6 @@ const meta: Meta<typeof Accordion> = {
 export default meta;
 type Story = StoryObj<typeof Accordion>;
 
-const sampleContent = (
-  <div className="text-sm text-zinc-600 leading-relaxed">
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-  </div>
-);
-
 // ── Default ──────────────────────────────────
 
 const faqItems = [
@@ -70,13 +64,19 @@ export const Variants: Story = {
   render: () => (
     <div className="flex flex-col gap-3 max-w-md">
       <Accordion variant="default" title="Default">
-        {sampleContent}
+        <div className="text-sm text-zinc-600 leading-relaxed">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </div>
       </Accordion>
       <Accordion variant="bordered" title="Bordered">
-        {sampleContent}
+        <div className="text-sm text-zinc-600 leading-relaxed">
+          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        </div>
       </Accordion>
       <Accordion variant="filled" title="Filled">
-        {sampleContent}
+        <div className="text-sm text-zinc-600 leading-relaxed">
+          Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+        </div>
       </Accordion>
     </div>
   ),
@@ -88,13 +88,13 @@ export const Sizes: Story = {
   render: () => (
     <div className="flex flex-col gap-3 max-w-md">
       <Accordion variant="bordered" size="xs" title="Extra Small">
-        {sampleContent}
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
       </Accordion>
       <Accordion variant="bordered" size="sm" title="Small">
-        {sampleContent}
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
       </Accordion>
       <Accordion variant="bordered" size="md" title="Medium">
-        {sampleContent}
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
       </Accordion>
     </div>
   ),
@@ -106,13 +106,19 @@ export const WithIcon: Story = {
   render: () => (
     <div className="flex flex-col gap-3 max-w-md">
       <Accordion variant="bordered" title="Success" icon={<SuccessIcon className="size-4" />}>
-        {sampleContent}
+        <div className="text-sm text-zinc-600 leading-relaxed">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </div>
       </Accordion>
       <Accordion variant="bordered" title="Information" icon={<InfoIcon className="size-4" />}>
-        {sampleContent}
+        <div className="text-sm text-zinc-600 leading-relaxed">
+          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        </div>
       </Accordion>
       <Accordion variant="bordered" title="Warning" icon={<WarningIcon className="size-4" />}>
-        {sampleContent}
+        <div className="text-sm text-zinc-600 leading-relaxed">
+          Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+        </div>
       </Accordion>
     </div>
   ),
@@ -143,7 +149,7 @@ export const Controlled: Story = {
       <div className="flex flex-col gap-2 max-w-md">
         <span className="text-xs text-zinc-400">State: {open ? "open" : "closed"}</span>
         <Accordion variant="bordered" title="Controlled" open={open} onOpenChange={setOpen}>
-          {sampleContent}
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
         </Accordion>
       </div>
     );
@@ -156,16 +162,16 @@ export const Shapes: Story = {
   render: () => (
     <div className="flex flex-col gap-3 max-w-md">
       <Accordion variant="bordered" shape="rounded" title="Rounded (default)">
-        {sampleContent}
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
       </Accordion>
       <Accordion variant="bordered" shape="square" title="Square">
-        {sampleContent}
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
       </Accordion>
       <Accordion variant="filled" shape="rounded" title="Filled Rounded">
-        {sampleContent}
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
       </Accordion>
       <Accordion variant="filled" shape="square" title="Filled Square">
-        {sampleContent}
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
       </Accordion>
     </div>
   ),
@@ -177,7 +183,7 @@ export const Disabled: Story = {
   render: () => (
     <div className="max-w-md">
       <Accordion variant="bordered" title="Disabled Section" disabled>
-        {sampleContent}
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
       </Accordion>
     </div>
   ),
