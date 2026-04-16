@@ -38,16 +38,11 @@ export const CHART_SEMANTIC_COLORS = {
 } as const;
 
 export const CHART_COLORS = [
-  "#1e3a8a", // blue-900
-  "#1e40af", // blue-800
-  "#1d4ed8", // blue-700
-  "#2563eb", // blue-600
-  "#3b82f6", // blue-500
-  "#60a5fa", // blue-400
   "#93c5fd", // blue-300
-  "#0ea5e9", // sky-500
-  "#38bdf8", // sky-400
-  "#7dd3fc", // sky-300
+  "#3b82f6", // blue-500
+  "#2563eb", // blue-600
+  "#1d4ed8", // blue-800
+  "#1e40af", // blue-900
 ];
 
 // ── Chart config ──────────────────────────────
@@ -1020,8 +1015,8 @@ export function PieChart({
           outerRadius={series.outerRadius ?? "70%"}
           label={series.label ? renderPieLabel : false}
           labelLine={false}
-          strokeWidth={2}
-          stroke="var(--color-white)"
+          strokeWidth={0}
+          stroke="none"
           isAnimationActive={animated}
         />
       </RPieChart>

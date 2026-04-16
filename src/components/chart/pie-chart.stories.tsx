@@ -48,12 +48,6 @@ export const Default: Story = {
   render: (args) => <PieChart {...args} />,
 };
 
-// ── Separator None ──────────────────────────
-
-export const SeparatorNone: Story = {
-  render: (args) => <PieChart {...args} />,
-};
-
 // ── With Labels ─────────────────────────────
 
 export const WithLabel: Story = {

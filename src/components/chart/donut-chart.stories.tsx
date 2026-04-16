@@ -66,11 +66,10 @@ function DonutActiveDemo() {
           <button
             key={d.name}
             onClick={() => setActive(d.name)}
-            className={`rounded-md border px-3 py-1.5 text-xs font-medium transition-colors ${
-              active === d.name
+            className={`rounded-md border px-3 py-1.5 text-xs font-medium transition-colors ${active === d.name
                 ? "border-zinc-900 bg-zinc-900 text-white"
                 : "border-zinc-200 bg-white text-zinc-600 hover:bg-zinc-50"
-            }`}
+              }`}
           >
             {d.name}
           </button>
@@ -108,7 +107,6 @@ export const DonutWithText: Story = {
     series: {
       dataKey: "value",
       nameKey: "name",
-      colors: ["#22c55e", "#3b82f6", "#eab308"],
     },
     centerLabel: (
       <div className="text-center">
