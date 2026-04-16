@@ -49,46 +49,6 @@ const meta: Meta<AreaChartProps> = {
 export default meta;
 type Story = StoryObj<AreaChartProps>;
 
-// ── Interactive ─────────────────────────────
-
-function InteractiveDemo() {
-  const [activeKey, setActiveKey] = React.useState<"desktop" | "mobile">("desktop");
-  return (
-    <div>
-      <div className="mb-4 flex gap-2">
-        {(["desktop", "mobile"] as const).map((key) => (
-          <button
-            key={key}
-            onClick={() => setActiveKey(key)}
-            className={`rounded-md border px-3 py-1.5 text-xs font-medium transition-colors ${
-              activeKey === key
-                ? "border-zinc-900 bg-zinc-900 text-white"
-                : "border-zinc-200 bg-white text-zinc-600 hover:bg-zinc-50"
-            }`}
-          >
-            {key.charAt(0).toUpperCase() + key.slice(1)}
-          </button>
-        ))}
-      </div>
-      <AreaChart
-        data={monthly}
-        series={[
-          {
-            dataKey: activeKey,
-            name: activeKey.charAt(0).toUpperCase() + activeKey.slice(1),
-            color: activeKey === "desktop" ? "#1d4ed8" : "#60a5fa",
-          },
-        ]}
-        xAxis={{ dataKey: "month" }}
-        height={300}
-      />
-    </div>
-  );
-}
-
-export const Interactive: Story = {
-  render: () => <InteractiveDemo />,
-};
 
 // ── Default ─────────────────────────────────
 
@@ -179,6 +139,19 @@ export const Gradient: Story = {
     series: [
       { dataKey: "desktop", name: "Desktop", color: "#1e40af" },
       { dataKey: "mobile", name: "Mobile", color: "#38bdf8" },
+    ],
+    legend: true,
+  },
+  render: (args) => <AreaChart {...args} />,
+};
+
+// ── Custom Color ────────────────────────────────
+
+export const CustomColor: Story = {
+  args: {
+    series: [
+      { dataKey: "desktop", name: "Desktop", color: "red" },
+      { dataKey: "mobile", name: "Mobile", color: "green" },
     ],
     legend: true,
   },
