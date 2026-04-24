@@ -369,8 +369,11 @@ function StepperRoot({
 function Step(_props: StepProps) {
   return null;
 }
+Step.displayName = "Stepper.Step";
 
 // ── Export ────────────────────────────────────
+
+StepperRoot.displayName = "Stepper";
 
 export const Stepper = Object.assign(StepperRoot, {
   Step,

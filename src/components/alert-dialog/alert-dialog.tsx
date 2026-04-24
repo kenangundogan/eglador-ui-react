@@ -165,7 +165,7 @@ function AlertDialogTrigger({ asChild = false, className, children }: AlertDialo
     </button>
   );
 }
-AlertDialogTrigger.displayName = "AlertDialogTrigger";
+AlertDialogTrigger.displayName = "AlertDialog.Trigger";
 
 // ── Content ──────────────────────────────────
 
@@ -198,7 +198,7 @@ function AlertDialogContent({ className, children }: AlertDialogContentProps) {
     document.body,
   );
 }
-AlertDialogContent.displayName = "AlertDialogContent";
+AlertDialogContent.displayName = "AlertDialog.Content";
 
 // ── Header ───────────────────────────────────
 
@@ -221,7 +221,7 @@ function AlertDialogHeader({ icon, className, children }: AlertDialogHeaderProps
     </div>
   );
 }
-AlertDialogHeader.displayName = "AlertDialogHeader";
+AlertDialogHeader.displayName = "AlertDialog.Header";
 
 // ── Description ──────────────────────────────
 
@@ -234,7 +234,7 @@ function AlertDialogDescription({ className, children }: AlertDialogDescriptionP
     </p>
   );
 }
-AlertDialogDescription.displayName = "AlertDialogDescription";
+AlertDialogDescription.displayName = "AlertDialog.Description";
 
 // ── Footer ───────────────────────────────────
 
@@ -245,7 +245,7 @@ function AlertDialogFooter({ className, children }: AlertDialogFooterProps) {
     </div>
   );
 }
-AlertDialogFooter.displayName = "AlertDialogFooter";
+AlertDialogFooter.displayName = "AlertDialog.Footer";
 
 // ── Cancel ───────────────────────────────────
 
@@ -278,7 +278,7 @@ function AlertDialogCancel({ asChild = false, className, children }: AlertDialog
     </button>
   );
 }
-AlertDialogCancel.displayName = "AlertDialogCancel";
+AlertDialogCancel.displayName = "AlertDialog.Cancel";
 
 // ── Action ───────────────────────────────────
 
@@ -311,7 +311,7 @@ function AlertDialogAction({ asChild = false, className, children }: AlertDialog
     </button>
   );
 }
-AlertDialogAction.displayName = "AlertDialogAction";
+AlertDialogAction.displayName = "AlertDialog.Action";
 
 // ── Export ────────────────────────────────────
 

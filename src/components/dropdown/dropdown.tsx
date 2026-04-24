@@ -178,7 +178,7 @@ function DropdownTrigger({ className, children, asChild = false }: DropdownTrigg
     </div>
   );
 }
-DropdownTrigger.displayName = "DropdownTrigger";
+DropdownTrigger.displayName = "Dropdown.Trigger";
 
 // ── Content ──────────────────────────────────
 
@@ -240,7 +240,7 @@ function DropdownContent({ className, children }: DropdownContentProps) {
     </div>
   );
 }
-DropdownContent.displayName = "DropdownContent";
+DropdownContent.displayName = "Dropdown.Content";
 
 // ── Export ────────────────────────────────────
 

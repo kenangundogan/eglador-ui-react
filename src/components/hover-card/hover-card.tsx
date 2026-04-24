@@ -180,7 +180,7 @@ function HoverCardTrigger({ asChild = false, className, children }: HoverCardTri
     </span>
   );
 }
-HoverCardTrigger.displayName = "HoverCardTrigger";
+HoverCardTrigger.displayName = "HoverCard.Trigger";
 
 // ── Content ──────────────────────────────────
 
@@ -228,7 +228,7 @@ function HoverCardContent({ className, children }: HoverCardContentProps) {
     document.body,
   );
 }
-HoverCardContent.displayName = "HoverCardContent";
+HoverCardContent.displayName = "HoverCard.Content";
 
 // ── Export ────────────────────────────────────
 

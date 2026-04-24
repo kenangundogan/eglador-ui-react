@@ -233,6 +233,13 @@ function TableCell({ align = "left", truncate, className, children }: TableCellP
 
 // ── Export ────────────────────────────────────
 
+TableRoot.displayName = "Table";
+TableHead.displayName = "Table.Head";
+TableBody.displayName = "Table.Body";
+TableRow.displayName = "Table.Row";
+TableHeader.displayName = "Table.Header";
+TableCell.displayName = "Table.Cell";
+
 export const Table = Object.assign(TableRoot, {
   Head: TableHead,
   Body: TableBody,

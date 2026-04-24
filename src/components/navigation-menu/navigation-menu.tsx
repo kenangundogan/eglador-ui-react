@@ -166,7 +166,7 @@ function NavigationMenuList({ className, children }: NavigationMenuListProps) {
     </ul>
   );
 }
-NavigationMenuList.displayName = "NavigationMenuList";
+NavigationMenuList.displayName = "NavigationMenu.List";
 
 // ── Item ─────────────────────────────────────
 
@@ -196,7 +196,7 @@ function NavigationMenuItem({ className, children }: NavigationMenuItemProps) {
     </NavigationMenuItemContext.Provider>
   );
 }
-NavigationMenuItem.displayName = "NavigationMenuItem";
+NavigationMenuItem.displayName = "NavigationMenu.Item";
 
 // ── Trigger ──────────────────────────────────
 
@@ -231,7 +231,7 @@ function NavigationMenuTrigger({ className, children }: NavigationMenuTriggerPro
     </button>
   );
 }
-NavigationMenuTrigger.displayName = "NavigationMenuTrigger";
+NavigationMenuTrigger.displayName = "NavigationMenu.Trigger";
 
 // ── Content ──────────────────────────────────
 
@@ -253,7 +253,7 @@ function NavigationMenuContent({ className, children }: NavigationMenuContentPro
     </div>
   );
 }
-NavigationMenuContent.displayName = "NavigationMenuContent";
+NavigationMenuContent.displayName = "NavigationMenu.Content";
 
 // ── Link ─────────────────────────────────────
 
@@ -274,7 +274,7 @@ function NavigationMenuLink({ active = false, className, children, ...rest }: Na
     </a>
   );
 }
-NavigationMenuLink.displayName = "NavigationMenuLink";
+NavigationMenuLink.displayName = "NavigationMenu.Link";
 
 // ── Viewport (optional wrapper for content) ──
 
@@ -292,7 +292,7 @@ function NavigationMenuViewport({ className }: NavigationMenuViewportProps) {
     />
   );
 }
-NavigationMenuViewport.displayName = "NavigationMenuViewport";
+NavigationMenuViewport.displayName = "NavigationMenu.Viewport";
 
 // ── Indicator ────────────────────────────────
 
@@ -310,7 +310,34 @@ function NavigationMenuIndicator({ className }: NavigationMenuIndicatorProps) {
     />
   );
 }
-NavigationMenuIndicator.displayName = "NavigationMenuIndicator";
+NavigationMenuIndicator.displayName = "NavigationMenu.Indicator";
+
+// ── ListItem ──────────────────────────────────
+
+export interface NavigationMenuListItemProps {
+  title: string;
+  description?: string;
+  icon?: React.ReactNode;
+  href?: string;
+  className?: string;
+}
+
+function NavigationMenuListItem({ title, description, icon, href = "#", className }: NavigationMenuListItemProps) {
+  return (
+    <a href={href} className={cn("flex gap-3 p-3 rounded-lg hover:bg-zinc-50 transition-colors group", className)}>
+      {icon && (
+        <div className="shrink-0 size-9 rounded-lg bg-zinc-100 flex items-center justify-center text-zinc-500 group-hover:bg-zinc-200 transition-colors">
+          <span className="[&>svg]:w-full [&>svg]:h-full size-4">{icon}</span>
+        </div>
+      )}
+      <div className="flex flex-col min-w-0">
+        <span className="text-sm font-medium text-zinc-900">{title}</span>
+        {description && <span className="text-xs text-zinc-400 leading-relaxed mt-0.5">{description}</span>}
+      </div>
+    </a>
+  );
+}
+NavigationMenuListItem.displayName = "NavigationMenu.ListItem";
 
 // ── Export ────────────────────────────────────
 
@@ -322,4 +349,5 @@ export const NavigationMenu = Object.assign(NavigationMenuRoot, {
   Link: NavigationMenuLink,
   Viewport: NavigationMenuViewport,
   Indicator: NavigationMenuIndicator,
+  ListItem: NavigationMenuListItem,
 });
