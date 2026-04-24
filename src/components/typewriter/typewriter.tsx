@@ -46,6 +46,9 @@ export function Typewriter({
     return () => clearTimeout(timeout);
   }, [phase, startDelay]);
 
+  const onCompleteRef = React.useRef(onComplete);
+  React.useEffect(() => { onCompleteRef.current = onComplete; });
+
   const getDelay = React.useCallback(() => {
     switch (phase) {
       case "typing": return typingSpeed;
@@ -68,7 +71,7 @@ export function Typewriter({
           } else {
             if (!loop && textIndex === texts.length - 1) {
               setPhase("done");
-              onComplete?.();
+              onCompleteRef.current?.();
             } else {
               setPhase("pausing");
             }
@@ -97,7 +100,7 @@ export function Typewriter({
     }, getDelay());
 
     return () => clearTimeout(timeout);
-  }, [displayText, textIndex, phase, texts, deleteMode, getDelay, loop, onComplete]);
+  }, [displayText, textIndex, phase, texts, deleteMode, getDelay, loop]);
 
   const cursorElement = cursor && phase !== "done" && (
     <span

@@ -31,7 +31,7 @@ const meta: Meta<typeof Carousel> = {
     docs: {
       description: {
         component:
-          "A carousel component built on Embla with navigation, pagination, loop, autoplay, fade, parallax, lazy loading, and responsive breakpoints.",
+          "A carousel component built on Embla with navigation, pagination, loop, autoplay, auto-scroll, fade, parallax, lazy loading, RTL, and responsive breakpoints.",
       },
     },
   },
@@ -42,24 +42,124 @@ const meta: Meta<typeof Carousel> = {
     dragFree: false,
     axis: "x",
     direction: "ltr",
+    align: "start",
+    containScroll: "trimSnaps",
+    slidesPerView: 3,
+    autoplay: false,
+    autoScroll: false,
+    autoHeight: false,
+    fade: false,
+    wheelGestures: false,
+    parallax: false,
+    opacity: false,
+    lazyLoad: false,
   },
   argTypes: {
-    slidesPerView: { control: { type: "number", min: 1, max: 5 } },
-    loop: { control: "boolean" },
-    dragFree: { control: "boolean" },
-    showNavigation: { control: "boolean" },
-    showPagination: { control: "boolean" },
-    axis: { control: "select", options: ["x", "y"] },
-    direction: { control: "select", options: ["ltr", "rtl"] },
-    align: { control: "select", options: ["start", "center", "end"] },
-    parallax: { control: "boolean" },
-    opacity: { control: "boolean" },
-    lazyLoad: { control: "boolean" },
+    // ── Core ────────────────────────────────────
+    slidesPerView: {
+      control: { type: "number", min: 1, max: 6, step: 1 },
+      description: "Number of slides visible at once. Use `\"auto\"` for variable-width slides.",
+    },
+    loop: {
+      control: "boolean",
+      description: "Enables infinite loop scrolling.",
+    },
+    dragFree: {
+      control: "boolean",
+      description: "Allows free dragging without snapping to slides.",
+    },
+    axis: {
+      control: "radio",
+      options: ["x", "y"],
+      description: "Scroll axis — horizontal or vertical.",
+    },
+    direction: {
+      control: "radio",
+      options: ["ltr", "rtl"],
+      description: "Text/scroll direction. RTL flips navigation icon directions.",
+    },
+    align: {
+      control: "radio",
+      options: ["start", "center", "end"],
+      description: "Alignment of the selected slide within the viewport.",
+    },
+    containScroll: {
+      control: "radio",
+      options: ["trimSnaps", "keepSnaps", false],
+      description: "How scroll snaps are contained at the edges.",
+    },
+
+    // ── Controls ─────────────────────────────────
+    showNavigation: {
+      control: "boolean",
+      description: "Show prev/next navigation buttons.",
+    },
+    showPagination: {
+      control: "boolean",
+      description: "Show dot pagination indicators.",
+    },
+
+    // ── Plugins ──────────────────────────────────
+    autoplay: {
+      control: "boolean",
+      description: "Auto-advance slides. Pass an object to customize: `{ delay: 3000, stopOnInteraction: true }`.",
+    },
+    autoScroll: {
+      control: "boolean",
+      description: "Continuously scroll slides. Pass an object to customize: `{ speed: 2 }`.",
+    },
+    autoHeight: {
+      control: "boolean",
+      description: "Automatically adjusts the carousel height to the tallest visible slide.",
+    },
+    fade: {
+      control: "boolean",
+      description: "Cross-fade transition between slides instead of sliding. Requires `slidesPerView={1}`.",
+    },
+    wheelGestures: {
+      control: "boolean",
+      description: "Enables mouse wheel / trackpad scrolling.",
+    },
+
+    // ── Effects ──────────────────────────────────
+    parallax: {
+      control: "boolean",
+      description: "Applies a parallax depth effect to slide content.",
+    },
+    opacity: {
+      control: "boolean",
+      description: "Fades non-active slides to partial opacity.",
+    },
+    lazyLoad: {
+      control: "boolean",
+      description: "Defers rendering of off-screen slides until they scroll into view.",
+    },
+
+    // ── Hide complex props from controls ─────────
+    slides: { table: { disable: true } },
+    breakpoints: { table: { disable: true } },
+    scrollToIndex: { table: { disable: true } },
+    styles: { table: { disable: true } },
+    className: { table: { disable: true } },
+    viewportClassName: { table: { disable: true } },
+    containerClassName: { table: { disable: true } },
+    slideClassName: { table: { disable: true } },
+    classNames: { table: { disable: true } },
   },
 };
 
 export default meta;
 type Story = StoryObj<typeof Carousel>;
+
+// ── Playground ───────────────────────────────
+
+export const Playground: Story = {
+  render: (args: CarouselProps) => (
+    <div className="max-w-xl">
+      <Carousel {...args} slides={makeSlides(8)} slideClassName="px-2" />
+    </div>
+  ),
+};
 
 // ── Default ──────────────────────────────────
 
@@ -121,12 +221,23 @@ export const Fade: Story = {
   ),
 };
 
+// ── Wheel Gestures ───────────────────────────
+
+export const WheelGestures: Story = {
+  render: (args: CarouselProps) => (
+    <div className="max-w-xl">
+      <p className="mb-3 text-sm text-zinc-500">Scroll with your mouse wheel or trackpad over the carousel.</p>
+      <Carousel {...args} slides={makeSlides(8)} slidesPerView={3} wheelGestures slideClassName="px-2" />
+    </div>
+  ),
+};
+
 // ── Parallax ─────────────────────────────────
 
 export const Parallax: Story = {
   render: (args: CarouselProps) => (
     <div className="max-w-xl">
-      <Carousel {...args} slides={makeSlides(6, 220)} slidesPerView={3} loop parallax slideClassName="px-2 overflow-hidden" />
+      <Carousel {...args} slides={makeSlides(6, 220)} slidesPerView={3} loop parallax slideClassName="px-2 overflow-hidden rounded-xl" />
     </div>
   ),
 };
@@ -137,6 +248,16 @@ export const Opacity: Story = {
   render: (args: CarouselProps) => (
     <div className="max-w-xl">
       <Carousel {...args} slides={makeSlides(6, 200)} slidesPerView={3} loop opacity slideClassName="px-2" />
+    </div>
+  ),
+};
+
+// ── RTL ──────────────────────────────────────
+
+export const RTL: Story = {
+  render: (args: CarouselProps) => (
+    <div className="max-w-xl">
+      <Carousel {...args} slides={makeSlides(6)} slidesPerView={3} direction="rtl" slideClassName="px-2" />
     </div>
   ),
 };
