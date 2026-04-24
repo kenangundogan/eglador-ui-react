@@ -9,6 +9,7 @@ export * from "./components/button";
 export * from "./components/button-group";
 export * from "./components/calendar";
 export * from "./components/carousel";
+export * from "./components/chart";
 export * from "./components/command";
 export * from "./components/data-table";
 export * from "./components/date-picker";
