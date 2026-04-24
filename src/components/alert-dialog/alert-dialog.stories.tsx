@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { ErrorIcon, WarningIcon, InfoIcon } from "../../lib/icons";
 import { Button } from "../button";
@@ -13,6 +13,7 @@ const meta: Meta<typeof AlertDialog> = {
       description: {
         component: "A confirmation dialog for destructive or critical actions. Unlike Dialog, it cannot be dismissed by clicking the backdrop — the user must explicitly confirm or cancel.",
       },
+      source: { type: "dynamic" },
     },
   },
   args: {
@@ -20,12 +21,50 @@ const meta: Meta<typeof AlertDialog> = {
   },
   argTypes: {
     color: { control: "select", options: ["default", "danger", "warning"] },
+    open: { table: { disable: true } },
+    defaultOpen: { control: "boolean" },
     onOpenChange: { action: "openChanged" },
+    children: { table: { disable: true } },
   },
 };
 
 export default meta;
 type Story = StoryObj<typeof AlertDialog>;
+
+// ── Playground ───────────────────────────────
+
+export const Playground: Story = {
+  args: {
+    defaultOpen: false,
+  },
+  render: ({ defaultOpen, ...args }) => {
+    const [open, setOpen] = useState(defaultOpen ?? false);
+    useEffect(() => { setOpen(defaultOpen ?? false); }, [defaultOpen]);
+    return (
+      <AlertDialog {...args} open={open} onOpenChange={setOpen}>
+        <AlertDialog.Trigger asChild>
+          <Button variant="outline">Open Alert Dialog</Button>
+        </AlertDialog.Trigger>
+        <AlertDialog.Content>
+          <AlertDialog.Header icon={<ErrorIcon />}>
+            Confirm Action
+          </AlertDialog.Header>
+          <AlertDialog.Description>
+            This is an alert dialog. Change the <strong>color</strong> control above to see the icon style update.
+          </AlertDialog.Description>
+          <AlertDialog.Footer>
+            <AlertDialog.Cancel asChild>
+              <Button variant="outline" size="sm">Cancel</Button>
+            </AlertDialog.Cancel>
+            <AlertDialog.Action asChild>
+              <Button size="sm" color="black">Confirm</Button>
+            </AlertDialog.Action>
+          </AlertDialog.Footer>
+        </AlertDialog.Content>
+      </AlertDialog>
+    );
+  },
+};
 
 // ── Delete Confirmation ──────────────────────
 

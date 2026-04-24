@@ -180,14 +180,14 @@ function DrawerTrigger({ asChild = false, className, children }: DrawerTriggerPr
     </button>
   );
 }
-DrawerTrigger.displayName = "DrawerTrigger";
+DrawerTrigger.displayName = "Drawer.Trigger";
 
 // ── Content ──────────────────────────────────
 
 function DrawerContent({ className, children }: DrawerContentProps) {
   const { isOpen, close, side, size, closeOnBackdrop, titleId, descriptionId } = useDrawer();
 
-  if (!isOpen) return null;
+  if (!isOpen || typeof document === "undefined") return null;
 
   const handleBackdropClick = closeOnBackdrop ? close : undefined;
   const isHorizontal = side === "left" || side === "right";
@@ -220,7 +220,7 @@ function DrawerContent({ className, children }: DrawerContentProps) {
     document.body,
   );
 }
-DrawerContent.displayName = "DrawerContent";
+DrawerContent.displayName = "Drawer.Content";
 
 // ── Header ───────────────────────────────────
 
@@ -245,7 +245,7 @@ function DrawerHeader({ hideClose = false, className, children }: DrawerHeaderPr
     </div>
   );
 }
-DrawerHeader.displayName = "DrawerHeader";
+DrawerHeader.displayName = "Drawer.Header";
 
 // ── Body ─────────────────────────────────────
 
@@ -258,7 +258,7 @@ function DrawerBody({ className, children }: DrawerBodyProps) {
     </div>
   );
 }
-DrawerBody.displayName = "DrawerBody";
+DrawerBody.displayName = "Drawer.Body";
 
 // ── Footer ───────────────────────────────────
 
@@ -269,7 +269,7 @@ function DrawerFooter({ className, children }: DrawerFooterProps) {
     </div>
   );
 }
-DrawerFooter.displayName = "DrawerFooter";
+DrawerFooter.displayName = "Drawer.Footer";
 
 // ── Export ────────────────────────────────────
 

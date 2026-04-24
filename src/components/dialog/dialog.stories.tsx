@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Button } from "../button";
 import { Input } from "../input";
@@ -15,17 +15,62 @@ const meta: Meta<typeof Dialog> = {
       description: {
         component: "A dialog overlay component with trigger, content, header, title, description, body, footer, and close sub-components. Supports controlled/uncontrolled state, backdrop close, escape close, and multiple sizes.",
       },
+      source: { type: "dynamic" },
     },
   },
   argTypes: {
     size: { control: "select", options: ["sm", "md", "lg"] },
     closeOnBackdrop: { control: "boolean" },
     closeOnEscape: { control: "boolean" },
+    open: { table: { disable: true } },
+    defaultOpen: { control: "boolean" },
+    onOpenChange: { table: { disable: true } },
+    children: { table: { disable: true } },
   },
 };
 
 export default meta;
 type Story = StoryObj<typeof Dialog>;
+
+// ── Playground ───────────────────────────────
+
+export const Playground: Story = {
+  args: {
+    size: "md",
+    closeOnBackdrop: true,
+    closeOnEscape: true,
+    defaultOpen: false,
+  },
+  render: ({ defaultOpen, ...args }) => {
+    const [open, setOpen] = useState(defaultOpen ?? false);
+    useEffect(() => { setOpen(defaultOpen ?? false); }, [defaultOpen]);
+    return (
+      <Dialog {...args} open={open} onOpenChange={setOpen}>
+        <Dialog.Trigger asChild>
+          <Button variant="outline">Open Dialog</Button>
+        </Dialog.Trigger>
+        <Dialog.Content>
+          <Dialog.Close />
+          <Dialog.Header>
+            <Dialog.Title>Dialog Title</Dialog.Title>
+            <Dialog.Description>Use the controls panel to adjust size, backdrop close, and escape close.</Dialog.Description>
+          </Dialog.Header>
+          <Dialog.Body>
+            <p className="text-sm text-zinc-600">Dialog body content. Try changing the <strong>size</strong>, <strong>closeOnBackdrop</strong>, and <strong>closeOnEscape</strong> controls.</p>
+          </Dialog.Body>
+          <Dialog.Footer>
+            <Dialog.Close asChild>
+              <Button variant="outline">Cancel</Button>
+            </Dialog.Close>
+            <Button color="black" onClick={() => setOpen(false)}>Save</Button>
+          </Dialog.Footer>
+        </Dialog.Content>
+      </Dialog>
+    );
+  },
+};
+
+// ── Default ──────────────────────────────────
 
 export const Default: Story = {
   render: () => (

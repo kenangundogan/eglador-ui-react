@@ -80,10 +80,12 @@ export interface FileManagerProps {
 
 function formatFileSize(bytes?: number): string {
   if (bytes === undefined || bytes === null) return "—";
-  if (bytes === 0) return "0 B";
+  const n = Number(bytes);
+  if (isNaN(n) || n < 0) return "—";
+  if (n === 0) return "0 B";
   const units = ["B", "KB", "MB", "GB", "TB"];
-  const i = Math.floor(Math.log(bytes) / Math.log(1024));
-  return `${(bytes / Math.pow(1024, i)).toFixed(i === 0 ? 0 : 1)} ${units[i]}`;
+  const i = Math.min(Math.floor(Math.log(n) / Math.log(1024)), units.length - 1);
+  return `${(n / Math.pow(1024, i)).toFixed(i === 0 ? 0 : 1)} ${units[i]}`;
 }
 
 function formatDate(date?: string | Date): string {
@@ -425,7 +427,7 @@ FileManagerToolbar.displayName = "FileManagerToolbar";
 // ── Sidebar ──────────────────────────────────
 
 function FileManagerSidebar({ className, width = "w-52" }: { className?: string; width?: string }) {
-  const { folderTree, currentFolderId, navigateTo, size } = useFileManager();
+  const { folderTree, currentFolderId, navigateTo } = useFileManager();
 
   const renderNode = (nodes: FolderTreeNode[], depth: number = 0): React.ReactNode => {
     return nodes.map((node) => {
@@ -625,7 +627,7 @@ FileManagerContent.displayName = "FileManagerContent";
 // ── Preview ──────────────────────────────────
 
 function FileManagerPreview({ className }: { className?: string }) {
-  const { selectedItems, size, renderPreview } = useFileManager();
+  const { selectedItems, renderPreview } = useFileManager();
   const item = selectedItems[0];
   if (!item) return null;
 

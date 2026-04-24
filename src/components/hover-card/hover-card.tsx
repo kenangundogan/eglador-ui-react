@@ -180,17 +180,20 @@ function HoverCardTrigger({ asChild = false, className, children }: HoverCardTri
     </span>
   );
 }
-HoverCardTrigger.displayName = "HoverCardTrigger";
+HoverCardTrigger.displayName = "HoverCard.Trigger";
 
 // ── Content ──────────────────────────────────
 
 function HoverCardContent({ className, children }: HoverCardContentProps) {
   const { isOpen, side, align, triggerRef, show, hide, cancelHide } = useHoverCard();
   const contentRef = React.useRef<HTMLDivElement>(null);
-  const [pos, setPos] = React.useState({ top: 0, left: 0 });
+  const [pos, setPos] = React.useState<{ top: number; left: number } | null>(null);
 
   React.useEffect(() => {
-    if (!isOpen || !triggerRef.current || !contentRef.current) return;
+    if (!isOpen) {
+      setPos(null);
+      return;
+    }
 
     const updatePosition = () => {
       if (!triggerRef.current || !contentRef.current) return;
@@ -210,7 +213,7 @@ function HoverCardContent({ className, children }: HoverCardContentProps) {
     };
   }, [isOpen, side, align, triggerRef]);
 
-  if (!isOpen) return null;
+  if (!isOpen || typeof document === "undefined") return null;
 
   return ReactDOM.createPortal(
     <div
@@ -221,14 +224,14 @@ function HoverCardContent({ className, children }: HoverCardContentProps) {
         "fixed z-9999 bg-white border border-zinc-200 rounded-lg p-4",
         className,
       )}
-      style={{ top: pos.top, left: pos.left }}
+      style={{ top: pos?.top ?? 0, left: pos?.left ?? 0, visibility: pos ? "visible" : "hidden" }}
     >
       {children}
     </div>,
     document.body,
   );
 }
-HoverCardContent.displayName = "HoverCardContent";
+HoverCardContent.displayName = "HoverCard.Content";
 
 // ── Export ────────────────────────────────────
 

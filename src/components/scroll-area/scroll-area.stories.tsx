@@ -139,23 +139,25 @@ export const AlwaysVisible: Story = {
 
 // ── Chat Messages ────────────────────────────
 
+const CHAT_MESSAGES = [
+  { from: "Alice", msg: "Hey, how's the project going?", self: false },
+  { from: "You", msg: "Pretty good! Just finished the scroll area component.", self: true },
+  { from: "Alice", msg: "Nice! Does it support custom scrollbar styles?", self: false },
+  { from: "You", msg: "Yes, thin scrollbar with hover visibility option.", self: true },
+  { from: "Alice", msg: "That's great. What about horizontal scrolling?", self: false },
+  { from: "You", msg: "Supports vertical, horizontal, and both directions.", self: true },
+  { from: "Alice", msg: "Perfect. Can you send me a preview?", self: false },
+  { from: "You", msg: "Sure, I'll share the Storybook link.", self: true },
+  { from: "Alice", msg: "Thanks! Looking forward to it.", self: false },
+  { from: "You", msg: "No problem, give me a few minutes.", self: true },
+];
+
 export const ChatMessages: Story = {
   render: (args: ScrollAreaProps) => (
     <div className="w-87.5">
       <ScrollArea {...args} maxHeight={300} scrollbarVisibility="hover" className="border border-zinc-200 rounded-lg">
         <div className="p-4 flex flex-col gap-3">
-          {[
-            { from: "Alice", msg: "Hey, how's the project going?", self: false },
-            { from: "You", msg: "Pretty good! Just finished the scroll area component.", self: true },
-            { from: "Alice", msg: "Nice! Does it support custom scrollbar styles?", self: false },
-            { from: "You", msg: "Yes, thin scrollbar with hover visibility option.", self: true },
-            { from: "Alice", msg: "That's great. What about horizontal scrolling?", self: false },
-            { from: "You", msg: "Supports vertical, horizontal, and both directions.", self: true },
-            { from: "Alice", msg: "Perfect. Can you send me a preview?", self: false },
-            { from: "You", msg: "Sure, I'll share the Storybook link.", self: true },
-            { from: "Alice", msg: "Thanks! Looking forward to it.", self: false },
-            { from: "You", msg: "No problem, give me a few minutes.", self: true },
-          ].map((item, i) => (
+          {CHAT_MESSAGES.map((item, i) => (
             <div key={i} className={cn("flex flex-col max-w-4/5", item.self ? "self-end items-end" : "self-start items-start")}>
               <span className="text-[10px] text-zinc-400 mb-0.5">{item.from}</span>
               <div className={cn("px-3 py-2 rounded-xl text-sm", item.self ? "bg-black text-white rounded-br-sm" : "bg-zinc-100 text-zinc-700 rounded-bl-sm")}>

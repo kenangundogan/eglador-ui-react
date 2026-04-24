@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Button } from "../button";
-import { toast, Toaster, type ToastPosition } from "./toast";
+import { toast, Toaster, type ToastPosition, type ToasterProps } from "./toast";
 
 const meta: Meta<typeof Toaster> = {
   title: "Components/Toast",
@@ -12,14 +12,34 @@ const meta: Meta<typeof Toaster> = {
       description: {
         component: "An opinionated toast component with a Sonner-like API. Call toast(), toast.success(), toast.error() etc. from anywhere. Supports promise-based toasts, action buttons, pause on hover, and 6 positions.",
       },
+      source: { type: "dynamic" },
     },
   },
+  argTypes: {
+    position: {
+      control: "select",
+      options: ["top-right", "top-left", "top-center", "bottom-right", "bottom-left", "bottom-center"],
+    },
+    maxVisible: { control: "number" },
+    gap: { control: "number" },
+  },
+  args: {
+    position: "bottom-right",
+    maxVisible: 5,
+    gap: 8,
+  },
   decorators: [
-    (Story) => {
+    (Story, context) => {
+      const { position, maxVisible, gap } = context.args as ToasterProps;
       useEffect(() => {
         return () => toast.dismissAll();
       }, []);
-      return <Story />;
+      return (
+        <>
+          <Story />
+          <Toaster key={position} position={position} maxVisible={maxVisible} gap={gap} />
+        </>
+      );
     },
   ],
 };
@@ -27,20 +47,41 @@ const meta: Meta<typeof Toaster> = {
 export default meta;
 type Story = StoryObj<typeof Toaster>;
 
+// ── Playground ───────────────────────────────
+
+export const Playground: Story = {
+  render: (args) => {
+    useEffect(() => {
+      toast.dismissAll();
+    }, [args.position]);
+
+    return (
+      <div className="flex flex-col gap-3">
+        <div className="flex gap-2 flex-wrap">
+          <Button size="xs" variant="outline" onClick={() => toast("Default toast message")}>Default</Button>
+          <Button size="xs" color="success" onClick={() => toast.success("Operation completed successfully!")}>Success</Button>
+          <Button size="xs" color="danger" onClick={() => toast.error("Something went wrong!")}>Error</Button>
+          <Button size="xs" color="warning" onClick={() => toast.warning("Please check your input")}>Warning</Button>
+          <Button size="xs" color="info" onClick={() => toast.info("New version available")}>Info</Button>
+          <Button size="xs" color="black" onClick={() => toast.loading("Loading data...")}>Loading</Button>
+        </div>
+        <p className="text-xs text-zinc-400">Use the controls panel to change <strong>position</strong>, <strong>maxVisible</strong>, and <strong>gap</strong>.</p>
+      </div>
+    );
+  },
+};
+
 // ── Basic Types ──────────────────────────────
 
 export const BasicTypes: Story = {
   render: () => (
-    <div className="flex flex-col gap-2">
-      <div className="flex gap-2 flex-wrap">
-        <Button size="xs" variant="outline" onClick={() => toast("This is a default toast")}>Default</Button>
-        <Button size="xs" color="success" onClick={() => toast.success("Changes saved successfully!")}>Success</Button>
-        <Button size="xs" color="danger" onClick={() => toast.error("Something went wrong!")}>Error</Button>
-        <Button size="xs" color="warning" onClick={() => toast.warning("Please check your input")}>Warning</Button>
-        <Button size="xs" color="info" onClick={() => toast.info("New version available")}>Info</Button>
-        <Button size="xs" color="black" onClick={() => toast.loading("Loading data...")}>Loading</Button>
-      </div>
-      <Toaster />
+    <div className="flex gap-2 flex-wrap">
+      <Button size="xs" variant="outline" onClick={() => toast("This is a default toast")}>Default</Button>
+      <Button size="xs" color="success" onClick={() => toast.success("Changes saved successfully!")}>Success</Button>
+      <Button size="xs" color="danger" onClick={() => toast.error("Something went wrong!")}>Error</Button>
+      <Button size="xs" color="warning" onClick={() => toast.warning("Please check your input")}>Warning</Button>
+      <Button size="xs" color="info" onClick={() => toast.info("New version available")}>Info</Button>
+      <Button size="xs" color="black" onClick={() => toast.loading("Loading data...")}>Loading</Button>
     </div>
   ),
 };
@@ -56,7 +97,6 @@ export const WithDescription: Story = {
       <Button size="xs" color="danger" onClick={() => toast.error({ title: "Upload failed", description: "The file exceeds the maximum allowed size of 10MB." })}>
         Error + Desc
       </Button>
-      <Toaster />
     </div>
   ),
 };
@@ -74,7 +114,6 @@ export const WithAction: Story = {
       })}>
         Show with Action
       </Button>
-      <Toaster />
     </div>
   ),
 };
@@ -99,7 +138,6 @@ export const PromiseToast: Story = {
         })}>
           Upload File (random success/fail)
         </Button>
-        <Toaster />
       </div>
     );
   },
@@ -114,7 +152,6 @@ export const CustomDuration: Story = {
       <Button size="xs" variant="outline" onClick={() => toast({ title: "Normal toast", duration: 4000 })}>4s (default)</Button>
       <Button size="xs" variant="outline" onClick={() => toast({ title: "Long toast", duration: 10000 })}>10s</Button>
       <Button size="xs" variant="outline" onClick={() => toast({ title: "Persistent toast", duration: Infinity, description: "This won't auto-close." })}>Persistent</Button>
-      <Toaster />
     </div>
   ),
 };
@@ -122,20 +159,27 @@ export const CustomDuration: Story = {
 // ── Positions ────────────────────────────────
 
 export const Positions: Story = {
-  render: () => {
+  render: (args, context) => {
     const positions = ["top-right", "top-left", "top-center", "bottom-right", "bottom-left", "bottom-center"] as const;
-    const [position, setPosition] = useState<ToastPosition>("bottom-right");
     return (
       <div className="flex flex-col gap-2">
         <div className="flex gap-2 flex-wrap">
           {positions.map((pos) => (
-            <Button key={pos} size="xs" variant={position === pos ? "solid" : "outline"} onClick={() => { setPosition(pos); toast.dismissAll(); toast.info({ title: pos, duration: 3000 }); }}>
+            <Button
+              key={pos}
+              size="xs"
+              variant={args.position === pos ? "solid" : "outline"}
+              onClick={() => {
+                context.updateArgs({ position: pos });
+                toast.dismissAll();
+                toast.info({ title: pos, duration: 3000 });
+              }}
+            >
               {pos}
             </Button>
           ))}
         </div>
-        <p className="text-xs text-zinc-400">Note: position is set on the Toaster component, not per-toast. Click a button to change position.</p>
-        <Toaster position={position} />
+        <p className="text-xs text-zinc-400">Click a button to change the Toaster position.</p>
       </div>
     );
   },
@@ -144,6 +188,7 @@ export const Positions: Story = {
 // ── Stacking ─────────────────────────────────
 
 export const Stacking: Story = {
+  args: { maxVisible: 3 },
   render: () => {
     let counter = 0;
     return (
@@ -154,7 +199,6 @@ export const Stacking: Story = {
         <Button size="xs" variant="outline" onClick={() => toast.dismissAll()}>
           Clear All
         </Button>
-        <Toaster maxVisible={3} />
       </div>
     );
   },
@@ -172,7 +216,6 @@ export const CustomIcon: Story = {
       })}>
         With Emoji Icon
       </Button>
-      <Toaster />
     </div>
   ),
 };
@@ -188,7 +231,6 @@ export const UpdateExisting: Story = {
       }}>
         Simulate Payment
       </Button>
-      <Toaster />
     </div>
   ),
 };
@@ -206,7 +248,6 @@ export const NonDismissible: Story = {
       })}>
         Non-dismissible
       </Button>
-      <Toaster />
     </div>
   ),
 };

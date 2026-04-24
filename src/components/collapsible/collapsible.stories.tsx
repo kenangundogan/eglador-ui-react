@@ -18,6 +18,7 @@ const meta: Meta<typeof Collapsible> = {
   args: {
     defaultOpen: false,
     disabled: false,
+    shape: "rounded",
   },
   argTypes: {
     defaultOpen: { control: "boolean" },

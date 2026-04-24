@@ -3,20 +3,14 @@
 import * as React from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import type { EmblaOptionsType, EmblaCarouselType, EmblaPluginType } from "embla-carousel";
+import Autoplay from "embla-carousel-autoplay";
+import AutoScroll from "embla-carousel-auto-scroll";
+import AutoHeight from "embla-carousel-auto-height";
+import Fade from "embla-carousel-fade";
+import WheelGesturesPlugin from "embla-carousel-wheel-gestures";
+import ClassNames from "embla-carousel-class-names";
 import { cn } from "../../lib/utils";
 import { ChevronLeftIcon, ChevronRightIcon } from "../../lib/icons";
-
-// ── Dynamic plugin imports ───────────────────
-
-async function loadPlugin(name: string, opts: Record<string, unknown> = {}) {
-  try {
-    const mod = await import(/* @vite-ignore */ name);
-    const factory = mod.default || mod;
-    return factory(opts);
-  } catch {
-    return null;
-  }
-}
 
 // ── Types ────────────────────────────────────
 
@@ -40,8 +34,8 @@ export interface CarouselProps {
   autoplay?: boolean | Record<string, unknown>;
   autoScroll?: boolean | Record<string, unknown>;
   autoHeight?: boolean | Record<string, unknown>;
-  fade?: boolean | Record<string, unknown>;
-  wheelGestures?: boolean | Record<string, unknown>;
+  fade?: boolean;
+  wheelGestures?: boolean;
   classNames?: boolean | Record<string, unknown>;
 
   // Effects
@@ -124,9 +118,9 @@ function usePrevNextButtons(emblaApi: EmblaCarouselType | undefined) {
 
 // ── Nav Buttons ──────────────────────────────
 
-type NavButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & { className?: string };
+type NavButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & { className?: string; isRTL?: boolean };
 
-function PrevButton({ className, ...restProps }: NavButtonProps) {
+function PrevButton({ className, isRTL, ...restProps }: NavButtonProps) {
   return (
     <button
       type="button"
@@ -137,12 +131,12 @@ function PrevButton({ className, ...restProps }: NavButtonProps) {
       )}
       {...restProps}
     >
-      <ChevronLeftIcon className="size-4" strokeWidth={2.5} />
+      {isRTL ? <ChevronRightIcon className="size-4" strokeWidth={2.5} /> : <ChevronLeftIcon className="size-4" strokeWidth={2.5} />}
     </button>
   );
 }
 
-function NextButton({ className, ...restProps }: NavButtonProps) {
+function NextButton({ className, isRTL, ...restProps }: NavButtonProps) {
   return (
     <button
       type="button"
@@ -153,7 +147,7 @@ function NextButton({ className, ...restProps }: NavButtonProps) {
       )}
       {...restProps}
     >
-      <ChevronRightIcon className="size-4" strokeWidth={2.5} />
+      {isRTL ? <ChevronLeftIcon className="size-4" strokeWidth={2.5} /> : <ChevronRightIcon className="size-4" strokeWidth={2.5} />}
     </button>
   );
 }
@@ -173,7 +167,7 @@ export function Carousel({
   autoScroll = false,
   autoHeight = false,
   fade: fadeProp = false,
-  wheelGestures: wheelGesturesProp = true,
+  wheelGestures: wheelGesturesProp = false,
   classNames: classNamesProp = false,
   parallax = false,
   opacity = false,
@@ -188,49 +182,19 @@ export function Carousel({
   slideClassName,
   styles,
 }: CarouselProps) {
-  const [plugins, setPlugins] = React.useState<EmblaPluginType[]>([]);
-  const [pluginsReady, setPluginsReady] = React.useState(false);
-
-  // Build plugins async
-  React.useEffect(() => {
-    let cancelled = false;
-
-    async function buildPlugins() {
-      const active: (EmblaPluginType | null)[] = [];
-
-      if (autoplay) {
-        const opts = typeof autoplay === "object" ? autoplay : { delay: 4000 };
-        active.push(await loadPlugin("embla-carousel-autoplay", opts));
-      }
-      if (autoScroll) {
-        const opts = typeof autoScroll === "object" ? autoScroll : { speed: 2 };
-        active.push(await loadPlugin("embla-carousel-auto-scroll", opts));
-      }
-      if (autoHeight) {
-        const opts = typeof autoHeight === "object" ? autoHeight : {};
-        active.push(await loadPlugin("embla-carousel-auto-height", opts));
-      }
-      if (fadeProp) {
-        const opts = typeof fadeProp === "object" ? fadeProp : {};
-        active.push(await loadPlugin("embla-carousel-fade", opts));
-      }
-      if (wheelGesturesProp) {
-        const opts = typeof wheelGesturesProp === "object" ? wheelGesturesProp : {};
-        active.push(await loadPlugin("embla-carousel-wheel-gestures", opts));
-      }
-      if (classNamesProp) {
-        const opts = typeof classNamesProp === "object" ? classNamesProp : {};
-        active.push(await loadPlugin("embla-carousel-class-names", opts));
-      }
-
-      if (!cancelled) {
-        setPlugins(active.filter(Boolean) as EmblaPluginType[]);
-        setPluginsReady(true);
-      }
-    }
-
-    buildPlugins();
-    return () => { cancelled = true; };
+  // Build plugins synchronously
+  const plugins = React.useMemo<EmblaPluginType[]>(() => {
+    const active: EmblaPluginType[] = [];
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    if (autoplay) active.push(Autoplay(typeof autoplay === "object" ? autoplay as any : { delay: 4000 }));
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    if (autoScroll) active.push(AutoScroll(typeof autoScroll === "object" ? autoScroll as any : { speed: 2 }));
+    if (autoHeight) active.push(AutoHeight());
+    if (fadeProp) active.push(Fade());
+    if (wheelGesturesProp) active.push(WheelGesturesPlugin());
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    if (classNamesProp) active.push(ClassNames(typeof classNamesProp === "object" ? classNamesProp as any : {}));
+    return active;
   }, [autoplay, autoScroll, autoHeight, fadeProp, wheelGesturesProp, classNamesProp]);
 
   // Core options
@@ -242,15 +206,18 @@ export function Carousel({
     return opts as EmblaOptionsType;
   }, [align, containScroll, dragFree, loop, axis, direction, breakpoints]);
 
-  // Resolved slidesPerView
-  const [resolvedSlidesPerView, setResolvedSlidesPerView] = React.useState<number | "auto" | undefined>(slidesPerView);
+  // Resolved slidesPerView — fade plugin forces 1 slide at a time
+  const [resolvedSlidesPerView, setResolvedSlidesPerView] = React.useState<number | "auto" | undefined>(
+    fadeProp ? 1 : slidesPerView,
+  );
 
   const slideStyle = React.useMemo(() => {
-    if (typeof resolvedSlidesPerView === "number") {
-      return { flex: `0 0 ${100 / resolvedSlidesPerView}%`, minWidth: 0 };
+    const effective = fadeProp ? 1 : resolvedSlidesPerView;
+    if (typeof effective === "number") {
+      return { flex: `0 0 ${100 / effective}%`, minWidth: 0 };
     }
     return undefined;
-  }, [resolvedSlidesPerView]);
+  }, [fadeProp, resolvedSlidesPerView]);
 
   // Initialize Embla
   const [emblaRef, emblaApi] = useEmblaCarousel(coreOptions, plugins);
@@ -343,44 +310,57 @@ export function Carousel({
     };
   }, [emblaApi, lazyLoad, updateSlidesInView]);
 
-  // Parallax & opacity tween
-  const simpleTween = React.useCallback((api: EmblaCarouselType) => {
+  // Parallax & opacity tween — uses slideRegistry so multi-slide-per-view works correctly
+  const simpleTween = React.useCallback((api: EmblaCarouselType, eventName?: string) => {
     const engine = api.internalEngine();
     const scrollProgress = api.scrollProgress();
     const slideNodes = api.slideNodes();
-    const locations = api.scrollSnapList();
+    const slidesInView = api.slidesInView();
+    const isScrollEvent = eventName === "scroll";
 
-    slideNodes.forEach((slide, index) => {
-      const targetNode = slide.querySelector(".carousel__parallax-layer") as HTMLElement || slide;
-      if (!targetNode) return;
+    api.scrollSnapList().forEach((scrollSnap, snapIndex) => {
+      const slidesInSnap: number[] = engine.slideRegistry[snapIndex];
+      if (!slidesInSnap) return;
 
-      let distance = locations[index] - scrollProgress;
+      slidesInSnap.forEach((slideIndex) => {
+        if (isScrollEvent && !slidesInView.includes(slideIndex)) return;
 
-      if (engine.options.loop) {
-        if (distance < -0.5) distance += 1;
-        if (distance > 0.5) distance -= 1;
-      }
+        let diffToTarget = scrollSnap - scrollProgress;
 
-      if (parallax) {
-        const factor = 15;
-        const x = distance * factor * 100;
-        targetNode.style.transform = axis === "y"
-          ? `translate3d(0, ${x}%, 0)`
-          : `translate3d(${x}%, 0, 0)`;
-      }
+        if (engine.options.loop) {
+          engine.slideLooper.loopPoints.forEach((loopItem) => {
+            const loopTarget = loopItem.target();
+            if (slideIndex === loopItem.index && loopTarget !== 0) {
+              const sign = Math.sign(loopTarget);
+              if (sign === -1) diffToTarget = scrollSnap - (1 + scrollProgress);
+              if (sign === 1) diffToTarget = scrollSnap + (1 - scrollProgress);
+            }
+          });
+        }
 
-      if (opacity) {
-        const factor = 2.5;
-        const opacityValue = Math.max(0, 1 - Math.abs(distance * factor));
-        slide.style.opacity = (0.3 + opacityValue * 0.7).toString();
-      }
+        const slide = slideNodes[slideIndex];
+        if (!slide) return;
+
+        if (parallax) {
+          const layer = (slide.querySelector(".carousel__parallax-layer") as HTMLElement) ?? slide;
+          const x = diffToTarget * 15 * 100;
+          layer.style.transform = axis === "y"
+            ? `translate3d(0, ${x}%, 0)`
+            : `translate3d(${x}%, 0, 0)`;
+        }
+
+        if (opacity) {
+          const opacityValue = Math.max(0, 1 - Math.abs(diffToTarget * 2.5));
+          slide.style.opacity = String(0.3 + opacityValue * 0.7);
+        }
+      });
     });
   }, [parallax, opacity, axis]);
 
   React.useEffect(() => {
     if (!emblaApi || (!parallax && !opacity)) return;
 
-    const onScroll = () => simpleTween(emblaApi);
+    const onScroll = () => simpleTween(emblaApi, "scroll");
     emblaApi.on("scroll", onScroll);
     emblaApi.on("reInit", onScroll);
     emblaApi.on("resize", onScroll);
@@ -400,9 +380,6 @@ export function Carousel({
   const isVertical = axis === "y";
   const isRTL = direction === "rtl";
 
-  if (!pluginsReady && (autoplay || autoScroll || autoHeight || fadeProp || classNamesProp)) {
-    return null;
-  }
 
   return (
     <div className={cn(isRTL && "direction-rtl", className)} dir={isRTL ? "rtl" : undefined}>
@@ -439,8 +416,8 @@ export function Carousel({
         <div className={cn(styles?.controls || "flex justify-between items-center gap-5 mt-4 px-1")}>
           {showNavigation && (
             <div className={cn(styles?.navigation || "flex gap-2 items-center")}>
-              <PrevButton onClick={onPrevButtonClick} disabled={prevBtnDisabled} className={styles?.prevButton} />
-              <NextButton onClick={onNextButtonClick} disabled={nextBtnDisabled} className={styles?.nextButton} />
+              <PrevButton isRTL={isRTL} onClick={onPrevButtonClick} disabled={prevBtnDisabled} className={styles?.prevButton} />
+              <NextButton isRTL={isRTL} onClick={onNextButtonClick} disabled={nextBtnDisabled} className={styles?.nextButton} />
             </div>
           )}
 

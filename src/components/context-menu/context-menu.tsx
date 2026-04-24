@@ -188,11 +188,14 @@ ContextMenuTrigger.displayName = "ContextMenuTrigger";
 function ContextMenuContent({ className, children }: ContextMenuContentProps) {
   const { isOpen, position, close, focusedIndex, setFocusedIndex } = useContextMenu();
   const menuRef = React.useRef<HTMLDivElement>(null);
-  const [adjustedPos, setAdjustedPos] = React.useState(position);
+  const [adjustedPos, setAdjustedPos] = React.useState<{ x: number; y: number } | null>(null);
 
   // Viewport boundary detection
   React.useEffect(() => {
-    if (!isOpen) return;
+    if (!isOpen) {
+      setAdjustedPos(null);
+      return;
+    }
     requestAnimationFrame(() => {
       if (!menuRef.current) return;
       const rect = menuRef.current.getBoundingClientRect();
@@ -209,6 +212,13 @@ function ContextMenuContent({ className, children }: ContextMenuContentProps) {
       setAdjustedPos({ x, y });
     });
   }, [isOpen, position]);
+
+  // Close on scroll — trigger has moved away from original right-click position
+  React.useEffect(() => {
+    if (!isOpen) return;
+    window.addEventListener("scroll", close, { passive: true, capture: true });
+    return () => window.removeEventListener("scroll", close, { capture: true } as EventListenerOptions);
+  }, [isOpen, close]);
 
   // Keyboard navigation
   React.useEffect(() => {
@@ -240,7 +250,7 @@ function ContextMenuContent({ className, children }: ContextMenuContentProps) {
     return () => document.removeEventListener("keydown", handleKeyDown);
   }, [isOpen, focusedIndex, setFocusedIndex]);
 
-  if (!isOpen) return null;
+  if (!isOpen || typeof document === "undefined") return null;
 
   return ReactDOM.createPortal(
     <div
@@ -251,7 +261,11 @@ function ContextMenuContent({ className, children }: ContextMenuContentProps) {
         "fixed z-9999 min-w-48 bg-white border border-zinc-200 rounded-lg p-1.5",
         className,
       )}
-      style={{ left: adjustedPos.x, top: adjustedPos.y }}
+      style={{
+        left: adjustedPos?.x ?? position.x,
+        top: adjustedPos?.y ?? position.y,
+        visibility: adjustedPos ? "visible" : "hidden",
+      }}
     >
       {children}
     </div>,
