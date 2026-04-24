@@ -314,6 +314,8 @@ export function NotificationContainer({
   const visibleChildren = childArray.slice(-maxVisible);
   const hiddenCount = childArray.length - visibleChildren.length;
 
+  if (typeof document === "undefined") return null;
+
   return ReactDOM.createPortal(
     <div
       className={cn(

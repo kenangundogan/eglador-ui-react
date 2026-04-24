@@ -172,7 +172,7 @@ AlertDialogTrigger.displayName = "AlertDialog.Trigger";
 function AlertDialogContent({ className, children }: AlertDialogContentProps) {
   const { isOpen, titleId, descriptionId } = useAlertDialog();
 
-  if (!isOpen) return null;
+  if (!isOpen || typeof document === "undefined") return null;
 
   // No backdrop click close — intentional for alert dialogs
   return ReactDOM.createPortal(

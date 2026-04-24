@@ -187,7 +187,7 @@ DrawerTrigger.displayName = "Drawer.Trigger";
 function DrawerContent({ className, children }: DrawerContentProps) {
   const { isOpen, close, side, size, closeOnBackdrop, titleId, descriptionId } = useDrawer();
 
-  if (!isOpen) return null;
+  if (!isOpen || typeof document === "undefined") return null;
 
   const handleBackdropClick = closeOnBackdrop ? close : undefined;
   const isHorizontal = side === "left" || side === "right";
