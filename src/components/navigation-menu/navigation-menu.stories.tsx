@@ -69,6 +69,43 @@ export const Default: Story = {
   ),
 };
 
+// ── ListItem ─────────────────────────────────
+
+export const ListItem: Story = {
+  render: () => (
+    <div className="flex flex-col gap-6 max-w-sm">
+      <div>
+        <p className="text-xs text-zinc-400 mb-2">title only</p>
+        <NavigationMenu.ListItem title="Introduction" />
+      </div>
+      <div>
+        <p className="text-xs text-zinc-400 mb-2">title + description</p>
+        <NavigationMenu.ListItem
+          title="Installation"
+          description="Step-by-step guide to get started quickly."
+        />
+      </div>
+      <div>
+        <p className="text-xs text-zinc-400 mb-2">title + description + icon</p>
+        <NavigationMenu.ListItem
+          icon={<Zap />}
+          title="Quick Start"
+          description="Build modern UIs with our component library."
+        />
+      </div>
+      <div>
+        <p className="text-xs text-zinc-400 mb-2">title + description + icon + href</p>
+        <NavigationMenu.ListItem
+          icon={<BookOpen />}
+          title="Documentation"
+          description="Full API reference and guides."
+          href="#docs"
+        />
+      </div>
+    </div>
+  ),
+};
+
 // ── With Featured Section ────────────────────
 
 export const WithFeaturedSection: Story = {

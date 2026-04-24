@@ -45,7 +45,7 @@ export const WithPrefixText: Story = {
     <div className="flex flex-col gap-3 w-100">
       <InputGroup {...args}>
         <InputGroup.Text>https://</InputGroup.Text>
-        <Input placeholder="example.com" />
+        <Input placeholder="example.com" wrapperClassName="w-full" />
       </InputGroup>
 
       <InputGroup {...args}>
@@ -88,14 +88,14 @@ export const WithButton: Story = {
       <InputGroup {...args}>
         <Input icon={<Search />} placeholder="Search..." />
         <InputGroup.Addon>
-          <Button color="black" shape="square" size="sm">Search</Button>
+          <Button color="black" shape="square" size="sm" className="w-20">Search</Button>
         </InputGroup.Addon>
       </InputGroup>
 
       <InputGroup {...args}>
         <Input placeholder="Enter invite code" />
         <InputGroup.Addon>
-          <Button color="black" shape="square" size="sm">Apply</Button>
+          <Button color="black" shape="square" size="sm" className="w-20">Apply</Button>
         </InputGroup.Addon>
       </InputGroup>
     </div>
@@ -185,14 +185,14 @@ export const StackedThreeFields: Story = {
 export const LoginForm: Story = {
   render: () => (
     <div className="flex flex-col gap-4 w-80">
-      <div>
+      <div className="flex flex-col gap-1">
         <Label>Email</Label>
         <InputGroup variant="bordered">
           <InputGroup.Text><Mail className="size-4 text-zinc-400" /></InputGroup.Text>
           <Input placeholder="you@example.com" type="email" />
         </InputGroup>
       </div>
-      <div>
+      <div className="flex flex-col gap-1">
         <Label>Password</Label>
         <InputGroup variant="bordered">
           <InputGroup.Text><Lock className="size-4 text-zinc-400" /></InputGroup.Text>
