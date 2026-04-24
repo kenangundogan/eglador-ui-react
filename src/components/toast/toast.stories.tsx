@@ -12,7 +12,20 @@ const meta: Meta<typeof Toaster> = {
       description: {
         component: "An opinionated toast component with a Sonner-like API. Call toast(), toast.success(), toast.error() etc. from anywhere. Supports promise-based toasts, action buttons, pause on hover, and 6 positions.",
       },
+      source: { type: "dynamic" },
     },
+  },
+  argTypes: {
+    position: {
+      control: "select",
+      options: ["top-right", "top-left", "top-center", "bottom-right", "bottom-left", "bottom-center"],
+    },
+    maxVisible: { control: "number" },
+    gap: { control: "number" },
+  },
+  args: {
+    maxVisible: 5,
+    gap: 8,
   },
   decorators: [
     (Story) => {
@@ -26,6 +39,32 @@ const meta: Meta<typeof Toaster> = {
 
 export default meta;
 type Story = StoryObj<typeof Toaster>;
+
+// ── Playground ───────────────────────────────
+
+export const Playground: Story = {
+  render: (args) => {
+    useEffect(() => {
+      toast.dismissAll();
+    }, [args.position]);
+    console.log(args.position)
+
+    return (
+      <div className="flex flex-col gap-3">
+        <div className="flex gap-2 flex-wrap">
+          <Button size="xs" variant="outline" onClick={() => toast("Default toast message")}>Default</Button>
+          <Button size="xs" color="success" onClick={() => toast.success("Operation completed successfully!")}>Success</Button>
+          <Button size="xs" color="danger" onClick={() => toast.error("Something went wrong!")}>Error</Button>
+          <Button size="xs" color="warning" onClick={() => toast.warning("Please check your input")}>Warning</Button>
+          <Button size="xs" color="info" onClick={() => toast.info("New version available")}>Info</Button>
+          <Button size="xs" color="black" onClick={() => toast.loading("Loading data...")}>Loading</Button>
+        </div>
+        <p className="text-xs text-zinc-400">Use the controls panel to change <strong>position</strong>, <strong>maxVisible</strong>, and <strong>gap</strong>.</p>
+        <Toaster key={args.position} {...args} />
+      </div>
+    );
+  },
+};
 
 // ── Basic Types ──────────────────────────────
 
@@ -123,19 +162,9 @@ export const CustomDuration: Story = {
 
 export const Positions: Story = {
   render: () => {
-    const positions = ["top-right", "top-left", "top-center", "bottom-right", "bottom-left", "bottom-center"] as const;
-    const [position, setPosition] = useState<ToastPosition>("bottom-right");
     return (
       <div className="flex flex-col gap-2">
-        <div className="flex gap-2 flex-wrap">
-          {positions.map((pos) => (
-            <Button key={pos} size="xs" variant={position === pos ? "solid" : "outline"} onClick={() => { setPosition(pos); toast.dismissAll(); toast.info({ title: pos, duration: 3000 }); }}>
-              {pos}
-            </Button>
-          ))}
-        </div>
-        <p className="text-xs text-zinc-400">Note: position is set on the Toaster component, not per-toast. Click a button to change position.</p>
-        <Toaster position={position} />
+
       </div>
     );
   },
