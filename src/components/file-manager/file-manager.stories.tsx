@@ -1,6 +1,7 @@
 import { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { FileManager, type FileManagerItem } from "./file-manager";
+import { ImageCropper, type CropResult } from "../image-cropper/image-cropper";
 
 // ── Sample Data ──────────────────────────────
 
@@ -173,24 +174,54 @@ export const WithPreview: Story = {
 // ── Full Featured ────────────────────────────
 
 export const FullFeatured: Story = {
-  render: () => (
-    <div className="h-150">
-      <FileManager
-        items={sampleItems}
-        showSidebar
-        showPreview
-        dropZone
-        onRename={(item) => alert(`Rename: ${item.name}`)}
-        onDelete={(items) => alert(`Delete: ${items.map((i) => i.name).join(", ")}`)}
-        onDownload={(items) => alert(`Download: ${items.map((i) => i.name).join(", ")}`)}
-        onCopy={(items) => alert(`Copy: ${items.map((i) => i.name).join(", ")}`)}
-        onCreateFolder={(parentId) => alert(`New folder in: ${parentId || "root"}`)}
-        onUpload={(files) => alert(`Upload: ${files.map((f) => f.name).join(", ")}`)}
-        onDetails={(item) => alert(`Details: ${item.name}`)}
-        onFileOpen={(item) => alert(`Open: ${item.name}`)}
-      />
-    </div>
-  ),
+  render: () => {
+    const [cropItem, setCropItem] = useState<FileManagerItem | null>(null);
+    const [lastResults, setLastResults] = useState<CropResult[]>([]);
+
+    return (
+      <div className="h-150">
+        <FileManager
+          items={sampleItems}
+          showSidebar
+          showPreview
+          dropZone
+          onRename={(item) => alert(`Rename: ${item.name}`)}
+          onDelete={(items) => alert(`Delete: ${items.map((i) => i.name).join(", ")}`)}
+          onDownload={(items) => alert(`Download: ${items.map((i) => i.name).join(", ")}`)}
+          onCopy={(items) => alert(`Copy: ${items.map((i) => i.name).join(", ")}`)}
+          onCreateFolder={(parentId) => alert(`New folder in: ${parentId || "root"}`)}
+          onUpload={(files) => alert(`Upload: ${files.map((f) => f.name).join(", ")}`)}
+          onDetails={(item) => alert(`Details: ${item.name}`)}
+          onFileOpen={(item) => alert(`Open: ${item.name}`)}
+          onCropImage={(item) => setCropItem(item)}
+        />
+
+        {lastResults.length > 0 && (
+          <div className="mt-3 flex items-center gap-3 px-1">
+            <span className="text-xs text-zinc-400">Son kırpılan:</span>
+            {lastResults.map((r) => (
+              <div key={`${r.id}-${r.fileName}`} className="flex items-center gap-1.5">
+                <img src={r.dataUrl} alt={r.name} className="size-7 rounded object-cover border border-zinc-200" />
+                <span className="text-xs text-zinc-500">{r.width}×{r.height}</span>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {cropItem && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4">
+            <ImageCropper
+              src={cropItem.thumbnailUrl!}
+              fileName={cropItem.name}
+              onSave={(results) => { setLastResults(results); setCropItem(null); }}
+              onClose={() => setCropItem(null)}
+              className="w-full max-w-5xl"
+            />
+          </div>
+        )}
+      </div>
+    );
+  },
 };
 
 // ── Empty Folder ─────────────────────────────

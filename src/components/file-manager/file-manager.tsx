@@ -70,6 +70,7 @@ export interface FileManagerProps {
   onCreateFolder?: (parentId: string | null) => void;
   onUpload?: (files: File[], parentId: string | null) => void;
   onFileOpen?: (item: FileManagerItem) => void;
+  onCropImage?: (item: FileManagerItem) => void;
   renderItem?: (item: FileManagerItem, view: FileManagerView) => React.ReactNode;
   renderPreview?: (item: FileManagerItem) => React.ReactNode;
   className?: string;
@@ -169,7 +170,9 @@ interface FileManagerContextValue {
   onCreateFolder?: (parentId: string | null) => void;
   onUpload?: (files: File[], parentId: string | null) => void;
   onFileOpen?: (item: FileManagerItem) => void;
+  onCropImage?: (item: FileManagerItem) => void;
   emptyMessage: string;
+
   renderItem?: (item: FileManagerItem, view: FileManagerView) => React.ReactNode;
   renderPreview?: (item: FileManagerItem) => React.ReactNode;
 }
@@ -224,6 +227,7 @@ function FileManagerRoot({
   onCreateFolder,
   onUpload,
   onFileOpen,
+  onCropImage,
   renderItem,
   renderPreview,
   className,
@@ -340,7 +344,7 @@ function FileManagerRoot({
     selectedIds, selectedItems, toggleSelect, selectAll, clearSelection, selectable, multiSelect,
     search, setSearch, sortField, sortDirection, toggleSort,
     searchable, showSidebar, showPreview, dropZone, isDraggingOver, setIsDraggingOver,
-    onRename, onDelete, onDownload, onCopy, onMove, onDetails, onCreateFolder, onUpload, onFileOpen,
+    onRename, onDelete, onDownload, onCopy, onMove, onDetails, onCreateFolder, onUpload, onFileOpen, onCropImage,
     emptyMessage, renderItem, renderPreview,
   };
 
@@ -627,11 +631,13 @@ FileManagerContent.displayName = "FileManagerContent";
 // ── Preview ──────────────────────────────────
 
 function FileManagerPreview({ className }: { className?: string }) {
-  const { selectedItems, renderPreview } = useFileManager();
+  const { selectedItems, renderPreview, onCropImage } = useFileManager();
   const item = selectedItems[0];
   if (!item) return null;
 
   if (renderPreview) return <div className={cn("w-64 border-l border-zinc-200 p-4 shrink-0", className)}>{renderPreview(item)}</div>;
+
+  const isImage = item.type === "file" && !!item.mimeType?.startsWith("image/");
 
   return (
     <div className={cn("w-64 border-l border-zinc-200 p-4 shrink-0 flex flex-col items-center gap-3", className)}>
@@ -652,6 +658,18 @@ function FileManagerPreview({ className }: { className?: string }) {
           {item.modifiedAt && <div className="flex justify-between"><span>Modified</span><span className="text-zinc-600">{formatDate(item.modifiedAt)}</span></div>}
         </div>
       </div>
+      {isImage && onCropImage && (
+        <button
+          type="button"
+          onClick={() => onCropImage(item)}
+          className="w-full flex items-center justify-center gap-1.5 rounded-lg border border-zinc-200 bg-white px-3 py-2 text-xs font-medium text-zinc-700 hover:border-blue-300 hover:text-blue-600 transition-colors"
+        >
+          <svg className="size-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+          </svg>
+          Görseli Kırp
+        </button>
+      )}
     </div>
   );
 }
