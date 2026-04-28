@@ -170,7 +170,7 @@ DialogTrigger.displayName = "DialogTrigger";
 function DialogContent({ className, children }: DialogContentProps) {
   const { isOpen, close, size, closeOnBackdrop, titleId, descriptionId } = useDialog();
 
-  if (!isOpen) return null;
+  if (!isOpen || typeof document === "undefined") return null;
 
   const handleBackdropClick = closeOnBackdrop ? close : undefined;
 

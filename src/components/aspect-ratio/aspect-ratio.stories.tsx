@@ -23,19 +23,13 @@ const meta: Meta<typeof AspectRatio> = {
 export default meta;
 type Story = StoryObj<typeof AspectRatio>;
 
-function Placeholder({ label }: { label: string }) {
-  return (
-    <div className="absolute inset-0 flex items-center justify-center bg-zinc-100 text-sm font-medium text-zinc-500">
-      {label}
-    </div>
-  );
-}
-
 export const Default: Story = {
   render: (args: AspectRatioProps) => (
     <div className="max-w-sm">
       <AspectRatio {...args}>
-        <Placeholder label="16:9" />
+        <div className="absolute inset-0 flex items-center justify-center bg-zinc-100 text-sm font-medium text-zinc-500 rounded-lg">
+          {args.ratio}
+        </div>
       </AspectRatio>
     </div>
   ),
@@ -48,7 +42,9 @@ export const Presets: Story = {
         <div key={ratio}>
           <span className="text-xs text-zinc-400 mb-1 block">{ratio}</span>
           <AspectRatio ratio={ratio} className="rounded-lg">
-            <Placeholder label={ratio} />
+            <div className="absolute inset-0 flex items-center justify-center bg-zinc-100 text-sm font-medium text-zinc-500 rounded-lg">
+              {ratio}
+            </div>
           </AspectRatio>
         </div>
       ))}
@@ -90,13 +86,17 @@ export const CustomNumericRatio: Story = {
       <div className="flex-1">
         <span className="text-xs text-zinc-400 mb-1 block">ratio: 2.35 (cinemascope)</span>
         <AspectRatio ratio={2.35} className="rounded-lg">
-          <Placeholder label="2.35:1" />
+          <div className="absolute inset-0 flex items-center justify-center bg-zinc-100 text-sm font-medium text-zinc-500 rounded-lg">
+            2.35:1
+          </div>
         </AspectRatio>
       </div>
       <div className="flex-1">
         <span className="text-xs text-zinc-400 mb-1 block">ratio: 0.75 (portrait)</span>
         <AspectRatio ratio={0.75} className="rounded-lg">
-          <Placeholder label="3:4" />
+          <div className="absolute inset-0 flex items-center justify-center bg-zinc-100 text-sm font-medium text-zinc-500 rounded-lg">
+            3:4
+          </div>
         </AspectRatio>
       </div>
     </div>

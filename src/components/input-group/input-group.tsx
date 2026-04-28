@@ -128,7 +128,7 @@ function InputGroupRoot({
                 "rounded-none border-0 focus:ring-0 focus:border-0 focus:outline-none focus:ring-offset-0",
                 "focus:relative focus:z-10 focus:ring-2 focus:ring-black/5",
               ),
-              wrapperClassName: "",
+              wrapperClassName: cn("flex-1 min-w-0", (el.props as { wrapperClassName?: string }).wrapperClassName),
             })}
 
             {index < items.length - 1 && !(items[index + 1] as React.ReactElement).type?.toString().includes("InputGroupText") && (

@@ -12,6 +12,7 @@ const meta: Meta<typeof Menubar> = {
       description: {
         component: "A horizontal menu bar with dropdown menus, similar to desktop application menu bars. Supports items with icons and shortcuts, checkbox/radio items, sub-menus, separators, labels, and hover-mode switching between menus.",
       },
+      source: { type: "dynamic" },
     },
   },
 };

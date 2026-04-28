@@ -53,11 +53,13 @@ const meta: Meta<typeof FileManager> = {
       description: {
         component: "A file manager component with grid/list views, folder navigation, breadcrumb, sidebar tree, context menu, file preview, drag-and-drop upload, search, sort, and multi-select.",
       },
+      source: { type: "dynamic" },
     },
   },
   argTypes: {
     size: { control: "select", options: ["sm", "md"] },
     defaultView: { control: "select", options: ["grid", "list"] },
+    view: { control: "select", options: ["grid", "list"] },
     selectable: { control: "boolean" },
     multiSelect: { control: "boolean" },
     showSidebar: { control: "boolean" },
@@ -66,11 +68,68 @@ const meta: Meta<typeof FileManager> = {
     showStatusBar: { control: "boolean" },
     searchable: { control: "boolean" },
     dropZone: { control: "boolean" },
+    sortField: { control: "select", options: ["name", "size", "modifiedAt", "type"] },
+    sortDirection: { control: "radio", options: ["asc", "desc"] },
+    items: { table: { disable: true } },
+    currentFolderId: { table: { disable: true } },
+    selectedIds: { table: { disable: true } },
+    defaultSelectedIds: { table: { disable: true } },
+    onNavigate: { table: { disable: true } },
+    onSelectionChange: { table: { disable: true } },
+    onSortChange: { table: { disable: true } },
+    onViewChange: { table: { disable: true } },
+    onRename: { table: { disable: true } },
+    onDelete: { table: { disable: true } },
+    onDownload: { table: { disable: true } },
+    onCopy: { table: { disable: true } },
+    onMove: { table: { disable: true } },
+    onDetails: { table: { disable: true } },
+    onCreateFolder: { table: { disable: true } },
+    onUpload: { table: { disable: true } },
+    onFileOpen: { table: { disable: true } },
+    renderItem: { table: { disable: true } },
+    renderPreview: { table: { disable: true } },
   },
 };
 
 export default meta;
 type Story = StoryObj<typeof FileManager>;
+
+// ── Playground ───────────────────────────────
+
+export const Playground: Story = {
+  args: {
+    size: "md",
+    defaultView: "grid",
+    selectable: true,
+    multiSelect: true,
+    showSidebar: false,
+    showPreview: false,
+    showToolbar: true,
+    showStatusBar: true,
+    searchable: false,
+    dropZone: false,
+  },
+  render: (args) => {
+    const [folderId, setFolderId] = useState<string | null>(null);
+    const [selectedIds, setSelectedIds] = useState<string[]>([]);
+    return (
+      <div className="h-120">
+        <FileManager
+          {...args}
+          items={sampleItems}
+          currentFolderId={folderId}
+          onNavigate={setFolderId}
+          selectedIds={selectedIds}
+          onSelectionChange={setSelectedIds}
+          onRename={(item) => alert(`Rename: ${item.name}`)}
+          onDelete={(items) => alert(`Delete: ${items.map((i) => i.name).join(", ")}`)}
+          onDownload={(items) => alert(`Download: ${items.map((i) => i.name).join(", ")}`)}
+        />
+      </div>
+    );
+  },
+};
 
 // ── Default (Grid) ───────────────────────────
 

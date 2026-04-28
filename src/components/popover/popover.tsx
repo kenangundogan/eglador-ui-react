@@ -214,7 +214,7 @@ function computePosition(
 function PopoverContent({ className, children }: PopoverContentProps) {
   const { isOpen, side, align, triggerId, contentId, triggerRef, setContentNode } = usePopover();
   const localRef = React.useRef<HTMLDivElement>(null);
-  const [pos, setPos] = React.useState({ top: 0, left: 0 });
+  const [pos, setPos] = React.useState<{ top: number; left: number } | null>(null);
 
   const mergedRef = React.useCallback((node: HTMLDivElement | null) => {
     (localRef as React.MutableRefObject<HTMLDivElement | null>).current = node;
@@ -229,7 +229,10 @@ function PopoverContent({ className, children }: PopoverContentProps) {
   }, [triggerRef, side, align]);
 
   React.useEffect(() => {
-    if (!isOpen) return;
+    if (!isOpen) {
+      setPos(null);
+      return;
+    }
 
     requestAnimationFrame(updatePosition);
 
@@ -242,7 +245,7 @@ function PopoverContent({ className, children }: PopoverContentProps) {
     };
   }, [isOpen, updatePosition]);
 
-  if (!isOpen) return null;
+  if (!isOpen || typeof document === "undefined") return null;
 
   return ReactDOM.createPortal(
     <div
@@ -253,7 +256,7 @@ function PopoverContent({ className, children }: PopoverContentProps) {
         "fixed z-9999 bg-white border border-zinc-200 rounded-lg p-4",
         className,
       )}
-      style={{ top: pos.top, left: pos.left }}
+      style={{ top: pos?.top ?? 0, left: pos?.left ?? 0, visibility: pos ? "visible" : "hidden" }}
     >
       {children}
     </div>,

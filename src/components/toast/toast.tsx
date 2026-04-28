@@ -304,7 +304,7 @@ export function Toaster({
   const visible = items.slice(-maxVisible);
   const hiddenCount = items.length - visible.length;
 
-  if (items.length === 0) return null;
+  if (items.length === 0 || typeof document === "undefined") return null;
 
   return ReactDOM.createPortal(
     <div

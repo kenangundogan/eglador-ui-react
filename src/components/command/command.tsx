@@ -151,7 +151,7 @@ function CommandRoot({
   // Keyboard shortcut (Cmd+K / Ctrl+K)
   React.useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if ((e.metaKey || e.ctrlKey) && e.key === "k") {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
         e.preventDefault();
         setOpen(!isOpen);
       }
@@ -235,7 +235,7 @@ function CommandInput({ placeholder = "Type a command or search...", value, onVa
     </div>
   );
 }
-CommandInput.displayName = "CommandInput";
+CommandInput.displayName = "Command.Input";
 
 // ── List ─────────────────────────────────────
 
@@ -246,7 +246,7 @@ function CommandList({ className, children }: CommandListProps) {
     </div>
   );
 }
-CommandList.displayName = "CommandList";
+CommandList.displayName = "Command.List";
 
 // ── Group ────────────────────────────────────
 
@@ -273,11 +273,13 @@ function CommandGroup({ heading, className, children }: CommandGroupProps) {
     </CommandGroupContext.Provider>
   );
 }
-CommandGroup.displayName = "CommandGroup";
+CommandGroup.displayName = "Command.Group";
 
 // ── Item ─────────────────────────────────────
 
-function CommandItem({ icon, shortcut, disabled = false, onSelect, keywords = [], value, className, children }: CommandItemProps) {
+const EMPTY_KEYWORDS: string[] = [];
+
+function CommandItem({ icon, shortcut, disabled = false, onSelect, keywords = EMPTY_KEYWORDS, value, className, children }: CommandItemProps) {
   const { search, close, visibleItems, allItemIds, focusedIndex, registerItem, unregisterItem } = useCommand();
   const groupId = React.useContext(CommandGroupContext);
   const itemId = React.useId();
@@ -327,7 +329,7 @@ function CommandItem({ icon, shortcut, disabled = false, onSelect, keywords = []
     </button>
   );
 }
-CommandItem.displayName = "CommandItem";
+CommandItem.displayName = "Command.Item";
 
 // ── Separator ────────────────────────────────
 
@@ -339,7 +341,7 @@ function CommandSeparator({ className }: CommandSeparatorProps) {
 
   return <div className={cn("my-1 h-px bg-zinc-200 mx-1.5", className)} />;
 }
-CommandSeparator.displayName = "CommandSeparator";
+CommandSeparator.displayName = "Command.Separator";
 
 // ── Empty ────────────────────────────────────
 
@@ -355,7 +357,7 @@ function CommandEmpty({ className, children }: CommandEmptyProps) {
     </div>
   );
 }
-CommandEmpty.displayName = "CommandEmpty";
+CommandEmpty.displayName = "Command.Empty";
 
 // ── Export ────────────────────────────────────
 
