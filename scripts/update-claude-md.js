@@ -85,8 +85,9 @@ Tercih sırası:
 Sadece design token kullan:
 
 KÖTÜ:
-``tsx
+\`\`\`tsx
 className="bg-blue-500 text-white"
+\`\`\`
 `;
 
 if (fs.existsSync(claudeMdPath)) {
