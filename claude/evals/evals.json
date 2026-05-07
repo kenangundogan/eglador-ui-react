@@ -1,0 +1,258 @@
+{
+  "skill_name": "eglador",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "eglador-ui-react kullanarak bir kullanıcı kayıt formu oluştur. Ad, e-posta ve şifre alanları olsun. E-posta alanı hatalı girildiğinde kırmızı kenarlık ile hata mesajı göstersin. Arama ikonu olan bir input ile arama alanı da ekle.",
+      "expected_output": "Input bileşeninin state, icon, errorMessage prop'larını kullanan, dış kütüphane import etmeyen React bileşeni.",
+      "files": [],
+      "expectations": [
+        "Input state prop'u kullanılır: state=\"error\" — div + className ile hata stili oluşturulmaz",
+        "Arama alanında icon={<SearchIcon />} prop'u kullanılır — wrapper div + absolute positioned ikon kullanılmaz",
+        "SearchIcon eglador-ui-react'tan import edilir, lucide-react veya başka kütüphaneden değil",
+        "Icon isimleri Icon sufixiyle biter: SearchIcon, XIcon vb. — Search, X gibi sufixsiz isimler kullanılmaz",
+        "Input'un errorMessage prop'u kullanılır veya ayrı bir hata mesajı elementi eklenir",
+        "gap-* ile dikey boşluk verilir, space-y-* kullanılmaz"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "eglador-ui-react ile ürün listesi tablosu oluştur. Sütunlar: ürün adı, fiyat (sağa hizalı), stok durumu (Badge ile), aksiyon butonu. Satırlar çizgili (striped) görünsün. Tablonun yatay kaydırması olsun.",
+      "expected_output": "Table composition API kullanan, Table.Head / Table.Body / Table.Row / Table.Header / Table.Cell alt bileşenlerini doğru kullanan bileşen.",
+      "files": [],
+      "expectations": [
+        "Table.Head, Table.Body, Table.Row, Table.Header, Table.Cell sub-component'leri kullanılır",
+        "TableHead, TableBody gibi ayrı import yoktur — Table.Head şeklinde erişilir",
+        "variant=\"striped\" prop'u Table'a verilir",
+        "scrollX={true} prop'u Table'a verilir",
+        "Table.Header veya Table.Cell'de align=\"right\" kullanılır — className ile text-right yazılmaz",
+        "Stok durumu için Badge bileşeni kullanılır, custom styled span yazılmaz",
+        "Badge color prop'u kullanılır: color=\"success\", color=\"danger\" vb."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "eglador-ui-react ile bir komut paleti (command palette) oluştur. Sayfalar, Ayarlar ve Aksiyonlar olmak üzere 3 grup içersin. Her öğenin ikonu ve klavye kısayolu olsun. Sonuç bulunamadığında mesaj göstersin.",
+      "expected_output": "Command composition API kullanan, Command.Group içinde Command.Item barındıran, dahili ikonlar kullanan bileşen.",
+      "files": [],
+      "expectations": [
+        "Command.Input, Command.List, Command.Group, Command.Item, Command.Empty sub-component'leri kullanılır",
+        "Command.Item her zaman Command.Group içinde yer alır — doğrudan Command.List içinde kullanılmaz",
+        "Command.Item icon prop'u ile ikon verilir",
+        "Command.Item shortcut prop'u ile klavye kısayolu gösterilir",
+        "Icon isimleri Icon sufixiyle biter ve eglador-ui-react'tan import edilir",
+        "Command.Empty boş durum mesajı için kullanılır"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "eglador-ui-react ile bir silme onay iletişim kutusu oluştur. Kullanıcıya 'Bu kaydı silmek istediğine emin misin?' sorusu sorulsun. İptal ve Sil butonları olsun. Tehlike rengi (danger) kullanılsın.",
+      "expected_output": "AlertDialog composition API kullanan, Header içine başlık metin yazan, color=\"danger\" kullanan bileşen.",
+      "files": [],
+      "expectations": [
+        "AlertDialog.Trigger, AlertDialog.Content, AlertDialog.Header, AlertDialog.Description, AlertDialog.Footer, AlertDialog.Cancel, AlertDialog.Action sub-component'leri kullanılır",
+        "AlertDialog color=\"danger\" prop'u verilir",
+        "AlertDialog.Header içine doğrudan başlık metni yazılır — AlertDialog.Title diye bir sub-component yoktur",
+        "AlertDialog.Header'a icon prop'u verilebilir",
+        "AlertDialog.Cancel ve AlertDialog.Action asChild prop'u ile Button wrap eder",
+        "Sil butonu color=\"danger\" alır"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "eglador-ui-react ile aylık gelir-gider bar grafiği oluştur. Ocak-Haziran arası 6 aylık veri göstersin. Tooltip ve legend olsun. Gelir mavi, gider kırmızı renkte olsun.",
+      "expected_output": "BarChart bileşenini kullanan, series dizisi ile dataKey ve color tanımlayan bileşen.",
+      "files": [],
+      "expectations": [
+        "BarChart eglador-ui-react'tan import edilir — Chart diye tekil bir bileşen yoktur",
+        "Recharts doğrudan import edilmez (BarChart as RBarChart vb.)",
+        "data prop'u Record<string, any>[] formatında verilir",
+        "series prop'u ChartSeries[] formatında verilir: [{ dataKey: \"gelir\", name: \"Gelir\", color: \"#3b82f6\" }]",
+        "xAxis={{ dataKey: \"ay\" }} şeklinde X ekseni tanımlanır",
+        "tooltip ve legend prop'ları kullanılır",
+        "CHART_SEMANTIC_COLORS import edilerek renk verilebilir"
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "eglador-ui-react ile URL prefix'li bir domain input'u oluştur. Input'un solunda 'https://' yazısı, sağında ise bir 'Kaydet' butonu olsun.",
+      "expected_output": "InputGroup.Text ve InputGroup.Addon kullanan, raw Input'u doğrudan içine koyan bileşen.",
+      "files": [],
+      "expectations": [
+        "InputGroup bileşeni kullanılır",
+        "Sol prefix için InputGroup.Text kullanılır — custom span veya div değil",
+        "Sağ buton için InputGroup.Addon kullanılır",
+        "Raw Input bileşeni InputGroup içine doğrudan konur — InputGroup.Input diye bir sub-component yoktur",
+        "InputGroup variant='bordered' veya 'stacked' prop'u ile kullanılabilir"
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "eglador-ui-react ile ülke seçimi yapan bir dropdown oluştur. 5 ülke seçeneği olsun, seçim değiştiğinde console'a yazdırsın. Placeholder 'Ülke seçin...' olsun.",
+      "expected_output": "Select bileşenini options prop'uyla kullanan, Select.Trigger/Select.Item gibi alt bileşen kullanmayan bileşen.",
+      "files": [],
+      "expectations": [
+        "Select bileşeni kullanılır",
+        "options prop'u { label: string, value: string }[] formatında verilir",
+        "onChange prop'u (value: string) => void formatında kullanılır",
+        "placeholder prop'u kullanılır",
+        "Select.Trigger, Select.Content, Select.Item gibi sub-component'ler kullanılmaz — Select tekil bir bileşendir",
+        "value ve onChange ile controlled kullanım yapılabilir"
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "eglador-ui-react ile bir dosya listesi sayfası yap. Dosya yoksa boş durum göster: 'Henüz dosya yok' başlığı, açıklama metni ve 'Dosya Yükle' butonu. Sayfa yüklenirken skeleton göster.",
+      "expected_output": "Empty bileşenini prop'larla kullanan, Empty.Header/Empty.Title gibi sub-component kullanmayan, Skeleton kullanan bileşen.",
+      "files": [],
+      "expectations": [
+        "Empty bileşeni kullanılır",
+        "Empty'ye icon, title, description, action prop'ları verilir — sub-component yoktur",
+        "Empty.Header, Empty.Title, Empty.Media gibi sub-component'ler kullanılmaz",
+        "action prop'una Button bileşeni verilir",
+        "Yükleme durumu için Skeleton bileşeni kullanılır — custom animate-pulse div yazılmaz",
+        "FolderIcon veya InboxIcon eglador-ui-react'tan import edilir"
+      ]
+    },
+    {
+      "id": 9,
+      "prompt": "eglador-ui-react ile sıkça sorulan sorular (FAQ) bölümü oluştur. 4 soru-cevap olsun, bordered varyant kullanılsın, ilk soru varsayılan olarak kapalı başlasın.",
+      "expected_output": "Accordion bileşenini title prop'uyla kullanan, Accordion.Item gibi sub-component kullanmayan bileşen.",
+      "files": [],
+      "expectations": [
+        "Accordion bileşeni kullanılır",
+        "Her soru için ayrı Accordion bileşeni render edilir",
+        "title prop'u ile başlık verilir — Accordion.Trigger veya Accordion.Item gibi sub-component yoktur",
+        "variant=\"bordered\" prop'u kullanılır",
+        "defaultOpen={false} ile başlangıç durumu kontrol edilir",
+        "Composition API kullanılmaz — Accordion tekil bileşendir"
+      ]
+    },
+    {
+      "id": 10,
+      "prompt": "eglador-ui-react ile gönderi butonu oluştur. Butona tıklandığında loading state'e geçsin, 2 saniye sonra tamamlanmış görünsün. Soft primary renkte olsun.",
+      "expected_output": "Button'un loading ve soft prop'larını kullanan, Spinner compose etmeyen bileşen.",
+      "files": [],
+      "expectations": [
+        "Button'un loading prop'u kullanılır: loading={isLoading}",
+        "Button'un soft prop'u kullanılır: soft={true} veya soft",
+        "color=\"primary\" prop'u verilir",
+        "variant=\"soft\" yazılmaz — soft bir variant değil, ayrı boolean prop'tur",
+        "Ayrıca Spinner import edilerek compose edilmez — Button'un dahili loading sistemi kullanılır",
+        "disabled prop'u loading ile birlikte ayrıca tanımlamaya gerek yoktur — loading otomatik devre dışı bırakır"
+      ]
+    },
+    {
+      "id": 11,
+      "prompt": "eglador-ui-react ile tema değiştirme butonu oluştur. Tıklandığında dark/light tema arasında geçiş yapsın. Tercih localStorage'a kaydedilsin.",
+      "expected_output": "toggleTheme ve setTheme utility fonksiyonlarını kullanan, data-theme attribute tabanlı bileşen.",
+      "files": [],
+      "expectations": [
+        "toggleTheme() fonksiyonu eglador-ui-react'tan import edilir",
+        "setTheme() fonksiyonu ile başlangıç teması ayarlanır",
+        "document.documentElement.setAttribute veya toggleTheme/setTheme kullanılır — className toggle yapılmaz",
+        "data-theme attribute kullanılır, class=\"dark\" eklenmez",
+        "Theme adında bir React bileşeni import edilmez — toggleTheme ve setTheme utility fonksiyonlardır"
+      ]
+    },
+    {
+      "id": 12,
+      "prompt": "eglador-ui-react ile ürün görselleri için carousel oluştur. 5 ürün görseli döngüsel (loop) kayssın, otomatik oynatılsın, navigasyon okları ve sayfalama noktaları görünsün.",
+      "expected_output": "Carousel bileşenini slides prop'uyla kullanan, autoplay ve loop prop'larını doğru kullanan bileşen.",
+      "files": [],
+      "expectations": [
+        "Carousel bileşeni eglador-ui-react'tan import edilir",
+        "slides prop'u React.ReactNode[] formatında verilir",
+        "loop={true} prop'u kullanılır",
+        "autoplay={true} veya autoplay={{ delay: 3000 }} ile otomatik oynatma açılır",
+        "showNavigation={true} ile önceki/sonraki oklar gösterilir",
+        "showPagination={true} ile nokta göstergeleri gösterilir",
+        "embla-carousel ve embla-carousel-react peer dependency kurulumu belirtilir"
+      ]
+    },
+    {
+      "id": 13,
+      "prompt": "eglador-ui-react ile bir uyarı banner'ı oluştur. 'Hesabınız 3 gün içinde askıya alınacak' mesajı sarı renkte, kapatma butonu ile gösterilsin. Başlık ve açıklama ayrı ayrı olsun.",
+      "expected_output": "Alert bileşenini title ve dismissible prop'larıyla kullanan, Alert.Title gibi sub-component kullanmayan bileşen.",
+      "files": [],
+      "expectations": [
+        "Alert bileşeni kullanılır",
+        "color=\"warning\" prop'u verilir",
+        "title prop'u ile başlık verilir — Alert.Title veya başka sub-component yoktur",
+        "dismissible={true} prop'u ile kapatma butonu gösterilir",
+        "onDismiss callback'i ile kapatma olayı ele alınır",
+        "children prop'u ile açıklama metni verilir",
+        "Custom styled div, uyarı rengi için className ile bg-yellow-50 vb. yazılmaz"
+      ]
+    },
+    {
+      "id": 14,
+      "prompt": "eglador-ui-react ile kullanıcı bilgilerini düzenleyen bir modal oluştur. Ad, soyad alanları olsun. Kaydet butonuna tıklandığında loading state gösterilsin. Modal dışına tıklandığında kapansın.",
+      "expected_output": "Dialog composition API kullanan, Dialog.Body, Dialog.Header, Dialog.Title içeren, Button loading prop'u kullanan bileşen.",
+      "files": [],
+      "expectations": [
+        "Dialog.Trigger, Dialog.Content, Dialog.Header, Dialog.Title, Dialog.Body, Dialog.Footer sub-component'leri kullanılır",
+        "Dialog.Body kullanılır — içerik doğrudan Dialog.Content içine konmaz",
+        "Dialog.Title erişilebilirlik için dahil edilir",
+        "Dialog.Close asChild prop'uyla Button wrap eder",
+        "Kaydet butonunda loading prop'u kullanılır",
+        "closeOnBackdrop varsayılan olarak true'dur — ayrıca tanımlamaya gerek yoktur"
+      ]
+    },
+    {
+      "id": 15,
+      "prompt": "eglador-ui-react ile çoklu etiket seçimi yapan bir input oluştur. Kullanıcı arama yapabilsin, maksimum 5 etiket seçilebilsin, seçilen etiketler chip olarak gösterilsin.",
+      "expected_output": "MultiSelect bileşenini searchable ve maxSelected prop'larıyla kullanan bileşen.",
+      "files": [],
+      "expectations": [
+        "MultiSelect bileşeni kullanılır — manuel checkbox listesi veya Select ile yapılmaz",
+        "options prop'u { label: string, value: string }[] formatında verilir",
+        "searchable={true} prop'u ile arama açılır",
+        "maxSelected={5} prop'u ile limit belirlenir",
+        "value ve onChange ile controlled kullanım yapılır",
+        "onChange callback'i (values: string[]) => void formatındadır"
+      ]
+    },
+    {
+      "id": 16,
+      "prompt": "eglador-ui-react ile bir dosya yöneticisi oluştur. Kök klasörde 3 klasör ve 5 dosya olsun. Grid görünümü varsayılan olsun, sidebar gösterilsin, dosyaya çift tıklandığında konsola yazdırılsın.",
+      "expected_output": "FileManager composition API kullanan, FileManagerItem dizisi sağlayan, callback'leri tanımlayan bileşen.",
+      "files": [],
+      "expectations": [
+        "FileManager bileşeni kullanılır",
+        "items prop'u FileManagerItem[] formatında verilir: { id, name, type: 'file'|'folder', parentId }",
+        "FileManager.Toolbar, FileManager.Sidebar, FileManager.Content sub-component'leri kullanılır",
+        "defaultView=\"grid\" prop'u verilir",
+        "showSidebar={true} prop'u verilir",
+        "onFileOpen callback'i ile çift tıklama olayı ele alınır",
+        "Klasörler için parentId: null, dosyalar için parentId klasör id'si verilir"
+      ]
+    },
+    {
+      "id": 17,
+      "prompt": "eglador-ui-react kullanarak koşullu className kullan: bir kart bileşeni oluştur, kart seçiliyse farklı bir arka plan rengi alsın, devre dışıysa opaklığı azalsın.",
+      "expected_output": "cn() utility fonksiyonunu kullanan, template literal ternary kullanmayan bileşen.",
+      "files": [],
+      "expectations": [
+        "cn() fonksiyonu eglador-ui-react'tan import edilir",
+        "Koşullu className için cn() kullanılır: cn('base-class', isSelected && 'bg-zinc-100', isDisabled && 'opacity-50')",
+        "Template literal ternary kullanılmaz: `${isSelected ? 'bg-zinc-100' : ''}` yazılmaz",
+        "space-y-* kullanılmaz — gap-* ile boşluk verilir",
+        "Eşit genişlik/yükseklik için size-* kullanılır (w-* h-* değil)"
+      ]
+    },
+    {
+      "id": 18,
+      "prompt": "eglador-ui-react ile bir ayırıcı çizgi ve yükleme iskeletleri kullanan profil kartı oluştur. İsim ve bio alanları yüklenene kadar skeleton göster, aralarında separator olsun.",
+      "expected_output": "Skeleton ve Separator bileşenlerini kullanan, custom animate-pulse veya hr kullanmayan bileşen.",
+      "files": [],
+      "expectations": [
+        "Skeleton bileşeni kullanılır — custom animate-pulse div yazılmaz",
+        "Separator bileşeni kullanılır — <hr> veya <div className='border-t'> kullanılmaz",
+        "Skeleton className ile boyutlandırılır: className='h-4 w-3/4'",
+        "Birden fazla satır için Skeleton lines prop'u kullanılabilir",
+        "Separator variant prop'u ile 'solid', 'dashed' veya 'dotted' seçilebilir"
+      ]
+    }
+  ]
+}
