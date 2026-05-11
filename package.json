@@ -1,6 +1,6 @@
 {
   "name": "eglador-ui-react",
-  "version": "0.1.0-alpha.19",
+  "version": "0.1.0-alpha.20",
   "description": "Reusable Tailwind CSS v4 UI components for React projects",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -14,8 +14,15 @@
     "./themes.css": "./src/themes.css"
   },
   "files": [
-    "dist"
+    "dist",
+    "claude",
+    "CLAUDE.md",
+    "scripts"
   ],
+  "claude": {
+    "skills": "./claude/SKILL.md",
+    "version": "1.0.0"
+  },
   "sideEffects": false,
   "scripts": {
     "build": "tsup",
@@ -23,7 +30,8 @@
     "typecheck": "tsc --noEmit",
     "prepublishOnly": "npm run typecheck && npm run build",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "postinstall": "node scripts/update-claude-md.js"
   },
   "keywords": [
     "react",
